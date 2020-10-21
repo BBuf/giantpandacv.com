@@ -12,4 +12,4 @@
 
 微信公众号： 
 
-<img src=".\qrcode_for_gh_f24964232d76_1280.jpg" style="zoom:1%;" />
+<img src=".\qrcode_for_gh_f24964232d76_1280.jpg" style="zoom:0.1%;" />
