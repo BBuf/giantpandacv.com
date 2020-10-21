@@ -1,22 +1,29 @@
-## 文件格式
+[EN](./rar.md) | [ZH](./rar-zh.md)
+## file format
 
-RAR 文件主要由标记块，压缩文件头块，文件头块，结尾块组成。
 
-其每一块大致分为以下几个字段：
+The RAR file is mainly composed of a mark block, a compressed file header block, a file header block, and a trailing block.
 
-| 名称       | 大小 | 描述                  |
+
+Each of its blocks is roughly divided into the following fields:
+
+
+| Name | Size | Description |
 | ---------- | ---- | --------------------- |
-| HEAD_CRC   | 2    | 全部块或块部分的CRC   |
-| HEAD_TYPE  | 1    | 块类型                |
-| HEAD_FLAGS | 2    | 阻止标志              |
-| HEAD_SIZE  | 2    | 块大小                |
-| ADD_SIZE   | 4    | 可选字段 - 添加块大小 |
+| HEAD_CRC | 2 | CRC for all blocks or block parts |
+| HEAD_TYPE | 1 | Block Type |
+| HEAD_FLAGS | 2 | Blocking Flags |
+| HEAD_SIZE | 2 | Block Size |
+| ADD_SIZE | 4 | Optional Fields - Add Block Size |
 
-Rar压缩包的文件头为 `0x 52 61 72 21 1A 07 00`。
 
-紧跟着文件头（0x526172211A0700）的是标记块（MARK_HEAD），其后还有文件头（File Header）。
+The file header of the Rar archive is `0x 52 61 72 21 1A 07 00`.
 
-| 名称          | 大小            | 描述                                                                                                                     |
+
+Following the file header (0x526172211A0700) is the marker block (MARK_HEAD) followed by the File Header.
+
+
+| Name | Size | Description |
 | ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | HEAD_CRC      | 2               | CRC of fields from HEAD_TYPE to FILEATTR and file name                                                                   |
 | HEAD_TYPE     | 1               | Header Type: 0x74                                                                                                        |
@@ -37,7 +44,10 @@ Rar压缩包的文件头为 `0x 52 61 72 21 1A 07 00`。
 | SALT          | 8               | present if (HEAD_FLAGS & 0x400) != 0                                                                                     |
 | EXT_TIME      | variable size   | present if (HEAD_FLAGS & 0x1000) != 0                                                                                    |
 
-每个 RAR 文件的结尾快（Terminator）都是固定的。
+
+
+The end of each RAR file is fixed (Terminator).
+
 
 | Field Name | Size (bytes) | Possibilities       |
 | ---------- | ------------ | ------------------- |
@@ -46,18 +56,28 @@ Rar压缩包的文件头为 `0x 52 61 72 21 1A 07 00`。
 | HEAD_FLAGS | 2            | Always 0x4000       |
 | HEAD_SIZE  | 2            | Block size = 0x0007 |
 
-更多详见 <http://www.forensicswiki.org/wiki/RAR>
 
-## 主要攻击
 
-### 爆破
+See more details <http://www.forensicswiki.org/wiki/RAR>
 
--   Linux下的 [RarCrack](http://rarcrack.sourceforge.net/)
 
-### 伪加密
+## Main attack
 
-RAR 文件的伪加密在文件头中的位标记字段上，用 010 Editor 可以很清楚的看见这一位，修改这一位可以造成伪加密。
 
-![](/misc/archive/figure/6.png)
+### Blasting
 
-其余明文攻击等手法依旧同 ZIP 中介绍的一样。
+
+- [RarCrack] under Linux (http://rarcrack.sourceforge.net/)
+
+
+### Pseudo encryption
+
+
+The pseudo-encryption of the RAR file is visible on the bit-marker field in the header of the file. This bit can be clearly seen with the 010 Editor. Modifying this bit can cause pseudo-encryption.
+
+
+![](./figure/6.png)
+
+
+
+The rest of the plaintext attacks are still the same as those described in the ZIP.
