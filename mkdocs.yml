@@ -10,10 +10,10 @@ copyright: 'Copyright &copy; 2016 - 2020 CTF Wiki Team'
 
 # Contents
 nav:
-    - Introduction:
+    - 首页:
         - GiantPandaCV 简介: index.md
 
-    - Misc:
+    - 传统图像:
         - Miscellaneous Introduction: misc/introduction-zh.md
         - Information Gathering Technology: misc/recon-zh.md
         - Code Analysis:
@@ -48,7 +48,7 @@ nav:
             - Title: misc/disk-memory/problem-zh.md
         - Other:
             - pyc File: misc/other/pyc-zh.md
-    - Crypto:
+    - 目标检测:
         - Introduction to Cryptography: crypto/introduction-zh.md
         - Basic Mathematics:
             - Introduction: crypto/basic/introduction-zh.md
@@ -129,18 +129,18 @@ nav:
             - Intermediate Encounter Attack: crypto/attack-summary/meet-in-the-middle-zh.md
             - Bit attack: crypto/attack-summary/bit-attack-zh.md
         - Certificate Format: crypto/certificate/introduction-zh.md
-    - Web:
+    - 语义分割:
         - Introduction to Web Applications: web/introduction-zh.md
         - SQL Injection: web/sqli-zh.md
         - XSS Cross-site Scripting Attack: web/xss-zh.md
         - CSRF Cross-site Request Forgery: web/csrf-zh.md
         - SSRF Server Request Forgery: web/ssrf-zh.md
         - PHP Code Auditing: web/php/php-zh.md
-    - Assembly:
+    - 部署优化:
         - x86_x64: assembly/x86-x64/readme-zh.md
         - mips: assembly/mips/readme-zh.md
         - arm: assembly/arm/readme-zh.md
-    - Executable:
+    - 算法科普:
         - ELF file:
             - ELF File Basic Structure: executable/elf/elf-structure-zh.md
             - Program Loading: executable/elf/program-loading-zh.md
@@ -151,7 +151,7 @@ nav:
             - PE Import Table: executable/pe/pe-import-table-zh.md
             - PE Export Table: executable/pe/pe-export-table-zh.md
             - PE Relocation Table: executable/pe/pe-relocation-table-zh.md
-    - Reverse Engineering:
+    - 资源共享:
         - Reverse Overview:
             - Software Reverse Engineering Introduction: reverse/introduction-zh.md
             - Common Encryption Algorithms and Code Recognition: reverse/Identify-Encode-Encryption/introduction-zh.md
@@ -187,7 +187,7 @@ nav:
                 - ZwSetInformationThread: reverse/windows/anti-debug/zwsetinformationthread-zh.md
                 - Flower command: reverse/windows/anti-debug/junk-code-zh.md
                 - Anti-debug technical example: reverse/windows/anti-debug/example-zh.md
-    - Pwn:
+    - MsnhNet:
         - Pwn Overview:
             - pwn/readme-zh.md
         - Linux Pwn:
@@ -268,7 +268,7 @@ nav:
                 - Stack Overflow Principle: pwn/windows/stackoverflow/stackoverflow-basic-zh.md
                 - shellcode-in-stack: pwn/windows/stackoverflow/shellcode-in-stack-zh.md
 
-    - Android:
+    - 算法商城:
         - Android Development Basics: android/basic_develop/basic_develop-zh.md
         - Android Application Operating Mechanism Brief:
             - Basics: android/basic_operating_mechanism/readme-zh.md
@@ -291,11 +291,6 @@ nav:
                 - Android Simple Dynamic Analysis:
                     - Dynamic Debugging: android/basic_reverse/dynamic/dynamic_debug-zh.md
                     - Android Dynamic Debugging SO: android/basic_reverse/dynamic/ida_native_debug-zh.md
-    - ICS:
-        - ICS_CTF Contest: ics/ctfs-zh.md
-        - ICS_CTF found: ics/discover-zh.md
-        - ICS_CTF uses: ics/exploit-zh.md
-        - ICS_CTF Learning Resources: ics/learn-zh.md
 
 
 # Theme
