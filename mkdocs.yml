@@ -6,13 +6,13 @@ site_url: http://giantpandacv.com
 
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2020 CTF Wiki Team'
+copyright: 'Copyright &copy; GiantPandaCV Team'
 
 # Contents
 nav:
     - 首页:
+        - Getting Started: index.md
         - GiantPandaCV 简介: index.md
-
     - 传统图像:
         - Miscellaneous Introduction: misc/introduction-zh.md
         - Information Gathering Technology: misc/recon-zh.md
@@ -291,6 +291,8 @@ nav:
                 - Android Simple Dynamic Analysis:
                     - Dynamic Debugging: android/basic_reverse/dynamic/dynamic_debug-zh.md
                     - Android Dynamic Debugging SO: android/basic_reverse/dynamic/ida_native_debug-zh.md
+    - 视频专栏: 
+        - 视频专栏: video/video_1.md
 
 
 # Theme
