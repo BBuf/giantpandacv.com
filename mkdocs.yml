@@ -11,13 +11,7 @@ copyright: 'Copyright &copy; 2016 - 2020 CTF Wiki Team'
 # Contents
 nav:
     - Introduction:
-        - Getting Started: index.md
-        - CTF History: introduction/history-zh.md
-        - Introduction to CTF Competition Form: introduction/mode-zh.md
-        - CTF Contest Content: introduction/content-zh.md
-        - Offline Attack and Defense Experience Summary: introduction/experience-zh.md
-        - CGC Super Challenge: introduction/cgc-zh.md
-        - Learning Resources: introduction/resources-zh.md
+        - GiantPandaCV 简介: index.md
 
     - Misc:
         - Miscellaneous Introduction: misc/introduction-zh.md
