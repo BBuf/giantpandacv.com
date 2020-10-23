@@ -146,8 +146,24 @@ nav:
             - 【AI PC端算法优化】六，优化一个简单的肤色检测算法: 部署优化/AI PC端优化/【AI PC端算法优化】六，优化一个简单的肤色检测算法.md
             - 【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化: 部署优化/AI PC端优化/【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化.md
             - 【AI PC端算法优化】八，小半径中值滤波的SSE极速优化: 部署优化/AI PC端优化/【AI PC端算法优化】八，小半径中值滤波的SSE极速优化.md
-        - AI 部署及其它优化算法: 部署优化/AI 部署及其它优化算法/
-        - AI 移动端算法优化: 部署优化/AI 移动端算法优化/
+        - AI 部署及其它优化算法: 
+            - 如何让你的YOLOV3模型更小更快？: 部署优化/AI 部署及其它优化算法/AI 部署及其它优化算法.md
+            - 基于Pytorch构建一个可训练的BNN: 部署优化/AI 部署及其它优化算法/基于Pytorch构建一个可训练的BNN.md
+            - 基于Pytorch构建三值化网络TWN: 部署优化/AI 部署及其它优化算法/基于Pytorch构建三值化网络TWN.md
+            - 低比特量化之XNOR-Net: 部署优化/AI 部署及其它优化算法/低比特量化之XNOR-Net.md
+            - 低比特量化之DoreFa-Net理论与实践: 部署优化/AI 部署及其它优化算法/低比特量化之DoreFa-Net理论与实践.md
+            - YOLOV3剪枝方法汇总: 部署优化/AI 部署及其它优化算法/YOLOV3剪枝方法汇总.md
+            - Pytorch实现卷积神经网络训练量化（QAT）: 部署优化/AI 部署及其它优化算法/Pytorch实现卷积神经网络训练量化（QAT）.md
+            - Keras2NCNN？Yes: 部署优化/AI 部署及其它优化算法/Keras2NCNN？Yes.md
+        - AI 移动端算法优化: 
+            - AI移动端优化之Im2Col+Pack+Sgemm: 部署优化/AI 移动端算法优化/AI移动端优化之Im2Col+Pack+Sgemm.md
+            - CNN不用乘法 AdderNet和DeepShift论文阅读: 部署优化/AI 移动端算法优化/CNN不用乘法 AdderNet和DeepShift论文阅读.md
+            - ICCV2019 高通Data-Free Quantization论文解读: 部署优化/AI 移动端算法优化/ICCV2019 高通Data-Free Quantization论文解读.md
+            - Im2Col+GEMM的改进方法MEC，一种更加高效的卷积计算策略: 部署优化/AI 移动端算法优化/Im2Col+GEMM的改进方法MEC，一种更加高效的卷积计算策略.md
+            - 海思NNIE之PFPLD训练与量化: 部署优化/AI 移动端算法优化/海思NNIE之PFPLD训练与量化.md
+            - 基于NCNN的3x3可分离卷积再思考盒子滤波: 部署优化/AI 移动端算法优化/基于NCNN的3x3可分离卷积再思考盒子滤波.md
+            - 详解卷积中的Winograd加速算法: 部署优化/AI 移动端算法优化/详解卷积中的Winograd加速算法.md
+            - 一份朴实无华的移动端盒子滤波算法优化笔记: 部署优化/AI 移动端算法优化/一份朴实无华的移动端盒子滤波算法优化笔记.md
     - 算法科普:
         - ELF file:
             - ELF File Basic Structure: executable/elf/elf-structure-zh.md
