@@ -137,9 +137,17 @@ nav:
         - SSRF Server Request Forgery: web/ssrf-zh.md
         - PHP Code Auditing: web/php/php-zh.md
     - 部署优化:
-        - x86_x64: assembly/x86-x64/readme-zh.md
-        - mips: assembly/mips/readme-zh.md
-        - arm: assembly/arm/readme-zh.md
+        - AI PC端优化: 
+            - 【AI PC端算法优化】一，一步步优化RGB转灰度图算法: 部署优化/AI PC端优化/【AI PC端算法优化】一，一步步优化RGB转灰度图算法.md
+            - 【AI PC端算法优化】二，一步步优化自然饱和度算法: 部署优化/AI PC端优化/【AI PC端算法优化】二，一步步优化自然饱和度算法.md
+            - 【AI PC端算法优化】三，深入优化RGB转灰度图算法: 部署优化/AI PC端优化/【AI PC端算法优化】三，深入优化RGB转灰度图算法.md
+            - 【AI PC端算法优化】四，一步步将Sobel边缘检测加速22倍: 部署优化/AI PC端优化/【AI PC端算法优化】四，一步步将Sobel边缘检测加速22倍.md
+            - 【AI PC端算法优化】五，常量阶最大值最小值滤波算法: 部署优化/AI PC端优化/【AI PC端算法优化】五，常量阶最大值最小值滤波算法.md
+            - 【AI PC端算法优化】六，优化一个简单的肤色检测算法: 部署优化/AI PC端优化/【AI PC端算法优化】六，优化一个简单的肤色检测算法.md
+            - 【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化: 部署优化/AI PC端优化/【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化.md
+            - 【AI PC端算法优化】八，小半径中值滤波的SSE极速优化: 部署优化/AI PC端优化/【AI PC端算法优化】八，小半径中值滤波的SSE极速优化.md
+        - AI 部署及其它优化算法: 部署优化/AI 部署及其它优化算法/
+        - AI 移动端算法优化: 部署优化/AI 移动端算法优化/
     - 算法科普:
         - ELF file:
             - ELF File Basic Structure: executable/elf/elf-structure-zh.md
