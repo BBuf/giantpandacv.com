@@ -12,7 +12,7 @@ copyright: 'Copyright &copy; GiantPandaCV Team'
 nav:
     - 首页:
         - Getting Started: index.md
-        - GiantPandaCV 简介: index.md
+        - GiantPandaCV 简介: introduction/introduction.md
     - 传统图像:
         - Miscellaneous Introduction: misc/introduction-zh.md
         - Information Gathering Technology: misc/recon-zh.md

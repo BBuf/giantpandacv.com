@@ -13,7 +13,7 @@
 ​																      	 **公众号二维码，欢迎关注**
 
 
-![公众号二维码](./introduction/images/1.jpg)
+![公众号二维码](./introduction/images/2.jpg)
 
 
 ## Material color palette 颜色主题
