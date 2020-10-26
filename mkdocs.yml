@@ -13,41 +13,40 @@ nav:
     - 首页:
         - Getting Started: index.md
         - GiantPandaCV 简介: introduction/introduction.md
-    - 传统图像:
-        - Miscellaneous Introduction: misc/introduction-zh.md
-        - Information Gathering Technology: misc/recon-zh.md
-        - Code Analysis:
-            - Commonly Used Coding in the Communication Field: misc/encode/communication-zh.md
-            - Computer Related Coding: misc/encode/computer-zh.md
-            - Commonly Used Encodings in the Real World: misc/encode/modern-zh.md
-        - Forensic Steganography: misc/prefix-zh.md
-        - Image Analysis:
-            - Introduction to Image Analysis: misc/picture/introduction-zh.md
-            - PNG: misc/picture/png-zh.md
-            - JPG: misc/picture/jpg-zh.md
-            - GIF: misc/picture/gif-zh.md
-        - Traffic Packet Analysis:
-            - Introduction to Traffic Packet Analysis: misc/traffic/introduction-zh.md
-            - PCAP File Repairing: misc/traffic/fix-zh.md
-            - Protocol Analysis:
-                - Overview of Protocol Analysis: misc/traffic/protocols/README-zh.md
-                - Wireshark: misc/traffic/protocols/Wireshark-zh.md
-                - HTTP: misc/traffic/protocols/HTTP-zh.md
-                - HTTPS: misc/traffic/protocols/HTTPS-zh.md
-                - FTP: misc/traffic/protocols/FTP-zh.md
-                - DNS: misc/traffic/protocols/DNS-zh.md
-                - WIFI: misc/traffic/protocols/WIFI-zh.md
-                - USB: misc/traffic/protocols/USB-zh.md
-            - Data Extraction: misc/traffic/data-zh.md
-        - Compressed Package Analysis:
-            - ZIP Format: misc/archive/zip-zh.md
-            - RAR Format: misc/archive/rar-zh.md
-        - Audio Steganography: misc/audio/introduction-zh.md
-        - Disk Memory Analysis:
-            - Introduction: misc/disk-memory/introduction-zh.md
-            - Title: misc/disk-memory/problem-zh.md
-        - Other:
-            - pyc File: misc/other/pyc-zh.md
+    - 传统图像: 
+        - 专栏介绍: 传统图像/README.md
+        - 一些有趣的图像算法: 
+            - OpenCV图像处理专栏一  盘点常见颜色空间互转: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏一  盘点常见颜色空间互转.md
+            - OpenCV图像处理专栏二 《Local Color Correction 》论文阅读及C++复现: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏二 《Local Color Correction 》论文阅读及C++复现.md
+            - OpenCV图像处理专栏三  灰度世界算法原理和实现: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏三  灰度世界算法原理和实现.md
+            - OpenCV图像处理专栏四  自动白平衡之完美反射算法原理及C++实现:  传统图像/一些有趣的图像算法/OpenCV图像处理专栏四  自动白平衡之完美反射算法原理及C++实现.md
+            - OpenCV图像处理专栏五  《Real-time adaptive contrast enhancement for imaging sensors》论文解读及实现: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏五  《Real-time adaptive contrast enhancement for imaging sensors》论文解读及实现.md
+            - OpenCV图像处理专栏六  来自何凯明博士的暗通道去雾算法(CVPR 2009最佳论文): 传统图像/一些有趣的图像算法/OpenCV图像处理专栏六  来自何凯明博士的暗通道去雾算法(CVPR 2009最佳论文).md
+            - OpenCV图像处理专栏七  直方图均衡化算法及代码实现: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏七  直方图均衡化算法及代码实现.md
+            - OpenCV图像处理专栏八   《Contrast image correction method》 论文阅读及代码实现: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏八   《Contrast image correction method》 论文阅读及代码实现.md
+            - OpenCV图像处理专栏九  基于直方图的快速中值滤波算法: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏九  基于直方图的快速中值滤波算法.md
+            - OpenCV图像处理专栏十  利用中值滤波进行去雾: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十  利用中值滤波进行去雾.md
+            - OpenCV图像处理专栏十一  IEEE Xplore 2015的图像白平衡处理之动态阈值法: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十一  IEEE Xplore 2015的图像白平衡处理之动态阈值法.md
+            - OpenCV图像处理专栏十二 《基于二维伽马函数的光照不均匀图像自适应校正算法》: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十二 《基于二维伽马函数的光照不均匀图像自适应校正算法》.md
+            - OpenCV图像处理专栏十三  利用多尺度融合提升图像细节: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十三  利用多尺度融合提升图像细节.md
+            - OpenCV图像处理专栏十四  基于Retinex成像原理的自动色彩均衡算法(ACE): 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十四  基于Retinex成像原理的自动色彩均衡算法(ACE).md
+            - OpenCV图像处理专栏十五 《一种基于亮度均衡的图像阈值分割技术》: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十五 《一种基于亮度均衡的图像阈值分割技术》.md
+            - OpenCV图像处理专栏十六  合理选用Side Window Filter辅助矩形框检测: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十六  合理选用Side Window Filter辅助矩形框检测.md
+            - OpenCV图像处理专栏十七  清华大学《基于单幅图像的快速去雾》C++复现（有一定工程意义）: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十七  清华大学《基于单幅图像的快速去雾》C++复现（有一定工程意义）.md
+            - OpenCV图像处理专栏十八  手动构造Sobel算子完成边缘检测: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十八  手动构造Sobel算子完成边缘检测.md
+            - OpenCV图像处理专栏十九  手动实现基于Canny算子的边缘检测: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十九  手动实现基于Canny算子的边缘检测.md
+            - OpenCV图像处理专栏二十 《Adaptive Logarithmic Mapping For Displaying High Contrast Scenes》复现: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏二十 《Adaptive Logarithmic Mapping For Displaying High Contrast Scenes》复现.md
+    - 算法科普:
+        - ELF file:
+            - ELF File Basic Structure: executable/elf/elf-structure-zh.md
+            - Program Loading: executable/elf/program-loading-zh.md
+            - Program Link: executable/elf/program-linking-zh.md
+            - Program Execution Flow: executable/elf/running-overview-zh.md
+        - PE file:
+            - PE File Basic Structure: executable/pe/pe-excutable-zh.md
+            - PE Import Table: executable/pe/pe-import-table-zh.md
+            - PE Export Table: executable/pe/pe-export-table-zh.md
+            - PE Relocation Table: executable/pe/pe-relocation-table-zh.md
     - 目标检测:
         - Introduction to Cryptography: crypto/introduction-zh.md
         - Basic Mathematics:
@@ -136,7 +135,8 @@ nav:
         - CSRF Cross-site Request Forgery: web/csrf-zh.md
         - SSRF Server Request Forgery: web/ssrf-zh.md
         - PHP Code Auditing: web/php/php-zh.md
-    - 部署优化:
+    - 部署优化: 
+        - 专栏介绍: 部署优化/README.md
         - AI PC端优化: 
             - 【AI PC端算法优化】一，一步步优化RGB转灰度图算法: 部署优化/AI PC端优化/【AI PC端算法优化】一，一步步优化RGB转灰度图算法.md
             - 【AI PC端算法优化】二，一步步优化自然饱和度算法: 部署优化/AI PC端优化/【AI PC端算法优化】二，一步步优化自然饱和度算法.md
@@ -164,17 +164,6 @@ nav:
             - 基于NCNN的3x3可分离卷积再思考盒子滤波: 部署优化/AI 移动端算法优化/基于NCNN的3x3可分离卷积再思考盒子滤波.md
             - 详解卷积中的Winograd加速算法: 部署优化/AI 移动端算法优化/详解卷积中的Winograd加速算法.md
             - 一份朴实无华的移动端盒子滤波算法优化笔记: 部署优化/AI 移动端算法优化/一份朴实无华的移动端盒子滤波算法优化笔记.md
-    - 算法科普:
-        - ELF file:
-            - ELF File Basic Structure: executable/elf/elf-structure-zh.md
-            - Program Loading: executable/elf/program-loading-zh.md
-            - Program Link: executable/elf/program-linking-zh.md
-            - Program Execution Flow: executable/elf/running-overview-zh.md
-        - PE file:
-            - PE File Basic Structure: executable/pe/pe-excutable-zh.md
-            - PE Import Table: executable/pe/pe-import-table-zh.md
-            - PE Export Table: executable/pe/pe-export-table-zh.md
-            - PE Relocation Table: executable/pe/pe-relocation-table-zh.md
     - 资源共享:
         - Reverse Overview:
             - Software Reverse Engineering Introduction: reverse/introduction-zh.md
