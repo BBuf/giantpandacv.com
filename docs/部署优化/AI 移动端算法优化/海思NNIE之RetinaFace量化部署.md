@@ -1,6 +1,6 @@
 > 本文首发于我的知乎：https://zhuanlan.zhihu.com/p/111399987
 # 0. 前言
-接上一期[海思NNIE之Mobilefacenet量化部署](https://mp.weixin.qq.com/s?__biz=MzAwNTMzODc4OA==&mid=2456143046&idx=1&sn=a87554e3abb3e020f2039d64342b01a5&chksm=8c8f470dbbf8ce1b3d39dbf39f8aab29c11348d247ffc726b664ec699a4e1058e8f6011e9b4b&scene=126&sessionid=1590915472&key=fb845c10c47e8addbf20e6305d2e986aa6da6eccf1083dc32ab76281430ae2a7806574f40b49005519c1b1dc7d67f7f1626247528a04a1dea53284cbb4cf908569de7805c68fef9d54be9e58f2257b3e&ascene=1&uin=OTc3ODMzNzA5&devicetype=Windows%2010%20x64&version=62090070&lang=zh_CN&exportkey=A28haT529gP2OISjL1IW%2bx4=&pass_ticket=TGM%2bhFmED5KgU86WG1MStb0/ALQNmYxsp/M4BZm3JrYZlFwE4bubAUkGaO1CprcV&winzoom=1) 文章。
+接上一期 海思NNIE之Mobilefacenet量化部署 文章。
 
 关于上述内容，还是得到了一些认可，索性把人脸全家福奉上了，Github地址如下：
 
@@ -49,7 +49,6 @@ layer {
 
 所以我采取了比较暴力的做法，就是直接在mnet.prototxt中两处地方去除了Crop层（Fig.2.2，Fig.2.3），然后寻找几组固定的输入比如512x512、640x640、768x768、1024x1024等，只要保证在Crop操作之前两个层的维度是一致的就没有什么问题！
 
-
 ![Fig.2.2](https://img-blog.csdnimg.cn/20200531185259625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 ![Fig.2.3](https://img-blog.csdnimg.cn/20200531185923541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
@@ -61,6 +60,7 @@ layer {
 ![Figure2.4](https://img-blog.csdnimg.cn/20200531190111623.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 ![Figure2.5](https://img-blog.csdnimg.cn/2020053119013199.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 3. ReShape
 prototxt中存在多处reshape的地方，如下图，需要将dim: 1改成dim: 0，原因很简单，在量化的时候会报一个错误，就是只能设置CHW三个维度，没有N，这个维度的设定应该是为了让NNIE多张输入的时候方便操作四维数据，可以参考样例中fasterRCNN中的写法，进行必要调整。
 
@@ -100,5 +100,3 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 ![中间层特征向量对比](https://img-blog.csdnimg.cn/2020053119100683.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 如果对文章有什么不理解或者疑惑的地方，欢迎到文章开头的知乎文章的讨论区给我留言哦。
 
-
------------------------------------分割线----------------------------------
