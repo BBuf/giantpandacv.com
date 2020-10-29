@@ -41,14 +41,14 @@ nav:
         - AutoML: 
             - 你所需要知道的关于AutoML和NAS的知识点: 算法科普/AutoML/你所需要知道的关于AutoML和NAS的知识点.md
         - CV中的特征金字塔:
-            - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: 算法科普/【CV中的特征金字塔】/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
-            - 【CV中的特征金字塔】二，Feature Pyramid Network: 算法科普/【CV中的特征金字塔】/【CV中的特征金字塔】二，Feature Pyramid Network.md
-            - 【CV中的特征金字塔】三，两阶段实时监测网络ThunderNet: 算法科普/【CV中的特征金字塔】/【CV中的特征金字塔】三，两阶段实时监测网络ThunderNet.md
-            - 【CV中的特征金字塔】四，CVPR 2018 PANet: 算法科普/【CV中的特征金字塔】/【CV中的特征金字塔】四，CVPR 2018 PANet.md
-            - 【CV中的特征金字塔】五，Google Brain EfficientDet: 算法科普/【CV中的特征金字塔】/【CV中的特征金字塔】五，Google Brain EfficientDet.md
-            - 【CV中的特征金字塔】六，ECCV 2018 PFPNet: 算法科普/【CV中的特征金字塔】/【CV中的特征金字塔】六，ECCV 2018 PFPNet.md
-            - 【CV中的特征金字塔】七，SSD算法的改进版Rainbow SSD: 算法科普/【CV中的特征金字塔】/【CV中的特征金字塔】七，SSD算法的改进版Rainbow SSD.md
-            - 【CV中的特征金字塔】八，SSD的改进版之DSSD: 算法科普/【CV中的特征金字塔】/【CV中的特征金字塔】八，SSD的改进版之DSSD.md
+            - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
+            - 【CV中的特征金字塔】二，Feature Pyramid Network: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】二，Feature Pyramid Network.md
+            - 【CV中的特征金字塔】三，两阶段实时监测网络ThunderNet: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】三，两阶段实时监测网络ThunderNet.md
+            - 【CV中的特征金字塔】四，CVPR 2018 PANet: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】四，CVPR 2018 PANet.md
+            - 【CV中的特征金字塔】五，Google Brain EfficientDet: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】五，Google Brain EfficientDet.md
+            - 【CV中的特征金字塔】六，ECCV 2018 PFPNet: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】六，ECCV 2018 PFPNet.md
+            - 【CV中的特征金字塔】七，SSD算法的改进版Rainbow SSD: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】七，SSD算法的改进版Rainbow SSD.md
+            - 【CV中的特征金字塔】八，SSD的改进版之DSSD: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】八，SSD的改进版之DSSD.md
         - CV中的注意力机制:
             - 【CV中的Attention机制】BiSeNet中的FFM模块与ARM模块: 算法科普/CV中的注意力机制/【CV中的Attention机制】BiSeNet中的FFM模块与ARM模块.md
             - 【CV中的Attention机制】CBAM的姊妹篇-BAM模块:  算法科普/CV中的注意力机制/【CV中的Attention机制】CBAM的姊妹篇-BAM模块.md
