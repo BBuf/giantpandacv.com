@@ -1,5 +1,5 @@
 # 前言
-偶然在IPOL见到了这篇paper，虽然之前复现的一些paper已经可以较好的处理低照度下的色彩恢复，然而在光度强度很大的情况下怎么恢复还不清楚，并且如果出现图片中既有很亮的部分，又有很暗的部分，又不知道怎么处理了。这篇paper，正式为了解决这一问题，他的局步颜色矫正，和He KaiMing的暗通道去雾有相似的想法，值得借鉴。论文地址为：http://www.ipol.im/pub/art/2011/gl_lcc/ 。IPOL是一个非常好的学习数字图像处理的网站，上面的论文都是提供配套源码的，如果平时在数字图像处理方面想找一些Idea，不妨上去看看。
+偶然在IPOL见到了这篇paper，虽然之前复现的一些paper已经可以较好的处理低照度下的色彩恢复，然而在光度强度很大的情况下怎么恢复还不清楚，并且如果出现图片中既有很亮的部分，又有很暗的部分，又不知道怎么处理了。这篇paper，正是为了解决这一问题，它的局部颜色矫正，和He KaiMing的暗通道去雾算法有相似的想法，值得借鉴。论文地址为：http://www.ipol.im/pub/art/2011/gl_lcc/ 。IPOL是一个非常好的学习数字图像处理的网站，上面的论文都是提供配套源码的，如果平时在数字图像处理方面想找一些Idea，不妨上去看看。
 # 算法原理 
 首先对于太亮和太暗的图像，我们可以使用Gamma校正和直方图均衡化来提高对比度。 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181126133007795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)						**分别代表较暗图像，Gamma系数为0.5的Gamma校正，直方图均衡化**
