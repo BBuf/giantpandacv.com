@@ -137,12 +137,12 @@ nav:
                 - CenterNet5-测试推理过程: 目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet5-测试推理过程.md
                 - CenterNet电子书: 目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet电子书.md
             - FasterRCNN:
-                - 【Faster RCNN理解】1. 整体框架: 目标检测及跟踪/经典检测算法代码解析FasterRCNN/【Faster RCNN理解】1. 整体框架.md
-                - 【Faster R-CNN】2. Faster RCNN代码解析第一弹: 目标检测及跟踪/经典检测算法代码解析FasterRCNN/【Faster R-CNN】2. Faster RCNN代码解析第一弹.md
-                - 【Faster R-CNN】3. Faster RCNN代码解析第二弹: 目标检测及跟踪/经典检测算法代码解析FasterRCNN/【Faster R-CNN】3. Faster RCNN代码解析第二弹.md
-                - 【Faster R-CNN】4. Faster RCNN代码解析第三弹: 目标检测及跟踪/经典检测算法代码解析FasterRCNN/【Faster R-CNN】4. Faster RCNN代码解析第三弹.md
-                - 【Faster R-CNN】5. Faster RCNN代码解析第四弹: 目标检测及跟踪/经典检测算法代码解析FasterRCNN/【Faster R-CNN】5. Faster RCNN代码解析第四弹.md
-                - 【Faster RCNN】概述（番外）: 目标检测及跟踪/经典检测算法代码解析FasterRCNN/【Faster RCNN】概述（番外）.md
+                - 【Faster RCNN理解】1. 整体框架: 目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster RCNN理解】1. 整体框架.md
+                - 【Faster R-CNN】2. Faster RCNN代码解析第一弹: 目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster R-CNN】2. Faster RCNN代码解析第一弹.md
+                - 【Faster R-CNN】3. Faster RCNN代码解析第二弹: 目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster R-CNN】3. Faster RCNN代码解析第二弹.md
+                - 【Faster R-CNN】4. Faster RCNN代码解析第三弹: 目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster R-CNN】4. Faster RCNN代码解析第三弹.md
+                - 【Faster R-CNN】5. Faster RCNN代码解析第四弹: 目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster R-CNN】5. Faster RCNN代码解析第四弹.md
+                - 【Faster RCNN】概述（番外）: 目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster RCNN】概述（番外）.md
             - SSD:
                 - 目标检测算法之SSD代码解析(万字长文超详细): 目标检测及跟踪/经典检测算法代码解析/SSD/目标检测算法之SSD代码解析(万字长文超详细).md
                 - 目标检测算法之SSD的数据增强策略: 目标检测及跟踪/经典检测算法代码解析/SSD/目标检测算法之SSD的数据增强策略.md
@@ -156,11 +156,11 @@ nav:
                 - 【从零开始学习YOLOv3】7. 教你在YOLOv3模型中添加Attention机制: 目标检测及跟踪/经典检测算法代码解析/YOLOV3/【从零开始学习YOLOv3】7. 教你在YOLOv3模型中添加Attention机制.md
                 - 【从零开始学习YOLOv3】8. YOLOv3中Loss部分计算: 目标检测及跟踪/经典检测算法代码解析/YOLOV3/【从零开始学习YOLOv3】8. YOLOv3中Loss部分计算.md
                 - 从零开始学习YOLOv3汇总版_GiantPandaCV公众号: 目标检测及跟踪/经典检测算法代码解析/YOLOV3/从零开始学习YOLOv3汇总版_GiantPandaCV公众号.md
-            - 来自AlexeyAB的目标检测建议: 目标检测及跟踪经典检测算法代码解析/来自AlexeyAB的目标检测建议.md
-            - 利用Darket 和YOLOV3训练自己的数据集(制作VOC): 目标检测及跟踪经典检测算法代码解析/利用Darket 和YOLOV3训练自己的数据集(制作VOC).md
-            - 目标检测算法之NMS后处理相关: 目标检测及跟踪经典检测算法代码解析/目标检测算法之NMS后处理相关.md
-            - 目标检测算法之YOLO系列算法的Anchor聚类: 目标检测及跟踪经典检测算法代码解析/目标检测算法之YOLO系列算法的Anchor聚类.md
-            - 目标检测算法之评价标准和常见数据集盘点: 目标检测及跟踪经典检测算法代码解析/目标检测算法之评价标准和常见数据集盘点.md
+            - 来自AlexeyAB的目标检测建议: 目标检测及跟踪/经典检测算法代码解析/来自AlexeyAB的目标检测建议.md
+            - 利用Darket 和YOLOV3训练自己的数据集(制作VOC): 目标检测及跟踪/经典检测算法代码解析/利用Darket 和YOLOV3训练自己的数据集(制作VOC).md
+            - 目标检测算法之NMS后处理相关: 目标检测及跟踪/经典检测算法代码解析/目标检测算法之NMS后处理相关.md
+            - 目标检测算法之YOLO系列算法的Anchor聚类: 目标检测及跟踪/经典检测算法代码解析/目标检测算法之YOLO系列算法的Anchor聚类.md
+            - 目标检测算法之评价标准和常见数据集盘点: 目标检测及跟踪/经典检测算法代码解析/目标检测算法之评价标准和常见数据集盘点.md
         - 论文解析:
             - anchor free模型:
                 - 【目标检测Anchor-Free】CVPR 2019 CenterNet: 目标检测及跟踪/论文解析/anchor free模型/【目标检测Anchor-Free】CVPR 2019 CenterNet.md
@@ -295,6 +295,8 @@ nav:
         - 专栏介绍: Msnhnet/README.md
         - 多平台轻量级PyTorch模型推理框架MsnhNet: Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
         - Pytorch直转Msnhnet思路分享: Msnhnet/Pytorch直转Msnhnet思路分享.md
+    - 刷题面试:
+        - 专栏介绍: 刷题面试/README.md
     - 算法商城:
         - 专栏介绍: 算法商城/README.md
         - 免费实用工具: 
