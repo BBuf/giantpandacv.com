@@ -36,6 +36,19 @@ nav:
             - OpenCV图像处理专栏十八  手动构造Sobel算子完成边缘检测: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十八  手动构造Sobel算子完成边缘检测.md
             - OpenCV图像处理专栏十九  手动实现基于Canny算子的边缘检测: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十九  手动实现基于Canny算子的边缘检测.md
             - OpenCV图像处理专栏二十 《Adaptive Logarithmic Mapping For Displaying High Contrast Scenes》复现: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏二十 《Adaptive Logarithmic Mapping For Displaying High Contrast Scenes》复现.md
+        - 一些基础的图像算法:
+            - 《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》C++实现: 传统图像/一些基础的图像算法/《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》C++实现.md
+            - RGB和CIELAB颜色空间转换及偏色检测: 传统图像/一些基础的图像算法/RGB和CIELAB颜色空间转换及偏色检测.md
+            - 肤色检测算法 - 基于不同颜色空间简单区域划分的皮肤检测算法: 传统图像/一些基础的图像算法/肤色检测算法 - 基于不同颜色空间简单区域划分的皮肤检测算法.md
+            - 高斯滤波的C++实现与优化: 传统图像/一些基础的图像算法/高斯滤波的C++实现与优化.md
+            - 基于二次多项式混合模型肤色检测算法: 传统图像/一些基础的图像算法/基于二次多项式混合模型肤色检测算法.md
+            - 色彩均衡化算法: 传统图像/一些基础的图像算法/色彩均衡化算法.md
+            - 双边滤波原理及Opencv调用: 传统图像/一些基础的图像算法/双边滤波原理及Opencv调用.md
+            - 同态滤波 原理及实现: 传统图像/一些基础的图像算法/同态滤波 原理及实现.md
+            - 图像处理中的分水岭算法: 传统图像/一些基础的图像算法/图像处理中的分水岭算法.md
+            - 图像处理中的模糊算法: 传统图像/一些基础的图像算法/图像处理中的模糊算法.md
+            - 图像处理中的锐化算: 传统图像/一些基础的图像算法/图像处理中的锐化算法.md
+            - 引导滤波 原理及实现: 传统图像/一些基础的图像算法/引导滤波 原理及实现.md
     - 算法科普:
         - 专栏介绍: 算法科普/README.md
         - AutoML: 
