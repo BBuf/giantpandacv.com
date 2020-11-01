@@ -100,6 +100,7 @@ nav:
         - 深度学习基础:
             - CNN一定需要池化层吗？: 算法科普/深度学习基础/CNN一定需要池化层吗？.md
             - Rethinking ImageNet Pre-training: 算法科普/深度学习基础/Rethinking ImageNet Pre-training.md
+            - SVM Loss以及梯度推导: 算法科普/深度学习基础/SVM Loss以及梯度推导.md
             - 回炉重造：计算图: 算法科普/深度学习基础/回炉重造：计算图.md
             - 深度学习中的优化算法与实现: 算法科普/深度学习基础/深度学习中的优化算法与实现.md
             - 优化器文章: 算法科普/深度学习基础/优化器文章.md
@@ -107,8 +108,10 @@ nav:
             - 【CNN结构设计】无痛的涨点技巧：ACNet: 算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
             - 【CNN调参】目标检测算法优化技巧: 算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
             - 【CNN调参】图像分类算法优化技巧: 算法科普/手工调参Tricks/【CNN调参】图像分类算法优化技巧.md
+            - 【损失函数合集】ECCV2016 Center Loss: 算法科普/手工调参Tricks/【损失函数合集】ECCV2016 Center Loss.md
             - 【损失函数合集】Yann Lecun的Contrastive Loss 和 Google的Triplet Loss: 算法科普/手工调参Tricks/【损失函数合集】Yann Lecun的Contrastive Loss 和 Google的Triplet Loss.md
             - 【损失函数合集】超详细的语义分割中的Loss大盘点: 算法科普/手工调参Tricks/【损失函数合集】超详细的语义分割中的Loss大盘点.md
+            - CNN结构设计技巧-兼顾速度精度与工程实现: 算法科普/手工调参Tricks/CNN结构设计技巧-兼顾速度精度与工程实现.md
             - 快2020年了，你还在为深度学习调参而烦恼吗？: 算法科普/手工调参Tricks/快2020年了，你还在为深度学习调参而烦恼吗？.md
             - 深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？: 算法科普/手工调参Tricks/深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？.md
         - 综述类:
@@ -135,7 +138,7 @@ nav:
                 - CenterNet3-骨干网络之DeepLayerAgregation: 目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet3-骨干网络之DeepLayerAgregation.md
                 - CenterNet4-Loss计算: 目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet4-Loss计算.md
                 - CenterNet5-测试推理过程: 目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet5-测试推理过程.md
-                - CenterNet电子书: 目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet电子书.md
+                - CenterNet 电子书: 目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet电子书.md
             - FasterRCNN:
                 - 【Faster RCNN理解】1. 整体框架: 目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster RCNN理解】1. 整体框架.md
                 - 【Faster R-CNN】2. Faster RCNN代码解析第一弹: 目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster R-CNN】2. Faster RCNN代码解析第一弹.md
@@ -203,7 +206,7 @@ nav:
         - 目标跟踪:
             - darklabel教程: 目标检测及跟踪/目标跟踪/darklabel教程.md
             - Deep Sort多目标跟踪算法解析(上): 目标检测及跟踪/目标跟踪/Deep Sort多目标跟踪算法解析(上).md
-            - Deep Sort多目标跟踪算法解析(下) : 目标检测及跟踪/目标跟踪/Deep Sort多目标跟踪算法解析(下) .md
+            - Deep Sort多目标跟踪算法解析(下): 目标检测及跟踪/目标跟踪/Deep Sort多目标跟踪算法解析(下).md
             - deep sort论文: 目标检测及跟踪/目标跟踪/deep sort论文.md
             - deepsort使用教程: 目标检测及跟踪/目标跟踪/deepsort使用教程.md
             - deepsort框架梳理: 目标检测及跟踪/目标跟踪/deepsort框架梳理.md
@@ -231,20 +234,30 @@ nav:
     - 语义及实例分割:
         - 专栏介绍: 语义及实例分割/README.md
         - DeepLab语义分割算法源码解析: 语义及实例分割/DeepLab语义分割算法源码解析.md
-        - 实例分割算法之Mask R-CNN论文解读: 语义及实例分割/实例分割算法之Mask R-CNN论文解读.md
         - 当UNet遇见ResNet会发生什么？: 语义及实例分割/当UNet遇见ResNet会发生什么？.md
+        - 实例分割算法之Mask R-CNN论文解读.md: 语义及实例分割/实例分割算法之Mask R-CNN论文解读.md
         - 语义分割算法之CVPR 2017 RefineNet（精度高且对稠密物体分割效果好，已开源）.md: 语义及实例分割/语义分割算法之CVPR 2017 RefineNet（精度高且对稠密物体分割效果好，已开源）.md
-        - 语义分割算法之DeepLabV3+论文理解及代码分析: 语义及实例分割/语义分割算法之DeepLabV3+论文理解及代码分析.md
-        - 语义分割算法之DeepLabV3论文理解: 语义及实例分割/语义分割算法之DeepLabV3论文理解.md
+        - 语义分割算法之Deeplab V1论文理解: 语义及实例分割/语义分割算法之Deeplab V1论文理解.md
+        - 语义分割算法之DeepLab V2论文理解: 语义及实例分割/语义分割算法之DeepLab V2论文理解.md
+        - 语义分割算法之DeepLab V3论文理解: 语义及实例分割/语义分割算法之DeepLabV3论文理解.md
+        - 语义分割算法之DeepLab V3+论文理解及代码分析: 语义及实例分割/语义分割算法之DeepLabV3+论文理解及代码分析.md
+        - 语义分割算法之ENet论文理解: 语义及实例分割/语义分割算法之ENet论文理解.md
+        - 语义分割算法之FCN论文理解: 语义及实例分割/语义分割算法之FCN论文理解.md
+        - 语义分割算法之ICNet论文理解: 语义及实例分割/语义分割算法之ICNet论文理解.md
+        - 语义分割算法之PSPNet论文理解: 语义及实例分割/语义分割算法之PSPNet论文理解.md
+        - 语义分割算法之SegNet论文理解: 语义及实例分割/语义分割算法之SegNet论文理解.md
+        - 语义分割算法之Unet论文理解: 语义及实例分割/语义分割算法之Unet论文理解.md
     - 科研及竞赛分享:
         - 专栏介绍: 科研及竞赛分享/README.md
         - 红外目标检测实验结果收集: 科研及竞赛分享/红外目标检测实验结果收集.md
         - 如何改进yolov3: 科研及竞赛分享/如何改进yolov3.md
         - 验证码识别竞赛解决方案: 科研及竞赛分享/验证码识别竞赛解决方案.md
+        - 关键点定位红外小目标: 科研及竞赛分享/关键点定位红外小目标.md
     - 超分和GAN:
         - 专栏介绍: 超分和GAN/README.md
         - CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network: 超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md
         - DeepFake系列之FakeSpotter: 超分和GAN/DeepFake系列之FakeSpotter.md
+        - 基于Kaggle DeepFake比赛的代码实战: 超分和GAN/基于Kaggle DeepFake比赛的代码实战.md
     - 部署优化: 
         - 专栏介绍: 部署优化/README.md
         - AI PC端优化: 
@@ -257,6 +270,19 @@ nav:
             - 【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化: 部署优化/AI PC端优化/【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化.md
             - 【AI PC端算法优化】八，小半径中值滤波的SSE极速优化: 部署优化/AI PC端优化/【AI PC端算法优化】八，小半径中值滤波的SSE极速优化.md
         - AI 部署及其它优化算法: 
+            - NCNN:
+                - Keras2NCNN？Yes: 部署优化/AI 部署及其它优化算法/NCNN/Keras2NCNN？Yes.md
+            - OpenVINO:
+                - vs2015 movidius 神经计算棒一代 ncsdk windows c++调用: 部署优化/AI 部署及其它优化算法/OpenVINO/vs2015 movidius 神经计算棒一代 ncsdk windows c++调用.md
+                - YOLOv3-tiny在VS2015上使用Openvino部署: 部署优化/AI 部署及其它优化算法/OpenVINO/YOLOv3-tiny在VS2015上使用Openvino部署.md
+                - 如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？: 部署优化/AI 部署及其它优化算法/OpenVINO/如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？.md
+            - TensorRT:
+                - 一，TensorRT介绍，安装及如何使用？: 部署优化/AI 部署及其它优化算法/TensorRT/一，TensorRT介绍，安装及如何使用？.md
+                - 二，TensorRT Mnist数字识别使用示例: 部署优化/AI 部署及其它优化算法/TensorRT/二，TensorRT Mnist数字识别使用示例.md
+                - 三，如何使用tensorRT C++ API搭建网络: 部署优化/AI 部署及其它优化算法/TensorRT/三，如何使用tensorRT C++ API搭建网络.md
+                - 四，TensorRT 如何进行细粒度的Profiling: 部署优化/AI 部署及其它优化算法/TensorRT/四，TensorRT 如何进行细粒度的Profiling.md
+                - 五，在VS2015上利用TensorRT部署YOLOV3-Tiny模型: 部署优化/AI 部署及其它优化算法/TensorRT/五，在VS2015上利用TensorRT部署YOLOV3-Tiny模型.md
+                - 六，利用TensorRT部署YOLOV3-Tiny INT8量化模型: 部署优化/AI 部署及其它优化算法/TensorRT/六，利用TensorRT部署YOLOV3-Tiny INT8量化模型.md
             - 如何让你的YOLOV3模型更小更快？: 部署优化/AI 部署及其它优化算法/如何让你的YOLOV3模型更小更快？.md
             - 基于Pytorch构建一个可训练的BNN: 部署优化/AI 部署及其它优化算法/基于Pytorch构建一个可训练的BNN.md
             - 基于Pytorch构建三值化网络TWN: 部署优化/AI 部署及其它优化算法/基于Pytorch构建三值化网络TWN.md
@@ -264,16 +290,31 @@ nav:
             - 低比特量化之DoreFa-Net理论与实践: 部署优化/AI 部署及其它优化算法/低比特量化之DoreFa-Net理论与实践.md
             - YOLOV3剪枝方法汇总: 部署优化/AI 部署及其它优化算法/YOLOV3剪枝方法汇总.md
             - Pytorch实现卷积神经网络训练量化（QAT）: 部署优化/AI 部署及其它优化算法/Pytorch实现卷积神经网络训练量化（QAT）.md
-            - Keras2NCNN？Yes: 部署优化/AI 部署及其它优化算法/Keras2NCNN？Yes.md
+            - ICCV 2017 Learning Efficient Convolutional Networks through Network Slimming（模型剪枝）: 部署优化/AI 部署及其它优化算法/ICCV 2017 Learning Efficient Convolutional Networks through Network Slimming（模型剪枝）.md
+            - VGG，ResNet，DenseNe模型剪枝代码实战: 部署优化/AI 部署及其它优化算法/VGG，ResNet，DenseNe模型剪枝代码实战.md
+            - 快速exp算法: 部署优化/AI 部署及其它优化算法/快速exp算法.md
+            - 折叠BN层: 部署优化/AI 部署及其它优化算法/折叠BN层.md
         - AI 移动端算法优化: 
+            - 移动端arm cpu优化学习笔记:
+                - 移动端arm cpu优化学习笔记第2弹--常量阶时间复杂度中值滤波: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第2弹--常量阶时间复杂度中值滤波.md
+                - 移动端arm cpu优化学习笔记第3弹--绑定cpu(cpu affinity): 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第3弹--绑定cpu(cpu affinity).md
+                - 移动端arm cpu优化学习笔记第4弹--内联汇编入门: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第4弹--内联汇编入门.md
+                - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
             - AI移动端优化之Im2Col+Pack+Sgemm: 部署优化/AI 移动端算法优化/AI移动端优化之Im2Col+Pack+Sgemm.md
             - CNN不用乘法 AdderNet和DeepShift论文阅读: 部署优化/AI 移动端算法优化/CNN不用乘法 AdderNet和DeepShift论文阅读.md
             - ICCV2019 高通Data-Free Quantization论文解读: 部署优化/AI 移动端算法优化/ICCV2019 高通Data-Free Quantization论文解读.md
             - Im2Col+GEMM的改进方法MEC，一种更加高效的卷积计算策略: 部署优化/AI 移动端算法优化/Im2Col+GEMM的改进方法MEC，一种更加高效的卷积计算策略.md
-            - 海思NNIE之PFPLD训练与量化: 部署优化/AI 移动端算法优化/海思NNIE之PFPLD训练与量化.md
             - 基于NCNN的3x3可分离卷积再思考盒子滤波: 部署优化/AI 移动端算法优化/基于NCNN的3x3可分离卷积再思考盒子滤波.md
             - 详解卷积中的Winograd加速算法: 部署优化/AI 移动端算法优化/详解卷积中的Winograd加速算法.md
             - 一份朴实无华的移动端盒子滤波算法优化笔记: 部署优化/AI 移动端算法优化/一份朴实无华的移动端盒子滤波算法优化笔记.md
+            - EasyQuant 后量化算法论文解读: 部署优化/AI 移动端算法优化/EasyQuant 后量化算法论文解读.md
+            - Oneflow 实现强化学习玩 Flappy Bird 小游戏: 部署优化/AI 移动端算法优化/Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
+            - Side Window Filtering 论文解读和C++实现: 部署优化/AI 移动端算法优化/Side Window Filtering 论文解读和C++实现.md
+            - 如何判断算法是否有可优化空间？: 部署优化/AI 移动端算法优化/如何判断算法是否有可优化空间？.md
+            - 海思NNIE之Mobilefacenet量化部署: 部署优化/AI 移动端算法优化/海思NNIE之Mobilefacenet量化部署.md
+            - 海思NNIE之RetinaFace量化部署: 部署优化/AI 移动端算法优化/海思NNIE之RetinaFace量化部署.md
+            - 深入理解深度学习中的反(转置)卷积: 部署优化/AI 移动端算法优化/深入理解深度学习中的反(转置)卷积.md
+            - 海思NNIE之PFPLD训练与量化: 部署优化/AI 移动端算法优化/海思NNIE之PFPLD训练与量化.md
     - 资源共享:
         - 专栏介绍: 资源共享/README.md
         - Pytorch YOLOV3:
@@ -289,12 +330,13 @@ nav:
         - 【资源】数据增强开源库推荐: 资源共享/【资源】数据增强开源库推荐.md
         - 【资源】超详细的Pytorch版yolov3代码中文注释汇总: 资源共享/【资源】超详细的Pytorch版yolov3代码中文注释汇总.md
         - 快速学习使用tikz绘制CNN示意图: 资源共享/快速学习使用tikz绘制CNN示意图.md
-    - 视频专栏: 
-        - 视频专栏: video/video_1.md
+        - 计算机视觉 书籍数据集标注工具学习路线整理: 资源共享/计算机视觉 书籍数据集标注工具学习路线整理.md
     - MsnhNet:
         - 专栏介绍: Msnhnet/README.md
         - 多平台轻量级PyTorch模型推理框架MsnhNet: Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
         - Pytorch直转Msnhnet思路分享: Msnhnet/Pytorch直转Msnhnet思路分享.md
+    - 视频专栏: 
+        - 视频专栏: video/video_1.md
     - 刷题面试:
         - 专栏介绍: 刷题面试/README.md
     - 算法商城:
