@@ -138,6 +138,9 @@ nav:
             - 盘点当前最流行的激活函数及选择经验: 算法科普/综述类/盘点当前最流行的激活函数及选择经验.md
     - 目标检测及跟踪:
         - 专栏介绍: 目标检测及跟踪/README.md
+        - Darknet:
+            - Darknet源码阅读综合版: 目标检测及跟踪/Darknet/Darknet源码阅读综合版.md
+            - 基于CS231N和Darknet解析BatchNorm层的前向和反向传播: 目标检测及跟踪/Darknet/基于CS231N和Darknet解析BatchNorm层的前向和反向传播.md
         - YOLOV3特色专题:
             - YOLOV3损失函数再思考 Plus: 目标检测及跟踪/YOLOV3特色专题/YOLOV3损失函数再思考 Plus.md
             - 官方DarkNet YOLO V3损失函数完结版: 目标检测及跟踪/YOLOV3特色专题/官方DarkNet YOLO V3损失函数完结版.md
