@@ -16,34 +16,41 @@ B站: https://www.bilibili.com/video/BV1dA411b7F4/
 
 ### 特点
 
-- **1. 支持图片格式**
-  png,jpg,jpeg,bmp
-
-  **注：** 单次标注不能超过200张
-- **2. 支持视频格式**
-  avi,mp4,wmv,mov,asf
+- **1. 支持图片格式**</br>
   
-  **注：** 上述视频格式, 如压缩, 请采用H.264编码视频，或无压缩视频。
+png,jpg,jpeg,bmp</br>
+  
+  **注：** 单次标注不能超过200张</br>
+  
+- **2. 支持视频格式**</br>
+  
+  avi,mp4,wmv,mov,asf</br>
+  
+  **注：** 上述视频格式, 如压缩, 请采用H.264编码视频，或无压缩视频。</br>
+  
 - **3. 支持标注框复制粘贴**
-- **4. 支持标注种类**
+
+- **4. 支持标注种类</br>**
+  
   矩形, 多边形, 线段, 点, 贝塞尔曲线, 贝塞尔区域 </br>
-- **5. 导出格式**</br>
+  
+- **5. 导出格式 **</br>
 
 ![](https://img-blog.csdnimg.cn/20200502094450447.png)
 
 
- **<font color=#ff0000>4点矩形格式(多边形类似):</font>** <font color=#0000ff> 图片路径 [空格] x1,y1,x2,y2,x3,y3,x4,y4,标签 [空格] ... </font></br>
+ **<font color=#ff0000>4点矩形格式(多边形类似):</font>** </br>
 
  ![](https://img-blog.csdnimg.cn/20200502094450849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
- **<font color=#ff0000>xywhθ矩形格式:</font>** <font color=#0000ff> 图片路径 [空格] x,y,w,h,θ,标签 [空格] ... </font></br>
+ **<font color=#ff0000>xywhθ矩形格式:</font>** </br>
  符合该格式的标注文档，同样可导入本软件。</br>
  如果想要COCO，Labelme等支持的格式，用python转换一下就行啦~</br>
 
- - **6. 支持平台**
-    支持windows10和ubuntu1804+.
+ - **6. 支持平台**</br>
+    支持windows10和ubuntu1804+.</br>
 - **7. 特殊说明**
- 工程路径中不能带有空格！
+ 工程路径中不能带有空格！</br>
 
 ### 快捷键
 
