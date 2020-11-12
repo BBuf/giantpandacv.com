@@ -4,7 +4,13 @@
 
 《多目标跟踪快速入门教程》是首发于GiantPandaCV公众号的教程，针对pytorch版本的deep sort进行讲解，Github链接如下：
 
-https://github.com/pprp/deep_sort_yolov3_pytorch![Github截图](https://img-blog.csdnimg.cn/20200507225953502.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
+https://github.com/pprp/deep_sort_yolov3_pytorch
+
+
+
+![Github截图](https://img-blog.csdnimg.cn/20200507225953502.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
+
+
 
 ![Readme](https://img-blog.csdnimg.cn/20200507230156693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
