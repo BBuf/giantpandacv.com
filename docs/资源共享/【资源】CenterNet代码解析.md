@@ -1,6 +1,6 @@
 # 【资源】CenterNet原理与代码解析
 
-《CenterNet原理与代码解析》是首发于GiantPandaCV公众号的电子书教程，由pprp总结并整理CenterNet相关解析，这本电子书是基于非官方的CenterNet实现，https://github.com/zzzxxxttt/pytorch_simple_CenterNet_45，这个版本的实现入门难度小一些，基于官方版本(https://github.com/xingyizhou/CenterNet)进行修改，要比官方代码更适合阅读和理解，dataloader、hourglass、训练流程等原版中比较复杂的部分都进行了重写，最终要比官方的速度更快。
+《CenterNet原理与代码解析》是首发于GiantPandaCV公众号的电子书教程，由pprp总结并整理CenterNet相关解析，这本电子书是基于非官方的CenterNet实现， https://github.com/zzzxxxttt/pytorch_simple_CenterNet_45 ，这个版本的实现入门难度小一些，基于官方版本 (https://github.com/xingyizhou/CenterNet )进行修改，要比官方代码更适合阅读和理解，dataloader、hourglass、训练流程等原版中比较复杂的部分都进行了重写，最终要比官方的速度更快。
 
 电子书中涉及到的**源码链接**如下：
 

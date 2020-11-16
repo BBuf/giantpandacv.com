@@ -4,7 +4,7 @@
 
 英文讲解：https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/ 
 
-公众号之前发布过《从零开始学习YOLOv3》,讲解的代码是U版的YOLOv3(https://github.com/ultralytics/yolov3),效果比较好，但是由于添加了很多trick略显复杂。
+公众号之前发布过《从零开始学习YOLOv3》,讲解的代码是U版的YOLOv3(https://github.com/ultralytics/yolov3 ),效果比较好，但是由于添加了很多trick略显复杂。
 
 这本电子书讲解的代码是：https://github.com/ayooshkathuria/YOLO_v3_tutorial_from_scratch
 
