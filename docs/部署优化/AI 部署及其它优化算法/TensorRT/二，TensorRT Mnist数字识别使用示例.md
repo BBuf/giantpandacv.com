@@ -413,7 +413,7 @@ public:
 这篇推文从源码角度来分析了一下TensorRT使用LeNet对MNIST数据进行推理的例程，旨在对TensorRT的推理过程有一个初步的印象，因为LeNet模型本身就很小所以加速效果也体现不太出来，这里就不贴了。
 
 # 参考
-- //docs.nvidia.com/deeplearning/sdk/tensorrt-api/#graphsurgeon
+- https://docs.nvidia.com/deeplearning/sdk/tensorrt-api/#graphsurgeon
 - https://docs.nvidia.com/deeplearning/sdk/tensorrt-api/
 - https://arleyzhang.github.io/articles/c17471cb/
 

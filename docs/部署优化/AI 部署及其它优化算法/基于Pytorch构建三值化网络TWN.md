@@ -54,9 +54,8 @@
 
 $\Delta^*\approx 0.7*(|W|)\approx \frac{0.7}{n}\sum_{i=1}^n|W_i|$
 
-
-
 # 4. 代码实战
+
 仍然使用上次提到的Github工程的代码来分析。地址为：`https://github.com/666DZY666/model-compression`
 ## 4.1 定义网络结构
 

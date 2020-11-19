@@ -20,64 +20,66 @@ ONNX/TensorFlow/Custom Framework等模型的工作方式如下：
 # 3. TensorRT支持的Layer
 ## 3.1 Caffe
 这些是Caffe框架中支持的OP。
-- BatchNormalization。
-- BNLL。
-- Clip。
-- Concatenation。
-- Convolution。
-- Crop。
-- Deconvolution。
-- Dropout。
-- ElementWise。
-- ELU。
-- InnerProduct。
-- Input。
-- LeakyReLU。
-- LRN。
-- Permute。
-- Pooling。
-- Power。
-- Reduction。
-- ReLU，TanH，和Sigmoid。
-- Reshape。
-- SoftMax。
-- Scale。
+
+  - BatchNormalization。
+  - BNLL。
+  - Clip。
+  - Concatenation。
+  - Convolution。
+  - Crop。
+  - Deconvolution。
+  - Dropout。
+  - ElementWise。
+  - ELU。
+  - InnerProduct。
+  - Input。
+  - LeakyReLU。
+  - LRN。
+  - Permute。
+  - Pooling。
+  - Power。
+  - Reduction。
+  - ReLU，TanH，和Sigmoid。
+  - Reshape。
+  - SoftMax。
+  - Scale。
 
 ## 3.2 TensorFlow
 这些是TensorFlow中支持的OP。
-- Add, Sub, Mul, Div, Minimum and Maximum。
-- ArgMax。
-- ArgMin。
-- AvgPool。
-- BiasAdd。
-- Clip。
-- ConcatV2。
-- Const。
-- Conv2d。
-- ConvTranspose2D。
-- DepthwiseConv2dNative。
-- Elu。
-- ExpandDims。
-- FusedBatchNorm。
-- Identity。
-- LeakyReLU。
-- MaxPool。
-- Mean。
-- Negative, Abs, Sqrt, Recip, Rsqrt, Pow, Exp and Log。
-- Pad is supported if followed by one of these TensorFlow layers: Conv2D, DepthwiseConv2dNative, MaxPool, and AvgPool. 
--  Placeholder
-- ReLU, TanH, and Sigmoid。
-- Relu6。
-- Reshape。
-- ResizeBilinear, ResizeNearestNeighbor。
-- Sin, Cos, Tan, Asin, Acos, Atan, Sinh, Cosh, Asinh, Acosh, Atanh,
+
+  - Add, Sub, Mul, Div, Minimum and Maximum。
+  - ArgMax。
+  - ArgMin。
+  - AvgPool。
+  - BiasAdd。
+  - Clip。
+  - ConcatV2。
+  - Const。
+  - Conv2d。
+  - ConvTranspose2D。
+  - DepthwiseConv2dNative。
+  - Elu。
+  - ExpandDims。
+  - FusedBatchNorm。
+  - Identity。
+  - LeakyReLU。
+  - MaxPool。
+  - Mean。
+  - Negative, Abs, Sqrt, Recip, Rsqrt, Pow, Exp and Log。
+  - Pad is supported if followed by one of these TensorFlow layers: Conv2D, DepthwiseConv2dNative, MaxPool, and AvgPool. 
+  -  Placeholder
+  - ReLU, TanH, and Sigmoid。
+  - Relu6。
+  - Reshape。
+  - ResizeBilinear, ResizeNearestNeighbor。
+  - Sin, Cos, Tan, Asin, Acos, Atan, Sinh, Cosh, Asinh, Acosh, Atanh,
 Ceil and Floor。
-- Selu。
-- Slice。
-- SoftMax。
-- Softplus。
-- Softsign。
-- Transpose。
+  - Selu。
+  - Slice。
+  - SoftMax。
+  - Softplus。
+  - Softsign。
+  - Transpose。
 
 ## 3.3 ONNX
 因为篇幅有限，就不列举了，可以自己去看官方文档。
@@ -92,12 +94,13 @@ Ceil and Floor。
 ![TensorRT优化训练好的神经网络模型以产生可部署的运行时推理引擎](https://img-blog.csdnimg.cn/20200304145430948.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 从图上可以看到，TensorRT主要做了下面几件事，来提升模型的运行速度。
-- TensorRT支持FP16和INT8的计算。我们知道深度学习在训练的时候一般是应用32位或者16位数据，TensorRT在推理的时候可以降低模型参数的位宽来进行低精度推理，以达到加速推断的目的。这在后面的文章中是重点内容，笔者经过一周的研究，大概明白了TensorRT INT8量化的一些细节，后面会逐渐和大家一起分享讨论。
-- TensorRT对于网络结构进行重构，把一些能够合并的运算合并在了一起，针对GPU的特性做了优化。**大家如果了解GPU的话会知道，在GPU上跑的函数叫Kernel，TensorRT是存在Kernel的调用的。在绝大部分框架中，比如一个卷积层、一个偏置层和一个reload层，这三层是需要调用三次cuDNN对应的API，但实际上这三层的实现完全是可以合并到一起的，TensorRT会对一些可以合并网络进行合并；再比如说，目前的网络一方面越来越深，另一方面越来越宽，可能并行做若干个相同大小的卷积，这些卷积计算其实也是可以合并到一起来做的。**(加粗的话转载自参考链接1)。
-- 然后Concat层是可以去掉的，因为TensorRT完全可以实现直接接到需要的地方。
-- **Kernel Auto-Tuning**：网络模型在推理计算时，是调用GPU的CUDA核进行计算的。TensorRT可以针对不同的算法，不同的网络模型，不同的GPU平台，进行 CUDA核的调整，以保证当前模型在特定平台上以最优性能计算。
-- **Dynamic Tensor Memory** 在每个tensor的使用期间，TensorRT会为其指定显存，避免显存重复申请，减少内存占用和提高重复使用效率。
-- 不同的硬件如P4卡还是V100卡甚至是嵌入式设备的卡，TensorRT都会做优化，得到优化后的engine。
+
+  - TensorRT支持FP16和INT8的计算。我们知道深度学习在训练的时候一般是应用32位或者16位数据，TensorRT在推理的时候可以降低模型参数的位宽来进行低精度推理，以达到加速推断的目的。这在后面的文章中是重点内容，笔者经过一周的研究，大概明白了TensorRT INT8量化的一些细节，后面会逐渐和大家一起分享讨论。
+  - TensorRT对于网络结构进行重构，把一些能够合并的运算合并在了一起，针对GPU的特性做了优化。**大家如果了解GPU的话会知道，在GPU上跑的函数叫Kernel，TensorRT是存在Kernel的调用的。在绝大部分框架中，比如一个卷积层、一个偏置层和一个reload层，这三层是需要调用三次cuDNN对应的API，但实际上这三层的实现完全是可以合并到一起的，TensorRT会对一些可以合并网络进行合并；再比如说，目前的网络一方面越来越深，另一方面越来越宽，可能并行做若干个相同大小的卷积，这些卷积计算其实也是可以合并到一起来做的。**(加粗的话转载自参考链接1)。
+  - 然后Concat层是可以去掉的，因为TensorRT完全可以实现直接接到需要的地方。
+  - **Kernel Auto-Tuning**：网络模型在推理计算时，是调用GPU的CUDA核进行计算的。TensorRT可以针对不同的算法，不同的网络模型，不同的GPU平台，进行 CUDA核的调整，以保证当前模型在特定平台上以最优性能计算。
+  - **Dynamic Tensor Memory** 在每个tensor的使用期间，TensorRT会为其指定显存，避免显存重复申请，减少内存占用和提高重复使用效率。
+  - 不同的硬件如P4卡还是V100卡甚至是嵌入式设备的卡，TensorRT都会做优化，得到优化后的engine。
 
 
 下面是一个原始的Inception Block，首先`input`后会有多个卷积，卷积完后有`Bias`和`ReLU`，结束后将结果`concat`到一起，得到下一个`input`。我们一起来看一下使用TensorRT后，这个原始的计算图会被优化成了什么样子。
@@ -127,18 +130,22 @@ Ceil and Floor。
 
 # 5. TensorRT的安装
 我是用的是**TensorRT-6.0.1.5**，由于我在Windows10上使用的，所以就去TensorRT官网`https://developer.nvidia.com/tensorrt`下载TensorRT6的Windows10安装包，这里我选择了Cuda9.0的包，这也就意味着我必须要安装Cudnn7.5及其以上，我这里选择了Cudnn7.6进行了安装。关于Cuda和Cudnn的安装就不说了，非常简单。安装TensorRT具体有以下步骤：
-1. 下载**TensorRT-6.0.1.5**安装包并解压。
-2. 将lib文件夹下面的dll(如下图所示，)都拷贝到cuda文件夹下的bin目录下，我是默认安装了cuda9.0，所以我的cuda下的bin目录的路径是：`C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin`。
+
+  **1**. 下载**TensorRT-6.0.1.5**安装包并解压。
+
+  **2**. 将lib文件夹下面的dll(如下图所示，)都拷贝到cuda文件夹下的bin目录下，我是默认安装了cuda9.0，所以我的cuda下的bin目录的路径是：`C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin`。
 
 ![TensorRT lib目录](https://img-blog.csdnimg.cn/20200304154854854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
-3. 然后这就安装成功了，为了验证你有没有成功，请使用VSCode 2015/2017打开`sample_mnist.sln`解决法案，我的目录是：`F:\TensorRT-6.0.1.5\samples\sampleMNIST`。
-4. 打开VS工程属性，**将目标平台版本改成8.1以及平台工具及改成Visual Studio 2015(v140)**。然后用Release编译，这样你就会在`F:\TensorRT-6.0.1.5\bin`下面生成一个`sample_mnist.exe`了。
+  **3**. 然后这就安装成功了，为了验证你有没有成功，请使用VSCode 2015/2017打开`sample_mnist.sln`解决法案，我的目录是：`F:\TensorRT-6.0.1.5\samples\sampleMNIST`。
+
+  **4**. 打开VS工程属性，**将目标平台版本改成8.1以及平台工具及改成Visual Studio 2015(v140)**。然后用Release编译，这样你就会在`F:\TensorRT-6.0.1.5\bin`下面生成一个`sample_mnist.exe`了。
 
 ![sampleMNIST工程属性](https://img-blog.csdnimg.cn/20200304155319692.png)
 
-5. 进入`F:\TensorRT-6.0.1.5\data\mnist`文件夹，打开里面的`README.md`，下载MNIST数据集到这个文件夹下并解压，实际上只用下载`train-images-idx3-ubyte.gz`和`train-labels-idx1-ubyte.gz`就可以了。然后执行`generate_pgms.py`这个python文件，就会在这个文件夹下获得`0-9.pgm`10张图片，数字分别是`0-9`。
-6. 打开命令行测试一下上面的demo。命令如下：
+  **5**. 进入`F:\TensorRT-6.0.1.5\data\mnist`文件夹，打开里面的`README.md`，下载MNIST数据集到这个文件夹下并解压，实际上只用下载`train-images-idx3-ubyte.gz`和`train-labels-idx1-ubyte.gz`就可以了。然后执行`generate_pgms.py`这个python文件，就会在这个文件夹下获得`0-9.pgm`10张图片，数字分别是`0-9`。
+
+  **6**. 打开命令行测试一下上面的demo。命令如下：
 
 ```sh
 >F:\TensorRT-6.0.1.5\bin\sample_mnist.exe --datadir=F:\TensorRT-6.0.1.5\data\mnist
@@ -149,9 +156,10 @@ Ceil and Floor。
 
 # 6. TensorRT使用流程
 这里先看一下TensorRT最简单的使用流程，后面复杂的应用部署也是以这个为基础的，在使用TensorRT的过程中需要提供以下文件(以Caffe为例)：
-- 模型文件(*.prototxt)
-- 权重文件(*.caffemodel)
-- 标签文件(把数据映射成name字符串)。
+
+  - 模型文件(*.prototxt)
+  - 权重文件(*.caffemodel)
+  - 标签文件(把数据映射成name字符串)。
 
 TensorRT的使用包括两个阶段，`Build`和`Deployment`。
 
@@ -159,9 +167,10 @@ TensorRT的使用包括两个阶段，`Build`和`Deployment`。
 Build阶段主要完成模型转换(从Caffe/TensorFlow/Onnx->TensorRT)，在转换阶段会完成前面所述优化过程中的计算图融合，精度校准。这一步的输出是一个针对特定GPU平台和网络模型的优化过的TensorRT模型。这个TensorRT模型可以序列化的存储到磁盘或者内存中。存储到磁盘中的文件叫`plan file`，这个过程可以用下图来表示：
 
 ![Build](https://img-blog.csdnimg.cn/20200304174143901.png)
+
 下面的代码展示了一个简单的Build过程。注意这里的代码注释是附录的第2个链接提供的，TensorRT版本是2.0,。然后我观察了下TensorRT6.0的代码，虽然接口有一些变化但Build->Deployment这个流程是通用，所以就转载它的代码解释来说明问题了。
 
-```转载 https://arleyzhang.github.io/articles/7f4b25ce/
+```转载
 //创建一个builder
 IBuilder* builder = createInferBuilder(gLogger);
 // parse the caffe model to populate the network, then set the outputs
@@ -175,7 +184,6 @@ auto blob_name_to_tensor = parser.parse(“deploy.prototxt”,
                                         trained_file.c_str(),
                                         *network,
                                         DataType::kFLOAT);
- 
 // 标记输出 tensors
 // specify which tensors are outputs
 network->markOutput(*blob_name_to_tensor->find("prob"));
@@ -185,13 +193,15 @@ builder->setMaxBatchSize(1);
 builder->setMaxWorkspaceSize(1 << 30); 
 //调用buildCudaEngine时才会进行前述的层间融合或精度校准优化方式
 ICudaEngine* engine = builder->buildCudaEngine(*network);
+//转载自 https://arleyzhang.github.io/articles/7f4b25ce/
 ```
 
 在上面的代码中使用了一个高级API：CaffeParser，直接读取 caffe的模型文件，就可以解析，也就是填充network对象。解析的过程也可以直接使用一些低级别的C++API，例如：
 
-```转载  https://arleyzhang.github.io/articles/7f4b25ce/
+``` 转载
 ITensor* in = network->addInput(“input”, DataType::kFloat, Dims3{…});
 IPoolingLayer* pool = network->addPooling(in, PoolingType::kMAX, …);
+//转载自 https://arleyzhang.github.io/articles/7f4b25ce/
 ```
 
 解析了Caffe的模型之后，必须要指定输出Tensor，设置batch大小和设置工作空间。其中设置工作空间是进行上面所述的计算图融合优化的必须步骤。

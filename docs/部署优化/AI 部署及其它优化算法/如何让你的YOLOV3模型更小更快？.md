@@ -551,6 +551,7 @@ def get_input_mask(module_defs, idx, CBLidx2mask):
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)
