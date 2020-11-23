@@ -15,6 +15,7 @@ PFPLD （A Practical Facial Pose and Landmark Detector），对PFLD的微改版�
 黄色虚线囊括的是主分支网络，用于预测关键点的位置；绿色虚线囊括的是head pose辅助网络。在训练时预测人脸姿态，从而修改loss函数，使更加关注那些稀有的，还有姿态角度过大的样本，从而提高预测的精度。同等规模的网络，只要精度上去，必然是可以想到很多办法来降低计算量的。
 
 ![PFLD Loss](https://img-blog.csdnimg.cn/20200802220037564.png)
+
 直观感受，这个loss的设计模式本质上是一种对抗数据不均衡的表达，和focal loss思想是一致的。但这类思想并不是对于每种工作都能work，笔者曾经回答过类似的问题。
 
 [深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？](https://mp.weixin.qq.com/s/_HQ5an_krRCYMVnwEgGJow)
@@ -38,6 +39,7 @@ PFPLD （A Practical Facial Pose and Landmark Detector），对PFLD的微改版�
 
 
 ![闭眼的效果](https://img-blog.csdnimg.cn/20200802220308387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 我们也发现一个规律，分别用WLFW 98个点，LAPA 106个点的数据集进行训练，闭眼效果都不行，而300WLP上的却没问题。这或许是一个通病，我也试了其他的算法，也有这些问题，比如
 
 - **https://github.com/zeusees/HyperLandmark**

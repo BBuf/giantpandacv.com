@@ -318,10 +318,10 @@ nav:
             - 并发编程: 部署优化/AI 部署及其它优化算法/并发编程.md
         - AI 移动端算法优化: 
             - 移动端arm cpu优化学习笔记:
+                - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
                 - 移动端arm cpu优化学习笔记第2弹--常量阶时间复杂度中值滤波: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第2弹--常量阶时间复杂度中值滤波.md
                 - 移动端arm cpu优化学习笔记第3弹--绑定cpu(cpu affinity): 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第3弹--绑定cpu(cpu affinity).md
                 - 移动端arm cpu优化学习笔记第4弹--内联汇编入门: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第4弹--内联汇编入门.md
-                - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
             - AI移动端优化之Im2Col+Pack+Sgemm: 部署优化/AI 移动端算法优化/AI移动端优化之Im2Col+Pack+Sgemm.md
             - CNN不用乘法 AdderNet和DeepShift论文阅读: 部署优化/AI 移动端算法优化/CNN不用乘法 AdderNet和DeepShift论文阅读.md
             - ICCV2019 高通Data-Free Quantization论文解读: 部署优化/AI 移动端算法优化/ICCV2019 高通Data-Free Quantization论文解读.md
@@ -336,8 +336,8 @@ nav:
             - 如何判断算法是否有可优化空间？: 部署优化/AI 移动端算法优化/如何判断算法是否有可优化空间？.md
             - 海思NNIE之Mobilefacenet量化部署: 部署优化/AI 移动端算法优化/海思NNIE之Mobilefacenet量化部署.md
             - 海思NNIE之RetinaFace量化部署: 部署优化/AI 移动端算法优化/海思NNIE之RetinaFace量化部署.md
-            - 深入理解深度学习中的反(转置)卷积: 部署优化/AI 移动端算法优化/深入理解深度学习中的反(转置)卷积.md
             - 海思NNIE之PFPLD训练与量化: 部署优化/AI 移动端算法优化/海思NNIE之PFPLD训练与量化.md
+            - 深入理解深度学习中的反(转置)卷积: 部署优化/AI 移动端算法优化/深入理解深度学习中的反(转置)卷积.md
         - 深度学习编译器:
             - 多面体模型在深度学习编译器的应用: 部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
     - 资源共享:

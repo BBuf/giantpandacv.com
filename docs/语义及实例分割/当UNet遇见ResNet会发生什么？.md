@@ -32,6 +32,7 @@ CVPR 2017的LinkNet给出了答案。LinkNet的网络结构如下所示：
 
 
 ![LinkNet 网络结构](https://img-blog.csdnimg.cn/20200409181630486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 其中，`conv` 代表卷积，`full-conv` 代表全卷积，`/2`代表下采样的步长是`2`，`*2`代表上采样的因子是`2`。 在卷积层之后添加 BN，后加 ReLU。左半部分表示编码，右半部分表示解码。编码块基于`ResNet18`。编解码模块如下所示。
 
 ![编码模块](https://img-blog.csdnimg.cn/20200409181740810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)

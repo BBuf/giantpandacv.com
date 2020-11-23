@@ -1,7 +1,9 @@
 # 前言
 LSTM模型是基于RNN循环网络提出的一种改进的门控网络
 通过各个门很好地控制了时间步前后的信息
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200302111651678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 他一共有四个门，分别是遗忘门，输入门，候选记忆细胞，输出门
 他能较好地建模长语义，缓解梯度消失的问题
 
@@ -18,7 +20,9 @@ https://arxiv.org/pdf/1909.01792.pdf
 作者的这一思想朴素简单，就是在进入门之前对输入和隐藏状态做一定的张量运算
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200302112124958.png)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200302112134134.png)
+
 他定义了一个迭代轮数i，当i为奇数的时候执行第一个公式的运算，当i为偶数的时候执行第二个公式的运算。迭代完成后，就进入到传统的LSTM运算当中
 
 这个迭代轮数在实验中是作为一个==超参数==，研究者可以根据任务不同自行调节

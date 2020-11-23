@@ -81,6 +81,7 @@ void MY_MMult1( int m, int n, int k, float *a, int lda,
 Cache，译为高速缓冲存储器，它可以更好的利用**局部性原理**，减少CPU访问主存的次数。这里需要再简单描述一下计算机的存储体系，在当代计算中存储器是分为不同层次的，越靠近CPU的存储器速度越快，制造成本也就越高，同时容量也越小。最靠近CPU的存储器是寄存器，它的制造成本最高，所以个数也很有限。第二靠近的是缓存(Cache)，同时缓存也是有分级的，有L1，L2，L3...等多个级别。再然后就是主存，即普通的内存。最后是本地磁盘。它们的容量以及访问时间如下图所示：
 
 ![计算机存储体系结构](https://img-blog.csdnimg.cn/2020110121530383.png#pic_center)
+
 上面说Cache可以更好的利用局部性原理，所谓局部性原理就是优先从留CPU近的存储结构中去寻找当前需要查找的数据，加快数据访问速度从而减少程序中各个变量的存取时间。
 
 关于Cache更多的概念可以参考一下文末的资料1，写得非常好。
@@ -160,6 +161,7 @@ void MY_MMult_1x4_8( int m, int n, int k, float *a, int lda,
 那么这个版本的gflops效果如何呢？单核A53测试结果如下：
 
 ![1x4_8 gflops](https://img-blog.csdnimg.cn/20201101222015952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
+
 可以看到最高的浮点峰值是原始版本的4倍，说明上面的优化是行之有效的。
 
 接下来，我们将分块的策略从$1\times 4$扩展到$4\times 4$，代码实现如下：
@@ -327,6 +329,7 @@ void AddDot4x4( int k, float *a, int lda,  float *b, int ldb, float *c, int ldc 
 因此，为了解决上一问题，gemm论文提出了矩阵分块的做法，直击核心，这篇论文针对矩阵乘法主要提出了下面6种不同的分块计算方法，如下图所示：
 
 ![矩阵分块的不同拆分方法](https://img-blog.csdnimg.cn/20201102213604651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
+
 这个图中透漏了两个非常重要的点。
 
 第一个是行主序下的A的一行乘以一列获得C的元素这个过程（A*B=C，其中A矩阵大小为$m\times k$，B矩阵大小为$k\times n$，C矩阵大小为$m\times n$）可以等价为**A 的一列和 B 的一行操作得到 $m\times n$ 大小的一个 C 的“扇面”，多个“扇面”叠加就是完整的 C**。所以这里的分块策略指的并不是在原始矩阵的长宽维度上分段计算，而是类似于一个z轴上拆分的思路，比较巧妙，所谓z轴就是垂直于矩阵长宽的维度。可以参考`MMult_4x4_10`的代码进行理解。
@@ -372,6 +375,7 @@ void MY_MMult_4x4_11( int m, int n, int k, float *a, int lda,
 然后我们再测一下这个版本(`MMult_4x4_11`)的gflops：
 
 ![4x4_11 gflops](https://img-blog.csdnimg.cn/20201102220638491.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
+
 对比一下`4x4_10`的结果可以发现，在矩阵规模变大时，这个版本的gflops又好了不少，说明分块的确是利用Cache的一个好办法，毕竟Cache的容量是非常有限的。
 
 在Figure4中透漏的第二个非常重要的点就是**数据重排**，也即数据Pack，之前我已经讲到2次这个技巧了，在这个矩阵乘法优化中同样适用。因为我们分块后的AB仍然是内存不连续的，为了提高内存的连续性，在做矩阵乘法之前先对A，B做了数据重排，将第二行要操作的数放在第一行的末尾，这样Neon中的数据预取指令将会生效，极大提高数据存取效率。基于这个想法获得了改进后的版本`MMult_4x4_13.c`，代码实现见：`https://github.com/BBuf/ArmNeonOptimization/blob/master/optimize_gemm/MMult_4x4_13.h`
@@ -379,6 +383,7 @@ void MY_MMult_4x4_11( int m, int n, int k, float *a, int lda,
 测一下gflops：
 
 ![4x4_11 gflops](https://img-blog.csdnimg.cn/20201102221816285.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
+
 可以看到相对于`MMult_4x4_11` 在矩阵规模变大时，这个版本的gflops提升明显，已经不会比这个版本的最高浮点峰值低太多了，说明这个优化是十分有效果的。
 
 # 6. 总结

@@ -27,6 +27,7 @@ RetinaFace是目前非常优秀的开源人脸检测算法
 在nnie上，有的层是不支持的，这个官方SDK里有专门的章节描述，其中retinaface就有一个Crop层是不支持的，需要手动写插件，但这当然是不能接受的，毕竟一想到将计算量转移部分到CPU上就觉得不踏实，后期肯定会给自己带来麻烦。那么对于这个问题，我们首先要做的就是明白这个层的作用。
 
 ![Caffe网络可视化可以看到这个Crop层](https://img-blog.csdnimg.cn/20200531184822250.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 Caffe中crop_layer描述是这样的：
 
 数据以blobs形式存在，blob是一个四维结构的Tensor（batch size, channels, height, width），假设crop_layer的输入（bottom）有两个，A和B，输出（top）为C
@@ -55,6 +56,7 @@ layer {
 然后去掉prototxt里的两处crop后，结构图如下：
 
 ![去掉Crop层后的网络结构图](https://img-blog.csdnimg.cn/20200531190007249.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 修改完prototxt后就可以直接在RuyiStudio中使用Marker进行模型拓扑图像的观测，调节data的输入尺度，可以测试出几组能满足条件的size，这样之后的转换问题应该就不会很大了！如Figure2.4和Figure2.5所示。
 
 ![Figure2.4](https://img-blog.csdnimg.cn/20200531190111623.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -80,6 +82,7 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 
 ![正是生成wk的时候报了错。](https://img-blog.csdnimg.cn/20200531190606359.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 > 其实解决方法就是改变prototxt中layer的顺序，对你没听过。修改过后的prototxt已经被放在nniefacelib了
 
 其中有几个点是目前还想不明白的，非常希望得到大佬的指点：
@@ -98,5 +101,6 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 ![结果特征向量对比](https://img-blog.csdnimg.cn/2020053119092868.png)
 ![中间层特征向量对比](https://img-blog.csdnimg.cn/20200531190951678.png)
 ![中间层特征向量对比](https://img-blog.csdnimg.cn/2020053119100683.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 如果对文章有什么不理解或者疑惑的地方，欢迎到文章开头的知乎文章的讨论区给我留言哦。
 

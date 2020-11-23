@@ -6,11 +6,13 @@ https://arxiv.org/pdf/1606.02147.pdf
 # ENet的优势
 
 ENet实现了在嵌入式端的实时语义分割，并且精度稍微好于SegNet，先看一下论文给出的速度测试图。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190213132232708.png)
 
 对于分辨率为640 $\times$ 360的图片，ENet执行前向推理的速度也可以达到14.6fps，接近实时，我用keras提炼了ENet的网络结构，并实现了训练和预测图片，并实现了训练和预测图片，最后在我的电脑Core-i7CPU上的推理速度为0.55s一张图像，代码见本文最后的链接。
 
 # ENet的网络结构
+
   ENet网络结构如下，网络结构参考ResNet，将其结构描述为一个主分支与一个带有卷积核的附加分支，最后进行像素级的相加融合。
 
 ![网络结构](https://img-blog.csdnimg.cn/20190213131647837.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)

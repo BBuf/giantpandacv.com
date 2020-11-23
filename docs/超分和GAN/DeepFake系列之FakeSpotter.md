@@ -20,6 +20,7 @@
 ## 2.2 模拟神经元行为
 
 ![FakeSpotter检测框架](https://img-blog.csdnimg.cn/20200608205452965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 上图是FakeSpotter检测框架，与传统框架不同的是**根据每层神经元激活特性**来进行人脸分析。
 
 在传统DNN中，每一层神经元是否被激活**取决于他的输出值是否高于阈值Threshold**
@@ -27,6 +28,7 @@
 我们提出了一种确立阈值的策略，公式如下
 
 ![本文提出的确立阈值的策略](https://img-blog.csdnimg.cn/20200608205544666.png)
+
 分式上面是**各个神经元输出值之和**
 
 |N|代表**当前层神经元的总数目**
@@ -36,10 +38,12 @@
 最后**通过这个阈值来决定这个神经元是否被激活**
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200608205734926.png)
+
 下图是描述这两种策略的算法
 
 ![Algorithm 1](https://img-blog.csdnimg.cn/20200608205811582.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 # 3. 其它实现细节
+
 - 优化器是**动量为0.9的SGD**，起始学习率为0.0001。
 - 损失函数采用**二分类交叉熵**损失binary cross-entropy。
 - CNN架构采用的是Vgg-Face，将骨干网络替换为**ResNet50**，并且带有我们的**MNC策略**。
@@ -69,6 +73,7 @@
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

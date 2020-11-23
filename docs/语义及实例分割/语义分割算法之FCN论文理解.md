@@ -1,18 +1,29 @@
 # 论文原文
 https://arxiv.org/pdf/1411.4038.pdf
 # 创新点
-提出了一种端到端的做语义分割的方法，![在这里插入图片描述](https://img-blog.csdnimg.cn/20190603133759148.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+提出了一种端到端的做语义分割的方法，
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190603133759148.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 如图，直接拿分割的ground truth作为监督信息，训练一个端到端的网络，让网络做p像素级别的预测。
 
 # 如何设计网络结构
+
 ## 如何做像素级别的预测
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190603134143267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)在VGG16中的第一个全连接层的维度是25088x4096的，将之解释为512x7x7x4096的卷积核，这样最后就会得到一个featuremap。这样做的好处在于可以实现迁移学习的fine-tune。最后我们对得到的feature map进行bilinear上采样，就是反卷积层。就可以得到和原图一样大小的语义分割后的图了。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190603134143267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+在VGG16中的第一个全连接层的维度是25088x4096的，将之解释为512x7x7x4096的卷积核，这样最后就会得到一个featuremap。这样做的好处在于可以实现迁移学习的fine-tune。最后我们对得到的feature map进行bilinear上采样，就是反卷积层。就可以得到和原图一样大小的语义分割后的图了。
 
 ## 如何保证精度
 我们在做upsampling时，步长是32，输入为3x500x500的时候，输出是544x544，边缘很不好。所以我们采用skip layer的方法，在浅层处减小upsampling的步长，得到的fine layer 和 高层得到的coarse layer做融合，然后再upsampling得到输出。这种做法兼顾local和global信息，即文中说的combining what and where，取得了不错的效果提升。FCN-32s为59.4，FCN-16s提升到了62.4，FCN-8s提升到62.7。可以看出效果还是很明显的。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190603134801848.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 论文结果
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190603134941419.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20190603135000334.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 代码实现
 FCN8
 ```
