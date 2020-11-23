@@ -25,9 +25,11 @@
 一个简单的例子是在伯努利分布采样中定义的STE为：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200221160410525.png)
+
 在这里，$c$是目标函数，由于从伯努利分布中采样是一个不可微分的过程，$\frac{\partial c}{\partial q}$没有定义，因此反向传播中的梯度不能由链式法则直接算出$\frac{\partial c}{\partial p}$，然而由于$p$和$q$的期望相同，我们可以使用定义好的梯度$\frac{\partial c}{\partial q}$对$\frac{\partial c}{\partial p}$做近似，并且构建了一个如上所示的STE，因此STE实际上给出了一个对$\frac{\partial c}{\partial p}$的定义。在本文的工作中广泛使用的STE是量化器---将一个真实的浮点数输入$r_i\in [0,1]$量化未$k$位输出$r_o\in [0,1]$，定义的STE如下：
 
 ![STE](https://img-blog.csdnimg.cn/20200221161158817.png)
+
 我们可以看到，直通估计器STE的输出$q$是一个由$k$位表示的真实数，由于$r_o$是一个$k$位定点整数，卷积计算可以由等式(3)高效执行，后面跟着正确的缩放即可。
 
 
@@ -35,22 +37,26 @@
 在之前的工作中，STE被用来做二值化权重，比如在BNN中，权重被下面的STE二值化：
 
 ![BNN STE](https://img-blog.csdnimg.cn/20200221161600426.png)
+
 在XNOR-Net中，权重按照下面的STE二值化，不同之处在于权重在二值化之后进行了缩放：
 
 ![XORNet STE](https://img-blog.csdnimg.cn/20200221161626960.png)
+
 在XOR-Net中，缩放因子$E_{F}(|r_i|)$是对应卷积核的权重绝对值均值。理由是引入这个缩放因子将会增加权重表达范围，同时仍然可以在前向传播卷积时做位运算。因此，在本文的实验中，使用一个常量缩放因子来替代通道级缩放。在这篇论文中，对于所有的二值化权重使用同一个缩放因子：
 
 ![DoReFa-Net STE](https://img-blog.csdnimg.cn/20200221161920434.png)
+
 当$k>1$时，论文使用$k$位表达的权重，然后将STE $f_{w}^k$应用在权重上：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200221162139374.png)
+
 在量化到$k$位之前，论文先使用`tanh`将权重限制在[-1,1]之间。通过$\frac{tanh(r_i)}{2max(|tanh(r_i)|)}+1/2$将数值约束在[0,1]之间，最大值是相对于整个层的权重而言的。然后通过：
 
-$quantize_k=\frac{1}{2^k-1}round((2^k-1)r_i)$将浮点数转换位$k$位定点数，范围在$[0,1]$，最后通过映射变换将$r_o$约束到$[-1,1]$。
+$quantize_k=\frac{1}{2^k-1}round((2^k-1)r_i)$
+
+将浮点数转换位$k$位定点数，范围在$[0,1]$，最后通过映射变换将$r_o$约束到$[-1,1]$。
 
 需要注意的是，当k=1时，等式9不同于等式7，它提供了一个不同的二值化权重的方法，然而，论文发现在实验中这种区别不重要。
-
-
 
 ## 2.4 梯度的低比特量化
 本文已经证明了确定性量化可以产生低位宽的权重和激活值。然后，为了将梯度也量化到低位宽，保持梯度的无界是非常重要的，同时梯度应该比激活值的范围更广。回顾等式（9），我们通过可微分的非线性激活函数将激活值约束到了$[0,1]$，然而，这种构造不存在渐变，因此我们对梯度设计了如下的$k$位量化方式：
@@ -59,11 +65,14 @@ $quantize_k=\frac{1}{2^k-1}round((2^k-1)r_i)$将浮点数转换位$k$位定点�
 
 这里的$dr=\frac{\partial c}{\partial r}$是一些层的输出$r$对损失函数$c$的导数，最大值是对梯度张量所有维度（除了$batch size$）的统计，然后在梯度上用来放缩将结果映射到$[0,1]$之间，然后在量化之后又放缩回去。
 
-然后，为了进一步补偿梯度量化引入的潜在偏差，我们引入了额外的函数$N(k)=\frac{\sigma}{2^k-1}$，这里![$\sigma $](https://img-blog.csdnimg.cn/20200221173838386.png)
+然后，为了进一步补偿梯度量化引入的潜在偏差，我们引入了额外的函数$N(k)=\frac{\sigma}{2^k-1}$，这里
+
+![$\sigma $](https://img-blog.csdnimg.cn/20200221173838386.png)
 
 因此，噪声可能具有和量化误差相同的幅值。论文发现，人工噪声对性能的影响很大，最后，论文做$k$位梯度量化的表达式如下：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020022117402690.png)
+
 梯度的量化仅仅在反向传播时完成，因此每一个卷积层的输出上的STE是：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200221174122832.png)
@@ -72,6 +81,7 @@ $quantize_k=\frac{1}{2^k-1}round((2^k-1)r_i)$将浮点数转换位$k$位定点�
 论文给出了DoReFa-Net的训练算法，如Algorithm1所示。假设网络具有前馈线性拓扑，像BN层、池化层这样的细节在这里不详细展开。要注意的是，所有昂贵的操作如`forward`，`backward_input`，`backward_weight`（无论是卷积层还是全连接层），都是在低Bit上做的。通过构造，在这些低位宽数字和定点整数之间总是存在仿射映射的，因此，所有昂贵的操作都可以通过定点整数之间的点积等式（3）来加速。
 
 ![Algorithm1](https://img-blog.csdnimg.cn/20200221174338456.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ## 2.6 小结
 最终，我们获得了DoreFa-Net的算法，这里对第一层和最后一层不做量化，因为输入层对图像任务来说通常是8bit的数据，做低比特量化会对精度造成很大的影响，输出层一般是一些One-Hot向量，因此输出层也要保持原样。DoreFa-Net分别对SVHN和ImageNet做了实验，其准确率明显高于二值化网络和三值化网络。
 
@@ -250,7 +260,6 @@ class Round(Function):
 
 然后对于激活值的量化，论文中的介绍如下图所示：
 
-
 ![DoreFa-Net对激活值的量化](https://img-blog.csdnimg.cn/20200725203813921.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 代码实现如下：
@@ -307,9 +316,11 @@ class Linear_Q(nn.Linear):
 上次介绍的[YOLOV3剪枝方法汇总](https://mp.weixin.qq.com/s/GqlKalXvGscSIsyPokBlhw) 文章中还剩下一个量化方法当时没有提到，实际上它的量化方法就是DoreFa-Net的量化方法，所以我们来看一下量化效果：
 
 ![YOLOV3使用DoreFa-Net的量化实验结果](https://img-blog.csdnimg.cn/20200725204837630.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 但是需要注意的是，在框架下量化训练过程都还是在`float32`精度下的表达，只是尺度`scale`到量化的尺度上了，能够验证量化的有效性。但如果要实际部署，可以看下我们发布的[深度学习量化技术科普](https://mp.weixin.qq.com/s/wJ5SBT95iwGHl0MCGhnIHg) ，并且后续我也会更新实际工程中的做量化加速的一些分享。
 
 # 5. 总结
+
 这篇文章，从算法原理和代码实现方面剖析了DoreFa-Net，并验证了DoreFaNet的有效性，并且可以看到通过这种方法INT8的掉点情况完全可以接受。
 
 -----------------------------------------------------------------------------------------------

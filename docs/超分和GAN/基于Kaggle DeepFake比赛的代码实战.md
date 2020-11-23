@@ -14,13 +14,16 @@
 # 3. 生成数据
 
 ![1.png](https://img-blog.csdnimg.cn/20200613195250110.png)
+
 第一步是解压我们的数据集，然后是针对视频进行抽帧，这里我们的策略是从0到中间位置**随机选取起始帧**，每隔2帧进行帧的抽取。这里我们使用的是cv2库里的VideoCapture函数，参数是视频位置，返回一个视频流对象，然后我们调用set方法获取指定视频帧，最后以 **视频文件名\_标签\_帧数**的格式保存截图文件。并且由于样本极度不平均（真:假=4:1)，我加入了一个下采样，进行样本平衡，使得真假视频比例维持在1比1，具体代码位于SaveFrameImage.py。
 
 
 ![2.png](https://img-blog.csdnimg.cn/20200613195412539.png)
+
 你可以在代码里面修改你想保存图片至指定的文件夹路径
 
 ![3.png](https://img-blog.csdnimg.cn/20200613195437449.png)
+
 我们需要生成训练集和验证集，因此我们后续修改文件夹名字为validate_frame_image。验证集所需图片数量不需要太多，我们运行一段时间可以通过上面的中断按钮，终止验证集图片生成。
 
 ![4.png](https://img-blog.csdnimg.cn/20200613195517805.png)
@@ -28,6 +31,7 @@
 接着是安装paddlehub的人脸检测模型
 
 ![5.png](https://img-blog.csdnimg.cn/20200613195647608.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 创建文件夹face_image和validate_face_image，通过指定SaveFaceImage.py里面的文件夹名字，分别对视频帧进行人脸检测，并截取人脸图片保存至刚刚我们创建的文件夹中
 
 ![6.png](https://img-blog.csdnimg.cn/20200613195832703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -45,7 +49,9 @@
 ## 5.2 数据生成器
 我们通过文件名，将文件夹的人脸帧，按照帧位置进行排序
 
-![8.png](https://img-blog.csdnimg.cn/20200613200030139.png)然后装进10x3x224x224的nparray当中
+![8.png](https://img-blog.csdnimg.cn/20200613200030139.png)
+
+然后装进10x3x224x224的nparray当中
 
 同理把标签装进nparray当中，大小为1
 
@@ -54,6 +60,7 @@
 最后我们测试一下数据生成器以及图像增广是否正确
 
 ![9.png](https://img-blog.csdnimg.cn/20200613200154371.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 6. 网络架构
 ## 6.1 EfficientNet
 这里我采用的是EfficientNetB0结构，网络主体是EfficientNet.py，网络相关参数和其他操作是在model_utils.py文件里
@@ -70,6 +77,7 @@
 在CNNEncoder这个类中，我们的前向传播函数与传统CNN的有些区别
 
 ![10.png](https://img-blog.csdnimg.cn/2020061320034810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 输入形如(batch, timestep, channel, height, width)
 
 我们先根据**时间步维度**，对每一批做卷积，卷积的结果再**调用stack函数堆叠到batch维度**，由于使用了flatten函数，我们卷积结果会损失两个维度，为了输入进后续的RNN中，我们使用unsqueeze函数增加两个维度
@@ -83,17 +91,21 @@
 这里使用shape为2x10x3x224x224的nparray进行测试
 
 ![12.png](https://img-blog.csdnimg.cn/2020061320104420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 8. 训练
 这里以batch=8，优化器为Adam（学习率=0.0001)，采用交叉熵损失函数训练200轮
 
 ![15.png](https://img-blog.csdnimg.cn/2020061320065912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到loss还是下降的很快的，如果发现准确率不变可能是初始化问题，重新启动一下训练程序即可
 
 # 9. 验证
 ![16.png](https://img-blog.csdnimg.cn/20200613200734849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 我们调用eval.py文件，后面跟网络权重名字，对模型进行测试
 
 ![17.png](https://img-blog.csdnimg.cn/2020061320080595.png)
+
 在20多条数据中，准确率接近83%，我们的模型还有很大的改进空间
 
 # 10. 总结

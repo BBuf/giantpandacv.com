@@ -3,7 +3,8 @@
 
 # 2. 关键概念
 下面来描述几个关键概念。
-- **FP16**。我们知道FP32指的是Full Precise Float 32，而FP16对应的就是Float 16。相比于FP32，FP16更省内存空间和更节省推理时间。
+
+  - **FP16**。我们知道FP32指的是Full Precise Float 32，而FP16对应的就是Float 16。相比于FP32，FP16更省内存空间和更节省推理时间。
 - **Half2Mode**。这是TensorRT的一种执行模式，在这种模式下图片上相邻区域的Tensor是以16位交叉存储的方式存储的。并且当Batch大于1时，这种存储模式是最快的。这一点的原理可以看：`https://wenku.baidu.com/view/43f5d1d333d4b14e8524687b`。
 - **Profiling** 。这是本节的核心内容，Profiling表示测量网络每一层的运行时间，这样可以方便的看出使用了TensorRT和没有使用TensorRT在时间上的差别。
 

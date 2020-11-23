@@ -35,6 +35,7 @@
 而量化mk使用的【mean_file】pixel_mean.txt是特别需要注意的
 
 ![pixel_mean.txt](https://img-blog.csdnimg.cn/20200530154651101.png)
+
 我从agedb_30人脸数据库里面挑选了10张图像来做量化处理，为什么需要多张量化，请参考文章`https://zhuanlan.zhihu.com/p/58182172`，我们选择【10.jpg】来做 【Vector Comparision】，其实就是imageList.txt里的排列在最后的那张图片
 
 ![做量化的校验集](https://img-blog.csdnimg.cn/20200530154730952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -111,6 +112,7 @@ end quant files writing
 - mapper_quant文件夹，里面有量化输出的结果，如图 Fig.4.1，也就是./data/face/images/10.jpg
 
 ![Fig.4.1 [image_list]./data/face/images/imageList20190723102419.txt](https://img-blog.csdnimg.cn/20200530154948256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 **记住，mk量化过程在【mapper_quant】文件夹中生成的features是最后一张图片的inference结果，这也是文章最开始说的第三个存在问题的地方**
 
 
@@ -124,16 +126,20 @@ end quant files writing
 生成NNIE mk中，mobliefacenet.cfg 的【image_list】：
 
 ![Fig.5.1 生成NNIE mk中的mobliefacenet.cfg](https://img-blog.csdnimg.cn/20200530155058357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 CNN_convert_bin_and_print_featuremap.py 中加载.cfg代码片段：
 
 ![CNN_convert_bin_and_print_featuremap.py 中加载.cfg代码片段：](https://img-blog.csdnimg.cn/20200530155117291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 因此需要根据实际情况修改 mobliefacenet.cfg ，这里最好是复制一份新的，旧的用于生成NNIE wk，在复制后的mobliefacenet.cfg中修改一下：
 
 
 ![修改后的mobliefacenet.cfg](https://img-blog.csdnimg.cn/20200530155143281.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 另外，我们需要特别注意预处理这一个环节，如文章开篇所阐述的第二点
 
 ![预处理](https://img-blog.csdnimg.cn/20200530155237775.png)
+
 我们注意到这里，data是uint8类型的array，是先乘以了【data_scale】的，也就是说和NNIE 生成wk中的操作顺序是不一致的。
 
 **(data - 128.0) * 0.0078125 <==> data * 0.0078125 - 1**
@@ -141,6 +147,7 @@ CNN_convert_bin_and_print_featuremap.py 中加载.cfg代码片段：
 因此这里需要做的修改就是需要将【mean_file】pixel_mean.txt修改为
 
 ![修改后的mean_file](https://img-blog.csdnimg.cn/20200530155257932.png)
+
 修改完以上，然后直接运行代码，将最终模型提取的features fc1_output0_128_caffe.linear.float和caffe_forward.py（`https://github.com/honghuCode/mobileFacenet-ncnn/blob/feature/mobilefacenet-mxnet2caffe/caffe_forward.py`）中的进行比对，如果以上都没问题，可以看到结果是几乎一致的
 
 caffe_forward.py生成的结果：
@@ -174,6 +181,7 @@ caffe_forward.py生成的结果：
 CNN_convert_bin_and_print_featuremap.py生成的结果（由于特征值太多，就不一一打印出来了）：
 
 ![caffe_forward.py生成的结果：](https://img-blog.csdnimg.cn/20200530155526708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 **然后再生成，并进行【Vector Comparision】，量化终于成功了**
 
 ![中间层特征值比较图1](https://img-blog.csdnimg.cn/20200530155644744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -191,6 +199,7 @@ void SAMPLE_SVP_NNIE_Cnn(void)
 
 ![Fig.6.1 函数开头修改pcSrcFile和pcModeName](https://img-blog.csdnimg.cn/20200530155849263.png)
 ![Fig.6.2 函数结尾增加输出层的打印信息](https://img-blog.csdnimg.cn/20200530155857641.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 我们调用了 SAMPLE_SVP_NNIE_PrintReportResult 函数输出两个结果报表文件，结果分析当中会用到
 
 ```bash

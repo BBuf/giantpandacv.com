@@ -33,16 +33,19 @@
 
 
 # 3. 问题
-1. 存在这样的情况：模型预训练完之后某些层的权重参数不同通道之间的数据方差很大如下图所示，利用常见的per-layer量化策略(即整个层的参数作为一个tensor进行量化)，则会使得值较小的通道直接全部被置为0，导致精度的下降，per-channel的方法可以解决这个问题，但是在硬件实现上因为要针对每一个通道都有自己独立的缩放系数和偏移值考虑，会导致很多额外的开销，得不偿失；
+
+**1.** 存在这样的情况：模型预训练完之后某些层的权重参数不同通道之间的数据方差很大如下图所示，利用常见的per-layer量化策略(即整个层的参数作为一个tensor进行量化)，则会使得值较小的通道直接全部被置为0，导致精度的下降，per-channel的方法可以解决这个问题，但是在硬件实现上因为要针对每一个通道都有自己独立的缩放系数和偏移值考虑，会导致很多额外的开销，得不偿失；
 
 ![MobileNet v2](https://img-blog.csdnimg.cn/20200731203733289.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
-2. FP32->INT8量化过程中带来的noise是有偏误差，会导致不同模型不同程度的性能下降，目前的方法基本依赖于finetune；
+**2.** FP32->INT8量化过程中带来的noise是有偏误差，会导致不同模型不同程度的性能下降，目前的方法基本依赖于finetune；
 
 # 4. 解决方法: Data-Free Quantization
+
 - **算法流程**
 
 ![DFQ流程](https://img-blog.csdnimg.cn/20200731203843503.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 - **Cross-layer equalization**
 
 
@@ -53,8 +56,8 @@
 那么有：
 
 ![推导可得](https://img-blog.csdnimg.cn/20200731214333962.png)
-其中S是一个对角矩阵，对角线上的每个值是用来调整缩放系数的因子。前面讲到量化需要对参数Tensor进行缩放，如果不同通道的缩放系数差异很大的话就会导致巨大的量化误差，所以可以利用ReLU函数的缩放特性来进行上下层之间不同通道缩放系数的调整，如下所示：
 
+其中S是一个对角矩阵，对角线上的每个值是用来调整缩放系数的因子。前面讲到量化需要对参数Tensor进行缩放，如果不同通道的缩放系数差异很大的话就会导致巨大的量化误差，所以可以利用ReLU函数的缩放特性来进行上下层之间不同通道缩放系数的调整，如下所示：
 
 ![示意图](https://img-blog.csdnimg.cn/20200731214414650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 

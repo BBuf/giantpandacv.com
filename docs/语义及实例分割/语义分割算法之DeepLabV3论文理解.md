@@ -18,7 +18,9 @@ https://arxiv.org/abs/1706.05587
 
 # 相关工作
 很多工作已经证明了全局特征或上下文的语义信息有助于语义分割。在本文中，一共讨论了四种利用上下文信息进行语义分割的全卷积网络(FCNs)，如Figure 2所示：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191106152312682.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 **图像金字塔(Image pyramid)：** 多个尺度的图片输入到一个相同的网络中。小尺寸的输入有助于理解长距离的语义，大尺寸的输入有助于修正细节。使用拉普拉斯金字塔对输入图像进行变换，将不同尺度的图片输入到DCNN，并将所有比例的特征图合并。有人将多尺度的输入按顺序从粗到细依次应用，也有人将输入直接调整成不同的大小，并融合所有大小的特征。这类模型的主要缺点是由于GPU内存有限，较大较深的CNN不方便使用，因此通常在推理阶段应用。
 
 **编码器-解码器(Encoder-Decoder)**  该模型由两部分组成：(a)编码器中，
@@ -32,6 +34,7 @@ https://arxiv.org/abs/1706.05587
 这里主要回顾如何应用atrous convolution来提取紧凑的特征，以进行语义分割； 然后介绍在串行和并行中采用atrous convolution的模块。
 **1. Atrous Convolution for Dense Feature Extraction**
 假设2维信号，针对每个位置i，对应的输出y， 以及filter w，对于输入feature map x进行 atrous convlution 计算：  
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191106160829346.png)
 
 其中x代表输入信号，w是卷积核系数，y是输出，其中k是输入信号维度，r是膨胀速率，如果r等于就退化为标准卷积。
@@ -43,6 +46,7 @@ https://arxiv.org/abs/1706.05587
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191106161941484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 对于Figure3的图a，每一个块都有三个3×3卷积。除了最后一个块，其余的模块中最后的一个卷积步长为2，类似于原来的ResNet。这么做背后的动机是，引入的stride使得更深的模块更容易捕获长距离的信息。整个图像的特征都可以汇聚在最后一个小分辨率的特征图中。然而，我们发现续的stride(stride过大对于短距离的语义信息捕获很不利)对语义分割是有害的，会造成细节信息的丢失(如下表)。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191106162636499.png)
 
 因此我们使用了不同采样率的空洞卷积。如Figure 3(b)中，输出步幅为out_stride = 16。这样可以在不增加参数量和计算量的同时有效缩小步幅。
@@ -56,16 +60,23 @@ https://arxiv.org/abs/1706.05587
 DeepLab V3中将BN层加入到V2提出的ASPP模块中。具有不同atrous rates的ASPP模块可以有效的捕获多尺度信息。不过，论文发现，随着sampling rate的增加，有效filter特征权重（即有效特征区域，而不是补零区域的权重）的数量会变小。如下图所示，当采用具有不同atrous rates的3×3 filter应用到65×65 feature map时，在rate值接近于feature map 大小的极端情况，该3×3 filter不能捕获整个图像内容，而退化成了一个简单的1×1 filter， 因为只有中心 filter 权重才是有效的。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191106165445239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了解决这一问题，并将全局内容信息整合到模型中，则采用图像级特征。即，采用全局平均池化(global average pooling)对模型的 feature map 进行处理，将得到的图像级特征输入到一个 1×1 convolution with 256 filters(加入 batch normalization)中，然后将特征进行双线性上采样(bilinearly upsample)到特定的空间维度。最后，论文改进了ASPP， 即: 
 (a) 当output_stride=16时，包括一个 1×1 convolution 和三个3×3 convolutions，其中3×3 convolutions的 rates=(6,12,18)，(所有的filter个数为256，并加入batch normalization)。 需要注意的是，当output_stride=8时，rates将加倍。
 (b) 图像级特征, 如 Figure5。
 
 连接所有分支的最终特征，输入到另一个 1×1 convolution(所有的filter个数也为256，并加入batch normalization)，再进入最终的 1×1 convolution，得到 logits 结果。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019110618410951.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 实验结果
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191106184332393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 文章还给出了一些可视化结果：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019110618444130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 结论
 
 提出的模型DeepLab V3采用atrous convolution的上采样滤波器提取稠密特征映射和去捕获大范围的上下文信息。具体来说，编码多尺度信息，提出了级联模块逐步翻倍的atrous rates，提出了ASPP模块增强图像级的特征，探讨了多采样率和有效视场下的滤波器特性。实验结果表明，该模型在Pascal voc 2012语义图像分割基准上比以前的DeppLab版本有了明显的改进，并取得了SOAT精度。

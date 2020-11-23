@@ -44,8 +44,8 @@
 
 - 测试过的网络：
 
-  - lenet5
-  - lenet5_bn
+    - lenet5
+    - lenet5_bn
   - alexnet
   - vgg16
   - vgg16_bn
