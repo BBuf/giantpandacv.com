@@ -1,5 +1,6 @@
 darkenet源码：https://github.com/pjreddie/darknet.git
 # 1. 配置Darknet
+
 - 下载darknet源码：`git clone https://github.com/pjreddie/darknet`
 - 进入darknet目录： `cd darknet`
 - 如果是cpu直接make,否则需要修改Makefile，设置cuda和cudnn路径：
@@ -9,18 +10,29 @@ GPU=1
 CUDNN=1
 NVCC=/usr/local/cuda-8.0/bin/nvcc
 ```
+
 - 如果需要调用摄像头，还要设置`OPENCV=1`，这里注意一下，如果设置了`OPENCV=1`，进行测试的时候可能会有错，这个我在github上看到是因为opencv版本太高导致的，可以切换为opencv2进行测试
 - 下载yolov3的模型文件`wget https://pjreddie.com/media/files/yolov3.weights`
 - 进行测试：`./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg`
+
 # 2. 制作VOC数据集
 $\quad$这里介绍一下如何制作PASCAL VOC数据集，首先来看VOC数据集的结构：
 
 ![这里写图片描述](https://img-blog.csdn.net/20180803160221139?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+_
+
 ![这里写图片描述](https://img-blog.csdn.net/20180803160646430?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
 我们训练自己的数据时只需要修改Annotations、ImageSets、JPEGImages 三个文件夹，请自动忽略voc_label。接下来就可以先搞定Annotations这个文件夹，这个文件夹下存储的是每一张图片对应的boundingbox坐标，是这种格式：
+
 ![这里写图片描述](https://img-blog.csdn.net/20180803160523978?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-![这里写图片描述](https://img-blog.csdn.net/20180803161015217?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-，在制作这个文件夹下的xml之前请先把训练数据集放到JPEGImages下。然后可以使用我下面的脚本生成Annotations的各个xml。
+
+_
+
+![img](https://img-blog.csdn.net/20180803161015217?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70) 
+
+在制作这个文件夹下的xml之前请先把训练数据集放到JPEGImages下。然后可以使用我下面的脚本生成Annotations的各个xml。
 
 ```
 #coding=utf-8
@@ -156,7 +168,9 @@ sets=[('2007', 'train'), ('2007', 'val'), ('2007', 'test')]
 classes = ["safetyhat"]
 ```
 运行voc_label.py，即可完成文件转化。用train和val的数据一起用来训练，所以需要合并文件：`cat 2007_train.txt 2007_val.txt > train.txt`，其中voc_label.py是在这个目录下运行的:
+
 ![这里写图片描述](https://img-blog.csdn.net/20180803161503917?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
 OK啦，VOC数据集就制作完了，可以进行yolov3训练了。
 
 #3. yolov3训练数据
@@ -174,6 +188,7 @@ $\quad$下载Imagenet上预先训练的权重，`wget https://pjreddie.com/media
 $\quad$ 修改cfg/yolov3-voc.cfg，首先修改分类数为自己的分类数，然后注意开头部分训练的batchsize和subdivisions被注释了，如果需要自己训练的话就需要去掉，测试的时候需要改回来，最后可以修改动量参数为0.99和学习率改小，这样可以避免训练过程出现大量nan的情况，最后把每个[yolo]前的filters改成18这里怎么改具体可以看这个issule:https://github.com/pjreddie/darknet/issues/582, 改完之后就可以训练我们的模型了`./darknet detector train cfg/voc.data cfg/yolov3-voc.cfg darknet53.conv.74` 。
 
 # 4. 训练过程参数的意义
+
 - Region xx: cfg文件中yolo-layer的索引；
 - Avg IOU:当前迭代中，预测的box与标注的box的平均交并比，越大越好，期望数值为1；
 - Class: 标注物体的分类准确率，越大越好，期望数值为1；
@@ -213,6 +228,7 @@ Region 106 Avg IOU: 0.756419, Class: 0.999139, Obj: 0.891591, No Obj: 0.000712, 
 12010: 0.454202, 0.404766 avg, 0.000100 rate, 2.424004 seconds, 768640 images
 Loaded: 0.000034 seconds
 ```
+
 这断代码展示了一个批次(batch)，批次大小的划分根据yolov3-voc.cfg的subdivisions参数。在我使用的 .cfg 文件中 batch =256，subdivision = 8，所以在训练输出中，训练迭代包含了32组，每组又包含了8张图片，跟设定的batch和subdivision的值一致。
 
 - 批输出 针对上面的bacth的最后一行输出来说，12010代表当前训练的迭代次数,0.454202代表总体的loss，0.404766 avg代表平均损失，这个值越低越好，一般来说一旦这个数值低于0.060730 avg就可以终止训练了。0.0001代表当前的学习率，2.424004 seconds代表当前批次花费的总时间。768640代表3002*256代表当前训练的图片总数。
@@ -335,6 +351,7 @@ void print_yolo_detections(FILE **fps, char *id, box *boxes, float **probs, int 
 然后执行:`./darknet yolo valid cfg/yolov3-voc.cfg yolov3-voc_900.weights`就可以在批量生成测试数据集的结果了。
 
 #6. 调参遇到的trick
+
 - CUDA: out of memory 以及 resizing 问题？显存不够，调小batch，关闭多尺度训练：random = 0。
 - YOLOV3训练出现nan的问题？在显存允许的情况下，可适当增加batch大小，可以一定程度上减少NAN的出现，动量参数可以调为0.99
 - YOLOv3打印的参数都是什么含义？详见yolo_layer.c文件的forward_yolo_layer函数。
@@ -345,5 +362,6 @@ printf("Region %d Avg IOU: %f, Class: %f, Obj: %f, No Obj: %f, .5R: %f, .75R: %f
 - ing
 
 
-# 维护了一个微信公众号，分享论文，算法，比赛，生活，欢迎加入。
+#### 维护了一个微信公众号，分享论文，算法，比赛，生活，欢迎加入。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019102917521565.jpg)

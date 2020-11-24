@@ -108,9 +108,11 @@ def create_grids(self,
 ## 2. YOLOLayer
 
 在之前的文章中讲过，YOLO层前一层卷积层的filter个数具有特殊的要求，计算方法为：
+
 $$
 filter\_num = anchor\_num\times(5+classes\_num) 
 $$
+
 如下图所示：
 
 ![](https://img-blog.csdnimg.cn/20200121150912290.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
@@ -165,7 +167,7 @@ class YOLOLayer(nn.Module):
 
 **测试过程：**
 
- ```python
+```python
 # p的形状目前为：【bs, anchor_num, gridx,gridy,xywhc+class】
 else:  # 测试推理过程
     # s = 1.5  # scale_xy  (pxy = pxy * s - (s - 1) / 2)
@@ -196,6 +198,7 @@ else:  # 测试推理过程
  ```
 
 理解以上内容是需要对应以下公式：
+
 $$
 b_x=\sigma(t_x)+c_x
 $$
@@ -203,6 +206,7 @@ $$
 $$
 b_y=\sigma(t_y)+c_y
 $$
+
 $$
 b_w=p_we^{t_x}
 $$
@@ -221,7 +225,7 @@ $$
 b_y=\sigma(t_y)+c_y
 $$
 
-$c_x, c_y$代表的是格子的左上角坐标；$t_x, t_y$代表的是网络预测的结果；$\sigma​$代表sigmoid激活函数。对应代码理解：
+$c_x, c_y$代表的是格子的左上角坐标；$t_x, t_y$代表的是网络预测的结果；$\sigma$代表sigmoid激活函数。对应代码理解：
 
 ```python
 io[..., :2] = torch.sigmoid(io[..., :2]) + self.grid_xy  # xy

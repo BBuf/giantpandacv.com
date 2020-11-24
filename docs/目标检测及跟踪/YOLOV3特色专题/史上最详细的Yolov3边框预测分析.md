@@ -4,13 +4,9 @@
 
 ![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9waWMzLnpoaW1nLmNvbS92Mi0zYTg1ZGYxOTFkODcxMjBjZDI5OTY3YjM1ZGI0NDNlZV9iLmpwZw?x-oss-process=image/format,png)
 
-
-
 其中，Cx,Cy是feature map中grid cell的左上角坐标，在yolov3中每个grid cell在feature map中的宽和高均为1。如下图1的情形时，这个bbox边界框的中心属于第二行第二列的grid cell，它的左上角坐标为(1,1)，故Cx=1,Cy=1.公式中的Pw、Ph是预设的anchor box映射到feature map中的宽和高(**anchor box原本设定是相对于416\*416坐标系下的坐标，在yolov3.cfg文件中写明了，代码中是把cfg中读取的坐标除以stride如32映射到feature map坐标系中**)。
 
-
 ![图1](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9waWMxLnpoaW1nLmNvbS92Mi05MjI5ODVjMmQ1OTExOTNjOWIzNWNiODFjMDZkMjIxOF9iLmpwZw?x-oss-process=image/format,png)
-
 
 最终得到的边框坐标值是bx,by,bw,bh即边界框bbox相对于feature map的位置和大小，是我们需要的预测输出坐标。但**我们网络实际上的学习目标是tx,ty,tw,th这４个offsets**，其中**tx,ty**是预测的坐标偏移值，**tw,th**是尺度缩放，有了这４个offsets，自然可以根据之前的公式去求得真正需要的bx,by,bw,bh４个坐标。至于为何不直接学习bx,by,bw,bh呢？因为YOLO 的输出是一个卷积特征图，包含沿特征图深度的边界框属性。边界框属性由彼此堆叠的单元格预测得出。因此，如果你需要在 (5,6) 处访问该单元格的第二个边框bbox，那么你需要通过 map[5,6, (5+C): 2*(5+C)] 将其编入索引。这种格式对于输出处理过程（例如通过目标置信度进行阈值处理、添加对中心的网格偏移、应用锚点等）很不方便，因此我们求偏移量即可。那么这样就只需要求偏移量，也就可以用上面的公式求出bx,by,bw,bh，反正是等价的。另外，通过学习偏移量，就可以通过网络原始给定的anchor box坐标经过线性回归微调（平移加尺度缩放）去逐渐靠近groundtruth.为何微调可看做线性回归看后文。
 
@@ -43,13 +39,13 @@ def letterbox_image(img, inp_dim):
 
 而且我们注意**yolov3需要的训练数据的label是根据原图尺寸归一化了的，这样做是因为怕大的边框的影响比小的边框影响大**，因此做了归一化的操作，这样大的和小的边框都会被同等看待了，而且训练也容易收敛。既然label是根据原图的尺寸归一化了的，自己制作数据集时也需要归一化才行，如何转为yolov3需要的label网上有一大堆教程，也可参考我的文章：将实例分割数据集转为目标检测数据集（https://zhuanlan.zhihu.com/p/49979730），这里不再赘述。
 
-这里再解释一下anchor box，YOLO3为每种FPN预测特征图$（13*13,26*26,52*52）$设定$3$种anchor box，总共聚类出$9$种尺寸的anchor box。在COCO数据集这9个anchor box是：$(10\times 13)，(16\times30)，(33\times23)，(30\times 61)，(62\times 45)，(59\times 119)，(116\times 90)，(156\times 198)，(373\times 326)$。分配上，在最小的$13\times 13$特征图上由于其感受野最大故应用最大的anchor box $(116\times 90)，(156\times 198)，(373\times 326)$，（这几个坐标是针对$416\times 416$下的，当然要除以$32$把尺度缩放到$13\times 13$下），适合检测较大的目标。中等的$26\times 26$特征图上由于其具有中等感受野故应用中等的anchor box $(30\times 61)，(62\times 45)，(59\times 119)$，适合检测中等大小的目标。较大的$52\times 52$特征图上由于其具有较小的感受野故应用最小的anchor box$(10\times 13)，(16\times 30)，(33\times 23)$，适合检测较小的目标。同Faster-Rcnn一样，特征图的每个像素（即每个grid）都会有对应的三个anchor box，如$13\times 13$特征图的每个grid都有三个anchor box$(116\times 90)，(156\times 198)，(373\times 326)$（这几个坐标需除以$32$缩放尺寸）
+这里再解释一下anchor box，YOLO3为每种FPN预测特征图$（13*13,26*26,52*52）$设定$3$种anchor box，总共聚类出$9$种尺寸的anchor box。在COCO数据集这9个anchor box是：$(10\times 13)，(16\times30)，(33\times23)，(30\times 61)，(62\times 45)，(59\times 119)，(116\times 90)，(156\times 198)，(373\times 326)$。
+
+分配上，在最小的$13\times 13$特征图上由于其感受野最大故应用最大的anchor box $(116\times 90)，(156\times 198)，(373\times 326)$，（这几个坐标是针对$416\times 416$下的，当然要除以$32$把尺度缩放到$13\times 13$下），适合检测较大的目标。中等的$26\times 26$特征图上由于其具有中等感受野故应用中等的anchor box $(30\times 61)，(62\times 45)，(59\times 119)$，适合检测中等大小的目标。较大的$52\times 52$特征图上由于其具有较小的感受野故应用最小的anchor box$(10\times 13)，(16\times 30)，(33\times 23)$，适合检测较小的目标。同Faster-Rcnn一样，特征图的每个像素（即每个grid）都会有对应的三个anchor box，如$13\times 13$特征图的每个grid都有三个anchor box$(116\times 90)，(156\times 198)，(373\times 326)$（这几个坐标需除以$32$缩放尺寸）
 
 那么4个坐标$t_x,t_y,t_w,t_h$是怎么求出来的呢？对于训练样本，在大多数文章里需要用到ground truth的真实框来求这4个坐标：
 
 ![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9waWMyLnpoaW1nLmNvbS92Mi02MzI1MWUxYWVjODZiZDhjNTFmYTM1YmEzMzE5OTU3MV9iLmpwZw?x-oss-process=image/format,png)
-
-
 
 上面这个公式是Faster-rcnn系列文章用到的公式，$P_x,P_y$在Faster-rcnn系列文章是预设的anchor box在feature map上的中心点坐标。 $P_w、P_h$是预设的anchor box在feature map上的宽和高。至于$G_x、G_y、G_w、G_h$自然就是ground truth在这个feature map的4个坐标了(其实上面已经描述了这个过程，要根据原图坐标系先根据原图纵横比不变映射为$416*416$坐标下的一个子区域如$416*312$，取 $min(w/img_w, h/img_h)$这个比例来缩放成$416*312$，再填充为$416*416$，坐标变换上只需要让ground truth在$416*312$下的$y1,y2$（即左上角和右下角纵坐标）加上图2灰色部分的一半，$y1=y1+(416-416/768*576)/2=y1+(416-312)/2$，y2同样的操作，把x1,x2,y1,y2的坐标系的换算从针对实际红框的坐标系$(416*312)$变为$416*416$下了，这样保证bbox不会扭曲，然后除以stride得到相对于feature map的坐标)。
 
@@ -80,8 +76,6 @@ $t_w$和$t_h$的公式yolov3和faster-rcnn系列是一样的，是物体所在�
 网络可以不断学习**tx,ty,tw,th偏移量和尺度缩放，预测时**使用这4个offsets求得bx,by,bw,bh即可，那么问题是：
 
 ![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9waWMzLnpoaW1nLmNvbS92Mi0zYTg1ZGYxOTFkODcxMjBjZDI5OTY3YjM1ZGI0NDNlZV9iLmpwZw?x-oss-process=image/format,png)
-
-
 
 **这个公式tx,ty为何要sigmoid一下啊？**
 
@@ -209,6 +203,7 @@ void correct_yolo_boxes(detection *dets, int n, int w, int h, int netw, int neth
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

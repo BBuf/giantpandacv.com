@@ -3,9 +3,13 @@
 
 # 网络结构
 为了比较好的对应SSD的结构来看代码，我们首先放出SSD的网络结构，如下图所示：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191201225432260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到原始的SSD网络是以VGG-16作Backbone（骨干网络）的。为了更加清晰看到相比于VGG16，SSD的网络使用了哪些变化，知乎上的一个帖子做了一个非常清晰的图，这里借用一下，原图地址为：https://zhuanlan.zhihu.com/p/79854543 。带有特征图维度信息的更清晰的骨干网络和VGG16的对比图如下：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191201225702550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 源码解析
 OK，现在我们就要开始从源码剖析SSD了 。主要弄清楚三个方面，网络结构的搭建，Anchor还有损失函数，就算是理解这个源码了。
 ## 网络搭建
@@ -39,7 +43,9 @@ def vgg(cfg, i, batch_norm=False):
 现在可以开始搭建SSD网络后面的多尺度提取网络了。也就是网络结构图中的Extra Feature Layers。我们从开篇的结构图中截取一下这一部分，方便我们对照代码。
 
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191202141246195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)实现的代码如下（同样来自ssd.py）：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191202141246195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+实现的代码如下（同样来自ssd.py）：
 
 ```
 def add_extras(cfg, i, batch_norm=False):
@@ -122,9 +128,12 @@ Sequential(
 
 这个在前面SSD的原理篇中讲过了，这里不妨再回忆一下，SSD从魔改后的VGG16的`conv4_3`开始一共使用了6个不同大小的特征图，大小分别为`(38,28),(19,19),(10,10),(5,5),(3,3),(1,1)`，但每个特征图上设置的先验框(Anchor)的数量不同。先验框的设置包含尺度和长宽比两个方面。对于先验框的设置，公式如下：
 $s_k=s_{min}+\frac{s_{max}-s_{min}}{m-1}(k-1),k\in [1,m]$，其中$M$指的是特征图个数，这里为5，因为第一层`conv4_3`的Anchor是单独设置的，$s_k$代表先验框大小相对于特征图的比例，注意这里不是相对原图哦。最后，$s_{min}$和$s_{max}$表示比例的最小值和最大值，论文中分别取$0.2$和$0.9$。
+
 对于第一个特征图，它的先验框尺度比例设置为$s_{min}/2=0.1$，则他的尺度为$300\times 0.1=30$，后面的特征图带入公式计算，并将其映射会原图300的大小可以得到，剩下的5个特征图的尺度$s_k$为${60,111,162,213,264}$。所以综合起来，6个特征图的尺度$s_k$为${30,60,111,162,213,264}$。有了Anchor的尺度，接下来设置Anchor的长宽，论文中长宽设置一般为$a_r={1,2,3,\frac{1}{2},\frac{1}{3}}$，根据面积和长宽比可以得到先验框的宽度和高度：
 $w_k^a=s_k\sqrt{a_r},h_k^a=s_k/\sqrt{a_r}$。
+
 这里有一些值得注意的点，如下：
+
 - 上面的$s_k$是相对于原图的大小。
 - 默认情况下，每个特征图除了上面5个比例的Anchor，还会设置一个尺度为$s_k^{'}=\sqrt{s_ks_{k+1}}$且$a_r=1$的先验框，这样每个特征图都设置了两个长宽比为1但大小不同的正方形先验框。最后一个特征图需要参考一下$s_{m+1}=315$来计算$s_m$。
 - 在实现`conv4_3`,`conv10_2`,`conv11_2`层时仅使用4个先验框，不使用长宽比为$3,\frac{1}{3}$的Anchor。
@@ -355,8 +364,11 @@ def build_ssd(phase, size=300, num_classes=21):
 SSD的损失函数包含两个部分，一个是定位损失$L_{loc}$，一个是分类损失$L_{conf}$，整个损失函数表达如下：
 $L(x,c,l,g)=\frac{1}{N}(L_{conf}(x,c)+\alpha L_{loc}(x,l,g))$
 其中，$N$是先验框的正样本数量，$c$是类别置信度预测值，$l$是先验框对应的边界框预测值，$g$是ground truth的位置参数，$x$代表网络的预测值。对于位置损失，采用Smooth L1 Loss，位置信息都是`encode`之后的数值，后面会讲这个encode的过程。而对于分类损失，首先需要使用`hard negtive mining`将正负样本按照`1:3` 的比例把负样本抽样出来，抽样的方法是：针对所有batch的confidence，按照置信度误差进行降序排列，取出前`top_k`个负样本。损失函数可以用下图表示：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019120316232760.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ### 实现步骤
+
 - Reshape所有batch中的conf，即代码中的`batch_conf = conf_data.view(-1, self.num_classes)`，方便后续排序。
 - 置信度误差越大，实际上就是预测背景的置信度越小。
 - 把所有conf进行`logsoftmax`处理(均为负值)，预测的置信度越小，则`logsoftmax`越小，取绝对值，则`|logsoftmax|`越大，降序排列`-logsoftmax`，取前`top_k`的负样本。
@@ -376,6 +388,7 @@ conf_logP = log_sum_exp(batch_conf) - batch_conf.gather(1, conf_t.view(-1, 1))
 这样计算的原因主要是为了增强`logsoftmax`损失的数值稳定性。放一张我的手推图：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191203170255896.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 损失函数完整代码实现，来自`layers/modules/multibox_loss.py`：
 
 ```
@@ -561,8 +574,10 @@ def match(threshold, truths, priors, variances, labels, loc_t, conf_t, idx):
 ```
 ### 位置坐标转换
 我们看到上面出现了一个point_form函数，这是什么意思呢？这是因为目标框有2种表示方式：
+
 - $(x_{min},y_{min},x_{max},y_{max})$
 - $(x,y,w,h)$
+
 这部分的代码在`layers/box_utils.py`下：
 
 ```
@@ -669,16 +684,20 @@ class L2Norm(nn.Module):
 
 ## 位置信息编解码
 上面提到了计算坐标损失的时候，坐标是`encoding`之后的，这是怎么回事呢？根据论文的描述，预测框和ground truth边界框存在一个转换关系，先定义一些变量：
+
 - 先验框位置：$d=(d^{cx},d^{cy},d^w,d^h)$
 - ground truth框位置：$g=(g^{cx},g^{cy},g^w,g^h)$
 - variance是先验框的坐标方差。
+
 然后**编码**的过程可以表示为：
+
 $\hat{g_j^{cx}}=(g_j^{cx}-d_i^{cx})/d_i^w/varicance[0]$
 $\hat{g_j^{cy}}=(g_j^{cy}-d_i^{cy})/d_i^h/varicance[1]$
 $\hat{g_j^w}=log(\frac{g_j^w}{d_i^w})/variance[2]$
 $\hat{g_j^h}=log(\frac{g_j^h}{d_i^h})/variance[3]$
 
 **解码**的过程可以表示为：
+
 $g_{predict}^{cx}=d^w*(variance[0]*l^{cx})+d^{cx}$
 $g_{predict}^{cy}=d^h*(variance[1]*l^{cy})+d^{cy}$
 $g_{predict}^w=d^wexp(vairance[2]*l^w)$
@@ -807,4 +826,5 @@ SSD的核心代码解析大概就到这里了，我觉得这个过程算法还�
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS01M2E3NWVmOTQ2YjA0OTE3LnBuZw?x-oss-process=image/format,png)

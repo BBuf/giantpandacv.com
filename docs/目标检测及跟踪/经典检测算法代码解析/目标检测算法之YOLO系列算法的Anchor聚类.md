@@ -20,6 +20,7 @@ Fig2展示了聚类的簇的个数和IOU之间的关系，两条曲线分别代�
  - 不同类别间的特质值应该差异较大
 
 在这里倒是没有严格的去执行上面的步骤，直接按照k-means的算法步骤执行即可。k-means聚类的算法运行过程可以总结如下：
+
  （1）选择k个初始聚类中心
 
 （2）计算每个对象与这k个中心各自的距离，按照最小距离原则分配到最邻近聚类
@@ -157,4 +158,5 @@ if __name__ == '__main__':
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

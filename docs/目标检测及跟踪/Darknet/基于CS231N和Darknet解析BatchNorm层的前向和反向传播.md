@@ -1,7 +1,9 @@
 # BatchNorm论文
 https://arxiv.org/abs/1502.03167
 # BatchNorm原理
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019082315325480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 这是论文中给出的对BatchNorm的算法流程解释，这篇博客的目的主要是推导和实现BatchNorm的前向传播和反向传播，就不关注具体的原理了，我们暂时知道BN层是用来调整数据分布，降低过拟合的就够了。
 
 # 前向传播
@@ -64,32 +66,45 @@ def batchnorm_forward(x, gamma, beta, bn_param):
 - running_var shape为(D,)
 # 反向传播
 这才是我们的重点，我写过softmax和线性回归的求导，也前后弄清楚了卷积的im2col和卷积的求导，但是BN层的求导一直没弄清楚，现在我们一定要弄清楚，现在做一些约定：
+
 - $\delta$ 为一个Batch所有样本的方差
 - $\mu$为样本均值
 - $\widehat {x}$为归一化后的样本数据
 - $y_i$为输入样本$x_i$经过尺度变化的输出量
 - $\gamma$和$\beta$为尺度变化系数
 - $\dfrac {\partial L} {\partial y}$是上一层的梯度，并假设$x$和$y$都是(N,D)维，即有N个维度为D的样本
+
 在BN层的前向传播中$x_i$通过$\gamma$,$\beta$,$\widehat{x}$将$x_i$变换为$y_i$，那么反向传播则是根据$\dfrac {\partial L} {\partial y_i}$求得$\dfrac {\partial L} {\partial \gamma}$,$\dfrac {\partial L} {\partial \beta}$,$\dfrac {\partial L} {\partial x_i}$.
+
 - 求解$\dfrac {\partial L} {\partial \gamma}$
 $\dfrac {\partial L} {\partial \gamma} = \sum_{i}\dfrac {\partial L} {\partial y_i}\dfrac{\partial y_i}{\partial \gamma}=\sum_i\dfrac {\partial L} {\partial y_i}\widehat {x}$
+
 - 求解$\dfrac {\partial L} {\partial \beta}$
 $\dfrac {\partial L} {\partial \beta}=\sum_i\dfrac {\partial L} {\partial y_i}\dfrac{\partial y_i}{\partial \beta}=\sum_i\dfrac {\partial L} {\partial y_i}$
+
 - 求解$\dfrac {\partial L} {\partial x_i}$
 根据论文的公式和链式法则可得下面的等式:
 $\dfrac {\partial L} {\partial x_{i}}=\dfrac {\partial L} {\partial \widehat {x_{i}}}\dfrac {\partial \widehat {x_i}}{\partial x_{i}}+\dfrac {\partial L} {\partial \sigma}\dfrac {\partial \sigma}{\partial x_{i}}+\dfrac {\partial L} {\partial \mu}\dfrac {\partial \mu}{\partial x_{i}}$
 我们这里又可以先求$\dfrac {\partial L} {\partial \widehat {x}}$
+
 - $\dfrac {\partial L} {\partial \widehat {x}}=\dfrac {\partial L} {\partial y}\dfrac {\partial y} {\partial \widehat {x}} \\ 
 =\dfrac {\partial L} {\partial {y}}\gamma$ **(1)**
 - $\dfrac {\partial L} {\partial \sigma}=\sum _{i}\dfrac {\partial L} {\partial y_{i}}\dfrac {\partial y_{i}} {\partial \widehat {x}_{i}}\dfrac {\partial \widehat {x}_{i}}{\partial \sigma} \\
 =-\dfrac{1}{2}\sum _{i}\dfrac {\partial L} {\partial \widehat {x_{i}}}(x_{i}-\mu)(\sigma+\varepsilon)^{-1.5}$ **(2)**
+
 - $\dfrac {\partial L} {\partial \mu}=\dfrac {\partial L} {\partial \widehat {x}}\dfrac {\partial \widehat {x}}{\partial \mu}+\dfrac {\partial L} {\partial \sigma}\dfrac {\partial \sigma}{\partial \mu} \\
 =\sum _{i}\dfrac {\partial L} {\partial \widehat {x}_{i}}\dfrac {-1}{\sqrt {\sigma+ \varepsilon}}+\dfrac {\partial L} {\partial \sigma}\dfrac {-2\Sigma _{i}\left( x_{i}-\mu\right) } {N}$ **(3)**
+
 有了(1),(2),(3)就可以求出$\dfrac {\partial L} {\partial x_{i}}$
+
 - $\dfrac {\partial L} {\partial x_{i}}=\dfrac {\partial L} {\partial \widehat {x_{i}}}\dfrac {\partial \widehat {x_i}}{\partial x_{i}}+\dfrac {\partial L} {\partial \sigma}\dfrac {\partial \sigma}{\partial x_{i}}+\dfrac {\partial L} {\partial \mu}\dfrac {\partial \mu}{\partial x_{i}} \\
 =\dfrac {\partial L} {\partial \widehat {x}_{i}}\dfrac {1}{\sqrt {\sigma+ \varepsilon}}+\dfrac {\partial L} {\partial \sigma}\dfrac{2(x_i-\mu)}{N}+\dfrac {\partial L} {\partial \mu}\dfrac {1}{N}$
+
 到这里就推到出了BN层的反向传播公式了，和论文中一样，截取一下论文中的结果图：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190826101040356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)贴一份CS231N代码：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190826101040356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+贴一份CS231N代码：
 
 ```
 def batchnorm_backward(dout, cache):
@@ -116,6 +131,7 @@ def batchnorm_backward(dout, cache):
 
   return dx, dgamma, dbeta
 ```
+
 # DarkNet中的BN层
 darknet中在src/blas.h中实现了前向传播的几个公式：
 
@@ -364,4 +380,5 @@ https://blog.csdn.net/xiaojiajia007/article/details/54924959
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

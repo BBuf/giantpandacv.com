@@ -233,7 +233,7 @@ PS Code\vcpkg>         .\vcpkg install pthreads opencv[ffmpeg]
 
 Training Yolo v3:
 
-1. 创建与 `yolov3.cfg`内容相同的 `yolo-obj.cfg` 或者直接复制然后重命名为`yolo-obj.cfg` 然后
+**1**. 创建与 `yolov3.cfg`内容相同的 `yolo-obj.cfg` 或者直接复制然后重命名为`yolo-obj.cfg` 然后
 
 - 设置`cfg`文件中 `batch=64`。
 
@@ -263,8 +263,9 @@ Training Yolo v3:
   classes=2
 ```
 
-2. 在`build\darknet\x64\data\`创建文件 `obj.names` , 每行一个类别的名称。
-3. 在`build\darknet\x64\data\` 创建`obj.data`, 具体内容如下:
+**2**. 在`build\darknet\x64\data\`创建文件 `obj.names` , 每行一个类别的名称。
+
+**3**. 在`build\darknet\x64\data\` 创建`obj.data`, 具体内容如下:
 
 ```
   classes= 2 # 你的类别的个数
@@ -274,8 +275,11 @@ Training Yolo v3:
   backup = backup/
 ```
 
-4. 将你的图片放在 `build\darknet\x64\data\obj\`文件夹下。
-5. 你应该标注你的数据集中的每一张图片，使用`Yolo_mark`这个可视化GUI软件来标注出目标框并且产生标注文件。地址： `https://github.com/AlexeyAB/Yolo_mark`。
+
+
+**4**. 将你的图片放在 `build\darknet\x64\data\obj\`文件夹下。
+
+**5**. 你应该标注你的数据集中的每一张图片，使用`Yolo_mark`这个可视化GUI软件来标注出目标框并且产生标注文件。地址： `https://github.com/AlexeyAB/Yolo_mark`。
 
 软件将会为每一个图像创建一个`txt`文件，并将其放在同一个文件夹中，命名与原图片的名称相同，唯一不同的就是后缀是txt。txt标注文件中每一个目标独占一行，按照`<object-class> <x_center> <y_center> <width> <height>`的格式排布。
 
@@ -297,7 +301,7 @@ Training Yolo v3:
   1 0.420312 0.395833 0.140625 0.166667
 ```
 
-6. 在`build\darknet\x64\data\`文件夹中创建train.txt文件，每行包含的是训练集图片的内容。其路径是相对于 `darknet.exe`的路径或者绝对路径：
+**6**. 在`build\darknet\x64\data\`文件夹中创建train.txt文件，每行包含的是训练集图片的内容。其路径是相对于 `darknet.exe`的路径或者绝对路径：
 
 ```
   data/obj/img1.jpg
@@ -305,25 +309,25 @@ Training Yolo v3:
   data/obj/img3.jpg
 ```
 
-7. 下载预训练权重，并将其放在 `build\darknet\x64`文件夹中。
+**7**. 下载预训练权重，并将其放在 `build\darknet\x64`文件夹中。
 
     - 对于`csresnext50-panet-spp.cfg` (133 MB)：请查看原工程。
     - 对于`yolov3.cfg, yolov3-spp.cfg` (154 MB)：请查看原工程。
     - 对于`yolov3-tiny-prn.cfg , yolov3-tiny.cfg` (6 MB)：请查看原工程。
     - 对于`enet-coco.cfg (EfficientNetB0-Yolov3)`：请查看原工程。
 
-8. 使用以下命令行开始训练: `darknet.exe detector train data/obj.data yolo-obj.cfg darknet53.conv.74`。
+**8**. 使用以下命令行开始训练: `darknet.exe detector train data/obj.data yolo-obj.cfg darknet53.conv.74`。
 
     对于linux用户使用以下命令开始训练: `./darknet detector train data/obj.data yolo-obj.cfg darknet53.conv.74` (使用`./darknet` 而不是 `darknet.exe`)。
-
+    
     - 权重文件 `yolo-obj_last.weights` 将会保存在 `build\darknet\x64\backup\` 文件夹中，每100个迭代保存一次。
     - 权重文件`yolo-obj_xxxx.weights` 将会保存在 `build\darknet\x64\backup\` 文件夹中，每1000个迭代保存一次。
     - 如果不想在训练的过程中同步展示loss曲线，请执行以下命令 `darknet.exe detector train data/obj.data yolo-obj.cfg darknet53.conv.74 -dont_show`。
     - 如果想在训练过程中查看mAP和Loss曲线，可以使用以下命令：`darknet.exe detector train data/obj.data yolo-obj.cfg darknet53.conv.74 -dont_show -mjpeg_port 8090 -map` ，然后在浏览器中打开 URL `http://ip-address:8090` 。
-
+    
     如果想训练的过程中同步显示mAP（每四个epoch进行一次更新），运行命令: `darknet.exe detector train data/obj.data yolo-obj.cfg darknet53.conv.74 -map`。
 
-9. 训练结束以后，将会在文件夹`build\darknet\x64\backup\`中得到权重文件 `yolo-obj_final.weights` 。
+**9**. 训练结束以后，将会在文件夹`build\darknet\x64\backup\`中得到权重文件 `yolo-obj_final.weights` 。
 
 - 在100次迭代以后，你可以停下来，然后从这个点加载模型继续训练。比如说, 你在2000次迭代以后停止训练，如果你之后想要恢复训练，只需要运行命令： `darknet.exe detector train data/obj.data yolo-obj.cfg backup\yolo-obj_2000.weights`，而不需要重头开始训练。
 
@@ -406,11 +410,11 @@ Precision和Recall参数在Pascal VOC竞赛中略微不同，但 **IoU 的意义
 
 1. 在VOC2007中计算mAP：
 
-- 下载VOC数据集，安装python并且下载``2007_test.txt`文件，具体可以参考链接：`https://github.com/AlexeyAB/darknet#how-to-train-pascal-voc-data`
+    - 下载VOC数据集，安装python并且下载``2007_test.txt`文件，具体可以参考链接：`https://github.com/AlexeyAB/darknet#how-to-train-pascal-voc-data`
 
-- 下载文件 `https://raw.githubusercontent.com/AlexeyAB/darknet/master/scripts/voc_label_difficult.py` 到 `build\darknet\x64\data\` 文件夹，然后运行 `voc_label_difficult.py` 从而得到 `difficult_2007_test.txt`。
+    - 下载文件 `https://raw.githubusercontent.com/AlexeyAB/darknet/master/scripts/voc_label_difficult.py` 到 `build\darknet\x64\data\` 文件夹，然后运行 `voc_label_difficult.py` 从而得到 `difficult_2007_test.txt`。
 
-- 将下面voc.data文件中的第四行#删除
+    - 将下面voc.data文件中的第四行#删除
 
     ```
     classes= 20
@@ -421,22 +425,20 @@ Precision和Recall参数在Pascal VOC竞赛中略微不同，但 **IoU 的意义
     backup = backup/
     ```
 
-- 然后就有两个方法来计算得到mAP:
+    - 然后就有两个方法来计算得到mAP:
 
     1. 使用Darknet + Python: 运行 `build/darknet/x64/calc_mAP_voc_py.cmd` ，你将得到 `yolo-voc.cfg` 模型的mAP值, mAP = 75.9%
     2. 直接使用命令: 运行文件 `build/darknet/x64/calc_mAP.cmd` -你将得到 `yolo-voc.cfg` 模型, 得到mAP = 75.8%
 
-- YOLOv3的论文：`https://arxiv.org/pdf/1612.08242v1.pdf`指出对于416x416的YOLOv2，Pascal Voc上的mAP值是76.8%。我们得到的值较低，可能是由于模型在进行检测时的代码略有不同。
+    - YOLOv3的论文：`https://arxiv.org/pdf/1612.08242v1.pdf`指出对于416x416的YOLOv2，Pascal Voc上的mAP值是76.8%。我们得到的值较低，可能是由于模型在进行检测时的代码略有不同。
 
-- 如果你想为`tiny-yolo-voc`计算mAP值，将脚本中`tiny-yolo-voc.cfg`取消注释，将`yolo-voc.cfg`注释掉。
+    - 如果你想为`tiny-yolo-voc`计算mAP值，将脚本中`tiny-yolo-voc.cfg`取消注释，将`yolo-voc.cfg`注释掉。
 
-- 如果你是用的是python 2.x 而不是python 3.x, 而且你选择使用Darknet+Python的方式来计算mAP, 那你应该使用 `reval_voc.py` 和 `voc_eval.py` 而不是使用 `reval_voc_py3.py` 和 `voc_eval_py3.py` 。以上脚本来自以下目录：` https://github.com/AlexeyAB/darknet/tree/master/scripts`。
+    - 如果你是用的是python 2.x 而不是python 3.x, 而且你选择使用Darknet+Python的方式来计算mAP, 那你应该使用 `reval_voc.py` 和 `voc_eval.py` 而不是使用 `reval_voc_py3.py` 和 `voc_eval_py3.py` 。以上脚本来自以下目录：` https://github.com/AlexeyAB/darknet/tree/master/scripts`。
 
-- 目标检测的例子：`darknet.exe detector test data/obj.data yolo-obj.cfg yolo-obj_8000.weights`
+    - 目标检测的例子：`darknet.exe detector test data/obj.data yolo-obj.cfg yolo-obj_8000.weights`
 
 ![](https://img-blog.csdnimg.cn/20200113222626288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
-
-
 
 ![](https://img-blog.csdnimg.cn/20200113222644372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 

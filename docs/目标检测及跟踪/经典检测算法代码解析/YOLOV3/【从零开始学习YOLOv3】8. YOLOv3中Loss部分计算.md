@@ -10,9 +10,11 @@ Github release: https://github.com/ultralytics/yolov3/releases
 ## 1. Anchor
 
 Faster R-CNN中Anchor的大小和比例是由人手工设计的，可能并不贴合数据集，有可能会给模型性能带来负面影响。YOLOv2和YOLOv3则是通过聚类算法得到最适合的k个框。聚类距离是通过IoU来定义，IoU越大，边框距离越近。
+
 $$
 d(box,centroid)=1-IoU(box,centroid)
 $$
+
 Anchor越多，平均IoU会越大，效果越好，但是会带来计算量上的负担，下图是YOLOv2论文中的聚类数量和平均IoU的关系图，在YOLOv2中选择了5个anchor作为精度和速度的平衡。
 
 ![YOLOv2中聚类Anchor数量和IoU的关系图](https://img-blog.csdnimg.cn/20200326152932491.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
@@ -33,6 +35,7 @@ $$
 其中$x_a$、$y_a$ 代表中心坐标，$w_a$和$h_a$代表宽和高，$t_x$和$t_y$是模型预测的Anchor相对于Ground Truth的偏移量，通过计算得到的x,y就是最终预测框的中心坐标。
 
 而在YOLOv2和YOLOv3中，对偏移量进行了限制，如果不限制偏移量，那么边框的中心可以在图像任何位置，可能导致训练的不稳定。
+
 $$
 \left\{
 \begin{aligned}
@@ -74,25 +77,15 @@ YOLOv3中有一个参数是ignore_thresh，在ultralytics版版的YOLOv3中对�
 
 在代码中分别对应lbox, lobj, lcls，yolov3中使用的loss公式如下：
 
-
 $$
 \begin{aligned}
-lbox &= \lambda_{coord}\sum_{i=0}^{S^2}\sum_{j=0}^{B}1_{i,j}^{obj}(2-w_i\times h_i)[(x_i-\hat{x_i})^2+(y_i-\hat{y_i})^2+(w_i-\hat{w_i})^2+(h_i-\hat{h_i})^2] 
-
-\\
-
-lcls &= \lambda_{class}\sum_{i=0}^{S^2}\sum_{j=0}^{B}1_{i,j}^{obj}\sum_{c\in classes}p_i(c)log(\hat{p_i}(c))
-
-\\
-
-lobj &= \lambda_{noobj}\sum_{i=0}^{S^2}\sum_{j=0}^{B}1_{i,j}^{noobj}(c_i-\hat{c_i})^2+\lambda_{obj}\sum_{i=0}^{S^2}\sum_{j=0}^{B}1_{i,j}^{obj}(c_i-\hat{c_i})^2
-
-\\
-
+lbox &= \lambda_{coord}\sum_{i=0}^{S^2}\sum_{j=0}^{B}1_{i,j}^{obj}(2-w_i\times h_i)[(x_i-\hat{x_i})^2+(y_i-\hat{y_i})^2+(w_i-\hat{w_i})^2+(h_i-\hat{h_i})^2] \\
+lcls &= \lambda_{class}\sum_{i=0}^{S^2}\sum_{j=0}^{B}1_{i,j}^{obj}\sum_{c\in classes}p_i(c)log(\hat{p_i}(c))\\
+lobj &= \lambda_{noobj}\sum_{i=0}^{S^2}\sum_{j=0}^{B}1_{i,j}^{noobj}(c_i-\hat{c_i})^2+\lambda_{obj}\sum_{i=0}^{S^2}\sum_{j=0}^{B}1_{i,j}^{obj}(c_i-\hat{c_i})^2\\
 loss &= lbox + lobj + lcls
-
 \end{aligned}
 $$
+
 其中：
 
 S: 代表grid size, $S^2$代表13x13,26x26, 52x52
@@ -104,9 +97,11 @@ $1_{i,j}^{obj}$: 如果在i,j处的box有目标，其值为1，否则为0
 $1_{i,j}^{noobj}$: 如果在i,j处的box没有目标，其值为1，否则为0
 
 BCE（binary cross entropy）具体计算公式如下：
+
 $$
 BCE(\hat{c_i},c_i)=-\hat{c_i}\times log(c_i)-(1-\hat{c_i})\times log(1-c_i)
 $$
+
 以上是论文中yolov3对应的darknet。而pytorch版本的yolov3改动比较大，有较大的改动空间，可以通过参数进行调整。
 
 分成三个部分进行具体分析：
@@ -116,13 +111,17 @@ $$
 在ultralytics版版的YOLOv3中，使用的是GIOU，具体讲解见[GIOU讲解链接](https://mp.weixin.qq.com/s/CNVgrIkv8hVyLRhMuQ40EA )。
 
 简单来说是这样的公式，IoU公式如下：
+
 $$
 IoU=\frac{|A\cap B|}{|A\cup B|}
 $$
+
 而GIoU公式如下：
+
 $$
 GIoU=IoU-\frac{|A_c-U|}{|A_c|}
 $$
+
 其中$A_c$代表两个框最小闭包区域面积，也就是同时包含了预测框和真实框的最小框的面积。
 
 yolov3中提供了IoU、GIoU、DIoU和CIoU等计算方式，以GIoU为例：
@@ -459,14 +458,17 @@ def compute_loss(p, targets, model):
 `torch.nn.BCELoss`的**功能**是二分类任务是的交叉熵计算函数，可以认为是CrossEntropy的特例。其分类限定为二分类，y的值必须为{0,1}，input应该是概率分布的形式。在使用BCELoss前一般会先加一个sigmoid激活层，常用在自编码器中。
 
 计算**公式**：
+
 $$
 l_n=-w_n[y_nlog(x_n)+(1-y_n)log(1-x_n)]
 $$
+
 $w_n$是每个类别的loss权重，用于类别不均衡问题。
 
 `torch.nn.BCEWithLogitsLoss`的相当于Sigmoid+BCELoss, 即input会经过Sigmoid激活函数，将input变为概率分布的形式。
 
 计算**公式**：
+
 $$
 l_n=-w_n[y_nlog\sigma(x_n)+(1-y_n)log(1-\sigma(x_n))]
 $$

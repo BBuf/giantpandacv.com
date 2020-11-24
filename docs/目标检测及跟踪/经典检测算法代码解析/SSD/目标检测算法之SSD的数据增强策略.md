@@ -491,12 +491,15 @@ class Expand(object):
 
 ## 图片的随机裁剪
 图片随机裁剪在数据增强中有重要作用，这个算法的运行流程大致如下：
+
 - 随机选取裁剪框的大小；
 - 根据大小确定裁剪框的坐标；
 - 分析裁剪框和图片内部bounding box的交并比；
 - 筛选掉交并比不符合要求的裁剪框；
 - 裁剪图片，并重新更新bounding box的位置坐标；
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191211215500812.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ```
 class RandomSampleCrop(object):
     """Crop
@@ -634,4 +637,5 @@ class RandomMirror(object):
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)
