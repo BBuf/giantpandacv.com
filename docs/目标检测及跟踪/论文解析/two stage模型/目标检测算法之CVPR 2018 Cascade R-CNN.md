@@ -30,6 +30,7 @@
 
 
 ![关于Cascade R-CNN的几种网络结构](https://img-blog.csdnimg.cn/20200323211809337.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 - `Figure3(a)`表示Faster RCNN，因为双阶段类型的目标检测算法基本上都基于Faster RCNN，所以这里也以该算法为BaseLine。
 - `Figure3(b)`表示迭代式的边界框回归，从图也非常容易看出思想，就是前一个检测模型回归得到的边界框坐标初始化下一个检测模型的边界框，然后继续回归，这样迭代三次后得到结果。
 - `Figure3(c)`表示Integral Loss，表示对输出边界框的标签界定采用不同的IOU阈值，因为当IOU较高时，虽然预测得到边界框很准确，但是也会丢失一些边界框。关于这个网络的解释看原文更容易理解：
@@ -71,6 +72,7 @@
 
 
 # 8. 附录
+
 - https://blog.csdn.net/u014380165/article/details/80602027
 - 论文链接：https://arxiv.org/abs/1712.00726
 - 论文代码：https://github.com/zhaoweicai/cascade-rcnn

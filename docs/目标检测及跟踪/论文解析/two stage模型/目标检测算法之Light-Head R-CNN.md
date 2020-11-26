@@ -52,6 +52,7 @@ Light-Head RCNN的示意图如下：
 总的来说这篇论文没有太多花哨的操作，而是仔细分析了R-FCN效率慢的原因，并加以改进。在使用轻量级BackBone的条件下达到了极高的速度并且精度也保持SOTA级别。
 
 # 5. 参考
+
 - https://zhuanlan.zhihu.com/p/31389174
 - https://arxiv.org/abs/1711.07264
 - 代码：https://github.com/zengarden/light_head_rcnn
@@ -62,6 +63,7 @@ Light-Head RCNN的示意图如下：
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

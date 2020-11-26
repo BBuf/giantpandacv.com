@@ -256,7 +256,7 @@ class Extractor(object):
 
 这个类中用到了两个计算距离的函数：
 
-1. 计算欧氏距离
+**1**. 计算欧氏距离
 
 ```python
 def _pdist(a, b):
@@ -278,7 +278,7 @@ def _pdist(a, b):
 
 ![图源自csdn博客](https://img-blog.csdnimg.cn/20200415153858938.png)
 
-2. 计算余弦距离
+**2**. 计算余弦距离
 
 ```python
 def _cosine_distance(a, b, data_is_normalized=False):
@@ -662,6 +662,7 @@ def predict(self, mean, covariance):
 ```
 
 **更新的公式**
+
 $$
 y=z-Hx' \\
 $$
@@ -735,21 +736,29 @@ y=z-Hx'
 $$
 
 这个公式中，z是Detection的mean，不包含变化值，状态为[cx,cy,a,h]。H是测量矩阵，将Track的均值向量$x'$映射到检测空间。计算的y是Detection和Track的均值误差。
+
 $$
 S=HP'H^T+R
 $$
+
 R是目标检测器的噪声矩阵，是一个4x4的对角矩阵。 对角线上的值分别为中心点两个坐标以及宽高的噪声。
+
 $$
 K=P'H^TS^{-1}
 $$
+
 计算的是卡尔曼增益，是作用于衡量估计误差的权重。
+
 $$
 x=x'+Ky
 $$
+
 更新后的均值向量x。
+
 $$
 P=(I-KH)P'
 $$
+
 更新后的协方差矩阵。
 
 卡尔曼滤波笔者理解也不是很深入，没有推导过公式，对这部分感兴趣的推荐几个博客：

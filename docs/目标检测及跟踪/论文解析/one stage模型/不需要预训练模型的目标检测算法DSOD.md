@@ -55,6 +55,7 @@ Figure1右图的`dense connection`表示本文的DSOD引入了DenseNet的思想�
 DSOD是在SSD的基础上结合了DenseNet的思想，使得网络可以在不使用预训练模型的条件下收敛得和使用预训练模型的BaseLine模型一样好，另外DenseNet的引入也使得相比SSD来说DSOD的参数数量大大减少，注意参数量不等于推理速度会变快。如果专注于特殊图像检测或者难以搞定预训练模型的场景这篇文章的思想是值得借鉴的。
 
 # 7. 参考
+
 - https://blog.csdn.net/u014380165/article/details/77110702
 - 论文链接：https://arxiv.org/abs/1708.01241
 - 代码：https://github.com/szq0214/DSOD

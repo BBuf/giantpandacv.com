@@ -18,7 +18,7 @@ Bag of freebies和Bag of specials涉及到的大部分trick在GiantPandaCV公众
 
 ## 2. 创新点
 
-1. Mosaic数据增强方法
+#### 1. Mosaic数据增强方法
 
 ![镶嵌数据增强方法](https://img-blog.csdnimg.cn/20200424204700343.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
@@ -29,7 +29,7 @@ Bag of freebies和Bag of specials涉及到的大部分trick在GiantPandaCV公众
 
 评价：这个方法在U版YOLOv3中很早就出现了，在自己数据集上也用过，但是感觉效果并不是很稳定。笔者数据集只有一个类，所以可能不需要这种特殊的数据增强方法，欢迎各位读者通过自己的实验来验证这个数据增强方法的有效性。
 
-2. Self-Adversarial Training
+#### 2. Self-Adversarial Training
 
 自对抗训练也是一种新的数据增强方法，可以一定程度上抵抗对抗攻击。其包括两个阶段，每个阶段进行一次前向传播和一次反向传播。
 
@@ -38,7 +38,7 @@ Bag of freebies和Bag of specials涉及到的大部分trick在GiantPandaCV公众
 
 评价：笔者对对抗领域不是很熟悉，不是很理解这个部分。感觉这个部分讲解不是很详细，只是给出整个过程和描述，不是很能理解。
 
-3. CmBN
+#### 3. CmBN
 
 ![BN、CBN、CmBN示意图](https://img-blog.csdnimg.cn/2020042421021154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
@@ -46,7 +46,7 @@ Bag of freebies和Bag of specials涉及到的大部分trick在GiantPandaCV公众
 
 评价：在消融实验中，CmBN要比BN高出不到一个百分点。感觉影响不是很大。
 
-4. modified SAM
+#### 4. modified SAM
 
 ![modified SAM](https://img-blog.csdnimg.cn/20200424210743518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
@@ -58,7 +58,7 @@ SAM实际上是之前解读的<CV中的Attention机制>系列中的CBAM, CBAM含
 
 评价: 作者并没有给出**改进后的SAM**和**SAM**的实验对比,所以并不清楚这个模块的性能到底怎样. 并且在yolov4.cfg中没有发现使用SAM的痕迹, 这非常奇怪..不知道作者将SAM用到了模型的哪个部分.
 
-5. modified PANet
+#### 5. modified PANet
 
 ![Modified PANet](https://img-blog.csdnimg.cn/20200424214821486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 

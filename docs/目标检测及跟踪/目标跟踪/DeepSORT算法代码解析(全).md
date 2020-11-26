@@ -250,7 +250,7 @@ class Extractor(object):
 
 这个类中用到了两个计算距离的函数：
 
-1. 计算欧氏距离
+**1**. 计算欧氏距离
 
 ```python
 def _pdist(a, b):
@@ -272,7 +272,7 @@ def _pdist(a, b):
 
 ![图源自csdn博客](https://img-blog.csdnimg.cn/20200415153858938.png)
 
-2. 计算余弦距离
+**2**. 计算余弦距离
 
 ```python
 def _cosine_distance(a, b, data_is_normalized=False):
@@ -656,6 +656,7 @@ def predict(self, mean, covariance):
 ```
 
 **更新的公式**
+
 $$
 y=z-Hx' \\
 $$
@@ -729,21 +730,29 @@ y=z-Hx'
 $$
 
 这个公式中，z是Detection的mean，不包含变化值，状态为[cx,cy,a,h]。H是测量矩阵，将Track的均值向量$x'$映射到检测空间。计算的y是Detection和Track的均值误差。
+
 $$
 S=HP'H^T+R
 $$
+
 R是目标检测器的噪声矩阵，是一个4x4的对角矩阵。 对角线上的值分别为中心点两个坐标以及宽高的噪声。
+
 $$
 K=P'H^TS^{-1}
 $$
+
 计算的是卡尔曼增益，是作用于衡量估计误差的权重。
+
 $$
 x=x'+Ky
 $$
+
 更新后的均值向量x。
+
 $$
 P=(I-KH)P'
 $$
+
 更新后的协方差矩阵。
 
 卡尔曼滤波笔者理解也不是很深入，没有推导过公式，对这部分感兴趣的推荐几个博客：
@@ -760,7 +769,7 @@ $$
 
 感谢知乎@猫弟总结的流程图，讲解非常地清晰，如果单纯看代码，非常容易混淆。比如说代价矩阵的计算这部分，连续套了三个函数，才被真正调用。上图将整体流程总结地非常棒。笔者将参考以上流程结合代码进行梳理：
 
-1. 分析detector类中的Deep SORT调用：
+**1**. 分析detector类中的Deep SORT调用：
 
 ```python
 class Detector(object):
@@ -790,7 +799,7 @@ class Detector(object):
 outputs = self.deepsort.update(bbox_xcycwh, cls_conf, im)
 ```
 
-2. 顺着DeepSORT类的update函数看
+**2**. 顺着DeepSORT类的update函数看
 
 ```python
 class DeepSort(object):
@@ -874,7 +883,7 @@ class DeepSort(object):
 
 以上核心在Tracker的predict和update函数，接着梳理。
 
-3. Tracker的predict函数
+**3**. Tracker的predict函数
 
 Tracker是一个多目标跟踪器，保存了很多个track轨迹，负责调用卡尔曼滤波来预测track的新状态+进行匹配工作+初始化第一帧。Tracker调用update或predict的时候，其中的每个track也会各自调用自己的update或predict
 
@@ -905,7 +914,7 @@ class Tracker:
 
 predict主要是对轨迹列表中所有的轨迹使用卡尔曼滤波算法进行状态的预测。
 
-4. Tracker的更新
+**4**. Tracker的更新
 
 Tracker的更新属于最核心的部分。
 

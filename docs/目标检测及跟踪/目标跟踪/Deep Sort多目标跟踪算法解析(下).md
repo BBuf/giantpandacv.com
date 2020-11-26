@@ -20,7 +20,7 @@ Deep SORT是多目标跟踪(Multi-Object Tracking)中常用到的一种算法，
 
 感谢知乎@猫弟总结的流程图，讲解非常地清晰，如果单纯看代码，非常容易混淆。比如说代价矩阵的计算这部分，连续套了三个函数，才被真正调用。上图将整体流程总结地非常棒。笔者将参考以上流程结合代码进行梳理：
 
-1. 分析detector类中的Deep SORT调用：
+**1**. 分析detector类中的Deep SORT调用：
 
 ```python
 class Detector(object):
@@ -50,7 +50,7 @@ class Detector(object):
 outputs = self.deepsort.update(bbox_xcycwh, cls_conf, im)
 ```
 
-2. 顺着DeepSORT类的update函数看
+**2**. 顺着DeepSORT类的update函数看
 
 ```python
 class DeepSort(object):
@@ -134,7 +134,7 @@ class DeepSort(object):
 
 以上核心在Tracker的predict和update函数，接着梳理。
 
-3. Tracker的predict函数
+**3**. Tracker的predict函数
 
 Tracker是一个多目标跟踪器，保存了很多个track轨迹，负责调用卡尔曼滤波来预测track的新状态+进行匹配工作+初始化第一帧。Tracker调用update或predict的时候，其中的每个track也会各自调用自己的update或predict
 
@@ -165,7 +165,7 @@ class Tracker:
 
 predict主要是对轨迹列表中所有的轨迹使用卡尔曼滤波算法进行状态的预测。
 
-4. Tracker的更新
+**4**. Tracker的更新
 
 Tracker的更新属于最核心的部分。
 

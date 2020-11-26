@@ -17,6 +17,7 @@ Figure1是针对ImageNet和COCO数据集中目标尺寸和图像尺寸比例的�
 
 # 3. 创新点
 在本文之前已经有一些算法针对数据集中目标尺度变化大进行入手了，例如FPN实现多尺度特征融合来提升效果，Dilated/Deformable卷积通过改变卷积核的感受野来提升效果，通过多尺度训练/测试引入图像金字塔来提升效果。不同于上面这些思路，基于对数据集的深入分析，本文提出了一种新的模型训练方式即：**Scale Normalization for Image Pyramids (SNIP)** ，主要包含两个创新点：
+
 - **为了减少第二节提到的Domain-Shift，在梯度回传的时候只将和预训练模型所基于的训练数据尺寸相对应的ROI的梯度进行回传。**
 - **借鉴多尺度训练的思想，引入图像金字塔来处理数据集中不同尺寸的数据。**
 
@@ -27,6 +28,7 @@ Figure1是针对ImageNet和COCO数据集中目标尺寸和图像尺寸比例的�
 ![Figure3](https://img-blog.csdnimg.cn/20200508203219162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 Figure3中一共展示了$3$种模型，下面我们分别来描述一下：
+
 - **CNN-B**。分类模型基于ImageNet数据集常规的$224\times 224$大小来训练，但是验证数据集进行了尺度变化，即先将验证数据图片缩小到$48\times 48$，$64\times 64$，$80\times 80$和$128\times 128$，然后再将这些图片放大到$224\times 224$作为模型的输入，这样放大后的图像分辨率较低。**因此这个实验模拟的就是训练数据的分辨率和验证数据的分辨率不一致的时候对模型效果的影响，实验效果如Figure4(a)所示。**
 
 - **CNN-S**。 这个实验中，训练数据的分辨率和验证数据的分辨率保持一致，这里主要针对的是$48\times 48$和$96\times 96$的分辨率，并且对网络结构的第一层做了修改。例如对于$48\times 48$的数据进行训练，将卷积核大小为$7\times 7$的卷积层改成卷积核大小为$3\times 3$，滑动步长为$1$的卷积层。而基于$96\times 96$的数据训练时，将卷积核大小为$7\times 7$的卷积层变成卷积核尺寸为$5\times 5$，步长为$2$的卷积层。**这个实验模拟的是训练数据和验证数据的分辨率一致的效果，实验结果如Figure4(b),（c）所示。**
@@ -72,6 +74,7 @@ Table1是检测器在小目标验证集上的检测效果对比结果，用的�
 
 
 另外，作者还分析了RPN网络中不同标签的Anchor比例（一共就2种Anchor，正负样本），我们知道在RPN网络中，一个Anchor的标签是根据Anchor和Ground Truth的IOU值来确定的，只有下面$2$种情况才会认为Anchor是正样本：
+
 - **假如某个Anchor和某个ground truth的IOU超过某个阈值(默认$0.7$)，那么这个Anchor就是正样本。**
 - **假如一个ground truth和所有Anchor的IOU都没有超过设定的阈值，那么和这个ground truth的IOU最大的那个Anchor就是正样本。**
 
@@ -103,6 +106,7 @@ Deformable-RFCN的细节蛮多的，这里就不再赘述了，感兴趣可以�
 总的来说，SNIP这个算法从数据集入手，证明了尺度和图像金字塔在目标检测中的重要性。然后针对性的提出SNIP算法，即我们不需要在高分辨率图像中对大型的目标进行反向传播，不需要在中分辨率图像中对中型目标进行反向传播，不需要在低分辨率图像中对小目标进行反向传播以更好的缓解预训练的尺寸空间中的Domain-Shift从而获得精度提升。有问题请在评论区留言。
 
 # 8. 参考
+
 - https://blog.csdn.net/u014380165/article/details/80793334
 - https://blog.csdn.net/woduitaodong2698/article/details/86556206
 - 论文原文：https://arxiv.org/abs/1711.08189

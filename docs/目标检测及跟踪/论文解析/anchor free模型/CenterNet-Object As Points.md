@@ -51,9 +51,11 @@ $I\in R^{W\times H\times 3}$代表输入图片的宽度为W,高度为H。我们�
 ![](CenterNet-Object%20As%20Points.assets/image-20200529153729273.png)
 
 其中$\alpha, \beta$是focal loss的超参数，N代表图像I中的关键点个数。选择N的标准化来讲所有的正样的focal loss的值设置为1。在这个实验中我们使用$\alpha=2, \beta=4$。为了恢复由于输出不符引起的离散化误差，额外为每个中心点都预测了一个局部偏移值$\hat{O}\in R^{\frac{W}{R}\times \frac{H}{R}\times 2}$。所有的类别C共享同一个偏移，偏移量使用的是L1损失函数进行训练：
+
 $$
 L_{off}=\frac{1}{N}\sum_{p}|\hat{O}_{\tilde{p}-(\frac{p}{R}-\tilde{p})}|
 $$
+
 监督仅仅作用在关键点坐标$\tilde{p}$，其他所有的位置会被忽视。
 
 在下一节中，我们将展示如何将这个关键点估计器如何扩展到一个通用的对象检测器。

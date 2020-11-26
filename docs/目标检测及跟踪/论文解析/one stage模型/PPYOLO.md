@@ -6,11 +6,13 @@
 
 最近出现了yolov4，5模型，这些模型也是基于yolo3算法改进得来。但PPYOLO**并不像yolov4探究各种复杂的backbone和数据增广手段**，也不是靠nas暴力搜索得到一个结构。**我们在resnet骨干网络系列，数据增广仅靠mixup的条件下，通过合理的tricks组合，不断提升模型性能。**
 最终与其他模型对比图如下
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200726093707647.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 
 
 # 方法
 ## 网络架构
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200726100613180.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 
 ### BackBone骨干网络
@@ -25,9 +27,11 @@ yolov3使用的是较为大型的darknet53，考虑到resnet更广泛的应用�
 使用**更大的batch能让训练更加稳定**，我们将batchsize从64调整到196，并适当调节训练策略以及学习率
 ### 滑动平均
 类似于BN里的滑动平均，我们在**训练参数更新上也做了滑动平均策略**
+
 $$
 W_{EMA} = λ*W_{EMA} + (1-λ)*W
 $$
+
 λ这里取0.9998
 ### DropBlock
 DropBlock也是谷歌提的一个涨点神器，但是适用范围不大。**作者发现给BackBone直接加DropBlock会带来精度下降**，于是**只在检测头**部分添加
@@ -37,17 +41,23 @@ DropBlock也是谷歌提的一个涨点神器，但是适用范围不大。**作
 在yolov3中，分类概率和目标物体得分相乘作为最后的置信度，这显然是没有考虑定位的准确度。**我们增加了一个额外的IOU预测分支来去衡量检测框定位的准确度**，额外引入的参数和FLOPS可以忽略不计
 ### GRID Sensitive
 原始Yolov3对应中间点的调整公式如下
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200726103537364.png)
+
 其中$\sigma$表示sigmoid函数
 由于sigmiod函数两端趋于平滑，中心点很难根据公式调节到网格上面
 因此我们改进公式为
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200726105615792.png)
+
 这里我们将$\alpha$设为1.05，能帮助中心点回归到网格线上
 ### Matrix NMS
 受Soft-NMS启发，将NMS转为并行方法运行。Matrix NMS相较传统NMS运行速度更快。
 ### CoordConv
 CoordConv的提出是为了解决常规卷积在空间变换的问题。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200726112213693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 它在输入特征图，添加了两个通道，**一个表征i坐标，一个表征j坐标。这两个通道带有坐标信息**，**从而允许网络学习完全平移不变性和变化
 平移相关度**。
 为了平衡带来的额外参数和FLOPS，我们只替换掉FPN的1x1卷积层以及detection head的第一层卷积
@@ -58,6 +68,7 @@ CoordConv的提出是为了解决常规卷积在空间变换的问题。
 ### 更好的预训练模型
 显然更好的预训练模型在分类任务上能取得更好的效果，后续我们也会进行替换
 # 实验部分
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/202007261129267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 
 **笔者认为这篇论文的实验部分十分精彩，不是无脑的堆叠，而是有理有据的去分析，各个阶段该用什么tricks，非常适合炼丹入门的小伙伴学习**

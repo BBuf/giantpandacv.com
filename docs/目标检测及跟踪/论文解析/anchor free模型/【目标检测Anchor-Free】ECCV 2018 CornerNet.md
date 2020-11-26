@@ -2,6 +2,7 @@
 继续来探索Anchor-Free目标检测算法，前面讲了Anchor-Free的起源 [目标检测算法之Anchor Free的起源：CVPR 2015 DenseBox](https://mp.weixin.qq.com/s/gYq7IFDiWrLDjP6219U6xA) ，其实同期另外一个有名的目标检测算法YOLOV1也是Anchor-Free系列的了。Anchor-Free系列相比于Anchor-Based的发展是较慢的，在2018-2019年才开始火起来。今天为大家介绍一下ECCV 2018的CornerNet，全称为：Detecting Objects as Paired Keypoints 。论文原文和代码见附录链接。
 
 # 贡献
+
 - 提出通过检测bbox的一对角点来检测出目标。
 - 提出Corner Pooling，来更好的定位bbox的角点。
 
@@ -26,12 +27,14 @@ Anchor-Based的目标检测算法相信看了公众号目标检测栏目的话�
 Figure 4展示了CornerNet网络的大致结构，论文使用Hourglass（沙漏）网络作为CornerNet的Backbone网络。沙漏网络之后是两个预测模块，一个模块用于预测左上角，一个模块用于预测右下角。每个模块都有自己的Corner Pooling模块，在预测热力图、嵌入和偏移之前，池化来自沙漏网络的特征。和其它的目标检测器不同，论文不使用不同尺度的特征来检测不同大小的目标，只将两个模块用于沙漏网络的输出。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200121142449387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ## 检测角点
 我们预测两组热力图，一组用于左上角角点，一组用于右下角角点。每一组热力图有$C$个通道，其中$C$是类别数（不包括背景），并且大小为$H\times W$。每个通道都是一个二进制掩码，用于表示该类的角点位置。对于每个角点，有一个ground-truth正位置，其他所有位置都是负位置。在训练期间，我们没有同等地惩罚负位置，而是减少对正位置半径内的负位置给予的惩罚。这是因为如果一对假角点检测器靠近它们各自的ground-truth位置，它仍然可以产生一个与ground-truth充分重叠的边界框，如Figure5所示。我们通过确保半径内的一堆点生成的边界框和ground-truth边界框的$IOU>=t$（在所有实验中把$t$设置为$0.7$）来确定物体的大小，从而确定半径。给定半径，惩罚的减少量由非标准化的2维高斯分布$e^{-\frac{x^2+y^2}{2\sigma^2}}$给出，其中心位于正位置，$\sigma$是半径的$1/3$。
 
 ![图5.用于训练的“Ground-truth”热图。在正位置半径范围内（橙色圆圈）的方框（绿色虚线矩形）仍然与地ground-truth（红色实心矩形）有很大的重叠。](https://img-blog.csdnimg.cn/2020012115193757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 $p_{cij}$为预测图中$c$类位置$(i,j)$的得分，$y_{cij}$为用非标准化高斯分布增强的ground-truth热力图。论文设计了一个Focal Loss的变体损失：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200121153124864.png)
 
 其中$N$表示图像中目标的数量，$\alpha$和$\beta$控制每个像素点贡献的超参数（在所有实验中将$\alpha$设为2，$\beta$设为4）。利用$y_{cij}$中编码的高斯凸点,$(1-y_{cij})$这一项减少了ground-truth像素点周围的惩罚权重。同时，图像中的位置$(x,y)$被映射到热力图中的位置为$([\frac{x}{n}],[\frac{y}{n}])$，其中$n$表示下采样因子。当我们将热力图中的位置重新映射回输入图像时，可能会存在像素偏移，这会极大影响小边界框和ground-truth之间的IOU值。为了解决这个问题，论文提出预测位置偏移，以稍微调整角点位置，然后再将它们映射回输入分辨率，如公式(2)所示：
@@ -86,6 +89,7 @@ Hourglass网络结构图如下：
 其中$\alpha，\beta，\gamma$分别是pull，push和offset的权重。 我们将$\alpha$和$\beta$都设置为$0.1$，将$\gamma$设置为$1$。`batch_size`设置成`49`，并在10个Titan X（PASCAL）GPU上训练网络（主GPU 4个图像，其余GPU每个GPU 5个图像）。为了节省GPU资源，在论文的 ablation experiments（即模型简化测试，去掉该结构的网络与加上该结构的网络所得到的结果进行对比）中，我们训练网络，进行`250k`次迭代，初始学习率为$2.5\times 10^{-4}$。当将论文的结果和其他检测器比较时，论文额外训练网络，进行`250k`迭代，并到最后`50k`次迭代时，将学习率降为$2.5\times 10^{-5}$。
 ## 测试细节
 测试时主要有3个步骤：
+
 - 如何判断某个位置是角点？首先执行nms，对得到的两组热力图（注意热力图就是某个特定位置属于某个类别角点的概率）应用`3x3`大小并且`stride=1,pad=1`的`maxpooling`，不改变特征图大小，保留值保持不变，值改变了的则全部置为0。然后选择top N，这个操作是在所有分类下（分类不独立）进行，选择top N的时候同时保持这些角点的对应分类。
 - 左上角点和右下角点如何配对？参考分组角点那一节的分析，用嵌入距离来判断。
 - 再次选择top K的角点对，并微调坐标位置，得到最后的结果。
@@ -125,6 +129,7 @@ Hourglass网络结构图如下：
 这篇论文提出了CornerNet，这是一种新的目标检测方法，可以将边界框检测为成对的角点。 并且在MS COCO上对CornerNet进行评估，并展示出了SOTA结果。
 
 # 附录
+
 - 论文原文：https://arxiv.org/pdf/1808.01244.pdf
 - 参考1：https://blog.csdn.net/weixin_40414267/article/details/82379793
 - 参考2：https://zhuanlan.zhihu.com/p/66406815

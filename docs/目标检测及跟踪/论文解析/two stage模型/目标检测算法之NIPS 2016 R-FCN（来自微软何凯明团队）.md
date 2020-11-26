@@ -3,6 +3,7 @@ R-FCN全称为Region-based Fully Convolutional Networks，是由微软的何凯�
 
 # 背景
 R-FCN论文的发表时间比YOLO,SSD出来的都晚一些，并且这个算法更像是针对Faster-RCNN的一种改进，并且扔属于two-stage算法。那个R-FCN具体要解决什么问题呢？我们不妨先来看看R-FCN之前的典型的two-stage算法分别是在解决什么？
+
 - rcnn 证明cnn具有良好的特征提取能力，也是第一个将cnn用来做目标检测任务的算法。
 - fast-rcnn提出ROI-Pooling将需要应用到多个候选框的骨干CNN网络进行共享，加快速度的同时也提升了准确率。
 - faster-rcnn解决了候选框搜索耗时过多的问题，提出RPN全卷积网络用于学习提取候选框，速度更快且精度更高。
@@ -18,24 +19,29 @@ R-FCN中主要有2个重要的点，第一个是将ROI Pooling后面的全连接
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229130953814.png)
 
 R-FCN可以分成以下四个部分：
+
 - Backbone网络，如ResNet101网络。
 - 一个区域建议网络(RPN)。
 - 一个正例敏感的预测层。
 - 最后的ROI Pooling+投票的决策层。
 
 R-FCN的网络结构图如下所示：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229172018539.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到整体结构和Faster-RCNN比较像，都有RPN网络来训练生成候选框，而ROI Pooling是不一样的，接下来就仔细讲讲。
 
 ## R-FCN的ROIPooling 
 我们省略一下R-FCN和Faster-RCNN网络结构完全相同的部分，着眼于R-FCN的变化之处即ROIPooling，关键部分如论文中的Figure1所示。我们接下来就针对这张图来仔细分析。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229173312914.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到原始图像经过Backbone的卷积神经网络之后得到了最后一层特征图，接下来就应该是提取当前特征图的ROI区域了。这个地方ROIPooling不像Faster-RCNN那样直接提取，而是重新设计了一个位置敏感的ROIPooling：将Faster-RCNN中的ROI划分成$k\times k$大小，即是说将ROI区域分成$k\times k$个小区域（论文中取$k=3$，即将ROI区域分成$9$个部分）。然后假设目标检测数据集的目标类别一共有$C$类，同时加上一个背景类就是$C+1$类，最后我们希望网络对每个类别都有各自的位置响应。因此最后ROIPooling层的特征维度是$k^2\times (C+1)$代表每一个类别在某个位置(一共$9$个)的位置敏感度map，其中每个map的大小和ROIPooling前面那个Backbone网络得到的特征图尺寸完全一致。
 
 那么具体是如何从位置敏感`map`得到最后那个$C+1$个通道，并且尺寸为$k\times k$的特征图呢？如下所示：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229174908117.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 Figure3展示了在人这**一类**目标上是如何从位置敏感map得到最后输出图，这里$k=3$，那么位置敏感`map`可以用下面的表格来表示：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229190230524.png)
@@ -45,6 +51,7 @@ Figure3展示了在人这**一类**目标上是如何从位置敏感map得到最
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229190240214.png)
 
 具体的操作流程表示为：
+
 - 1、抽取特定类别(这里为人这个类别)对应的$k\times k=3 \times3=9$个位置的特征图，如Figure3中部所示。
 - 2、对抽取出来的部分进行求均值，然后按照位置组成一个$k\times k=3\times 3$大小的矩阵。
 - 3、对这个$k\times k$大小的矩阵求和，得到一个值。
@@ -58,6 +65,7 @@ Figure3展示了在人这**一类**目标上是如何从位置敏感map得到最
 然后执行和分类一样的步骤得到一个$1\times 4$的向量即代表ROI区域的$x,y,w,h$。计算损失函数和前面Faster-RCNN的一致，均为多任务损失联合训练，分类使用交叉熵，定位使用L1-smooth损失函数。
 
 # 训练
+
 - 训练的样本选择策略：使用OHEM策略，原理就是对样本按loss进行排序，选择前面loss较小的，这个策略主要用来对负样本进行筛选，使得正负样本更加平衡。
 - 训练细节：
 	- SGD+带动量的优化方式，其中动量momentum = 0.9。
@@ -74,24 +82,34 @@ Figure3展示了在人这**一类**目标上是如何从位置敏感map得到最
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229183921961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)可以看到R-FCN在没有OHEM的策略下精度完全吊打了Faster-RCNN，其中`fail`表示的应该是当$k=1$的时候应该是模型无法收敛。
 
 ## 在PASCAL VOC数据集上的测试结果
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229183936469.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)可以看到R-FCN使用ResNet101做特征提取网络，最终在VOC的测试集上获得了83.6%的map值，并且相比于Faster-RCNN测试时间加速了2倍以上。论文还给出了一些消融研究：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229183936469.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+可以看到R-FCN使用ResNet101做特征提取网络，最终在VOC的测试集上获得了83.6%的map值，并且相比于Faster-RCNN测试时间加速了2倍以上。论文还给出了一些消融研究：
 
 - 深度影响对比，可以看出ResNet-101表现最好。
 
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229184507608.png)
+
 - 候选区域选择算法对比：RPN比SS，EB好。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229184529689.png)
+
 ## 在MS COCO数据集的测试结果
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229184857974.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 可视化效果展示
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191229184957435.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 总结
 R-FCN在Faster-RCNN的基础上致力于解决全连接网络做分类和回归速度过慢的问题，将分类和回归分支换成了全卷积网络，并提出了一个位置敏感ROIPooling用于指定不同特征图是负责检测目标的不同位置，然后ROIPooling之后把不同位置得到的特征图进行组合就能复现原来的位置信息。不仅在精度上大幅度超越Faster-RCNN，并且速度是Faster-RCNN的2倍以上。
 
 
 # 附录
+
 论文原文：https://arxiv.org/pdf/1605.06409v2.pdf
 
 官方源码复现：https://github.com/daijifeng001/r-fcn
@@ -103,4 +121,5 @@ R-FCN在Faster-RCNN的基础上致力于解决全连接网络做分类和回归�
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

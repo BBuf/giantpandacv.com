@@ -20,6 +20,7 @@ YOLOv3在YOLOv2提出的Darknet-19的基础上引入了残差模块，并进一�
 
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191126161618688.png)
+
 从结果来看，Darknet-53比ResNet-101的性能更好，而且速度是其1.5倍，Darknet-53与ResNet-152性能相似但速度几乎是其2倍。同时，Darknet-53相比于其它网络结构实现了每秒最高的浮点数计算量，说明其网络结构可以更好的利用GPU。
 
 ## YOLOV3结构
@@ -50,4 +51,5 @@ YOLOv3和YOLOv3-Tiny就讲完了，感觉就是水文，后面有机会就更新
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPadaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS01M2E3NWVmOTQ2YjA0OTE3LnBuZw?x-oss-process=image/format,png)
