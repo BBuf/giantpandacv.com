@@ -1,85 +1,190 @@
-# 论文原文
-https://arxiv.org/pdf/1704.08545.pdf
-香港中文大学，腾讯优图，商汤科技联合发表的一篇用于语义分割的论文。
-# 摘要
-ICNet是一个基于PSPNet的实时语义分割网络，设计目的是减少PSPNet推断时期的耗时，论文对PSPNet做了深入分析，在PSPNet的基础上引入级联特征融合模块，实现快速且高质量的分割模型。论文报告了在Cityscape上的表现。
-# 摘要
-主要通过下面的图来表现：
+# 前言
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190610143740105.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+&emsp;&emsp;量化感知训练（Quantization Aware Training ）是在模型中插入伪量化模块（fake_quant module）模拟量化模型在推理过程中进行的舍入（rounding）和钳位（clamping）操作，从而在训练过程中提高模型对量化效应的适应能力，获得更高的量化模型精度 。在这个过程中，所有计算（包括模型正反向传播计算和伪量化节点计算）都是以浮点计算实现的，在训练完成后才量化为真正的int8模型。
+&emsp;&emsp;Pytorch官方从1.3版本开始提供量化感知训练API，只需修改少量代码即可实现量化感知训练。目前torch.quantization仍处于beta阶段，不保证API前向、后向兼容性。以下介绍基于Pytorch 1.7，其他版本可能会有差异。
 
-可以看到之前的许多分割的经典方法速度不快，而速度快的ENet的精度又不高，PSPNet在速度和精度找到了一个平衡点。论文的主要贡献在于：
+# Pytorch量化感知训练流程
 
-- 综合低分辨率的处理速度和高分辨率图像的推断质量，提出图像级联框架逐步细化分割预测
-- ICNet可以在1024$\times$ 2048分辨率下保持30fps运行
-# 相关工作
-## 高质量的语义分割模型
-先驱工作FCN将全连接层换成卷积层；DeepLab等使用空洞卷积(dilated convolution)；Encoder-Decoder结构融合高层的语义和底层的细节；也有使用CRG,MRF模拟空间关系；PSPNet采用空间上的金字塔池化结构。这些方法对于提升性能有效，但不能用于实时系统。
-## 快速的语义分割模型
-SegNet放弃层信息来提速；ENet是一个轻量级网络，这些方法虽然快，但是性能差。
-## 视频分割模型
-视频中包含大量冗余信息，可利用减少计算量。
+&emsp;&emsp;首先给出提供一个可运行demo，直观了解量化感知训练的6个步骤，再进行详细的介绍
 
-PSPNet给出了一个快读的语义分割的层次结构，利用级联图像作为输入加速推理，构建一个实时分割系统。
+```python
+import torch
+from torch.quantization import prepare_qat, get_default_qat_qconfig, convert
+from torchvision.models import quantization
 
-# 时间分析
+# Step1：修改模型
+# 这里直接使用官方修改好的MobileNet V2，下文会对修改点进行介绍
+model = quantization.mobilenet_v2()
+print(original model)
+print(model)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190610152014821.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+# Step2：折叠算子
+# fuse_model()在training或evaluate模式下算子折叠结果不同，
+# 对于QAT，需确保在training状态下进行算子折叠
+assert model.training
+model.fuse_model()
+print(fused model)
+print(model)
 
-蓝色的分辨率为1024 $\times$ 2048，绿色的分辨率为512 $\times$ 512。上图显示了多个信息：
-- 不同分辨率下的速度差异很大，呈平方趋势增加
-- 网络的宽度越大速度越慢
-- 核数量越多速度越慢
-# 加速策略
-## 输入降采样
-根据上面的分析，半分辨率的推断时间为全分辨率的1/4。测试不同分辨率下输入下的预测情况。一个简单的测试方法使用1/2,1/4的输入，将输出上采样回原来的大小。实验如下：
+# Step3指定量化方案
+# 通过给模型实例增加一个名为qconfig的成员变量实现量化方案的指定
+# backend目前支持fbgemm和qnnpack
+BACKEND = fbgemm
+model.qconfig = get_default_qat_qconfig(BACKEND)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190610153057368.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+# Step4：插入伪量化模块
+prepare_qat(model, inplace=True)
+print(model with observers)
+print(model)
 
-对比在不同缩放比例下得到的结果可以发现，在缩放比例为0.25的情况下，虽然推断时间大大减短，但是预测结果非常粗糙，丢失了很多小但是重要的细节。缩放0.5相对来说好了很多，但丢失了很多细节，并且最麻烦的是推理速度达不到实时要求了。
-## 特征降采样
-输入能降采样，自然特征也可以降采样。这里以1:8,1:16,1:32的比例测试PSPNet50，结果如下：
+# 正常的模型训练，无需修改代码
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190610155248748.png)
+# Step5：实施量化
+model.eval()
+# 执行convert函数前，需确保模型在evaluate模式
+model_int8 = convert(model)
+print(quantized model)
+print(model_int8)
 
-较小的特征图可以以牺牲准确度换取更快的推断，但考虑到使用1:32（132ms）依然达不到实时要求。
+# Step6：int8模型推理
+# 指定与qconfig相同的backend，在推理时使用正确的算子
+torch.backends.quantized.engine = BACKEND
+# 目前Pytorch的int8算子只支持CPU推理,需确保输入和模型都在CPU侧
+# 输入输出仍为浮点数
+fp32_input = torch.randn(1, 3, 224, 224)
+y = model_int8(fp32_input)
+print(output)
+print(y)
+```
 
-## 模型压缩
-减少网络的复杂度，有一个直接的方法就是修正每层的核数量，论文测试了一些有效的模型压缩策略。即使只保留四分之一的核，推断时间还是很长。并且准确率大大降低了。
+Step1：修改模型
+ &emsp;&emsp;Pytorch下需要适当修改模型才能进行量化感知训练，以下以常用的MobileNetV2为例。官方已修改好的MobileNetV2的代码，详见[这里](httpsgithub.compytorchvisionblobmastertorchvisionmodelsquantizationmobilenet.py)
+&emsp;&emsp;修改主要包括3点，以下摘取相应的代码进行介绍：
+（1）在模型输入前加入QuantStub()，在模型输出后加入DeQuantStub()。目的是将输入从fp32量化为int8，将输出从int8反量化为fp32。模型的__init__()和forward()修改为：
 
-# ICNet的结构
-ICNet在总结了上面的加速策略后，提出了一个综合性的方法：使用低分辨率加速捕捉语义，使用高分辨率获取细节，使用级联网络结合，在限制的时间内获得有效的结果。模型结构如下：
+```python
+class QuantizableMobileNetV2(MobileNetV2)
+  def __init__(self, args, kwargs)
+  
+  MobileNet V2 main class
+  Args
+  Inherits args from floating point MobileNetV2
+  
+    super(QuantizableMobileNetV2, self).__init__(args, kwargs)
+    self.quant = QuantStub()
+    self.dequant = DeQuantStub()
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190610164458254.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+  def forward(self, x)
+    x = self.quant(x)
+    x = self._forward_impl(x)
+    x = self.dequant(x)
+    return x
+```
 
-图片分为1,1/2,1/4这3个尺度分三路送到模型中。3个分支介绍如下：
+（2）对加法等操作加入伪量化节点。因为int8数值进行加法运算容易超出数值范围，所以不是直接进行计算，而是进行反量化-计算-量化的操作。以InvertedResidual的修改为例：
 
-- 对于第一个1/4分支，可以看到经过3次卷积(下采样)后分辨率为原图的1/32，经过卷积后使用几个空洞卷积层扩展感受野但不缩小尺寸，最终以原图的1/32大小输出feture map。这一个分支虽然层数较多，但分辨率小，速度快，且与第二个分子共享一部分权重。
-- 以原图的1/2分辨率作为输入，经过卷积后以1/8缩放，得到原图1/16大小的feature map，再将低分辨率分支的输出feature map通过CFF单元融合得到最终输出。这一和分子有17个卷积层，与第一个分支共享一部分权重，与分支1一共耗时6ms。
-- 第3个分支以原图作为输入，经过卷积后以1/8缩放，得到原图大小1/8的特征图，再将中分辨率处理后的输出通过CFF单元融合，第3层有3个卷积层，虽然分辨率高，但层少，耗时9ms。
-$\quad$对于每个分支的输出特征，首先会上采样二倍做输出，在训练的时候，会以ground truth的1/16,1/8,1/4来指导各个分支的训练，这样的辅助训练使得梯度优化更加平滑，便于训练收敛，随着每个分支学习能力的增强，预测没有被任何一个分支主导。利用这样渐变的特征融合和级联引导结构可以产生合理的预测结果。ICNet使用低分辨率完成语义分割，使用高分辨率帮助细化结果，在结构上，产生的feature大大减少，同时仍然保持必要的细节。
-## CFF单元
+```python
+class QuantizableInvertedResidual(InvertedResidual)
+  def __init__(self, args, kwargs)
+    super(QuantizableInvertedResidual, self).__init__(args, kwargs)
+    # 加法的伪量化节点需要记录所经过该节点的数值的范围，因此需要实例化一个对象
+    self.skip_add = nn.quantized.FloatFunctional()
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190612104402481.png)F1代表低分辨率输入，F2代表高分辨率输入。将低分辨率的图片上采样后使用空洞卷积(dilated conv)，扩大上采样结果的感受野范围。注意将辅助的标签引导设置为0.4（根据PSPNet的实验结果），即如果下分支的$loss L_3$的占比$\lambda_3$为1的话，则中分支的$loss L_2$的占比$\lambda_2$为0.4，上分支的$loss L_1$的占比$\lambda_1$为0.16。
+  def forward(self, x)
+      if self.use_res_connect
+          # 普通版本MobileNet V2的加法
+          # return x + self.conv(x)
+          # 量化版本MobileNet V2的加法
+          return self.skip_add.add(x, self.conv(x))
+      else
+          return self.conv(x)
+```
 
-## 损失函数和模型压缩
-### 损失函数
-依据不同的分支定义如下：$L=\lambda_1L_1+\lambda_2L_2+\lambda_3L_3$，根据CCF的设置，下分支的$loss L_3$的占比$\lambda_3$为1的话，则中分支的$loss L_2$的占比$\lambda_2$为0.4，上分支的$loss L_1$的占比$\lambda_1$为0.16。
-### 压缩模型
-这里不是很懂，论文采用的一个简单而有效的办法：渐进式压缩。例如以压缩率1/2为例，我们可以先压缩到3/4，对压缩后的模型进行微调，完成后，再压缩到1/2，再微调。保证压缩稳定进行。这里采用Pruning filters for efficient convnets(可以查一下这篇论文)的方法，对于每个滤波器计算核权重的L1和，降序排序，删除权重值较小的。
-### 模型压缩的结果
+（3）将ReLU6替换为ReLU。MobileNet V2使用ReLU6的原因是对ReLU的输出范围进行截断以缓解量化为fp16模型时的精度下降。因为int8量化本身就能确定截断阈值，所以将ReLU6替换为ReLU以去掉截断阈值固定为6的限制。官方的修改代码在建立网络后通过_replace_relu()将MobileNetV2中的ReLU6替换为ReLU：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190612112521935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+```python
+model = QuantizableMobileNetV2(block=QuantizableInvertedResidual, kwargs)
+_replace_relu(model)
+```
 
-mIoU降低了，但推理时间170ms达不到实时要求。这表明只是模型压缩是达不到有良好分割结果的实时性能。对比ICNet，有类似的分割结果，但速度提升了5倍多。
-### 级联结构的有效性
+Step2：算子折叠
+&emsp;&emsp;算子折叠是将模型的多个层合并成一个层，一般用来减少计算量和加速推理。对于量化感知训练而言，算子折叠作用是将模型变“薄”，减少中间计算过程的误差积累。
+&emsp;&emsp;以下比较有无算子折叠的结果（上：无算子折叠，下：有算子折叠，打印执行prepare_qat()后的模型）
+![无算子折叠](httpsimg-blog.csdnimg.cn20201123123136357.pngx-oss-process=imagewatermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpZXhpZXlpOTQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](httpsimg-blog.csdnimg.cn20201123123257611.pngx-oss-process=imagewatermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpZXhpZXlpOTQ2Mw==,size_16,color_FFFFFF,t_70#pic_center) &emsp;&emsp;如果不进行算子折叠，每个Conv-BN-ReLU单元一共会插入4个FakeQuantize模块。而进行算子折叠后，原来Conv2d()被ConvBnReLU2d()代替（3层合并到了第1层），BatchNorm2d()和ReLU()被Inentity()代替（仅作为占位），最终只插入了2个FakeQuantize模块。FakeQuantize模块的减少意味着推理过程中进行的量化-反量化的次数减少，有利于减少量化带来的性能损失。
+&emsp;&emsp;算子折叠由实现torch.quantization.fuse_modules()。目前存在的比较遗憾的2点：
+&emsp;&emsp;算子折叠不能自动完成，只能由程序员手工指定要折叠的子模型。以torchvision.models.quantization.mobilenet_v2()中实现的算子折叠函数为例：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190612112551153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+```python
+def fuse_model(self)
+    # 遍历模型内的每个子模型，判断类型并进行相应的算子折叠
+    for m in self.modules()
+        if type(m) == ConvBNReLU
+            fuse_modules(m, ['0', '1', '2'], inplace=True)
+        if type(m) == QuantizableInvertedResidual
+            # 调用子模块实现的fuse_model()，间接调用fuse_modules()
+            m.fuse_model()
+```
 
-sub4代表只有低分辨率输入的结果，sub24代表前两个分支，sub124全部分支。注意到全部分支的速度很快，并且性能接近PSPNet了，且能保持30fps。而且内存消耗也明显减少了。
+&emsp;&emsp;能折叠的算子组合有限。目前支持的算子组合为：ConV + BN、ConV + BN + ReLU、Conv + ReLU、Linear + ReLU、BN + ReLU。如果尝试折叠ConvTranspose2d、ReLU6等不支持的算子则会报错。
 
-# 结论
-论文在PSPNet的基础上改进出一个ICNet。 核心的思想是利用低分辨率的快速获取语义信息，高分辨率的细节信息。将两者相融合搞出一个折中的模型。
+Step3：指定量化方案
+&emsp;&emsp;目前支持fbgemm和qnnpack两钟backend方案。 官方推荐x86平台使用fbgemm方案，ARM平台使用qnnpack方案。
+&emsp;&emsp;量化方案通过如下方法指定
 
-# 代码实现
-https://github.com/BBuf/Keras-Semantic-Segmentation
+```python
+model.qconfig = get_default_qat_qconfig(backend=fbgemm)
+# 或
+model.qconfig = get_default_qat_qconfig(backend=qnnpack)
+```
+
+&emsp;&emsp;即通过给model增加一个名为qconfig为成员变量并赋值。
+&emsp;&emsp;量化方案可通过设置qconfig自定义，本文暂不讨论。
+
+Step4：插入伪量化模块
+&emsp;&emsp;通过执行prepare_qat()，实现按qconfig的配置方案给每个层增加FakeQuantize()模块
+![在这里插入图片描述](httpsimg-blog.csdnimg.cn20201123124646581.pngx-oss-process=imagewatermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpZXhpZXlpOTQ2Mw==,size_16,color_FFFFFF,t_70#pic_center)&emsp;&emsp;每个FakeQuantize()模块内包含相应的Observer()模块，在模型执行forward()时自动记录数值，供实施量化时使用。
+
+Step5：实施量化
+  &emsp;&emsp;完成训练后，通过执行convert()转换为真正的int8量化模型。 ![在这里插入图片描述](httpsimg-blog.csdnimg.cn20201123124949126.png#pic_center)&emsp;&emsp;完成转换后，FakeQuantize()模块被去掉，原来的ConvBNReLU2d()算子被替换为QuantizedConvReLU2d()算子。
+Step6：int8模型推理
+&emsp;&emsp;int8模型的调用方法与普通的fp32模型的调用无异。需要注意的是，目前量化算子仅支持CPU计算，故须确保输入和模型都在CPU侧。
+&emsp;&emsp;若模型推理中出现报错，一般是前面的步骤存在设置不当，参考常见问题第1点。
+
+# 常见问题
+
+(1) RuntimeError Could not run XX with arguments from the YY backend. XX is only available for these backends ZZ
+&emsp;&emsp;虽然fp32模型和int8模型都能在CPU上推理，但fp32算子仅接受tensor作为输入，int8算子仅接受quantedtensor作为输入，输入和算子的类型不一致导致上述错误。
+&emsp;&emsp;一般排查方向为：
+是否完成了模型修改，将加法等操作替换为量化版本；
+是否正确添加了QuantStub()和DeQuantStub()；
+是否在执行convert()前是否执行了model.eval()（在traning模型下，dropout无int8实现但没有被去掉，然而在执行推理时会报错）。
+(2) 是否支持GPU训练，是否支持DistributedDataParallel训练？
+&emsp;&emsp;支持。官方有一个完整的量化感知训练的实现，使用了GPU和DistributedDataParallel，可惜在文档和教程中未提及，参考[这里](httpsgithub.compytorchvisionblobmasterreferencesclassificationtrain_quantization.py)。
+(3) 是否支持混合精度模型（例如一部分fp32推理，一部分int8推理）？
+&emsp;&emsp;官方没有明确说明，但经实践是可以的。
+&emsp;&emsp;模型是否进行量化取决于是否带qconfig。因此可以将模型定义修改为
+
+```python
+class MixModel(nn.Module)
+    def __init__(self)
+        super(MixModel, self).__init__()
+        self.fp32_part = Fp32Model()
+        self.int8_part = Int8Model()
+    def forward(self, x)
+        x = self.int8_part(x)
+        x = self.fp32(x)
+        return x
+
+mix_model = MixModel()
+mix_model.int8_part.qconfig = get_default_qat_qconfig(BACKEND)
+prepare_qat(mix_model, inplace=True)
+```
+
+&emsp;&emsp;由此可实现所需的功能。注意将QuantStub()、Dequant()模块移到Int8Model()中。
+（4）精度保持效果如何，如何提升精度？
+&emsp;&emsp;笔者进行的实验不多，在做过的简单的OCR任务中，可以做到文字检测和识别模型的指标下降均不超过1个点（量化的int8模型对比正常训练的fp32模型）。官方教程中提供了分类例子的效果和提升精度的技巧，可供[参考](httpspytorch.orgtutorialsadvancedstatic_quantization_tutorial.html)。
+
+# 总结
+
+ &emsp;&emsp;Pytorch官方提供的量化感知训练API，上手较为简单，易于集成到现有训练代码中。但目前手动修改模型和算子折叠增加了一定的工作量，期待在未来版本的改进。
