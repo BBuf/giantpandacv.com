@@ -28,6 +28,7 @@
 **旋转角度探测器**。用一个CNN(rotation router)计算出旋转人脸的偏转角，将旋转的人脸按偏转角校准至向上后，再使用现有的upright face detector检测校准后的人脸candidates即可，这符合认知常识，添加一个rotation router计算人脸偏转角度即可，不需要额外开销。但是精准的人脸角度计算很有挑战性，为了精准的计算人脸偏转角，通常都需要使用性能强悍的CNN，耗时就又成为了瓶颈。
 
 前面的三种方法要么精度不高要么耗时很大，因此作者就提出了这个PCN，怎么做的呢？**既然利用rotation router想一步到位计算精准的人脸偏转角度有难度，那么我们渐进式地基于cascade从粗到精一步一步计算。第一层网络先初略判断一个偏转角，再校准一下。第二层网络同样操作，进一步校准，以减少人脸偏转角度范围。第三层网络精准计算偏转角度，基于前两步骤校准后，再使用第三层网络直接输出人脸分类、偏转角度、bbox即可。** 整体下来模型耗时也少，可以实时。有没有感觉到这个算法好像和MTCNN的过程超级像？所以首先stage1就是对face candidates(类似mtcnn图像金字塔+滑窗)筛选candidates(face/non-face二分类)，将方向朝下人脸校准为方向朝上人脸(updown clip即可)，stage2与step1类似，人脸筛选(face/non-face二分类)+将step1中的upright人脸进一步校准至 [-45; 45]，最后stage3输出人脸分类、偏转角度(the continuouts precise RIP angle)、bbox即可。**可以看到，只有在stage3才做精准预测，stage1、2只做+-90°、+-180°旋转，这也保证了整个算法的时间消耗低，做到了实时。** 接下来作者总结了PCN的特点和优势点如下：
+
 - PCN渐进式地分步校准人脸偏转角度，每个小步骤都是一个基于浅层CNN的简单任务，最终可以让偏转的人脸角度逐步降低并校准，准确率高、效果好、耗时少。
 - step1、2只做粗校准(如下->上180°、左->右90°校准)，优势有二：1 粗校准操作耗时少，易实现；2 对角度的粗分类也容易实现，可以直接在人脸分类、bbox回归的multi-task中加一个分支即可
 - 在两个有挑战的数据集上-----多角度旋转的FDDB+作者手工筛选并标注的wider face test子集上(multi-oriented FDDB and a challenging subset of WIDER FACE containing rotated faces in the wild)，本方案取得了不错的效果。
@@ -129,6 +130,7 @@ $\theta_{RIP}=\theta_1+\theta_2+\theta_3$
 
 
 ## 2.5 PCN是如何实现精度和速度提升的
+
 - 在早期阶段只预测粗糙的RIP角度，增强对多样性样本的鲁棒性，并且有利于后续步骤。
 - 然后通过逐步减少RIP的范围减少人脸和非人脸的分类误差，从而提高了检测精度。
 - 将难度较大的旋转角度预测分解为多个小任务，每一个任务都比较简单，这使得校准的整体难度降低。
@@ -147,6 +149,7 @@ $\theta_{RIP}=\theta_1+\theta_2+\theta_3$
 ![Figure10](https://img-blog.csdnimg.cn/20200620175208337.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 # 4. 参考
+
 - https://arxiv.org/pdf/1804.06039.pdf
 - https://blog.csdn.net/qq_14845119/article/details/80225036
 - https://zhuanlan.zhihu.com/p/36303792
@@ -158,6 +161,7 @@ $\theta_{RIP}=\theta_1+\theta_2+\theta_3$
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

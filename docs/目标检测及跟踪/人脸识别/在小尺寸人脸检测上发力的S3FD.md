@@ -22,6 +22,7 @@ S3FD这篇论文的出发点是当人脸尺寸比较小的时候，Anchor-Based�
 论文针对第三节的问题进行了分析并提出了解决方案，也就有了这篇S3FD。
 
 首先针对`FIgure1(a),(b)`的问题，论文对检测网络的设计以及Anchor的铺设做了改进，提出了不受人脸尺寸影响的检测网络，改进的主要内容包括：
+
 - 预测层的最小`stride`降低到$4$（具体而言预测层的`stride`范围为$4$到$128$，一共$6$个预测层），这样就保证了小人脸在浅层进行检测时能够有足够的特征信息。
 - Anchor的尺寸根据每个预测层的有效感受野和等比例间隔原理进行设置，设置为$16$到$512$，前者保证了每个预测层的Anchor和有效感受野大小匹配，后者保证了不同预测层的Anchor再输入图像中的密度基本类似。
 
@@ -64,6 +65,7 @@ S3FD的Anchor尺寸设置和SSD最主要的区别在于S3FD中的Anchor大小是
 ![S3FD的网络结构](https://img-blog.csdnimg.cn/20200420112637859.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 可以看到它和SSD网络结构差不多，不过预测层(**predicted convolutional layers**)部分和SSD的区别在于：
+
 - 预测层整体前移了，也就是`stride=4`到`stride=128`共$6$个预测层。
 - `stride=4`的预测层通道数和其他`stride`的预测层通道数不同，`stride=4`的预测层通道数是$1\times (Ns+4)$，其它`stride`的预测层通道数是$1 \times（2+4）$，这里的$2$其实也可以用$Ns$表示，不过对其它`stride`的预测层来说$Ns$为$2$，表示$1$个前景（人脸）和$1$个背景（非人脸）共$2$个类别。而对于`stride=4`的预测层，$N_s=N_m+1$，其中$1$表示前景(人脸)，$N_m$表示max-out background label数量。
 
@@ -73,6 +75,7 @@ S3FD的Anchor尺寸设置和SSD最主要的区别在于S3FD中的Anchor大小是
 # 6. 模型训练
 ## 6.1 数据增强方法
 模型是在WIDER FACE 的12880张人脸数据上进行训练的。其数据增强方法如下：
+
 - 颜色扰动。
 - 随机裁剪：对小尺寸人脸放大，随机裁剪5块，最大的为原图上裁剪，其他4张为原图短边缩放至原图[0.3，1]的图像上裁剪得到。
 - 裁剪图像缩放为$640\times 640$后，并以0.5的概率随机左右翻转。
@@ -103,6 +106,7 @@ Figure8是S3FD和其它人脸检测算法在WIDER FACE数据集上的对比。
 # 8. 结论
 这篇论文在小尺寸人脸检测上发力，提出了一些非常有用的Trick大大提升了在小尺寸人脸上的召回率以及效果，这篇论文在小目标检测问题上提供了一个切实可行的方法，值得我们思考或者应用它。
 # 9. 参考
+
 - 论文原文：https://arxiv.org/pdf/1708.05237.pdf
 - 源码：https://github.com/sfzhang15/SFD
 - https://blog.csdn.net/u014380165/article/details/83477516

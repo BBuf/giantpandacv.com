@@ -13,6 +13,7 @@ RetinaFace是2019年5月来自InsightFace的又一力作，它是一个鲁棒性
 
 # 2. RetinaFace的特点
 RetinaFace有几个主要特点：
+
 - 采用FPN特征金字塔提取多尺度特征。
 - 单阶段&&e2e，使用MobileNet Backbone可以在Arm上实时。
 - 引入SSH算法的Context Modeling。
@@ -88,6 +89,7 @@ RetinaFace使用ResNet152为Backbone的FPN结构，对于每一层金字塔都�
 除此之外，中间还使用了OHEM来平衡positive 和negative的anchors，因为negative anchors的数量明显要多。另外还使用可变形卷积[MASA DCN(可变形卷积) 算法笔记描述](https://mp.weixin.qq.com/s/cFxzGJ23SZht8NqjqMMocw) 代替了lateral connections和context modules中的3*3卷积 。
 
 最后，除了上面提到的针对网络结构上的Trick，还在数据上做了额外的标注信息，具体为：
+
 - 定义了5个等级的人脸质量，根据清晰度来定义检测难度。
 - 定义了5个人脸关键点。
 
@@ -386,6 +388,7 @@ class MobileNetV1(nn.Module):
 注意到论文里面还比较了一下在RetinaFace上加入ArcFace的实验结果，仍然还是有提升的，ArcFace我后面我会仔细讲讲，今天暂时讲到这里了，如果对你有帮助右下角点赞哦，谢谢。有问题请留言区交流哦。
 
 # 8. 参考
+
 - https://arxiv.org/pdf/1905.00641.pdf
 - https://zhuanlan.zhihu.com/p/70834919
 - https://www.cnblogs.com/ywheunji/p/12285421.html
@@ -398,6 +401,7 @@ class MobileNetV1(nn.Module):
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

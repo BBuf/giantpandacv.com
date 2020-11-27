@@ -4,6 +4,7 @@
 
 # 推荐项目
 ## Pytorch-YOLOv3
+
 - 项目地址：https://github.com/eriklindernoren/PyTorch-YOLOv3
 - 项目特点：代码简洁，适合学习，最原始的YOLOV3实现，没有什么特殊Trick。
 - 在COCO数据集上的mAP50测试结果如下：
@@ -34,6 +35,7 @@
 
 
 ## ultralytics-yolov3
+
 - 项目地址：https://github.com/ultralytics/yolov3
 - 项目特点：实现效果更好，适合工业应用。此项目，不仅仅实现了先进的数据增强方式如嵌入增强，还支持多种SOTA metric learning方式的回归损失如IOU Loss，GIOU Loss，DIOU Loss, CIOU Loss。另外在分类损失时也支持了Focal Loss来提升检测的敏感度。最后，此项目还支持了超参数进化机制，可以在你的数据上生成更好的的超参数，相当于有自动调参的功能，吸引力很强。
 - 在COCO数据集上的mAP测试结果如下：
@@ -172,10 +174,12 @@ https://cloud.google.com/deep-learning-vm/
 - 总结：ASPP这篇论文可以算是集百家之长，并且ASPP创新点也是拉满，让我第一次知道空间信息的叠加也是可学习的，结果也非常惊艳，推荐大家学习。
 
 ## yolov3-channel-and-layer-pruning
+
 - 项目地址：https://github.com/tanluren/yolov3-channel-and-layer-pruning
 - 项目特点： 本项目以ultralytics/yolov3为基础实现，根据论文Learning Efficient Convolutional Networks Through Network Slimming (ICCV 2017)原理基于bn层Gmma系数进行通道剪枝，下面引用了几种不同的通道剪枝策略，并对原策略进行了改进，提高了剪枝率和精度；在这些工作基础上，又衍生出了层剪枝，本身通道剪枝已经大大减小了模型参数和计算量，降低了模型对资源的占用，而层剪枝可以进一步减小了计算量，并大大提高了模型推理速度；通过层剪枝和通道剪枝结合，可以压缩模型的深度和宽度，某种意义上实现了针对不同数据集的小模型搜索。此外，除了剪枝作者进一步在YOLOV3中使用了知识蒸馏策略，进一步压缩模型，具体请看原项目。这是国内的检测大佬维护的开源项目，也可以加入到他们的讨论群去讨论。
 
 ## YOLO-Lite
+
 - 论文原文：https://arxiv.org/pdf/1811.05588.pdf
 - 项目地址：https://github.com/reu2018DL/YOLO-LITE
 - 项目特点：论文致力于设计一个网络（cpu速度大于10FPS，PASCAL VOC精度大于30%），因此基于YOLO-v2，提出了一个cpu端的或者端侧的实时检测框架YOLO-LITE。在PASCAL VOC 上取得了33.81%的map，在COCO上取得了12.26%的map，实时性达到了21FPS。
@@ -190,21 +194,27 @@ https://cloud.google.com/deep-learning-vm/
 - 效果展示：
 
 
-![Result](https://img-blog.csdnimg.cn/20200217222912638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)- 总结：精度很低，不过对于网络修改和模型加速有一定的参考价值。
+![Result](https://img-blog.csdnimg.cn/20200217222912638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+- 总结：精度很低，不过对于网络修改和模型加速有一定的参考价值。
 
 ## YOLO Nano
+
 - 论文地址：https://arxiv.org/abs/1910.01271
 - 项目地址：https://github.com/liux0614/yolo_nano
 - 项目特点：来自滑铁卢大学与 Darwin AI 的研究者提出了名为 YOLO Nano 的网络，他们通过人与机器协同设计模型架构大大提升了性能。YOLO Nano 大小只有 4.0MB 左右，比 Tiny YOLOv2 和 Tiny YOLOv3 分别小了 15.1 倍和 8.3 倍，在计算上需要 4.57B 次推断运算，比后两个网络分别少了 34% 和 17%，在性能表现上，在 VOC2007 数据集取得了 69.1% 的 mAP，准确率比后两者分别提升了 12 个点和 10.7 个点。值得一提的是4M是int8量化后的大小。
+
 - 精度和推理时间展示：
 
 ![精度和推理时间展示](https://img-blog.csdnimg.cn/20200217223434438.png)
+
 - 网络结构：
 
 ![网络结构](https://img-blog.csdnimg.cn/20200217223523172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 - 总结：这个开源工程并不是作者公开的，论文中的信息也不足以支撑实现代码的开发以及效果的复现，不过PEP和FCA模块可以作为我们设计网络去借鉴的思路。
 
 # 附录
+
 - YOLOV3 608：http://pjreddie.com/darknet/yolo/
 - Bag of Freebies for Training Object Detection Neural Networks : https://arxiv.org/abs/1902.04103 
 
