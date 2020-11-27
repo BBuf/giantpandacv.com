@@ -224,14 +224,14 @@ nav:
                 - Pelee 移动端实时检测骨干网络: 目标检测及跟踪/论文解析/嵌入式端小模型/Pelee 移动端实时检测骨干网络.md
         - 目标跟踪:
             - darklabel教程: 目标检测及跟踪/目标跟踪/darklabel教程.md
-            - Deep Sort多目标跟踪算法解析(上): 目标检测及跟踪/目标跟踪/Deep Sort多目标跟踪算法解析(上).md
-            - Deep Sort多目标跟踪算法解析(下): 目标检测及跟踪/目标跟踪/Deep Sort多目标跟踪算法解析(下).md
-            - deep sort论文: 目标检测及跟踪/目标跟踪/deep sort论文.md
             - deepsort使用教程: 目标检测及跟踪/目标跟踪/deepsort使用教程.md
             - deepsort框架梳理: 目标检测及跟踪/目标跟踪/deepsort框架梳理.md
+            - 多目标跟踪数据集解析: 目标检测及跟踪/目标跟踪/多目标跟踪数据集解析.md
+            - deep sort论文: 目标检测及跟踪/目标跟踪/deep sort论文.md
+            - Deep Sort多目标跟踪算法解析(上): 目标检测及跟踪/目标跟踪/Deep Sort多目标跟踪算法解析(上).md
+            - Deep Sort多目标跟踪算法解析(下): 目标检测及跟踪/目标跟踪/Deep Sort多目标跟踪算法解析(下).md
             - DeepSORT算法代码解析(全): 目标检测及跟踪/目标跟踪/DeepSORT算法代码解析(全).md
             - 多目标跟踪快速入门: 目标检测及跟踪/目标跟踪/多目标跟踪快速入门.md
-            - 多目标跟踪数据集解析: 目标检测及跟踪/目标跟踪/多目标跟踪数据集解析.md
         - 人脸识别:
             - CPU上的实时人脸检测算法FaceBoxes: 目标检测及跟踪/人脸识别/CPU上的实时人脸检测算法FaceBoxes.md
             - InsightFace力作：RetinaFace单阶段人脸检测器: 目标检测及跟踪/人脸识别/InsightFace力作：RetinaFace单阶段人脸检测器.md
