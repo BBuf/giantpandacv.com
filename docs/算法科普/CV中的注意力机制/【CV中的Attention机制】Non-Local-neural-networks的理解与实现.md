@@ -32,9 +32,11 @@ $$
 论文中给了通用公式，然后分别介绍**f函数**和**g函数**的实例化表示：
 
 **g函数**：可以看做一个线性转化（Linear Embedding）公式如下：
+
 $$
 g(x_j)=W_gx_j
 $$
+
 $W_g$是需要学习的权重矩阵，可以通过空间上的1×1卷积实现（实现起来比较简单）。
 
 ---
@@ -232,23 +234,23 @@ class _NonLocalBlockND(nn.Module):
 
 - 作者做了一系列消融实验来证明non local NN的有效性：
 
-1. 使用四个相似度计算模型，发现影响不大，但是都比baseline效果好。
+**1**. 使用四个相似度计算模型，发现影响不大，但是都比baseline效果好。
 
 ![](https://img-blog.csdnimg.cn/20200105183239518.png)
 
-2. 以ResNet50为例，测试加在不同stage下的结果。可以看出在res2,3,4部分得到的结果相对baseline提升比较大，但是res5就一般了，这有可能是由于第5个stage中的feature map的spatial size比较小，信息比较少，所以提升比较小。
+**2**. 以ResNet50为例，测试加在不同stage下的结果。可以看出在res2,3,4部分得到的结果相对baseline提升比较大，但是res5就一般了，这有可能是由于第5个stage中的feature map的spatial size比较小，信息比较少，所以提升比较小。
 
 ![](https://img-blog.csdnimg.cn/20200105183355534.png)
 
-3. 尝试添加不同数量的non local block ,结果如下。可以发现，添加越多的non local 模块，其效果越好，但是与此同时带来的计算量也会比较大，所以要对速度和精度进行权衡。
+**3**. 尝试添加不同数量的non local block ,结果如下。可以发现，添加越多的non local 模块，其效果越好，但是与此同时带来的计算量也会比较大，所以要对速度和精度进行权衡。
 
 ![](https://img-blog.csdnimg.cn/20200105183756646.png)
 
-4.  Non-local 与3D卷积的对比，发现要比3D卷积计算量小的情况下，准确率有较为可观的提升。
+**4**.  Non-local 与3D卷积的对比，发现要比3D卷积计算量小的情况下，准确率有较为可观的提升。
 
 ![](https://img-blog.csdnimg.cn/20200105184135191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
-5. 作者还将Non-local block应用在目标检测、实例分割、关键点检测等领域。可以将non-local block作为一个trick添加到目标检测、实例分割、关键点检测等领域, 可能带来1-3%的提升。
+**5**. 作者还将Non-local block应用在目标检测、实例分割、关键点检测等领域。可以将non-local block作为一个trick添加到目标检测、实例分割、关键点检测等领域, 可能带来1-3%的提升。
 
 ![](https://img-blog.csdnimg.cn/2020010518453037.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
@@ -294,13 +296,5 @@ non local官方实现：<https://github.com/pprp/SimpleCVReproduction/tree/maste
 
 想加入交流群或者进行讨论，欢迎联系我，扫以下二维码加我：
 
-
-
-
-
-
-
-
-
-
+![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 

@@ -72,7 +72,7 @@ nav:
             - 【CV中的Attention机制】融合Non-Local和SENet的GCNet: 算法科普/CV中的注意力机制/【CV中的Attention机制】融合Non-Local和SENet的GCNet.md
             - 【CV中的Attention机制】易于集成的Convolutional-Block-Attention-Module-CBAM模块: 算法科普/CV中的注意力机制/【CV中的Attention机制】易于集成的Convolutional-Block-Attention-Module-CBAM模块.md
             - 【CV中的attention机制】语义分割中的scSE模块: 算法科普/CV中的注意力机制/【CV中的attention机制】语义分割中的scSE模块.md
-            - 【cv中的Attention机制】最简单最易实现的SE模块:  算法科普/CV中的注意力机制/【cv中的Attention机制】最简单最易实现的SE模块.md
+            - 【CV中的Attention机制】最简单最易实现的SE模块:  算法科普/CV中的注意力机制/【CV中的Attention机制】最简单最易实现的SE模块.md
         - Transformer: 
             - 解析Transformer模型: 算法科普/Transformer/解析Transformer模型.md
         - 半监督&无监督:
