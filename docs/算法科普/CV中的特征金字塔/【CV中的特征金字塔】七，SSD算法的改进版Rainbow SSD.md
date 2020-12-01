@@ -14,6 +14,7 @@
 
 # 3. 介绍
 传统的SSD算法通过不同层的特征来做检测，使得其对尺度变化有较好的鲁棒性，在速度和精度的Trade-Off上也做得比较好，但是SSD有2个明显的问题：
+
 - 在SSD中，不同层的特征图都是独立作为分类网络的输入，因此容易出现相同物体被不同大小的框同时检测出来的情况。
 - 对小目标的检测效果比较差，当然这也是大多数目标检测算法的通病了。
 
@@ -30,6 +31,7 @@
 ![几种不同的特征融合方式](https://img-blog.csdnimg.cn/20200330174715830.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 我们来尝试解析一下这些图都表示什么？
+
 - `Figure3(a)`：这表示使用`pooling`方式的特征图融合，我们可以看到`(a)`最左边的$38\times 38$的特征图将其做一个`pooling`之后和接下来那个$19\times 19$的特征图进行concate，获得了那个一个红加一个橙的特征图。后面同理。。
 - `Figure3(b)`：这表示使用反卷积的方式进行特征融合，注意这里是从右边的$1\times 1$的紫色特征图往左做concate，因为反卷积是升维，所以从右至左。
 - `Figure3(c)`：表示**同时使用Pooling和反卷积做特征融合。** 这个结构就是本文的Radinbow SSD的核心了，即同时从左至右（`pooling`，`concate`）和从右至左（`deconvolution`，`concate`）。
@@ -68,6 +70,7 @@
 
 
 # 7. 参考
+
 - https://blog.csdn.net/u014380165/article/details/77130922
 - 论文链接：https://arxiv.org/abs/1705.09587
 

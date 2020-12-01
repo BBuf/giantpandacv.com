@@ -133,20 +133,20 @@ class BasicBlock(nn.Module):
 
 **消融实验**：消融实验一般是控制变量，最能看出模型变好起作用的部分在那里。分为三个部分：
 
-1. 如何更有效地计算channel attention?
+**1**. 如何更有效地计算channel attention?
 
 ![](https://img-blog.csdnimg.cn/20191231220525416.png)
 
 可以看出来，使用avgpool和maxpool可以更好的降低错误率，大概有1-2%的提升，这个组合就是dual pooling，能提供更加精细的信息，有利于提升模型的表现。
 
 
-2. 如何更有效地计算spatial attention?
+**2**. 如何更有效地计算spatial attention?
 
 ![](https://img-blog.csdnimg.cn/20191231221749810.png)
 
 这里的空间注意力机制参数也是有avg, max组成，另外还有一个卷积的参数kernel_size(k), 通过以上实验，可以看出，当前使用通道的平均和通道的最大化，并且设置kernel size=7是最好的。
 
-3. 如何组织这两个部分？
+**3**. 如何组织这两个部分？
 
 ![](https://img-blog.csdnimg.cn/20191231222600249.png)
 

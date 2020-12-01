@@ -21,19 +21,25 @@ SENet中提出的SE block是使用全局上下文对不同通道进行**权值�
 ![](https://img-blog.csdnimg.cn/20200114162519171.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
 NLNet 中的Non-Local block可以表示为：
+
 $$
 z_i=x_i+W_z\sum^{N_p}_{j=1}\frac{f(x_i,x_j)}{C(x)}(W_v×x_j)
 $$
+
 输入的feature map定义为$x=\{x_i\}^{N_p}_{i=1}$, $N_p$是位置数量。$x和z$是NL block输入和输出。$i$是位置索引，$j$枚举所有可能位置。$f(x_i,x_j)$表示位置$i和j$的关系，$C(x)$是归一化因子。$W_z和W_v是线性转换矩阵。
 
 NLNet中提出了四个相似度计算模型，其效果是大概相似的。作者以Embedded Gaussian为基础进行改进，可以表达为:
+
 $$
 W_{ij}=\frac{exp(W_qx_i,W_kx_j)}{\sum_{m}exp(W_qx_i,W_kx_m)}
 $$
+
 简化后版本的Simplified NLNet想要通过计算一个全局注意力即可，可以表达为:
+
 $$
 z_i=x_i+W_v\sum^{N_p}_{j=1}\frac{exp(W_kx_j)}{\sum^{N_p}_{m=1}exp(W_kx_m)}x_j
 $$
+
 这里的$W_v、W_q、W_k$都是$1\times1$卷积，具体实现可以参考上图。
 
 简化后的NLNet虽然计算量下去了，但是准确率并没有提升，所以作者观察到SENet与当前的模块有一定的相似性，所以结合了SENet模块，提出了GCNet。

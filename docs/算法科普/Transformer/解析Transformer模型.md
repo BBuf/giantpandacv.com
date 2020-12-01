@@ -14,11 +14,13 @@ Google与2017年提出了《Attention is all you need》，抛弃了传统的RNN
 # 模型架构
 
 ![TransFormer模型架构一览](https://img-blog.csdnimg.cn/20200930151402994.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 上图展示的就是Transformer的结构，左边是编码器Encoder，右边是解码器Decoder。通过多次堆叠，形成了Transformer。下面我们分别看下Encoder和Decoder的具体结构
 
 ## Encoder
 
 ![编码器架构](https://img-blog.csdnimg.cn/20200930151733875.png#pic_center)
+
 Encoder结构如上，它由以下sublayer构成
 
 - Multi-Head Attention 多头注意力
@@ -35,11 +37,15 @@ The animal didn't cross the street because it was too tired
 ```
 
 我们需要让模型去推断 `it` 所指代的东西，当我们给模型加了注意力机制，它的表现如下
+
 ![注意力机制效果](https://img-blog.csdnimg.cn/20200930152646176.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 我们通过注意力机制，让模型能看到输入的各个单词，然后它会更加关注于 `The animal`，从而更好的进行编码。
 
 论文里将attention模块记为**Scaled Dot-Product Attention**，计算如下
+
 ![自注意力机制一览](https://img-blog.csdnimg.cn/20200930153149985.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 $$
 Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V
 $$
@@ -49,9 +55,12 @@ $$
 - V 代表 Value 矩阵
 - dk 是一个缩放因子
 
-其中 Q, K, V（向量长度为64）是由输入X经过三个不同的权重矩阵（shape=512x64）计算得来，
+其中 Q, K, V（向量长度为64）是由输入X经过三个不同的权重矩阵（shape=512x64）计算得来
+
 ![经过Embedding的向量X，与右边三个权重矩阵相乘，分别得到Query，Key，Value三个向量](https://img-blog.csdnimg.cn/20200930154301659.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 下面我们看一个具体例子
+
 ![注意力机制运算过程](https://img-blog.csdnimg.cn/20200930155616137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
 
 以`Thinking`这个单词为例，我们需要计算整个句子所有词与它的score。
@@ -68,6 +77,7 @@ $$
 简单来说，多头注意力其实就是合并了多个自注意力机制的结果
 
 ![多头注意力机制概览，将多个自注意力机制并在一起](https://img-blog.csdnimg.cn/20200930160354675.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 我们以原文的8个注意力头为例子，多头注意力的操作如下
 
 - 将输入数据X分别输入进8个自注意力模块
@@ -75,11 +85,13 @@ $$
 - 将各个自注意力模块结果Zi拼成一个大矩阵Z
 - 经过一层全连接层，得到最终的输出
   最后多头注意力的表现类似如下
+  
   ![多头注意力机制效果](https://img-blog.csdnimg.cn/20200930161151549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
 
 ### Feed Forward Neural Network
 
 这个FFN模块比较简单，本质上全是两层全连接层加一个Relu激活
+
 $$
 X = Dense_1(X) \\
 X = Relu(X) \\ 
@@ -89,19 +101,26 @@ $$
 ### Positional Encoding
 
 摒弃了CNN和RNN结构，我们无法很好的利用序列的顺序信息，因此我们采用了额外的一个位置编码来进行缓解
+
 $$
 PE(pos,2i) = sin(\frac{pos}{1000^{\frac{2i}{d_{model}}}}) \\
 PE(pos,2i+1) = cos(\frac{pos}{1000^{\frac{2i}{d_{model}}}})
 $$
+
 然后与输入相加，通过引入位置编码，给词向量中赋予了单词的位置信息
+
 ![位置编码](https://img-blog.csdnimg.cn/20200930162407153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 下图是总Encoder的架构
+
 ![Encoder的整体结构](https://img-blog.csdnimg.cn/20200930161656123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
 
 ## Decoder
 
 Decoder的结构与Encoder的结构很相似
+
 ![Decoder结构](https://img-blog.csdnimg.cn/20200930162954113.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 **只不过额外引入了当前翻译和编码特征向量的注意力**，这里就不展开了。
 
 # 代码

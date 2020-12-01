@@ -22,12 +22,14 @@
 
 
 ![Figure 3](https://img-blog.csdnimg.cn/20200319173443802.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 对于原始的输入图片，先通过一个BackBone网络提取特征，假设提取到的特征通道数是$D$，然后将提取到的特征送入SPP网络获得不同尺度的特征图，用$N$表示尺度的数量这里位$3$，得到的特征图通道数用$C_H$表示，当然$C_H=D$。然后再通过一个通道缩减操作将(b)中的特征图的通道缩减，也即是Bottleneck操作，缩减后的通道数用$C_L$表示，公式是：$C_L=D/(N-1)$。然后再通过MSCA操作得到融合后的特征图（对应(d)操作），得到的特征通道数是$C_p$，最后基于融合后的多个特征图进行预测。
 
 # 4. MSCA模块
 下面的Figure4是MSCA模块的结构示意图。MSCA主要是基于特征通道的concate操作，但是输入特征有些特殊。
 
 ![MSCA模块](https://img-blog.csdnimg.cn/20200319175049768.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 在Figure4中，当得到P1这个融合后的特征时是用$F_H(1)$、下采样后的$F_L(0)$、上采样后的$F_L(2)$进行concate后得到的。
 
 **这个地方有个问题，为什么是使用$F_L(1)$而不是$F_H(1)$呢？**
@@ -39,6 +41,7 @@
 
 
 ![Table3](https://img-blog.csdnimg.cn/20200319181056891.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到PFPNet-S300和PFPNet-S512的性能和RefineDet差不多。
 
 下面的Table4则展示了PFPNet在COCO数据集上的测试结果。
@@ -46,9 +49,11 @@
 ![Table4](https://img-blog.csdnimg.cn/2020031918122056.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 # 6. 参考
+
 - https://blog.csdn.net/u014380165/article/details/82468725
 
 # 7. 推荐阅读
+
 - [【CV中的特征金字塔】一，工程价值极大的ASFF](https://mp.weixin.qq.com/s/2f6ovZ117wKTbZvv2uRwdA)
 - [【CV中的特征金字塔】二，Feature Pyramid Network](https://mp.weixin.qq.com/s/d2TSeKEZPmVy1wlbzp8BNQ)
 - [【CV中的特征金字塔】三，两阶段实时检测网络ThunderNet](https://mp.weixin.qq.com/s/LX8pFMsDT21QNXtnXJIjXA)
