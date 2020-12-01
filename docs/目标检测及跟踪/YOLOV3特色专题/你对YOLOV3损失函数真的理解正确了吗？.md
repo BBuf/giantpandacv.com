@@ -79,11 +79,14 @@ c'=0(c为常数）
 
 我们需要求的是loss对于神经元输出$z_i$的梯度，求出梯度后才可以反向传播，即是求:
 $\frac{\partial C}{\partial z_i}$, 根据链式法则(也就是复合函数求导法则)$\frac{\partial C}{\partial a_j}\frac{\partial a_j}{\partial z_i}$，初学的时候这个公式理解了很久，为什么这里是$a_j$而不是$a_i$呢？这里我们回忆一下softmax的公示，分母部分包含了所有神经元的输出，所以对于所有输出非i的输出中也包含了$z_i$，所以所有的a都要参与计算，之后我们会看到计算需要分为$i=j$和$i \neq j$两种情况分别求导数。
+
 首先来求前半部分：
 $\frac{\partial C}{ \partial a_j} = \frac{-\sum_jy_ilna_j}{\partial a_j} = -\sum_jy_j\frac{1}{a_j}$
+
 接下来求第二部分的导数：
+
 - 如果$i=j$，$\frac{\partial a_i}{\partial z_i} = \frac{\partial(\frac{e^{z_i}}{\sum_ke^{z_k}})}{\partial z_i}=\frac{\sum_ke^{z_k}e^{z_i}-(e^{z_i})^2}{(\sum_ke^{z_k})^2}=(\frac{e^z_i}{\sum_ke^{z_k}})(1 - \frac{e^{z_i}}{\sum_ke^{z_k}})=a_i(1-a_i)$
--  如果$i \neq j$，$\frac{\partial a_i}{\partial z_i}=\frac{\partial\frac{e^{z_j}}{\sum_ke^{z_k}}}{\partial z_i} = -e^{z_j}(\frac{1}{\sum_ke^z_k})^2e^{z_i}=-a_ia_j$。
+- 如果$i \neq j$，$\frac{\partial a_i}{\partial z_i}=\frac{\partial\frac{e^{z_j}}{\sum_ke^{z_k}}}{\partial z_i} = -e^{z_j}(\frac{1}{\sum_ke^z_k})^2e^{z_i}=-a_ia_j$。
 
 接下来把上面的组合之后得到：
 $\frac{\partial C}{\partial z_i}$
@@ -91,6 +94,7 @@ $=(-\sum_{j}y_j\frac{1}{a_j})\frac{\partial a_j}{\partial z_i}$
 $=-\frac{y_i}{a_i}a_i(1-a_i)+\sum_{j \neq i}\frac{y_j}{a_j}a_ia_j$
 $=-y_i+y_ia_i+\sum_{j \neq i}\frac{y_j}a_i$
 $=-y_i+a_i\sum_{j}y_j$。
+
 推导完成!
 
 **(5)对于分类问题来说**，我们给定的结果$y_i$最终只有一个类别是1,其他是0，因此对于分类问题，梯度等于：
@@ -140,6 +144,7 @@ $\frac{\partial C}{\partial z_i}=a_i - y_i$
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

@@ -37,15 +37,15 @@ titlepage-background: "backgrounds/background6.pdf"
 
 配置：
 
-1. 将cudnn的batch norm关闭。打开torch/nn/functional.py文件，找到torch.batch_norm这一行，将`torch.backends.cudnn.enabled`选项更改为False。
-2. 克隆项目
+**1**. 将cudnn的batch norm关闭。打开torch/nn/functional.py文件，找到torch.batch_norm这一行，将`torch.backends.cudnn.enabled`选项更改为False。
+**2**. 克隆项目
 
 ```
 CenterNet_ROOT=/path/to/clone/CenterNet
 git clone https://github.com/zzzxxxttt/pytorch_simple_CenterNet_45 $CenterNet_ROOT
 ```
 
-3. 安装cocoAPI
+**3**. 安装cocoAPI
 
 ```shell
 cd $CenterNet_ROOT/lib/cocoapi/PythonAPI
@@ -53,7 +53,7 @@ make
 python setup.py install --user
 ```
 
-4. 编译可变形卷积DCN
+**4**. 编译可变形卷积DCN
 
 - 如果使用的是pytorch0.4.1, 将`$CenterNet_ROOT/lib/DCNv2_old` 复制为 `$CenterNet_ROOT/lib/DCNv2`
 - 如果使用的是pytorch1.1.0 or 1.0.0, 将`$CenterNet_ROOT/lib/DCNv2_new` 复制为 `$CenterNet_ROOT/lib/DCNv2`.
@@ -64,16 +64,16 @@ cd $CenterNet_ROOT/lib/DCNv2
 ./make.sh
 ```
 
-5. 编译NMS
+**5**. 编译NMS
 
 ```shell
 cd $CenterNet_ROOT/lib/nms
 make
 ```
 
-6. 对于COCO格式的数据集，下载链接在：http://cocodataset.org/#download。将annotations, train2017, val2017, test2017放在`$CenterNet_ROOT/data/coco`
+**6**. 对于COCO格式的数据集，下载链接在：http://cocodataset.org/#download。将annotations, train2017, val2017, test2017放在`$CenterNet_ROOT/data/coco`
 
-7. 对于Pascal VOC格式的数据集，下载VOC转为COCO以后的数据集：
+**7**. 对于Pascal VOC格式的数据集，下载VOC转为COCO以后的数据集：
 
 百度网盘链接：https://pan.baidu.com/share/init?surl=z6BtsKPHh2MnbfT25Y4wYw 密码：4iu2
 
@@ -81,7 +81,7 @@ make
 
 PS:以上两者是官方数据集，如果制作自己的数据集的话可以往下看。
 
-8. 如果选择Hourglass-104作为骨干网络，下载CornerNet预训练模型：
+**8**. 如果选择Hourglass-104作为骨干网络，下载CornerNet预训练模型：
 
 百度网盘链接：https://pan.baidu.com/s/1tp9-5CAGwsX3VUSdV276Fg 密码： y1z4
 
@@ -496,9 +496,11 @@ CenterNet是一个经典的Anchor-Free目标检测方法，图片进入网络流
 ### 2. CenterNet部分详解
 
 设输入图片为$I\in R^{W\times H\times 3}$, W代表图片的宽，H代表高。CenterNet的输出是一个关键点热图heatmap。
+
 $$
 \hat{Y}\in[0,1]^{\frac{W}{R}\times\frac{H}{R}\times C}
 $$
+
 其中R代表输出的stride大小，C代表关键点的类型的个数。
 
 举个例子，在COCO数据集目标检测中，R设置为4，C的值为80，代表80个类别。
@@ -1561,7 +1563,7 @@ $$
 
 对于易分样本来说，预测值$\hat{Y}_{xyc}$接近于1，$(1-\hat{Y}_{xyc})^\alpha$就是一个很小的值，这样loss就很小，起到了矫正作用。
 
-对于难分样本来说，预测值$\hat{Y}_{xyc}$接近于0，$ (1-\hat{Y}_{xyc})^\alpha$就比较大，相当于加大了其训练的比重。
+对于难分样本来说，预测值$\hat{Y}_{xyc}$接近于0，$(1-\hat{Y}_{xyc})^\alpha$就比较大，相当于加大了其训练的比重。
 
 - otherwise的情况下：
 
@@ -1590,9 +1592,11 @@ $Y_{xyc}=0.8$的情况下，
 #### 2.2 offset loss
 
 由于三个骨干网络输出的feature map的空间分辨率变为原来输入图像的四分之一。相当于输出feature map上一个像素点对应原始图像的4x4的区域，这会带来较大的误差，因此引入了偏置值和偏置的损失值。设骨干网络输出的偏置值为$\hat{O}\in R^{\frac{W}{R}\times \frac{H}{R}\times 2}$, 这个偏置值用L1 loss来训练：
+
 $$
 L_{offset}=\frac{1}{N}\sum_{p}|\hat{O}_{\tilde{p}}-(\frac{p}{R}-\tilde{p})|
 $$
+
 p代表目标框中心点，R代表下采样倍数4，$\tilde{p}=\lfloor \frac{p}{R} \rfloor$,  $\frac{p}{R}-\tilde{p}$代表偏差值。
 
 
@@ -1600,9 +1604,11 @@ p代表目标框中心点，R代表下采样倍数4，$\tilde{p}=\lfloor \frac{p
 #### 2.3 size loss/wh loss
 
 假设第k个目标，类别为$c_k$的目标框的表示为$(x_1^{(k)},y_1^{(k)},x_2^{(k)},y_2^{(k)})$，那么其中心点坐标位置为$(\frac{x_1^{(k)}+x_2^{(k)}}{2}, \frac{y_1^{(k)}+y_2^{(k)}}{2})$, 目标的长和宽大小为$s_k=(x_2^{(k)}-x_1^{(k)},y_2^{(k)}-y_1^{(k)})$。对长和宽进行训练的是L1 Loss函数：
+
 $$
 L_{size}=\frac{1}{N}\sum^{N}_{k=1}|\hat{S}_{pk}-s_k|
 $$
+
 其中$\hat{S}\in R^{\frac{W}{R}\times \frac{H}{R}\times 2}$是网络输出的结果。
 
 #### 2.4 CenterNet Loss

@@ -3,6 +3,7 @@
 
 # 介绍
 传统的基于关键点的目标检测方法如CornerNet就是利用目标左上角的角点和右下角的角点来确定目标，但在确定目标的过程中无法很好的利用目标内部的特征，导致产生了很多误检测（在讲CorenerNet的时候已经提到CornerNet最大的瓶颈是角点检测不准确，这正是因为它提出的Corner Pooling更加关注目标的边缘信息，而对目标内部的感知能力不强）。为了改善这一缺点，CenterNet提出使用左上角，中心，右下角三个关键点来确定一个目标，使网络花费很小的代价就具有了感知物体内部的能力，从而可以有效的抑制误检。同时，为了更好的检测中心点和角点，论文提出了Cascade Cornet Pooling和Center Pooling来提取中心点和角点的特征。CenterNet在MSCOCO数据集上获得了47%的mAP值，是One-Stage目标检测算法中的精度最高的。论文中CenterNet提到了三种用于目标检测的网络，这三种网络都是编码解码(encoder-decoder)的结构： 
+
 - Resnet-18 with up-convolutional layers : 28.1% coco and 142 FPS 
 - DLA-34 : 37.4% COCOAP and 52 FPS
 - Hourglass-104 : 45.1% COCOAP and 1.4 FPS
@@ -10,7 +11,11 @@
 # 原理
 上面已经提到了CornerNet的缺点，即全局信息获取能力弱，无法很好的对同一目标的两个角点进行分组。如Figure1的上面两张图所示，前100个预测框中存在大量长宽不协调的误检，这是因为CornerNet无法感知物体内部的信息，这一个问题可以借助互补信息来解决如在Anchor-Based目标检测算法中设定一个长宽比，而CornerNet是无法解决的。因此，CenterNet新预测了一个目标中心点作为互补信息，并且提出了Center Pooling和Cascade Cornet Pooling来更好的提取中心点和角点的特征。如Figure1下方的两张图所示，预测框和GT框有高IOU并且GT的中心在预测框的中心区域，那么这个预测框更有可能是正确的，所以可以通过判断一个候选框的区域中心是否包含一个同类物体的中心点来决定它是否正确。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200125181056401.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200125181115681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200125181123207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200125181056401.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200125181115681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200125181123207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 # 方法
 ## 基准线和动机
@@ -34,6 +39,7 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200125183250247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 ## 丰富中心点和角点特征
+
 - **Center Pooling**：一个物体的中心点不一定含有可以和其它类别有很大区分性的语义信息（例如人的头部含有很强的易区分于其它类别的语义信息，但是人这个物体的中心点基本位于身体的中部）。下面的Figure4(a)表示Center Pooling的原理，Center Pooling提取中心点水平方向和垂直方向的最大值并相加，给中心点提供除了所处位置以外的信息，这使得中心点有机会获得更易于区分于其他类别的语义信息。Center Pooling 可通过不同方向上的Corner Pooling 的组合实现，例如一个水平方向上的取最大值操作可由Left Pooling 和Right Pooling通过串联实现。同理，一个垂直方向上的取最大值操作可由Top Pooling 和Bottom Pooling通过串联实现，具体操作如Figure5（a）所示，特征图两个分支分别经过一个$3\times3 Conv-BN-ReLU$，然后做水平方向和垂直方向的Corner Pooling，最后再相加得到结果。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200125184902248.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -51,6 +57,7 @@ CenterNet的损失函数如下所示，由角点位置损失(Focal Loss)，中�
 最终的实验结果如Table2所示：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200125202516371.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到CenterNet获得了47%的mAP，超过了所有的One-Stage算法，领先幅度越5%，并且精度和Two-Stage的目标检测算法的最好结果也是接近的。
 
 下面的Table3是CenterNet 与 CornerNet 的单独对比，可以看出在MS COCO数据集上CenterNet消除大量误检框，尤其是在小物体上。
@@ -77,12 +84,14 @@ CenterNet的损失函数如下所示，由角点位置损失(Focal Loss)，中�
 这篇论文在CornerNet的基础上增加了一个中心点来消除误检框，基本想法来源于：“网络具备感知物体内部信息的能力”，并且论文提出的这一思想也可以用于其他的Anchor-Based或者Anchor-Free的目标检测算法中带来效果提升。
 
 # 附录
+
 - 论文原文：https://arxiv.org/abs/1904.08189
 - 代码地址：https://github.com/Duankaiwen/CenterNet
 - 参考1：https://zhuanlan.zhihu.com/p/66048276
 - 参考2：https://www.cnblogs.com/gawain-ma/p/10882113.html
 
 # 同期文章
+
 - [目标检测算法之Anchor Free的起源：CVPR 2015 DenseBox](https://mp.weixin.qq.com/s/gYq7IFDiWrLDjP6219U6xA)
 - [【目标检测Anchor-Free】ECCV 2018 CornerNet](https://mp.weixin.qq.com/s/cKOna7GfTwl1X1sgYNXcEg)
 - [【目标检测Anchor-Free】CVPR 2019 ExtremeNet（相比CornerNet涨点5.3%）](https://mp.weixin.qq.com/s/Sj0zgcFFt_W9yZy37oENUw)

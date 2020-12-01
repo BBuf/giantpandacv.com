@@ -7,6 +7,7 @@ SNIP算法借鉴了多尺度训练的思想进行训练，所谓多尺度训练�
 针对这一缺点，SNIPER（Scale Normalization for Image Pyramids with Efficient Resampling）算法通过引入`context-regions`这个概念（论文中使用`chips`这个单词来表示这些区域，`chips`的中文翻译就是碎片，比较形象）使得模型不再需要处理每个尺度图像的每个像素点，而是选择那些对检测最有帮助的区域进行训练，这样就大大减少了计算量。
 
 这些`chips`主要分为$2$个类别：
+
 - **positive chips** 这些`chips`包含**Ground Truth**。
 - **neigative chips** 这是从RPN网络输出的ROI抽样获得的，这些`chips`可以理解为是难分类的背景，而那些容易分类的背景就没必要进行多尺度训练了。
 
@@ -35,12 +36,12 @@ SNIP算法借鉴了多尺度训练的思想进行训练，所谓多尺度训练�
 
 下面的**Figure2**展示了SNIPER的**negative chip**选择过程：
 
-
 ![SNIPER的negative chip选择过程](https://img-blog.csdnimg.cn/20200510203216739.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 第一行表示输入图像和**ground truth**信息，第二行图像中的红色小圆点表示没有被**positive chips（Chips）** 包含的`negative`候选框，因为候选框较多，用框画出来的话比较繁杂，所以这里用红色小圆点表示。
 
 橘色的框表示基于这些`negtive`候选框生成的**negtive chips**，也即是$C_{neg}^i$。每个**negative chip**的获得过程如下：
+
 - 首先移除包含在$C_{pos}^i$的区域候选框
 - 然后在$R_i$范围内，每个`chip`都至少选择$M$个候选框。
 - 在训练模型时，每一张图像的每个`epoch`都处理固定数量的**negative chip**，这些固定数量的**negative chip** 就是从所有尺度的**negative chip**中抽象获得的。
@@ -65,6 +66,7 @@ SNIP算法借鉴了多尺度训练的思想进行训练，所谓多尺度训练�
 简单来说本文就是在SNIP的基础上加了一个**positive/negative chip selection**，从实验结果来看是非常SOTA的，可以说碾压了Mosaic反应出来的结果。另外基于ResNet101的Faster RCNN架构结合SNIPER，精度超过了YOLOV4接近4个点，效果是非常好的。
 
 # 6. 参考
+
 - https://blog.csdn.net/u014380165/article/details/82284128?utm_source=blogxgwz5
 - 论文原文：https://arxiv.org/pdf/1805.09300.pdf
 - 官方MxNet代码：https://github.com/mahyarnajibi/SNIPER

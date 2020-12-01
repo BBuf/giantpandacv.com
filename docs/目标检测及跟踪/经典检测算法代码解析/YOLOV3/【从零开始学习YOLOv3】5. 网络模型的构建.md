@@ -320,9 +320,11 @@ def create_modules(module_defs, img_size, arc):
 这里涉及到一个非常insight的点，笔者与BBuf讨论了很长时间，才理解这样做的原因。
 
 我们在第一篇中介绍了，YOLO层前一个卷积的filter个数计算公式如下：
+
 $$
 filter=(class+5)\times 3
 $$
+
 5代表x,y,w,h, score，score代表该格子中是否存在目标，3代表这个格子中会分配3个anchor进行匹配。在YOLOLayer中的forward函数中，有以下代码，需要通过sigmoid激活函数：
 
 ```python

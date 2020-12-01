@@ -37,6 +37,7 @@ RFB模块主要有两个特点：
 ![RFB-Net在PASCAL VOC2007 test dev上的测试结果](https://img-blog.csdnimg.cn/20200303171628909.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 而下面的Table4是在COCO test dev 2015数据集上的测试结果。最后的RFBNet-512E做了两个改变：
+
 - 对`conv7_fc`的输出特征做了`up-sample`，然后和`conv4_3`的输出特征做融合，基于融合后的特征做预测。这种做法实际上是借鉴了FPN算法的思想。
 - RFB结构中增加了`7x7`大小的卷积分支。这两点改进对效果的提升有一定帮助，而且带来的计算量也少。
 
@@ -50,6 +51,7 @@ RFB模块主要有两个特点：
 RFBNet说白了就是空洞卷积的应用，虽然看起来论文比较水，但至少给我们提供了一个重要信息，在检测中调感受野是行之有效的。
 
 # 7. 附录
+
 - 论文原文：https://arxiv.org/pdf/1711.07767.pdf
 - 代码实现：https://github.com/ruinmessi/RFBNet
 - 参考：https://blog.csdn.net/u014380165/article/details/81556769

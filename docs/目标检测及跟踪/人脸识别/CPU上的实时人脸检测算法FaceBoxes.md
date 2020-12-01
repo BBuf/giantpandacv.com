@@ -9,12 +9,14 @@
 
 # 3. RDCL
 RDCL即`Rapidly Digested Convolutional Layers`，主要包含下面几个要点：
+
 - **快速减小输入特征图的大小**：为了达到这一点，在卷积和池化层中使用了一系列大的滑动步长，在$Conv1,Pool1,Conv2,Pool2$上`stride`分别是$4,2,2,2$, 所以RDCL的`stride`一共是32，也即是说输入图片的尺寸被快速的减小了$32$倍。
 - **选择合适的核尺寸**：一个网络开始的一些层的kernel size应该比较小以用来加速，同时也要在某些层上使用较大的卷积核来减轻特征图减小带来的信息损失。$Conv1,Conv2$以及所有的$Pool$分别选取了$7\times 7,5\times 5, 3\times 3$的核尺寸。
 - **减少输出通道数**：使用C.ReLU来减少输出通道数。
 
 # 4. MSCL
 MSCL即`Multiple Scale Convolutional Layers`，主要包含下面几个要点：
+
 - **丰富感受野**：使用了Inception模块来丰富感受野，感受野的知识可以看我们的这篇推文：[目标检测和感受野的总结和想法](https://mp.weixin.qq.com/s/9169hhoJwYd0VckNt8VDLg)
 - **多尺度检测**：和SSD一样在多个尺度上进行检测。
 
@@ -98,6 +100,7 @@ $A_{density}=A_{scale}/A_{interval}$
 总的来说FaceBoxes在对人脸并不hard的情况下识别率是很好了，并且速度也相对较快，虽然在今天看来应用的价值不大了，但是里面提出的Trick和做的实验还是有参考意义的。
 
 # 10. 参考
+
 - https://zhuanlan.zhihu.com/p/56931573
 - https://blog.csdn.net/shuzfan/article/details/77807550
 - CReLU：https://arxiv.org/pdf/1708.05234.pdf
@@ -111,6 +114,7 @@ $A_{density}=A_{scale}/A_{interval}$
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

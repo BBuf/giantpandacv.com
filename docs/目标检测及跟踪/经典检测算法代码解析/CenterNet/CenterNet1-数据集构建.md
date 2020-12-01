@@ -23,9 +23,11 @@ CenterNet是一个经典的Anchor-Free目标检测方法，图片进入网络流
 ## 2. CenterNet部分详解
 
 设输入图片为$I\in R^{W\times H\times 3}$, W代表图片的宽，H代表高。CenterNet的输出是一个关键点热图heatmap。
+
 $$
 \hat{Y}\in[0,1]^{\frac{W}{R}\times\frac{H}{R}\times C}
 $$
+
 其中R代表输出的stride大小，C代表关键点的类型的个数。
 
 举个例子，在COCO数据集目标检测中，R设置为4，C的值为80，代表80个类别。

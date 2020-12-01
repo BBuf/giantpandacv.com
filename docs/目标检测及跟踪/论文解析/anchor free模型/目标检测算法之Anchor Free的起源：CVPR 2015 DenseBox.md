@@ -1,9 +1,11 @@
 ![论文开篇](https://img-blog.csdnimg.cn/20200106195033724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 题外话
 刚刚过去的2019年出现了大量Anchor Free的工作，并且这个方向似乎大有可为，不少大佬都在研究这个方向。本着学习的态度，我将从Anchor Free的起源开始讲起，这是一个持续更新的系列。今天先来讲一下CVPR 2015的DenseBox，这项工作算是Anchor Free的起源。不得不说接近3-4年时间，Anchor Free才大火起来，由此看来这篇论文确实高瞻远瞩。论文地址和代码实现见附录。
 
 # 贡献
 论文首先提出了一个问题，即如何将FCN（全卷积网络）应用到目标检测？为了解决这一问题，论文提出了DenseBox。即一个可以直接在图像的位置上预测出目标的边界框的端到端网络。论文的主要贡献为：
+
 - 在FCN的基础上提出DenseBox直接检测目标，不依赖候选框。
 - 在多任务学习过程中结合了关键点检测进一步提高目标检测的精度。
 
@@ -11,6 +13,7 @@
 DenseBox的整体框架如Figure1所示。
 
 ![Figure1](https://img-blog.csdnimg.cn/20200106195644746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 - 首先经过图像金字塔生成多个尺度的图片。
 - 图片经过FCN得到最终的输出。
 - 将输出特征图转化为边框，并用NMS后处理。
@@ -37,7 +40,9 @@ $t_i={s_i,dx^t=x_i-x_t,dy^t=y_i-y_t,dx^b=x_i-x_b,dy^b=y_i-y_b}$，其中$t$代�
 ## 损失函数
 上面提到，网络的前`12`层用预训练的VGG19权重来初始化，其余卷积层用`xavier`初始化.和Faster-RCNN类似，这个网络也有两个输出分支，第一个是输出目标类别分数$\hat{y}$，也即是输出特征图的第一个通道的每个像素值，标签$y^{*}={0,1}$，分类损失定义如下：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106205847945.png)第二个损失是边界框回归损失，定义为最小化目标偏移及预测偏移之间的L2损失：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106205847945.png)
+
+第二个损失是边界框回归损失，定义为最小化目标偏移及预测偏移之间的L2损失：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106205927985.png)
 
@@ -49,6 +54,7 @@ $t_i={s_i,dx^t=x_i-x_t,dy^t=y_i-y_t,dx^b=x_i-x_b,dy^b=y_i-y_b}$，其中$t$代�
 - **Loss with Mask。** 为每个样本$\hat{t_i}=({\hat{y_i},\hat{d_i}})$(像素)定义mask值$M(\hat{t_i})$，如下：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020010621285347.png)
+
 回归损失只对正样本起作用，论文中还将目标框坐标$d^{*}$进行了归一化，即把坐标除以$\frac{50}{4}$，最后还对回归损失设置了一个惩罚系数$\lambda_{loc}=3$。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106213237701.png)
@@ -82,6 +88,7 @@ DenseBox由于是全卷积网络，因此定位关键点可以加几个分支来
 本文介绍了Anchor-Free的起源篇DenseBox，最重要的一点是要理解此算法是如何在不使用候选框的条件下得到目标框的思想，这是后面众多Anchor-Free算法的基本出发点。
 
 # 附录
+
 - 论文原文：https://arxiv.org/abs/1509.04874
 - 源码：https://github.com/CaptainEven/DenseBox
 - 参考：https://www.cnblogs.com/fourmi/p/10771387.html

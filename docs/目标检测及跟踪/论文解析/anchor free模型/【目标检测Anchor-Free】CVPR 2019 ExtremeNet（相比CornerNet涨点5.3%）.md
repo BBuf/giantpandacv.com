@@ -21,10 +21,12 @@ ExtremeNet的大致流程是使用关键点检测算法，对每个类别预测4
 ExtremeNet的输出通道是$5\times C + 4 \times 2$。其中$C$表示一共有多少类目标，对于每个类别预测一张heatmap和一张center map因此是5张。然后对于每种极值点heatmap，再预测两张offset map（分别对应X和Y方向），注意是所有类别共享并且center map没有，因此只有$4\times 2$张。整个流程如Figure3所示。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200123195315547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ## 中心点分组
 参考CornerNet，首先提取heatmap中的极值点，极值点定义为$3\times 3$滑动窗口中的极大值并且响应大于预先设定的阈值$t_p$。然后对于每一种极值点组合（进行合适的剪枝以减小遍历规模），计算它们的中心点，如果center map对应位置上的响应超过了预先设定的阈值$t_c$，则将这5个点作为一个备选，该备选组合的分数为5个对应点的分数平均值。论文中设置$t_p=0.1$并且$t_c=0.1$，一个可视化的过程如下：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200123200315172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 具体的算法流程如Algorithm1所示：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200123200411111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -32,6 +34,7 @@ ExtremeNet的输出通道是$5\times C + 4 \times 2$。其中$C$表示一共有�
 通过上面的算法有可能会得到一些高置信度但是是假阳性的检测结果。如下图所示：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200123200836914.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 上面的三个实线框表示三个ground truth bbox，而下面的虚线bbox则是ghost bbox，可以发现在训练过程中是可以知道下面的box是假阳性检测，而在测试过程中是并不知道的。为了对这一情况进行处理，论文使用了soft NMS算法，根据Algorithm1，假设最后预测出的一个bbox，其分数为$s_0$，所有被这个bbox包含的其它bbox的得分之和超出$s_0$的三倍，那么这个bbox的score降为原来的一半即$s_0/2$，后面再执行置信度阈值为0.5的nms就可以把这种ghost bbox滤掉了。为什么3个就行？从上图可以看到至少要有3个bbox才可以产生ghost bbox的情况，并且只能是奇数个才能出现这种情况，如果是比3更大的奇数也就是说需要很多个目标的中心点在同一水平或者垂直线上，这在现实情况中是几乎不会出现的。
 
 ## 边缘聚合
@@ -40,6 +43,7 @@ ExtremeNet的输出通道是$5\times C + 4 \times 2$。其中$C$表示一共有�
 为了解决这个问题，论文提出使用边缘聚合（edge aggregation）方法。对于每个极值点，其响应都是局部窗口最大值，对于left/right方向的极点，按照垂直方向进行聚合，对top/bottom方向的角点，则按照水平方向进行聚合。聚合的时候注意是聚合那些score单调递减的极点，并且在这个方向上有局部最小score时停止聚合，这是为了避免多个目标bbox 沿轴排列，从而将不同目标的极点score聚合到一起。
 
 令$m$为top或者bottom类型的极点，记$N_i^m=\hat{Y_{m_x+i,m_y}}$表示包含$m$这个极点的水平线段在heatmap上的响应值。在令$i_0<0<i_1$表示左右两个最近极小值点，即$N_{i_0-1}^m>N_{i_0}^m$，然后极点$m$的score被更新为：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020012320524533.png)
 
 其中，$\lambda_{aggr}$是聚合权重，论文取0.1。效果如Figure4所示：
@@ -50,7 +54,9 @@ ExtremeNet的输出通道是$5\times C + 4 \times 2$。其中$C$表示一共有�
 基于ExtremeNet检测到的4个极值点，通过在每两个极值点之间插入中间点，来补成八边形掩模。具体做法是：首先根据4个极值点找到外接矩形；然后对每个极值点，在其所属的矩形边上，沿着两个方向各延长矩形边的1/8；最后将8个点连接起来，如果遇到了矩形边界则截断，得到最后的八边形分割掩模估计结果。如下图所示：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200123211013103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 同时将ExtremeNet获得的极值点传到上面提到的Deep Extreme Cut网络可以获得一个类别未知的分割Mask，注意**类别其实在ExtremeNet中已经知道了**，这就相当于一个双阶段的实例分割。效果如下：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200123211228473.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 
@@ -58,10 +64,12 @@ ExtremeNet的输出通道是$5\times C + 4 \times 2$。其中$C$表示一共有�
 不多讲了，直接贴一下核心结果图，在MSCOCO上map值达到了43.7%，相比于CornerNet涨点5.3%，还是不错的。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200123211319103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 结论
 这篇论文改善了CornerNet角点预测困难的问题，提出的ExtremeNet不仅仅在精度上有较大提升并且可以用来做分割，思想是蛮有趣的。
 
 # 附录
+
 - 论文原文：https://arxiv.org/pdf/1901.08043.pdf
 - Deep Extreme Cut论文：https://arxiv.org/abs/1711.09081
 - 代码：https://github.com/xingyizhou/ExtremeNet
@@ -69,6 +77,7 @@ ExtremeNet的输出通道是$5\times C + 4 \times 2$。其中$C$表示一共有�
 - 参考2：https://zhuanlan.zhihu.com/p/67386907
 
 # 同期文章
+
 - [目标检测算法之Anchor Free的起源：CVPR 2015 DenseBox](https://mp.weixin.qq.com/s/gYq7IFDiWrLDjP6219U6xA)
 - [【目标检测Anchor-Free】ECCV 2018 CornerNet](https://mp.weixin.qq.com/s/cKOna7GfTwl1X1sgYNXcEg)
 

@@ -77,6 +77,7 @@ activation=leaky
 ```
 
 feature map计算公式：
+
 $$
 OutFeature=\frac{InFeature+2\times padding-size}{stride}+1
 $$

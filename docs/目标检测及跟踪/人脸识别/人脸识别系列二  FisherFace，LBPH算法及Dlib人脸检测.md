@@ -3,8 +3,10 @@
 # FisherFace算法
 FisherFace是基于`线性判别分析`(LDA)实现的。LDA算法思想最早由英国统计与遗传学家，现代统计科学的奠基人之一罗纳德*费舍尔(Ronald)提出。LDA算法使用统计学方法，尝试找到物体间特征的一个线性组合，在降维的同时考虑类别信息。通过该算法得到的线性组合可以用来作为一个线性分类器或者实现降维。
 LDA的算法原理可以看我之前发的两篇推文，和《周志华机器学习》的线性判别分析那一个节，我的推文地址如下：https://mp.weixin.qq.com/s/4gowEl_OA13y5u6VueOChg 和 https://mp.weixin.qq.com/s/K6ASbhVrV5-YXrp-rldP6A 。
+
 通过之前讲过的LDA算法原理，我们知道，该算法是在样本数据映射到另外一个特征空间后，将类内距离最小化，类间距离最大化。LDA算法可以用作降维，该算法的原理和PCA算法很相似，因此LDA算法也同样可以用在人脸识别领域。通过使用PCA算法来进行人脸识别的算法称为特征脸法，而使用LDA算法进行人脸识别的算法称为费舍尔脸法。由于LDA算法与PCA算法很相似，我们简单的对二者做一个比较。
 LDA和PCA算法的相似之处在于：
+
 - 在降维的时候，两者都使用了矩阵的特征分解思想。
 - 两者都假设数据符合高斯分布。
 LDA和PCA的不同之处在于：
@@ -13,12 +15,15 @@ LDA和PCA的不同之处在于：
 - 从数学角度来看，LDA选择分类性能最好的投影方向，而PCA选择样本投影点具有最大方差的方向。
 
 通过LDA算法得到的这些特征向量就是FisherFace，后续的人脸人脸识别过程和上一节的完全一致，只需要把特征脸法模型改成FisherFace模型即可，要更改的代码就一行，如下：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019111611322554.png)
+
 值得一提的是，FisherFace算法识别的错误率低于哈佛和耶鲁人脸数据库测试的特征脸法识别结果。
 
 # LBPH
 ## 算法原理
 OpenCV除了提供特征脸法，FisherFace以外，还提供了另外一种经典的人脸识别算法即LBPH。KBPH是Local Binary Patterns Histograms的缩写，翻译过来就是局部二进制编码直方图。该算法基于提取图像特征的LBP算子。如果直接使用LBP编码图像用于人脸识别。其实和不提取LBP特征区别不大，因此在实际的LBP应用中，一般采用LBP编码图像的统计直方图作为特征向量进行分类识别。
+
 该算法的大致思路是：
 
 先使用LBP算子提取图片特征，这样可以获取整幅图像的LBP编码图像。再将该LBP编码图像分为若干个区域，获取每个区域的LBP编码直方图，从而得到整幅图像的LBP编码直方图。该方法能够在一定范围内减少因为没完全对准人脸区域而造成的误差。另一个好处是我们可以根据不同的区域赋予不同的权重，例如人脸图像往往在图像的中心区域，因此中心区域的权重往往大于边缘部分的权重。通过对图片的上述处理，人脸图像的特征便提取完了。
@@ -31,7 +36,9 @@ OpenCV除了提供特征脸法，FisherFace以外，还提供了另外一种经�
 
 这里我还是用上次推文的代码来测试一下LBPH人脸识别模型，仍然只需要改一行代码，即是：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191116161215975.png)然后就可以和上次推文一样获得一个简单的基于LBPH的人脸识别demo 了。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191116161215975.png)
+
+然后就可以和上次推文一样获得一个简单的基于LBPH的人脸识别demo 了。
 
 
 # Dlib人脸检测
@@ -41,9 +48,11 @@ Dlib是一款优秀的跨平台开源的C++工具库，该库使用C++编写，�
 Dlib的核心原理是使用了图像Hog特征来表示人脸，和其他特征提取算子相比，它对图像的几何和光学的形变都能保持很好的不变形。该特征与LBP特征，Harr特征共同作为三种经典的图像特征，该特征提取算子通常和支持向量机(SVM)算法搭配使用，用在物体检测场景。
 
 Dlib 实现的人脸检测方法便是基于图像的Hog特征，综合支持向量机算法实现的人脸检测功能，该算法的大致思路如下：
+
 - 对正样本(即包含人脸的图像)数据集提取Hog特征，得到Hog特征描述子。
 - 对负样本(即不包含人脸的图像)数据集提取Hog特征，得到Hog描述子。
 其中负样本数据集中的数据量要远远大于正样本数据集中的样本数，负样本图像可以使用不含人脸的图片进行随机裁剪获取。
+
 - 利用支持向量机算法训练正负样本，显然这是一个二分类问题，可以得到训练后的模型。
 - 利用该模型进行负样本难例检测，也就是难分样本挖掘(hard-negtive mining)，以便提高最终模型的分类能力。具体思路为：对训练集里的负样本不断进行缩放，直至与模板匹配位置，通过模板滑动串口搜索匹配（该过程即多尺度检测过程），如果分类器误检出非人脸区域则截取该部分图像加入到负样本中。
 - 集合难例样本重新训练模型，反复如此得到最终分类模型。
@@ -101,7 +110,9 @@ cv2.imshow("Detected Face", img)
 cv2.waitKey(0)
 ```
 原始图和检测结果如下：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191116172735828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ### 实时检测
 不知道这个算法是否可以实时，我们写一个代码，打开一个摄像头，并实时显示一下帧率。
 
@@ -151,7 +162,9 @@ def FaceRecognize():
 FaceRecognize()
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191116175853917.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)(打了点马赛克)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191116175853917.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+(打了点马赛克)
 
 Dlib检测的效果还不错，而且速度在我的I5处理器1s都到80-90帧了，如果做一个简单的人脸检测任务可以考虑使用这个算法。
 
@@ -160,4 +173,5 @@ OK， 今天讲到这里了，有问题下方留言。
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPadaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS01M2E3NWVmOTQ2YjA0OTE3LnBuZw?x-oss-process=image/format,png)

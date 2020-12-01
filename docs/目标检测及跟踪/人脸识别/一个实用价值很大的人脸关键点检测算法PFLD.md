@@ -93,6 +93,7 @@ Table5还展示了FPLD在AFLW数据集上的表现：
 总的来说FPLD是一个idea非常好并且实用价值比较大的人脸关键点检测算法，无论是人脸姿态估计子网络的引入还是针对数据不平衡重新设计损失函数都是值得借鉴的。
 
 # 7. 参考文章
+
 - https://zhuanlan.zhihu.com/p/73546427
 - https://blog.csdn.net/wwwhp/article/details/88361422
 - https://arxiv.org/pdf/1902.10859.pdf
@@ -104,6 +105,7 @@ Table5还展示了FPLD在AFLW数据集上的表现：
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

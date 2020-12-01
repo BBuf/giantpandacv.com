@@ -14,15 +14,16 @@
 
 配置：
 
-1. 将cudnn的batch norm关闭。打开torch/nn/functional.py文件，找到torch.batch_norm这一行，将`torch.backends.cudnn.enabled`选项更改为False。
-2. 克隆项目
+**1**. 将cudnn的batch norm关闭。打开torch/nn/functional.py文件，找到torch.batch_norm这一行，将`torch.backends.cudnn.enabled`选项更改为False。
+
+**2**. 克隆项目
 
 ```
 CenterNet_ROOT=/path/to/clone/CenterNet
 git clone https://github.com/zzzxxxttt/pytorch_simple_CenterNet_45 $CenterNet_ROOT
 ```
 
-3. 安装cocoAPI
+**3**. 安装cocoAPI
 
 ```shell
 cd $CenterNet_ROOT/lib/cocoapi/PythonAPI
@@ -30,7 +31,7 @@ make
 python setup.py install --user
 ```
 
-4. 编译可变形卷积DCN
+**4**. 编译可变形卷积DCN
 
 - 如果使用的是pytorch0.4.1, 将`$CenterNet_ROOT/lib/DCNv2_old` 复制为 `$CenterNet_ROOT/lib/DCNv2`
 - 如果使用的是pytorch1.1.0 or 1.0.0, 将`$CenterNet_ROOT/lib/DCNv2_new` 复制为 `$CenterNet_ROOT/lib/DCNv2`.
@@ -41,16 +42,16 @@ cd $CenterNet_ROOT/lib/DCNv2
 ./make.sh
 ```
 
-5. 编译NMS
+**5**. 编译NMS
 
 ```shell
 cd $CenterNet_ROOT/lib/nms
 make
 ```
 
-6. 对于COCO格式的数据集，下载链接在：http://cocodataset.org/#download。将annotations, train2017, val2017, test2017放在`$CenterNet_ROOT/data/coco`
+**6**. 对于COCO格式的数据集，下载链接在：http://cocodataset.org/#download。将annotations, train2017, val2017, test2017放在`$CenterNet_ROOT/data/coco`
 
-7. 对于Pascal VOC格式的数据集，下载VOC转为COCO以后的数据集：
+**7**. 对于Pascal VOC格式的数据集，下载VOC转为COCO以后的数据集：
 
 百度网盘链接：https://pan.baidu.com/share/init?surl=z6BtsKPHh2MnbfT25Y4wYw 密码：4iu2
 
@@ -58,7 +59,7 @@ make
 
 PS:以上两者是官方数据集，如果制作自己的数据集的话可以往下看。
 
-8. 如果选择Hourglass-104作为骨干网络，下载CornerNet预训练模型：
+**8**. 如果选择Hourglass-104作为骨干网络，下载CornerNet预训练模型：
 
 百度网盘链接：https://pan.baidu.com/s/1tp9-5CAGwsX3VUSdV276Fg 密码： y1z4
 

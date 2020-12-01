@@ -15,6 +15,7 @@ SSH算法是在VGG的基础上进行了改进，创新点主要有两个，即**
 而**引入更多的上下文信息** 是通过在检测模块中插入上下文模块(context module)实现的，上下文模块的结构如Figure4所示，它是通过将原始的特征分别接一个$3\times 3$卷积的支路和$2$个$3\times 3$卷积的支路从而为特征图带来不同的感受野，达到丰富语义信息的目的：
 
 ![通过增大感受野引入更多的上下文信息](https://img-blog.csdnimg.cn/20200517170139663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 3. 创新点详解
 刚才提到，SSH算法的创新点就$3$个，即新的检测模块，上下文模块以及损失函数的分组传递，接下来我们就再盘点一下：
 
@@ -56,6 +57,7 @@ SSH算法还对损失函数做了一些调整，公式如下所示：
 这篇文章介绍了一下用于人脸检测的SSH算法，它提出的上下文模块和损失函数的分组传递还是比较有意思的，论文的精度也说明这几个创新点是有用的。但是论文给出的实验结果比较少，所以我们无法判断每个Trick对结果的影响幅度到底多大，这是比较遗憾的。
 
 # 6. 附录
+
 - HR算法：https://blog.csdn.net/wfei101/article/details/80932095
 - 参考：https://blog.csdn.net/u014380165/article/details/83590831
 - 论文原文：https://arxiv.org/pdf/1708.03979.pdf
@@ -68,6 +70,7 @@ SSH算法还对损失函数做了一些调整，公式如下所示：
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

@@ -52,9 +52,9 @@ $$
 
 - 在$Y_{xyc}=1$的时候，
 
-对于易分样本来说，预测值$\hat{Y}_{xyc}$接近于1，$(1-\hat{Y}_{xyc})^\alpha$就是一个很小的值，这样loss就很小，起到了矫正作用。
+对于易分样本来说，预测值$\hat{Y}_{xyc}$接近于1， $(1-\hat{Y}_{xyc})^\alpha$ 就是一个很小的值，这样loss就很小，起到了矫正作用。
 
-对于难分样本来说，预测值$\hat{Y}_{xyc}$接近于0，$ (1-\hat{Y}_{xyc})^\alpha$就比较大，相当于加大了其训练的比重。
+对于难分样本来说，预测值$\hat{Y}_{xyc}$接近于0， $(1-\hat{Y}_{xyc})^\alpha$ 就比较大，相当于加大了其训练的比重。
 
 - otherwise的情况下：
 
@@ -83,27 +83,31 @@ $Y_{xyc}=0.8$的情况下，
 ### 2.2 offset loss
 
 由于三个骨干网络输出的feature map的空间分辨率变为原来输入图像的四分之一。相当于输出feature map上一个像素点对应原始图像的4x4的区域，这会带来较大的误差，因此引入了偏置值和偏置的损失值。设骨干网络输出的偏置值为$\hat{O}\in R^{\frac{W}{R}\times \frac{H}{R}\times 2}$, 这个偏置值用L1 loss来训练：
+
 $$
 L_{offset}=\frac{1}{N}\sum_{p}|\hat{O}_{\tilde{p}}-(\frac{p}{R}-\tilde{p})|
 $$
+
 p代表目标框中心点，R代表下采样倍数4，$\tilde{p}=\lfloor \frac{p}{R} \rfloor$,  $\frac{p}{R}-\tilde{p}$代表偏差值。
-
-
 
 ### 2.3 size loss/wh loss
 
 假设第k个目标，类别为$c_k$的目标框的表示为$(x_1^{(k)},y_1^{(k)},x_2^{(k)},y_2^{(k)})$，那么其中心点坐标位置为$(\frac{x_1^{(k)}+x_2^{(k)}}{2}, \frac{y_1^{(k)}+y_2^{(k)}}{2})$, 目标的长和宽大小为$s_k=(x_2^{(k)}-x_1^{(k)},y_2^{(k)}-y_1^{(k)})$。对长和宽进行训练的是L1 Loss函数：
+
 $$
 L_{size}=\frac{1}{N}\sum^{N}_{k=1}|\hat{S}_{pk}-s_k|
 $$
+
 其中$\hat{S}\in R^{\frac{W}{R}\times \frac{H}{R}\times 2}$是网络输出的结果。
 
 ### 2.4 CenterNet Loss
 
 整体的损失函数是以上三者的综合，并且分配了不同的权重。
+
 $$
 L_{det}=L_k+\lambda_{size}L_{size}+\lambda_{offset}L_{offset}
 $$
+
 其中$\lambda_{size}=0.1, \lambda_{offsize}=1$
 
 ### 3. 代码解析

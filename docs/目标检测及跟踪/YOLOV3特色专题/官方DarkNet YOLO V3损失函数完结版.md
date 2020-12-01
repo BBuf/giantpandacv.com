@@ -19,6 +19,7 @@ $\sum_{i=0}^{K\times K}\sum_{j=0}^MI_{ij}^{obj}\sum_{c\in classes}[p_i(c)log(p_i
 我们再来解释一下这个公式。
 
 在YOLOV3中，Loss分成三个部分：
+
 - 一个是目标框位置$x,y,w,h$（左上角和长宽）带来的误差，也即是box带来的loss。而在box带来的loss中又分为$x$,$y$带来的BCE Loss以及$w$,$h$带来的MSE Loss。
 - 一个是目标置信度带来的误差，也就是obj带来的loss（BCE Loss）。
 - 最后一个是类别带来的误差，也就是class带来的loss（类别数个BCE Loss）。
@@ -80,6 +81,7 @@ A: 这个问题主要是没有对YOLOv3的匹配策略搞清楚，其实我们�
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)
