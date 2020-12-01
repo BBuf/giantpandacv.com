@@ -8,6 +8,7 @@
 
 # 3. 贡献
 EfficientDet是在EfficientNet的基础上针对目标检测任务提出的，它的贡献可以总结为如下几点：
+
 - 论文提出了新的多尺度特征金字塔结构BiFPN(Bi-directional feature pyramid network)，即是在我们上次介绍到的[【CV中的特征金字塔】四，CVPR 2018 PANet](https://mp.weixin.qq.com/s/bUU4VaYQL80nzw3kBF-nXQ) 的基础上引入了横向直连。
 - 论文还提出了weighted-BiFPN，即在不同scale的特征进行融合时引入注意力机制来对不同来源的特征进行权重调整(per-feature / per-channel / pei-pixel)，然而，这个带来的提升相比Bi-FPN来说是比较小的。
 - 仿造EfficientNet的复合缩放方法，对检测网络的各个部分进行复合缩放(输入图像大小，backbone的深度、宽度，BiFPN的深度（侧向级联层数），cls/reg head的深度)。同时由于检测网络中的变量更多，所以没有使用grid search，而是基于**经验**进行了实验。
@@ -18,6 +19,7 @@ EfficientDet是在EfficientNet的基础上针对目标检测任务提出的，�
 ![Figure2 BiFPN与其他的特征融合方法的比较](https://img-blog.csdnimg.cn/2020030710394510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 同时，作者观察到以前的征融合方法对所有输入特征一视同仁，在BiFPN中则引入了加权策略，下边介绍论文提出来的加权策略，也可以看作一种Attention机制。具体来说特征融合方法可以分成以下几种：
+
 - **无界融合。** 公式可以表示为：$O=\sum_{i}w_i*I_i$，其中$w_i$可以是一个标量(对每个特征而言)，可以是一个向量(对每一个通道)，也可以是一个多维Tensor(对没有个像素)。
 - **基于Softmax的融合。** 上面的融合方法缺点很明显，即如果不对$w_i$做限制容易导致训练不稳定，于是很自然的想到对每一个权重使用`softmax`。公式如下：$O=\sum_i\frac{e^{w_i}}{\sum_je^{w_j}}$
 - **快速限制融合。** 在上面的融合中由于计算`softmax`比较慢，于是作者提出了快速的限制融合方法，公式如下：$O=\sum_{i}\frac{w_i}{\epsilon+\sum_jw_j}$。为了保证weight大于0，在weight前使用ReLU激活函数。以Figure2中的第6层为例，公式如下：
@@ -32,6 +34,7 @@ EfficientDet的网络结构如Figure3所示，使用了EfficientNet和Bi-FPN，�
 
 ## 5.2 模型复合扩张
 模型复合扩张请读一下之前对EfficientNet的解读。论文将EfficientDet的模型复合扩张分成以下几个部分。
+
 - **对于Backbone网络**。直接采用EfficientNet-B0 to B6中的复合系数，并采用 EfficientNet作为backbone。
 
 - **对于BiFPN 网络**：
@@ -69,11 +72,13 @@ EfficientDet的网络结构如Figure3所示，使用了EfficientNet和Bi-FPN，�
 从结果看起来是非常牛逼的，不过具体用起来怎么样我们暂时也是不知道的，毕竟没有开源。等开源之后，如果真的好用，将是对目标检测领域的一个极大冲击，很可能在工业界大展身手。
 
 # 8. 附录
+
 - 论文原文：https://arxiv.org/abs/1911.09070
 - 非官方复现：https://github.com/xuannianz/EfficientDet
 - 参考：https://zhuanlan.zhihu.com/p/96773680
 
 # 9. 推荐阅读
+
 - [【CV中的特征金字塔】一，工程价值极大的ASFF](https://mp.weixin.qq.com/s/2f6ovZ117wKTbZvv2uRwdA)
 - [【CV中的特征金字塔】二，Feature Pyramid Network](https://mp.weixin.qq.com/s/d2TSeKEZPmVy1wlbzp8BNQ)
 - [【CV中的特征金字塔】三，两阶段实时检测网络ThunderNet](https://mp.weixin.qq.com/s/LX8pFMsDT21QNXtnXJIjXA)
