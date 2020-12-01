@@ -35,7 +35,7 @@ $$
 $$
 g(x_j)=W_gx_j
 $$
-$W_g​$是需要学习的权重矩阵，可以通过空间上的1×1卷积实现（实现起来比较简单）。
+$W_g$是需要学习的权重矩阵，可以通过空间上的1×1卷积实现（实现起来比较简单）。
 
 ---
 
@@ -49,11 +49,15 @@ C(x)=\sum_{\forall j}f(x_i,x_j)
 $$
 
 这里使用的是$x_i^Tx_j$一个点乘来计算相似度，之所以点积可以衡量相似度，这是通过余弦相似度简化而来的。
+
+
 $$
 \vec a *\vec b = |\vec a||\vec b|cos \theta
 $$
 
-- **Embedded Gaussian:** 具体公式如下：
+
+
+- Embedded Gaussian:** 具体公式如下：
 
 $$
 f(x_i,x_j)=e^{\theta(x_i)^T\phi(x_j)} \\
@@ -81,7 +85,7 @@ $$
 ![](https://img-blog.csdnimg.cn/20200105163010813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
 - x代表feature map, $x_i$代表的是当前关注位置的信息； $x_j$代表的是全局信息。
-- θ代表的是$\theta (x_i)=W_{\theta}x_i​$ ,实际操作是用一个1×1卷积进行学习的。
+- θ代表的是$\theta (x_i)=W_{\theta}x_i$ ,实际操作是用一个1×1卷积进行学习的。
 - φ代表的是$\phi (x_j)=W_{\phi}x_j$,实际操作是用一个1×1卷积进行学习的。
 
 - g函数意义同上。
