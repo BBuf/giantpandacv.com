@@ -32,6 +32,7 @@
 
 ## 3.2 维度缩放
 在上面的优化问题中最大的苦难是$d$，$w$，$r$相互依赖，并且值在不同的资源约束下会发生变化。因此，传统方法主要在这三个维度之一进行缩放CNN：
+
 - 深度($d$)：缩放深度是最常见的方法。这基于更深的网络可以捕获更丰富、更复杂的特征，并且可以很好地泛化新任务。 然而由于梯度消失问题，更深层次的网络也更难训练。虽然跨层连接和批量归一化等可以缓解训练问题，但非常深的网络的准确度增益会减少：例如，ResNet-1000和ResNet-101有相似精度。
 - 宽度($w$)。对于小模型，缩放宽度是最常用的。这基于更宽的网络往往能够捕获更细粒度的特征，并且更容易训练。 然而，极宽但浅的网络往往难以捕获更高级别的特征。 
 - 分辨率($r$)。 **感觉多尺度训练是最常用的了？** 这基于使用更高分辨率的输入图像，网络可以捕获更细粒度的特征。 
@@ -61,6 +62,7 @@
 ![EfficientNet-B0](https://img-blog.csdnimg.cn/2020022911494892.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 获得了BaseLine EfficientNet-B0后，通过下面两个步骤来进行模型缩放：
+
 - 步骤一：首先确定$\phi=1$，假设有两倍的可用资源，并根据公式2和3进行$\alpha$,$\beta$,$\gamma$的小网格搜索。作者找到了EfficientNet-B0满足约束的最佳值$\alpha=1.2$，$\beta=1.1$，$\gamma=1.15$。
 - 步骤二：将$\alpha$,$\beta$,$\gamma$固定为常数，并使用公式3扩展具有不同$\phi$的基线网络，以获得EfficientNet-B1至B7，见Table2。
 
@@ -115,11 +117,13 @@ Figure6则展示了各种模型的精度-参数曲线。
 这篇论文除了提出需要仔细平衡网络宽度、深度和分辨率的重要性，还使用NAS搜索出了一个搞笑的EfficientNet BaseLine，并且似乎论文的缩放方法在这个BaseLine上的提升是最大的，在其它的网络上则没有那么高了。。。这个实验做的非常漂亮，但我我这种穷人玩家肯定玩不动，也不要说复现了。。。猜测是动用了TPU？对代码有兴趣可以去研究源码。
 
 # 9. 附录
+
 - 原文链接：https://arxiv.org/pdf/1905.11946v1.pdf
 - 代码：https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet
 
 
 # 10. 推荐阅读
+
 - [快2020年了，你还在为深度学习调参而烦恼吗？](https://mp.weixin.qq.com/s/WU-21QtSlUKqyuH6Bw1IYg)
 - [将卷积神经网络视作泛函拟合](https://mp.weixin.qq.com/s/uF4dG0hzMNjVEA7Vkd6F-g)
 - [在2020年，你觉得计算机视觉有哪些值得研究的领域？](https://mp.weixin.qq.com/s/KHZ1kfS6joACF3q_MeG2vw)

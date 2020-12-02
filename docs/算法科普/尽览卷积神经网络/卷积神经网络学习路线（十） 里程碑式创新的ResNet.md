@@ -1,4 +1,5 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218212108283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 开篇的这张图代表ILSVRC历年的Top-5错误率，我会按照以上经典网络出现的时间顺序对他们进行介绍，同时穿插一些其他的经典CNN网络。
 # 前言
 时间来到2015年，何凯明团队提出Residual Networks(ResNet，残差网络)，这个网络横扫了2015年的各类CV比赛。在ImageNet的分类，定位，回归以及COCO的检测，分割比赛中均获得冠军。ResNet的论文地址和作者的源码见附录。
@@ -10,11 +11,14 @@
 如下表所示，论文设计了18、34、50、101、152五种不同深度的ResNet，用的都是$1\times 1$和$3\times 3$的小卷积核。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200104153325358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 深入理解
 ## 什么是残差？
 在ResNet之前普遍认为网络的深度越深，模型的表现就更好，因为CNN越深越能提取到更高级的语义信息。但论文的实验发现，通过和浅层网络一样的方式来构建深层网络，结果性能反而下降了，这是因为网络越深越难训练。实验如Figure1所示：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2020010415404541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)因此网络的深度不能随意的加深，前面介绍的GoogLeNet和VGG16/19均在加深深度这件事情上动用了大量的技巧。那么到底什么是残差呢？
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020010415404541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+因此网络的深度不能随意的加深，前面介绍的GoogLeNet和VGG16/19均在加深深度这件事情上动用了大量的技巧。那么到底什么是残差呢？
 
 首先，浅层网络都是希望学习到一个恒等映射函数$H(x)=x$，其中$=$指的是用$H(x)$这个特征/函数来代表原始的$x$的信息，但随着网络的加深这个恒等映射变得越来越难以拟合。即是用BN这种技巧存在，在深度足够大的时候网络也会难以学习这个恒等映射关系。因此ResNet提出将网络设计为$H(x)=F(x)+x$，然后就可以转换为学习一个残差函数$F(x)=H(x)-x$，只要残差为$0$，就构成了一个恒等映射$H(x)=x$，并且相对于拟合恒等映射关系，拟合残差更容易。残差结构具体如Figure2所示，`identity mapping`表示的就是恒等映射，即是将浅层网络的特征复制来和残差构成新的特征。其中恒等映射后面也被叫作跳跃连接(skip connrection)或者短路连接(shortcut connection)，这一说法一直保持到今天。同时我们可以看到一种极端的情况是残差映射为$0$，残差模块就只剩下$x$，相当于什么也不做，这至少不会带来精度损失，这个结构还是比较精巧的。
 
@@ -25,14 +29,18 @@
 
 # ResNet的两种残差单元设计
 ResNet设计了两种残差单元，如下图所示。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200104162456690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到左边的残差结构用在浅层的Resnet如Resnet34，而右边的结构用在深层网络如ResNet-50/101/152，同时右边的结构又叫`bottleneck`，大概翻译是瓶颈结构，这种先降维再做卷积，之后再升维回去的方式也是为了升维但不增加参数数目。
 
 # 残差连接在维度不匹配时咋办？
 细心的同学会发现在论文中提供的ResNet34的结构中不仅仅有实线，而且有虚线，如下所示：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200104162933154.png)
+
 这个实线代表的是维度匹配的shortcut连接，而维度不匹配的用虚线来代替。维度匹配时可以直接用$F(x)+x$来做映射，而维度不匹配的时候要强行让维度匹配或者不要shortcut连接，强行让维度匹配有两种做法：
+
 - F(x)+Wx，投影到新的空间，W就是一定数量的1x1卷积核，这种表现稍好，但会增加参数和计算量。
 - zero padding 增加通道维度法。
 
@@ -44,6 +52,7 @@ ResNet设计了两种残差单元，如下图所示。
 Figure4左图的plain网络是没有用残差结构的，而右图是用了残差结构的ResNet。两个网络都是基于VGG19改造的，并在ImageNet上训练，细线是训练误差，粗线是验证误差。可以看到，随着迭代次数的增加，plain的34层比18层的效果逐渐变差，而ResNet的34层比18层效果显著提升，由此可以证明残差结构是有效的。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200104163438341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ## 实验结果
 和其他SOTA分类网络的对比结果如下：
 
@@ -114,11 +123,13 @@ def ResNet50():
 不知不觉卷积神经网络学习路线已经做到第10期了，这个系列我大概会做30期左右，非常感谢大家对GiantPandaCV公众号的支持，希望可以一起学习进步。
 
 # 附录
+
 - 论文原文：https://arxiv.org/abs/1512.03385
 - 作者源码：https://github.com/KaimingHe/deep-residual-networks
 - 参考：https://zhuanlan.zhihu.com/p/65565361
 
 # 卷积神经网络学习路线往期文章
+
 - [卷积神经网络学习路线（一）| 卷积神经网络的组件以及卷积层是如何在图像中起作用的？](https://mp.weixin.qq.com/s/MxYjW02rWfRKPMwez02wFA)
 
 - [卷积神经网络学习路线（二）| 卷积层有哪些参数及常用卷积核类型盘点？](https://mp.weixin.qq.com/s/I2BTot_BbmR4xcArpo4mbQ)
@@ -137,4 +148,5 @@ def ResNet50():
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

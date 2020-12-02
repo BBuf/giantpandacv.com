@@ -1,10 +1,13 @@
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218212108283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)开篇的这张图代表ILSVRC历年的Top-5错误率，我会按照以上经典网络出现的时间顺序对他们进行介绍，同时穿插一些其他的经典CNN网络。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218212108283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+开篇的这张图代表ILSVRC历年的Top-5错误率，我会按照以上经典网络出现的时间顺序对他们进行介绍，同时穿插一些其他的经典CNN网络。
 # 前言
 这是卷积神经网络学习路线的第七篇文章，主要回顾一下经典网络中的AlexNet。
 
 # 背景
 在卷积神经网络学习路线（六）中讲到了LeNet是第一个真正意义上的卷积神经网络，然后发明者Lecun也被称为卷积神经网络之父。但LeNet发明后的几十年时间，深度学习仍然处于低潮期，很少人去做研究。直到2012年AlexNet在ImageNet竞赛中以超过第二名10.9个百分点的绝对优势一举夺冠开始，深度学习和卷积神经网络一举成名。自此，深度学习的相关研究越来越多，一直火到了今天。
 # AlexNet的贡献
+
 - 更深的网络
 - ReLU激活函数
 - Dropout
@@ -32,17 +35,28 @@ AlexNet的网络结构如下图所示：
 再提醒一次，这是以一个分支为例，实际上所有的通道数都需要倍增才是AlexNet实际的特征图通道数。
 # ReLU
 AlexNet之前神经网络一般使用`tanh`或者`sigmoid`作为激活函数，`sigmoid`激活函数的表达式为：
+
 $f(x)=\frac{1}{1+e^{-x}}$
+
 `tanh`激活函数的表达式为：
+
 $tanh(x)=\frac{sinhx}{coshx}=\frac{e^x-e^{-x}}{e^x+e^{-x}}$
+
 这些激活函数在计算梯度的时候都比较慢，而AlexNet提出的`ReLU`表达式为：
+
 $ReLU(x)=max(0,x)$
+
 在计算梯度时非常快，下面这个图表示了分别使用`ReLU`和`TanH`作为激活函数的典型四层网络的在数据集`CIFAR-10s`实验中，错误率收敛到`0.25`时的收敛曲线，可以很明显的看到收敛速度的差距。虚线为`TanH`，实线是`ReLU`。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019122320130293.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # Local Response Normalization(局部响应归一化)
 AlexNet中认为ReLU激活函数的值域没有一个固定的区间（`sigmoid`激活函数值域为`(0,1)`），所以需要对ReLU得到的结果进行归一化，这一点有点像之后的BN，都是改变中间特征图权重分布加速收敛。即论文提出的Local Response Normalization。局部响应归一化的计算公式如下：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191223202320886.png)其中，参数解释如下：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191223202320886.png)
+
+其中，参数解释如下：
+
 - `i` ：代表下标，即要计算的像素值的下标，从0开始开始算起。
 - `j` ：代表平方累加索引，即从`j~i`的像素值平方求和。
 - `x,y`：代表像素中的位置，公式中用不到。
@@ -163,4 +177,5 @@ Dropout原理类似于浅层学习算法的中集成算法，该方法通过让�
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

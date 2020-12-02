@@ -1,19 +1,26 @@
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218212108283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)开篇的这张图代表ILSVRC历年的Top-5错误率，我会按照以上经典网络出现的时间顺序对他们进行介绍，同时穿插一些其他的经典CNN网络。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218212108283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+开篇的这张图代表ILSVRC历年的Top-5错误率，我会按照以上经典网络出现的时间顺序对他们进行介绍，同时穿插一些其他的经典CNN网络。
 
 # 前言
 昨天讲到了ZFNet和VGG Net，并且我们提到VGGNet是2014年ImageNet分类任务的亚军，而冠军就是今天要介绍的GoogLeNet。GoogLeNet的名字不是GoogleNet，而是GoogLeNet，这是为了致敬LeNet。GoogLeNet和AlexNet/VGGNet这类依靠加深网络结构的深度的思想不完全一样。GoogLeNet在加深度的同时做了结构上的创新，引入了一个叫做Inception的结构来代替之前的卷积加激活的经典组件。GoogLeNet在ImageNet分类比赛上的Top-5错误率降低到了6.7%。
 
 # 创新点
+
 - 提出Inception模块。
 - 使用辅助Loss。
 - 全连接层用简单的平均池化代替。
 
 # 网络结构
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200102151500137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # Inception模块
 Inception模块在GoogLeNet中设计了两种，一种是原始的Inception模块，一种是带降维的Inception模块，如下图所示：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200102152022598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)Inception模块中的卷积步长都是1，另外为了保持特征图大小一致，都设置了Padding方式为Same。每个卷积层后面都接了ReLU激活函数。在输出前有一个Concat层代表把4组不同类型但大小相同的特征响应图堆叠在一起，获得输出特征图。Inception模块一共使用了4种不同大小的卷积核对输入特征图进行了特征提取。并且在原始的Inception模块基础上，为了降低计算量使用$1\times 1$卷积来降维。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200102152022598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+Inception模块中的卷积步长都是1，另外为了保持特征图大小一致，都设置了Padding方式为Same。每个卷积层后面都接了ReLU激活函数。在输出前有一个Concat层代表把4组不同类型但大小相同的特征响应图堆叠在一起，获得输出特征图。Inception模块一共使用了4种不同大小的卷积核对输入特征图进行了特征提取。并且在原始的Inception模块基础上，为了降低计算量使用$1\times 1$卷积来降维。
 
 关于为什么$1\times 1$卷积可以降维，我们可以举个例子。假设Inception模块的输入特征图通道数为$256$，然后输出特征图的通道数也为$256$，那么对于Inception模块中的$3\times 3$卷积来说，计算量为：$256\times 256\times 3\times 3=589000$。而如果使用$1\times 1$卷积降维，那么计算量变成：$(256\times 64\times 1\times 1) + (64 \times 64\times 3\times 3) + (64\times 256\times 1\times 1)=68000$，相比于直接使用$3\times 3$卷积降低了大概$9$倍左右的参数量。
 
@@ -87,6 +94,7 @@ GoogLeNet的实际上还有另外一个名字，被叫作Inception V1，之后Go
 2015年Google提出了大名鼎鼎的Batch Normalization，即批量归一化并一直被沿用至今。BN的论文地址为：https://arxiv.org/abs/1502.03167 。Inception V2即在InceptionV1的基础上加上了BN层并且将$5\times 5$卷积用两个$3\times 3$卷积代替。
 
 ## 创新点
+
 - 提出了BN层，每次先对输入特征图进行归一化，再送入下一层神经网络输入层。加快了网络的收敛速度。
 - Conv+BN+Scale+ReLU。Inception V2中每个卷积层后面都有BN层，并且一般BN层还会配合Scale层一起用。
 - 和VGGNet的思想一致，用多个小的卷积核代替大的卷积核，并获得一致的感受野。
@@ -94,10 +102,13 @@ GoogLeNet的实际上还有另外一个名字，被叫作Inception V1，之后Go
 - 增强了模型的非线性表达能力，因为每个卷积后面都加了一个ReLU。卷积层变多，非线性激活函数自然更多，模型的非线性表达能力变得更强。
 
 ## 结构
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200102170025466.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 ## BatchNorm原理
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019082315325480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 这是论文中给出的对BatchNorm的算法流程解释，这篇博客的目的主要是推导和实现BatchNorm的前向传播和反向传播，就不关注具体的原理了，我们暂时知道BN层是用来调整数据分布，降低过拟合的就够了。接下来我基于CS231N和Darknet解析一下BatchNorm层的前向和反向传播。
 
 ## BN的前向传播
@@ -153,39 +164,56 @@ def batchnorm_forward(x, gamma, beta, bn_param):
   return out, cache
 ```
 这里倒是没啥好说的，不过了为了和下面反向传播对比理解，这里我们明确每一个张量的维度：
+
 - x shape为(N,D)，可以将N看成batch size,D看成特征图展开为1列的元素个数
 - gamma shape为(D,)
 - beta shape为(D,)
 - running_mean shape为(D,)
 - running_var shape为(D,)
+
 ## BN的反向传播
 这才是我们的重点，我写过softmax和线性回归的求导，也前后弄清楚了卷积的im2col和卷积的求导，但是BN层的求导一直没弄清楚，现在我们一定要弄清楚，现在做一些约定：
+
 - $\delta$ 为一个Batch所有样本的方差
 - $\mu$为样本均值
 - $\widehat {x}$为归一化后的样本数据
 - $y_i$为输入样本$x_i$经过尺度变化的输出量
 - $\gamma$和$\beta$为尺度变化系数
-- $\dfrac {\partial L} {\partial y}$是上一层的梯度，并假设$x$和$y$都是(N,D)维，即有N个维度为D的样本
-在BN层的前向传播中$x_i$通过$\gamma$,$\beta$,$\widehat{x}$将$x_i$变换为$y_i$，那么反向传播则是根据$\dfrac {\partial L} {\partial y_i}$求得$\dfrac {\partial L} {\partial \gamma}$,$\dfrac {\partial L} {\partial \beta}$,$\dfrac {\partial L} {\partial x_i}$.
+
+- $\dfrac {\partial L} {\partial y}$是上一层的梯度，并假设$x$和$y$都是(N,D)维，即有N个维度为D的样本在BN层的前向传播中$x_i$通过$\gamma$,$\beta$,$\widehat{x}$将$x_i$变换为$y_i$，那么反向传播则是根据$\dfrac {\partial L} {\partial y_i}$求得$\dfrac {\partial L} {\partial \gamma}$,$\dfrac {\partial L} {\partial \beta}$,$\dfrac {\partial L} {\partial x_i}$.
+
 - 求解$\dfrac {\partial L} {\partial \gamma}$
 $\dfrac {\partial L} {\partial \gamma} = \sum_{i}\dfrac {\partial L} {\partial y_i}\dfrac{\partial y_i}{\partial \gamma}=\sum_i\dfrac {\partial L} {\partial y_i}\widehat {x}$
+
 - 求解$\dfrac {\partial L} {\partial \beta}$
 $\dfrac {\partial L} {\partial \beta}=\sum_i\dfrac {\partial L} {\partial y_i}\dfrac{\partial y_i}{\partial \beta}=\sum_i\dfrac {\partial L} {\partial y_i}$
+
 - 求解$\dfrac {\partial L} {\partial x_i}$
 根据论文的公式和链式法则可得下面的等式:
+
 $\dfrac {\partial L} {\partial x_{i}}=\dfrac {\partial L} {\partial \widehat {x_{i}}}\dfrac {\partial \widehat {x_i}}{\partial x_{i}}+\dfrac {\partial L} {\partial \sigma}\dfrac {\partial \sigma}{\partial x_{i}}+\dfrac {\partial L} {\partial \mu}\dfrac {\partial \mu}{\partial x_{i}}$
+
 我们这里又可以先求$\dfrac {\partial L} {\partial \widehat {x}}$
+
 - $\dfrac {\partial L} {\partial \widehat {x}}=\dfrac {\partial L} {\partial y}\dfrac {\partial y} {\partial \widehat {x}} \\ 
 =\dfrac {\partial L} {\partial {y}}\gamma$ **(1)**
+
 - $\dfrac {\partial L} {\partial \sigma}=\sum _{i}\dfrac {\partial L} {\partial y_{i}}\dfrac {\partial y_{i}} {\partial \widehat {x}_{i}}\dfrac {\partial \widehat {x}_{i}}{\partial \sigma} \\
 =-\dfrac{1}{2}\sum _{i}\dfrac {\partial L} {\partial \widehat {x_{i}}}(x_{i}-\mu)(\sigma+\varepsilon)^{-1.5}$ **(2)**
+
 - $\dfrac {\partial L} {\partial \mu}=\dfrac {\partial L} {\partial \widehat {x}}\dfrac {\partial \widehat {x}}{\partial \mu}+\dfrac {\partial L} {\partial \sigma}\dfrac {\partial \sigma}{\partial \mu} \\
 =\sum _{i}\dfrac {\partial L} {\partial \widehat {x}_{i}}\dfrac {-1}{\sqrt {\sigma+ \varepsilon}}+\dfrac {\partial L} {\partial \sigma}\dfrac {-2\Sigma _{i}\left( x_{i}-\mu\right) } {N}$ **(3)**
+
 有了(1),(2),(3)就可以求出$\dfrac {\partial L} {\partial x_{i}}$
+
 - $\dfrac {\partial L} {\partial x_{i}}=\dfrac {\partial L} {\partial \widehat {x_{i}}}\dfrac {\partial \widehat {x_i}}{\partial x_{i}}+\dfrac {\partial L} {\partial \sigma}\dfrac {\partial \sigma}{\partial x_{i}}+\dfrac {\partial L} {\partial \mu}\dfrac {\partial \mu}{\partial x_{i}} \\
 =\dfrac {\partial L} {\partial \widehat {x}_{i}}\dfrac {1}{\sqrt {\sigma+ \varepsilon}}+\dfrac {\partial L} {\partial \sigma}\dfrac{2(x_i-\mu)}{N}+\dfrac {\partial L} {\partial \mu}\dfrac {1}{N}$
+
 到这里就推到出了BN层的反向传播公式了，和论文中一样，截取一下论文中的结果图：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190826101040356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)贴一份CS231N代码：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190826101040356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+贴一份CS231N代码：
 
 ```
 def batchnorm_backward(dout, cache):
@@ -456,24 +484,31 @@ void normalize_delta_cpu(float *x, float *mean, float *variance, float *mean_del
 在InceptionV2的基础上做了微小的改变就获得了Inception V3，Inception V3模块的结构为：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200102165942338.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 而InceptionV3的网络结构为：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200102170135227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 # Inception系列网络的一些Trick
+
 - 辅助分类器。介绍Inception V1(Google Net)的时候我已经介绍过了，这种损失现在已经被称为多任务损失了，典型的如目标检测中的分类和回归损失。
 - 标签平滑。在比赛中经常用到，以前构造标签的时候实际是哪一类就置1，其他类的都置为0，不够平滑，学习时就会很难，容易过拟合。所以标签平滑就是给真实标签最大值，也按照概率给其他类一些值，如给一些根号值。
 - 使用合适的方法下采样，具体如下图所示。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200102170819554.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 其中Figure9（a）表示先直接下采样再增加通道数，直接下采样很容易丢掉一些表征信息，这些信息学不到模型可能就会有瓶颈。而Figure9（b）表示先增加通道数再直接下采样，先增加通道数时参数会增大了很多倍，太复杂，耗内存，计算量大。Figure10（a）用了两层的$3\times 3$卷积，步长变大，图像也可以缩小，即代替Pooling来下采样。Figure10（d）是最好的方案，即把特征图拆成2部分，一部分直接采样（pooling），一个做卷积（下采样），再把两种信息连到一起，这样通过分开的方式相对于以前的方法挖掘到不同的信息更多，因为卷积和pooling都是在原始特征图上做的。
 
 
 # 实验结果
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200102171150794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 总结
 GoogLeNet系列有相当多有价值的东西，可以说GoogLeNet是卷积神经网络历史长河中的大浪推手，Inception模块设计的思维和结构即是是今天依然被广泛应用。
 
 # 附录
+
 参考资料1：https://blog.csdn.net/yuechuen/article/details/71502503
 
 参考资料2：https://github.com/lightaime/cs231n/blob/master/assignment2/cs231n/layers.py
@@ -485,6 +520,7 @@ BN的原文：https://arxiv.org/abs/1502.03167
 InceptionV2/V3论文原文：https://arxiv.org/abs/1512.00567
 
 # 卷积神经网络学习路线往期文章
+
 - [卷积神经网络学习路线（一）| 卷积神经网络的组件以及卷积层是如何在图像中起作用的？](https://mp.weixin.qq.com/s/MxYjW02rWfRKPMwez02wFA)
 
 - [卷积神经网络学习路线（二）| 卷积层有哪些参数及常用卷积核类型盘点？](https://mp.weixin.qq.com/s/I2BTot_BbmR4xcArpo4mbQ)
@@ -502,4 +538,5 @@ InceptionV2/V3论文原文：https://arxiv.org/abs/1512.00567
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

@@ -7,6 +7,7 @@
 WSDDN全称是Weakly Supervised Deep Detection Network，即弱监督深度检测网络。
 
 只依靠image级别的label来对其训练
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020072511260884.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 
 
@@ -19,12 +20,14 @@ WSDDN全称是Weakly Supervised Deep Detection Network，即弱监督深度检�
 然后**分支成两个数据流**，其中一个数据流使用之前预训练好的CNN做一个**分类**，另外一个数据流则做**检测**任务
 
 其中分类的结果使用的softmax，形式如下，**表示每个区域各个类别的概率**
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200725112629234.png)
 
 
 而检测流中也用的是softmax，形式如下，**表示每个类别中更具有信息的是哪个区域**
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200725112909702.png)
+
 最后得到了分类和检测结果，通过**矩阵内积(即对应元素相乘)**将两个softmax结果融合
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200725112915391.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
@@ -36,6 +39,7 @@ WSDDN全称是Weakly Supervised Deep Detection Network，即弱监督深度检�
 1-n代表图片级别的label个数，1-C代表是类别个数，Φk的值域在(0, 1)之间，可以认为是类别K出现在image_xi中的概率，如果大于0.5则表示出现，因此后面减了个1/2。最后对所有loss求和
 
 # 整体构造
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200725112921640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 
 我们分别有弱检测器记为Dw，强检测器Ds
@@ -68,6 +72,7 @@ Dw通过弱监督，如右上角的图片分类任务进行训练，由于Ds没�
 第二就是文章里提到的**consistency loss**了，训练整个框架的一大难点是在不需要检测标签情况下，为强检测器定义一个loss来帮助优化。考虑到Ds，Dw两个检测器**最终的目标是输出预测框及类别**，我们提出**使用输出的一致性**来训练Ds检测器
 
 而cosistency loss又由三部分组成
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200725112940916.png)
 
 

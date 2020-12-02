@@ -1,9 +1,12 @@
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218212108283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)开篇的这张图代表ILSVRC历年的Top-5错误率，我会按照以上经典网络出现的时间顺序对他们进行介绍，同时穿插一些其他的经典CNN网络。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218212108283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+开篇的这张图代表ILSVRC历年的Top-5错误率，我会按照以上经典网络出现的时间顺序对他们进行介绍，同时穿插一些其他的经典CNN网络。
 # 前言
 这是卷积神经网络学习路线的第八篇文章，我们来回顾一下经典网络中的ZF-Net和VGGNet。
 
 # 稳中求胜-ZFNet
 ZFNet是ImageNet分类任务2013年的冠军，其在AlexNet的结构上没有做多大改进。首先作者Matthew D Zeiler提出了一种新的可视化技术，该技术可以深入了解中间特征图的功能和分类器的操作。这一点我在[卷积神经网络学习路线（一）| 卷积神经网络的组件以及卷积层是如何在图像中起作用的？](https://mp.weixin.qq.com/s/MxYjW02rWfRKPMwez02wFA)详细介绍过。最终基于特征图的可视化结果发现以下两点：
+
 - AlexNet第一层中有大量的高频（边缘）和低频（非边缘）信息的混合，却几乎没有覆盖到中间的频率信息。
 - 由于第一层卷积用的步长为4，太大，导致了有非常多的混叠情况，学到的特征不是特别好看，不像是后面的特征能看到一些纹理、颜色等。
 
@@ -43,11 +46,14 @@ def ZF_Net():
 
 我们来看一下VGGNet的具体网络结构：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200101185201452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)这个表格有意思了啊，他分为$A，A-LRN，B，C，D，E$ $5$种网络。这是因为当时为了解决初始化权重的问题，VGG使用的是预训练的方式，即先训练一部分小网络，然后确保这部分网络收敛之后再在这个基础上逐渐加深。并且当网络在D阶段(VGG-16)效果是最好的，E阶段(VGG-19)次之。VGG-16指的是网络的卷积层和全连接层的层数为$16$。接下来我们仔细看一下VGG-16的结构图：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200101185201452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+这个表格有意思了啊，他分为$A，A-LRN，B，C，D，E$ $5$种网络。这是因为当时为了解决初始化权重的问题，VGG使用的是预训练的方式，即先训练一部分小网络，然后确保这部分网络收敛之后再在这个基础上逐渐加深。并且当网络在D阶段(VGG-16)效果是最好的，E阶段(VGG-19)次之。VGG-16指的是网络的卷积层和全连接层的层数为$16$。接下来我们仔细看一下VGG-16的结构图：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200101190122476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 从上图可以看到网络的第一个卷积层的通道数为$64$，然后每一层Max Pooling之后卷积层的通道数都成倍的增加，最后接看三分全连接层完成分类任务。总的来说VGGNet的贡献可以概括如下两点：
+
 - 所有隐藏层都使用了ReLU激活函数，而不是LRN(Local Response Normalization)，因为LRN浪费了更多了内存和时间并且性能没有太大提升。
 - 使用更小的卷积核和更小的滑动步长。和AlexNet相比，VGG的卷积核大小只有$3\times 3$和$1\times 1$两种。卷积核的感受野很小，因此可以把网络加深，同时使用多个小卷积核使得网络总参数量也减少了。
 
@@ -102,6 +108,7 @@ def VGG_16():
 
 
 # 卷积神经网络学习路线往期文章
+
 - [卷积神经网络学习路线（一）| 卷积神经网络的组件以及卷积层是如何在图像中起作用的？](https://mp.weixin.qq.com/s/MxYjW02rWfRKPMwez02wFA)
 
 - [卷积神经网络学习路线（二）| 卷积层有哪些参数及常用卷积核类型盘点？](https://mp.weixin.qq.com/s/I2BTot_BbmR4xcArpo4mbQ)
@@ -118,4 +125,5 @@ def VGG_16():
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

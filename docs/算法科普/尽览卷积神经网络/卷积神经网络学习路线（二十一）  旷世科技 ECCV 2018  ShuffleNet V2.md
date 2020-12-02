@@ -83,6 +83,7 @@ $h\times w\times c1+\frac{Bg}{c1}+\frac{B}{h\times w}$。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019081609252888.png)
 
 # ShuffleNet V2 瓶颈结构设计
+
 如Figure3所示。这张图中的`(a)`和`(b)`是ShuffleNet V1的两种不同的`block`结构，两者的差别在于`(b)`对特征图分辨率做了缩小。`(c)`和`(d)`是ShuffleNet V2的两种不同结构。从`(a)`和`(c)`对比可知`(c)`在开头增加了一个通道分离(`channel split`)操作，这个操作将输入特征通道数$c$分成了$c-c'$和$c'$，在论文中$c'$取$c/2$，这主要是为了改善实验1。然后`(c)`取消了$1\times 1$卷积层中的分组操作，这主要为了改善实验2的结论，同时前面的通道分离其实已经算是变相的分组操作了。其次，`channel shuffle`操作移动到了concat操作之后，这主要为了改善实验3的结果，同时也是因为第一个$1\times 1$卷积层没有分组操作，所以在其后面跟`channel shuffle`也没有太大必要。最后是将`element-wise add`操作替换成`concat`，这和前面的实验4的结果对应。`（b）`和`（d）`的对比也是同理，只不过因为`（d）`的开始处没有通道分离操作，所以最后`concat`后特征图通道数翻倍。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190816092652550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -94,18 +95,23 @@ $h\times w\times c1+\frac{Bg}{c1}+\frac{B}{h\times w}$。
 不同`stage`的输出通道倍数关系和上面介绍`bottleneck`结构吻合，每个`stage`都是由`Figure3(c)`和`(d)`所示的`block`组成，`block`的具体数量对应于Repeat列。
 
 # 实验结果
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190816093905346.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)从表中可以看到，ShuffleNet V2在速度和精度上对比众多轻量级网络都是State of Art。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190816093905346.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+从表中可以看到，ShuffleNet V2在速度和精度上对比众多轻量级网络都是State of Art。
 
 # 总结
 论文的构思很像我们在工作时解决问题的方式，先是分析影响模型的速度可能有哪些因素，然后针对这些因素做出一系列实验，最后针对这些实验提出解决方案，最后得出了这个网络。这种思路在整个开发过程中都是通用的。
 
 # 附录
+
 - 论文原文：https://arxiv.org/pdf/1807.11164.pdf
 - 代码实现：https://github.com/anlongstory/ShuffleNet_V2-caffe
 - 参考1：https://blog.csdn.net/u014380165/article/details/81322175
 - 参考2：https://zhuanlan.zhihu.com/p/69286266
 
 # 推荐阅读
+
 - [快2020年了，你还在为深度学习调参而烦恼吗？](https://mp.weixin.qq.com/s/WU-21QtSlUKqyuH6Bw1IYg)
 - [卷积神经网络学习路线（一）| 卷积神经网络的组件以及卷积层是如何在图像中起作用的？](https://mp.weixin.qq.com/s/MxYjW02rWfRKPMwez02wFA)
 

@@ -28,7 +28,9 @@ IBN-Net能够有效提升模型在一个域中的效果(比如cityscapes-真实�
 
 ## 2. 方法
 
-![IN作用](https://img-blog.csdnimg.cn/20200406102314892.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)(b) 图是对原图进行亮度调整和色彩平移(c)图是对原图使用了两种风格化方法 (d)图是对(c)图使用Instance Norm以后的结果，这说明IN可以过滤掉复杂的外观差异。
+![IN作用](https://img-blog.csdnimg.cn/20200406102314892.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
+
+(b) 图是对原图进行亮度调整和色彩平移(c)图是对原图使用了两种风格化方法 (d)图是对(c)图使用Instance Norm以后的结果，这说明IN可以过滤掉复杂的外观差异。
 
 通常IN用于处理底层视觉任务，比如图像风格化，而BN用于处理高层视觉任务，比如目标检测，图像识别等。IBN-Net首次将BN和IN集成起来，同时提高了模型的学习能力和泛化能力。
 
@@ -37,7 +39,9 @@ IBN-Net能够有效提升模型在一个域中的效果(比如cityscapes-真实�
 - 在网络的浅层同时使用IN和BN
 - 在网络的深层仅仅使用BN
 
-作者做了一个实验，下图展示了随着网络深度的变化，特征差异的变化情况：![深层和浅层的实验](https://img-blog.csdnimg.cn/20200406111153690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
+作者做了一个实验，下图展示了随着网络深度的变化，特征差异的变化情况：
+
+![深层和浅层的实验](https://img-blog.csdnimg.cn/20200406111153690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
 蓝色代表外观差异带来的特征差异，橙色代表图片内容之间的特征差异。可以看出在浅层是由外观差异带来的特征差异，这部分可以使用BN和IN联合起来解决；在深层网络，外观差异带来的特征差异已经非常小了，内容之间的差异是主导地位，所以这部分使用BN来解决。
 
@@ -56,9 +60,11 @@ ResNet由4组残差块组成，在IBN-Net的改进中，仅仅在Conv2_x, Conv3_
 第一，在ResNet论文中说明了恒等映射路径的必要性，所以IN应该添加在残差路径上。
 
 第二，残差网络可以用以下公式来表达：
+
 $$
 y=F(x, \{W_i\})+x
 $$
+
 其中的$F(x,\{W_i\})$是为了能够得到与恒等映射路径对齐的特征，所以IN被添加在残差模块中第一个卷积以后，而不是最后一个卷积以后，这样可以防止特征出现不对齐的问题。
 
 第三，根据之前提到的设计原则，浅层应当同时使用BN和IN,所以选择将一半通道通过BN计算，另一半通道通过IN进行计算。
@@ -204,4 +210,4 @@ https://arxiv.org/pdf/1807.09441
 
 https://github.com/XingangPan/IBN-Net 
 
- https://github.com/pprp/reid_for_deepsort/tree/master/models 
+https://github.com/pprp/reid_for_deepsort/tree/master/models 
