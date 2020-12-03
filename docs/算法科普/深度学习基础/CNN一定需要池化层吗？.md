@@ -8,9 +8,13 @@
 为了理解池化层和卷积层为什么有效，我们返回到公式里面
 我们令 **f为特征图**，W, H, N分别是特征图的**宽，高，通道数**
 对于一般的池化窗口为K的p范数下采样，我们有
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020081715535734.png#pic_center)
+
 而对于一般的卷积层，我们需要设定一个权重，进行相乘，并将多个通道结果进行相加。最后再通过激活函数进行激活，形式如下
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200817155744798.png#pic_center)
+
 **θ代表的是卷积核权重**， 从1到N求和，**代表是对多个特征图的卷积窗口进行求和**
 
 这里有个细节需要强调下：**池化层是分别对每张特征图做池化/P范数操作**
@@ -28,12 +32,15 @@
 2. 用步长为2的池化层，来替代池化层。由于引入新的卷积层，参数量会适当增加
 
 考虑到3x3卷积叠加能达到5x5卷积的感受野，减少大量参数，我们也将其加入到实验对比。因此我们的网络设计如下
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020081716555511.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
 
 
 ### 补充P范数
 P范数定义如下
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200817155506542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 即求**某个范围内x的P次方和**，最后**再开P次方**
 
 那**如果是平均池化**，我们可以看作是P=1的范数下采样，前面需要乘上一个系数 **K分之一**
@@ -45,20 +52,26 @@ P范数定义如下
 举个例子，1张224x224的图片，经过多次下采样至 7x7，那么整个采样因子就是 32x32。为了保证平移不变性，我需要让物体平移距离是32的整数倍。
 
 换句话说，我相当于将整个图片划分成了32x32个小格子，物体需要落到这个格子里，才能具有不变性。这个概率是
+
 $$
 P = 1 / (32*32)
 $$
+
 # 实验
 我们在CIFAR10, CIFAR100, ImageNet2012数据集上进行测试
 ## 实验设置
 我们在先前的Model C上，又引申出三种模型
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200817170341447.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 1. 第一个模型，将每一层最后一个卷积层步长设置为2，去除掉了池化层
 2. 第三个模型，将最大池化层以步长为2的卷积层替代
 3. 第二个模型，为了与第三个模型做对比，在保持相同卷积层时，用最大池化层下采样
 因为原始的ModelC，已经包含了两次卷积层+一次池化层的结构。所以针对第一个模型就不再多设置一个模型对比
 ## 实验结果
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200817171115676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 首先我们来看下Model A,B,C
 最主要的区别就是拿3x3卷积来替代大卷积核和部分1x1卷积。
 事实证明使用3x3卷积替代大卷积核，能得到性能上的提升
@@ -67,10 +80,14 @@ $$
 而在A组，池化的效果比Strided的效果更好。**为了保证不是因为参数量增加而引起的，我们也对比了ALL-CNN-A**。事实证明池化操作是能提高网络性能的
 
 后续，我们针对训练过程是否加入图像增广也做了一组实验
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200817201437399.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 在这两种情况下，网络表现的都比前面的要好很多
 我们将这个最佳模型，放到CIFAR100进一步进行测试
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200817202055573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 可以看到我们的效果依然很好，超越了前面的网络模型。
 仅仅被Fractional Pooling超过，但这个模型参数过大，大概50M左右的参数。
 所以我们的模型表现是十分不错的。
