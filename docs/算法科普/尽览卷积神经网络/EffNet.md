@@ -11,9 +11,12 @@ EffNet于2018年提出，被ICIP18接收。当时MobileNetV1,MobiletNetV2, Shuff
 EffNet主要有两个贡献：
 
 1. 提出了EffNet Block，将深度可分离3x3卷积改进为1x3和3x1的空间可分离卷积，在两者之间添加一维maxpooling
+
 2. ShuffleNet和MobileNet都选择避免处理第一层，并认为第一层的计算代价已经很低。但是EffNet认为每个优化都非常重要，如果优化了除了第一层以外的其它层，那么第一层的计算量相比之下就会比较大。实验证明使用EffNet块替换第一层能够节省30%的计算量。
 
-EffNet和MobileNet、ShuffleNet的基础模块对比如下图所示。![EffNet和MobileNet、ShuffleNet的模块对比](https://img-blog.csdnimg.cn/20200616155306163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
+EffNet和MobileNet、ShuffleNet的基础模块对比如下图所示。
+
+![EffNet和MobileNet、ShuffleNet的模块对比](https://img-blog.csdnimg.cn/20200616155306163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
 上图中ch代表通道个数，dw代表深度可分离卷积，mp代表maxpool，gc代表组卷积，shuffle代表channel shuffle操作。
 

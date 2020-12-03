@@ -1,11 +1,17 @@
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218212108283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)开篇的这张图代表ILSVRC历年的Top-5错误率，我会按照以上经典网络出现的时间顺序对他们进行介绍，同时穿插一些其他的经典CNN网络。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218212108283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+开篇的这张图代表ILSVRC历年的Top-5错误率，我会按照以上经典网络出现的时间顺序对他们进行介绍，同时穿插一些其他的经典CNN网络。
 # 前言
 这是卷积神经网络学习路线的第六篇文章，前面五篇文章从细节，超参数调节，网络解释性方面阐述了卷积神经网络。从这篇文章开始，卷积神经网络学习路线就开始代领大家一起探索从1998年到2019年的20多种经典的网络，体会每种网络的前世今身以及包含的深邃思想。本节就带大家来探索一下LeNet。
 # 背景&贡献
 LeNet是CNN之父Yann LeCun在1998提出来的，LeNet通过巧妙的设计，利用卷积、参数共享、下采样等操作提取特征，避免了大量的计算成本，最后再使用全连接神经网络进行分类识别，这个网络也是近20年来大量神经网络架构的起源。
 # 网络结构
 LeNet-5是LeNet系列最新的卷积神经网络，设计用于识别机器打印的字符，LeNet-5的网络结构如下图所示。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218205810465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)我们可以具体分析一下：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191218205810465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+我们可以具体分析一下：
+
 - 首先输入图像是单通道的$28\times 28$大小的图像，用caffe中的Blob表示的话，维度就是$[B,1,28,28]$。其中$B$代表`batch_size`。
 - 第一个卷积层`conv1`所用的卷积核尺寸为$5\times 5$，滑动步长为$1$，卷积核数目为$20$，那么经过这一层后图像的尺寸变成$28-5+1=24$，输出特征图的维度即为$[B,20,24,24]$。
 - 第一个池化层的池化核尺寸为$2\times 2$，步长$2$，这是没有重叠的`max pooling`，池化操作后，图像尺寸减半，变为$12\times 12$，输出特征图维度为$[B,20,12,12]$。
@@ -36,6 +42,7 @@ def LeNet():
 因为LeNet是最简单的CNN网络，所以就讲得比较简短。虽然LeNet结构简单，准确率在解决现代很多视觉任务时已经力不从心了，但LeNet是CNN的开创者，我们仍然应该给予足够的尊重。
 
 # 卷积神经网络学习路线往期文章
+
 [卷积神经网络学习路线（一）| 卷积神经网络的组件以及卷积层是如何在图像中起作用的？](https://mp.weixin.qq.com/s/MxYjW02rWfRKPMwez02wFA)
 
 [卷积神经网络学习路线（二）| 卷积层有哪些参数及常用卷积核类型盘点？](https://mp.weixin.qq.com/s/I2BTot_BbmR4xcArpo4mbQ)
@@ -49,4 +56,5 @@ def LeNet():
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

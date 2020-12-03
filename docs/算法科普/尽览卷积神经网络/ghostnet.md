@@ -15,7 +15,6 @@
 近年来有许多减小模型大小方法提出，其中一系列方法是对丢弃不重要的参数丢弃，然而这种思想导致轻量化网络极大受限于预训练的网络模型
 
 
-
 另外一种主流方法就是通过改变网络架构来达到减小网络模型的目的
 
 代表性的有mobilenet，引入depthwise和pointwise这两个操作大大减少卷积计算量
@@ -215,9 +214,10 @@ class GhostBottleneck(nn.Module):
         return self.conv(x) + self.shortcut(x)
 ```
 
- 这段代码就是bottleneck的部分，参照上面的图就看的明白了
+这段代码就是bottleneck的部分，参照上面的图就看的明白了
 
 最后代码是整个GhostNet构成
+
 ```
 class GhostNet(nn.Module):
     def __init__(self, cfgs, num_classes=1000, width_mult=1.):
@@ -317,6 +317,7 @@ if __name__=='__main__':
 ```
 
 # 总结
+
 总的来说这篇论文是基于前人对网络压缩的改进
 在mobilenet上取depthwise舍去pointwise
 取得更好的性能

@@ -13,9 +13,13 @@
 本文，我们尝试在**频域内维持高分辨率**的原始图片，进行DCT变换，并通过**动/静态的通道选择**方法，对输入通道进行蒸馏(最高可蒸馏87.5%在Resnet)，并保持较高精度。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921103712468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 # 方法
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921103833775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 上图是整个图像处理流程，我们依然在CPU上对图片进行预处理。
+
 - 首先**将RGB格式转化为YCbCr格式**
 -  然后做**DCT变换**转换到频域
 - 然后**我们将相同频率的二维DCT变换系数分组到一个通道**，形成一个立方体(Cube)。
@@ -29,6 +33,7 @@
 因此 Y，Cb，Cr每个通道都提供了8x8=64的通道。
 
 处理后的图片形状变为
+
 $$
 (H/8,W/8,C*64)
 $$
@@ -38,6 +43,7 @@ $$
 例如，对于MobileNetv2，我们可以输入896x896x3的图片，处理完后为112x112x192大小，再通过第一个卷积模块对通道数进行调整。
 
 如下图所示，我们将**上述DCT处理步骤替换到ResNet中**，仅需把前面三个卷积，池化模块（`步长为2`）给去除即可。其他结构保持不变。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921110614697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
 
 ## DCT（补充）
@@ -45,10 +51,13 @@ $$
 DCT即**离散余弦变换**，实际上就是将输入信号限定为实偶信号的离散傅里叶变换(DFT)
 
 公式为
+
 $$
 X[K] = \Sigma_{n=0}^{N-1}X[n]*(cos{\frac{2\pi kn}{N}})
 $$
+
 推广到常规的图像处理中，DCT的计算复杂度还是比较高的，JPG压缩里面就对DCT变换进行了改进，选择对图像分块处理。具体做法是：
+
 - 先将图像分成8x8的图块
 - 对每一个图块做DCT变换
 - 最后将图块拼接回来
@@ -58,8 +67,11 @@ $$
 
 # 动态通道选择
 考虑到各个频率通道对预测的贡献率，我们设计了一种模块，来**动态的选择较为重要的通道**，从而达到蒸馏的目的。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921114742668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 该模块**类似SEBlock**，具体处理流程如下
+
 1. 先用**全局平均池化层**(Global Average Pool)，将Tensor调整到1x1xC的形式，得到Tensor2
 2. 使用**1x1的卷积核**进行计算，得到Tensor3
 3. 通过**两个可训练参数**，对Tensor3进行相乘，得到形状为1x1x2C的Tensor4。这两个训练参数对通道进行采样，比如Tensor4的某个通道的值分别为7.5和2.5，那么代表有75%的概率对应Tensor5的通道输出为0
@@ -71,12 +83,16 @@ $$
  [PyTorch 32.Gumbel-Softmax Trick](https://zhuanlan.zhihu.com/p/166632315) 
   [Gumbel softmax在可微NAS的作用是什么？](https://zhuanlan.zhihu.com/p/153562583)
  常规直接采样是无法求导，也缺乏随机性的，我们可以引入一个新的参数 $\epsilon$，假定其符合某个分布，即
+
 $$
 \epsilon \in U(0,1)
 $$
+
 我们假设采样对应的概率分布向量是P，做以下操作
+
 - $$ G_i=-log(-log(\epsilon_{i}))$$
 - $$ Z_{j}= \frac{exp(\frac{log(p_{i})+g_{i}}{\tau})}{\Sigma_{j=1}^{k}exp\frac{log(p_{j})+g_{j}}{\tau})}$$
+
 这里的 $\tau$ 是一个超参数，**取值越小，最后softmax结果越接近one-hot形式。**
 通过引入随机变量以及softmax，我们就能巧妙的将采样过程构建成随机且可导了
 # 静态通道选择
@@ -89,13 +105,17 @@ $$
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921120208375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
 
 最后我们在损失函数中加了**一项正则化项用于平衡选择通道的数量**，公式为
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921115751217.png#pic_center)
+
 其中**第一项是准确率对应的Loss，第二项则对应选择的通道数**
 # 实验部分
 这里就不细讲了，基本上替换常见的模型后都有一定提升
 
 这里的24，48，64就是**静态选取通道**的结果，也可以很明显看到**即使选取通道数较少，准确率也是很高的。**
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921120522931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 # 总结
 阿里达摩院这一篇论文出发点非常好，作者考虑在频域上重建高分辨率图像，并对通道进行统计，做了通道选择，进一步降低了训练和推理的输入数据量。替换到常用CNN结构中也十分简单，最后的实验也表明了该方法的有效性。
 # 拓展阅读（个人实验）
@@ -103,20 +123,28 @@ $$
 这里参考的是 [RGB与YCBCR颜色空间转换及python实现](https://zhuanlan.zhihu.com/p/88933905)
 
 其中RGB转换成YCbCr只需要通过一个矩阵运算
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921163505143.png#pic_center)
+
 效果如下
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921163516319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 ## 分块DCT实验
 这里输入图片大小为224x224x3，以8x8分块进行DCT变换，然后将8x8的系数展开成64大小的张量。
 
 原本输入到DCT的图片（3个通道每一个通道单独输入进去）维度是
+
 $$
 shape=(224,224,1)
 $$
+
 经过变换，展开得到
+
 $$
 shape=(28,28,64)
 $$
+
 **最后分别将三个通道的结果，添加到一个list**
 
 示例代码如下
@@ -174,11 +202,17 @@ plt.show()
 
 实际上每个通道经过上述处理后，有64张图，即 **(28, 28, 64)**
 ### Y通道图
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921164116341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 ### Cb通道图
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921164645734.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 ### Cr通道图
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921164707793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 # 相关资料
 1. 关于各种变换详解，参考[傅里叶变换、拉普拉斯变换、Z 变换的联系是什么？为什么要进行这些变换？](https://www.zhihu.com/question/22085329/answer/774074211)，十分推荐大家花个十分钟仔细读一遍
 2. 代码地址 [DCTNet](https://github.com/calmevtime/DCTNet)，上面也有一些有意思的讨论，也十分建议大家阅读下源码

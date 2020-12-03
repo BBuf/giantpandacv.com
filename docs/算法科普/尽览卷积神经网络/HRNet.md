@@ -71,11 +71,11 @@ HRNet是微软亚洲研究院的王井东老师领导的团队完成的，打通
 
 ### 3.1 消融实验
 
-1. 对交互方法进行消融实验，证明了当前跨分辨率的融合的有效性。
+**1**. 对交互方法进行消融实验，证明了当前跨分辨率的融合的有效性。
 
 ![交互方法的消融实现](https://img-blog.csdnimg.cn/20200419174429487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
-2. 证明高分辨率feature map的表征能力
+**2**. 证明高分辨率feature map的表征能力
 
 ![](https://img-blog.csdnimg.cn/20200419174654814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 

@@ -5,6 +5,7 @@
 打开这个工程，我们发现只有$3$个文件，整个结构非常简单：
 
 ![代码结构](https://img-blog.csdnimg.cn/20200527204224582.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 实际上我们关注前面$2$个文件`deform_conv.py`和`demo.py`就可以了，至于`test_against_mxnet.ipynb`只是测试了以下`mxnet`自带的可变形卷积`op`和这个库里面实现的可变形卷积`op`对同一个输入进行处理，输出结果是否一致，从`jupyter`的结果来看是完全一致的，也证明作者这个`DeformConv2D`是正确实现了，接下来我们就从源码角度来看一下可变形卷积究竟是如何实现的。
 
 另外需要注意的是这个Pytorch代码版本是0.4.1，如果需要使用1.0以上的可能需要稍微改改某些API，但改动应该很少的，毕竟这个代码加起来也就2,300行。。
@@ -225,6 +226,7 @@ for epoch in range(1, args.epochs + 1):
 
 # 5. 解析`deform_conv.py`
 上面的代码解析只是讲了个网络的外包装，真正的可变形卷积的代码实现在`deform_conv.py`里面，可变形卷积的具体流程是：
+
 - 原始图片数据（维度是$b*h*w*c$），记为U。经过一个普通卷积，填充方式为same，对应的输出结果维度是$(b*h*w*2c)$，记作V。V是原始图像数据中每个像素的偏移量（因为有$x$和$y$两个方向，所以是$2c$）。
 - 将U中图片的像素索引值与V相加，得到偏移后的position（即在原始图片U中的坐标值），需要将position值限定为图片大小以内。position的大小为（$b*h*w*2c$)，但position只是一个坐标值，而且还是float类型的，我们需要这些float类型的坐标值获取像素。
 - 举个例子，我们取一个坐标值$(a,b)$，将其转换为四个整数`floor(a), ceil(a), floor(b), ceil(b)`，将这四个整数进行整合，得到四对坐标`（floor(a),floor(b)),  ((floor(a),ceil(b)),  ((ceil(a),floor(b)),  ((ceil(a),ceil(b))`。这四对坐标每个坐标都对应U中的一个像素值，而我们需要得到(a,b)的像素值，这里采用双线性差值的方式计算（一方面是因为获得的像素更精确，另外一方面是因为可以进行反向传播）。
@@ -245,7 +247,9 @@ for epoch in range(1, args.epochs + 1):
 ## 5.1 双线性插值
 
 假设原始图像的大小是$m\times n$，目标图像是$a\times b$，那么两幅图像的边长比分别是$m/a$和$n/b$。那么目标图像的$(i,j)$位置的像素可以通过上面的比例对应回原图像，坐标为$(i*m/a,j*n/b)$。当然这样获得的坐标可能不是整数，如果强行取整就是普通的线性插值，而双线性插值就是通过寻找距离这个对应坐标最近的四个像素点，来计算该点的值，如果坐标是$(2.5,4.5)$，那么最近的四个像素是$(2，4),(2，5), $(3，4)$，$(3，5)$。如果图形是灰度图，那么$(i,j)$点的像素值可以通过下面的公式计算：
+
 $f(i, j)=w1*p1+w2*p2+w3*p3+w4*p4$
+
 其中，$pi=(1,2,3,4)$为最近的$4$个像素点，$w_i$为各点的权重。
 
 到这里并没有结束，**我们需要特别注意的是，仅仅按照上面得到公式实现的双线性插值的结果和OpenCV/Matlab的结果是对应不起来的，这是为什么呢？**
@@ -253,11 +257,13 @@ $f(i, j)=w1*p1+w2*p2+w3*p3+w4*p4$
 原因就是因为坐标系的选取问题，按照一些网上的公开实现，将源图像和目标图像的原点均选在左上角，然后根据插值公式计算目标图像每个点的像素，假设我们要将$5\times 5$的图像缩小成$3\times 3$，那么源图像和目标图像的对应关系如下图所示：
 
 ![按照网上大多数公开的源码实现的像素对应关系](https://img-blog.csdnimg.cn/20200528222125693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到**如果选择了左上角作为原点，那么最右边和最下边的像素是没有参与计算的，所以我们得到的结果和OpenCV/MatLab中的结果不会一致，那应该怎么做才是对的呢？**
 
 答案就是**让两个图像的几何中心重合，并且目标图像的每个像素之间都是等间隔的，并且都和两边有一定的边距**。如下图所示：
 
 ![让两个图像的几何中心重合后的像素对应关系](https://img-blog.csdnimg.cn/20200528222408565.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 所以，我们只需要在计算坐标的时候将：
 
 ```cpp
@@ -462,6 +468,7 @@ class DeformConv2D(nn.Module):
 DCN V1的代码解析我就分析到了这里了，最开始有点懵，然后分析了一下双线性插值的原理并结合源码感觉明白了大概的实现。这个代码的Tensor维度变化我都尽量标注了，但我这里还是建议如果你真要懂这个实现最好去手动DEBUG跟踪一下变量，结合上次的DCN V1的论文解读进行体会。
 
 # 7. 参考
+
 - https://www.iteye.com/blog/handspeaker-1545126
 - https://blog.csdn.net/LEEANG121/article/details/104234927
 - https://www.cnblogs.com/hellcat/p/10617667.html
@@ -473,6 +480,7 @@ DCN V1的代码解析我就分析到了这里了，最开始有点懵，然后�
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

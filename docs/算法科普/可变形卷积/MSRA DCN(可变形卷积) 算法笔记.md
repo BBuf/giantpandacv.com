@@ -92,6 +92,7 @@ Table3主要是和atrous convolution作对比，因为atrous convolution也是�
 看完这篇论文只能说MSRA果然名不虚传，实际上我理解的DCN也是在调感受野，只不过它的感受野是可变的，这就对图像数据中的目标本身就有大量变化的情况有很大好处了。个人感觉，这确实是目标检测领域近年来非常solid的一个工作了。
 
 # 5. 参考
+
 - 论文原文：https://arxiv.org/pdf/1703.06211.pdf
 - 代码：https://github.com/msracver/Deformable-ConvNets
 - 参考博客：https://blog.csdn.net/u014380165/article/details/84894089
@@ -103,6 +104,7 @@ Table3主要是和atrous convolution作对比，因为atrous convolution也是�
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

@@ -9,6 +9,7 @@ Mobilenet-V1的出现推动了移动端的神经网络发展。但MobileNet V1�
 MobileNet V1没有很好的利用残差连接，而残差连接通常情况下总是好的，所以MobileNet V2加上残差连接。先看看原始的残差模块长什么样，如Figure3左图所示：
 
 ![Figure3](https://img-blog.csdnimg.cn/20190617174048257.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 在原始的残差模块中，我们先用$1\times 1$卷积降通道过ReLU，再用$3\times 3$空间卷积过ReLU，再用$1\times 1$卷积过ReLU恢复通道，并和输入相加。之所以要$1\times 1$卷积降通道，是为了减少计算量，不然中间的$3\times 3$空间卷积计算量太大。所以残差模块k是沙漏形，两边宽中间窄。
 
 而MobileNet V2提出的残差模块的结构如Figure 3右图所示：中间的$3\times 3$卷积变为了Depthwise的了，计算量很少了，所以通道可以多一点，效果更好，所以通过$1\times 1$卷积先提升通道数，再用Depthwise的$3\times 3$空间卷积，再用1x1卷积降低维度。两端的通道数都很小，所以1x1卷积升通道或降通道计算量都并不大，而中间通道数虽然多，但是Depthwise 的卷积计算量也不大。本文将其称为Inverted Residual Block（反残差模块），两边窄中间宽，使用较小的计算量得到较好的性能。
@@ -19,18 +20,24 @@ MobileNet V1没有很好的利用残差连接，而残差连接通常情况下�
 这样，我们就得到 MobileNet V2的基本结构了。下图左边是没有残差连接并且最后带ReLU6的MobileNet V1的构建模块，右边是带残差连接并且去掉了最后的ReLU6层的MobileNet V2构建模块：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190617220625653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 网络的详细结构如Table2所示。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190617220711113.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 其中，$t$是输入通道的倍增系数(即是中间部分的通道数是输入通道数的多少倍)，$n$是该模块的重复次数，$c$是输出通道数，$s$是该模块第一次重复时的stride（后面重复都是stride等于1）。
 
 # 实验结果
 通过反残差模块这个新的结构，可以使用更少的运算量得到更高的精度，适用于移动端的需求，在 ImageNet 上的准确率如Table4所示。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190617221040146.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到MobileNet V2又小又快。并且MobileNet V2在目标检测任务上，也取得了十分不错的结果。基于MobileNet V2的SSDLite在COCO数据集上map值超过了YOLO V2，且模型大小小10倍，速度快20倍。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190617221340395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 总结
+
 - 本文提出了一个新的反残差模块并构建了MobileNet V2，效果比MobileNet V1更好，且参数更少。
 - 本文最难理解的其实是反残差模块中最后的线性映射，论文中用了很多公式来描述这个思想，但是实现上非常简单，就是在 MobileNet V1微结构(bottleneck)中第二个$1\times 1$卷积后去掉 ReLU6。对于低维空间而言，进行线性映射会保存特征，而非线性映射会破坏特征。
 
@@ -108,6 +115,7 @@ class MobileNetV2(nn.Module):
 ```
 
 # 附录
+
 - 论文原文：https://arxiv.org/abs/1801.04381
 - 参考资料：https://blog.csdn.net/kangdi7547/article/details/81431572
 

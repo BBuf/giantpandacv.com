@@ -16,7 +16,9 @@
 
 ## 收敛
 使用了ImageNet预训练的模型进行Finetune，和从零开始训练的模型。所使用的数据是不一样的。为了保证实验更公平，作者从图片数量，实例数量，像素量来做了个比较。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020080308352469.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 ImageNet预训练100Epoch + finetune 24Epoch的像素数据量级，十分接近于从头训练72个Epoch coco数据集的。
 # 实验设置
 ## 整体结构
@@ -29,8 +31,11 @@ ImageNet预训练100Epoch + finetune 24Epoch的像素数据量级，十分接近
 ## 从头训练模型
 让我们惊讶的是，从头训练的模型最终准确率都能追上pretrain+finetuned模型。
 ### 比较GN和SyncBN
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200803084826226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020080308484373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 这个图分别是GN和SyncBN的结果。这个图出现的突然提升，就是我们不同schedule下的学习率策略，在不同的iter上调低了10倍学习率的结果。
 从中我们可以总结出以下结论
 1. 在更少的迭代次数上，ImagePretrain的收敛十分迅速，且效果也不差。而对于从0开始训练的模型，则需要更多的迭代学习
@@ -38,8 +43,11 @@ ImageNet预训练100Epoch + finetune 24Epoch的像素数据量级，十分接近
 在COCO数据集上，ImageNet的作用更多的是加速收敛。
 ### 多重测量指标
 我们从锚框和分割这两种指标上，又进行了测试。可以看到从头训练的模型仍能追上Pretrain+Finetune的模型。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200803091448261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200803091509703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 另外我们还使用其他手段对baseline做了增强
 #### 训练时图像增广
 众所周知，图像增广能从数据多样性上增强模型性能，其代价是更多的迭代次数才能收敛。在这个情况下，两个模型都取得了性能上的提升，而从头训练的模型效果更好
@@ -51,7 +59,9 @@ Cascade增加了两个额外的阶段，针对不同的IOU阈值进行检测。�
 我们又在更大的模型上Resnext152做了实验，结论还是与先前的一致，预训练并没有带来模型性能的提升
 ### 关键点检测
 我们也使用了MaskRCNN训练了COCO数据集人体关键点检测任务。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200803093422459.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 在关键点检测任务上，从零训练的model能更快的追上pretrain的结果。因此ImageNet预训练对于关键点检测上提升不大
 ### 没有BN/GN的模型-VGG系列
 Resnet系列的模型需要Normalization才能更好的收敛，而VGG系列可以在正确的初始化下，有不错的收敛效果。
@@ -65,19 +75,26 @@ Resnet系列的模型需要Normalization才能更好的收敛，而VGG系列可�
 ### 在更少的数据上训练
 我们依然在COCO数据集，从35K，10K， 1K的三个数据量级来做对比实验
 #### 35K images
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200803094350232.png)
+
 首先我们保持之前超参不变，在35K数据集上训练。可以看到训练效果明显很差，**这也说明ImageNet预训练不能防止过拟合**。为了更好的baseline进行对比，**我们使用grid search对超参进行搜索**，再来做对比实验
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200803094258328.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 进行了超参调整后，在35K数据集上表现与之前的类似
 
 #### 10K images
 跟35K 类似，我们重复了实验步骤，并且根据数据量，适当调小了迭代次数
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200803094745960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 可以看到表现还是很接近的，甚至最后略有超过
 #### 断崖式下跌，1K images
 实验在1K数据量级下，发生了极大的变化
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020080309490066.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 虽然在loss上，从零开始训练的模型loss也能下降到一个不错的值，但是最终**评测指标表现十分差**
 
 预训练的模型是 9.9AP
