@@ -17,6 +17,7 @@ Batch 的选择，**首先决定的是下降的方向**。如果数据集比较�
 所谓另一个极端，就是每次只训练一个样本，即 Batch_Size = 1。这就是**在线学习（Online Learning）**。线性神经元在均方误差代价函数的错误面是一个抛物面，横截面是椭圆。对于多层神经元、非线性网络，在局部依然近似是抛物面。使用在线学习，每次修正方向以各自样本的梯度方向修正，横冲直撞各自为政，**难以达到收敛**。
 
 ![优化示意图](https://img-blog.csdnimg.cn/20200302205726871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 **可不可以选择一个适中的 Batch_Size 值呢？**
 
 当然可以，这就是**批梯度下降法（Mini-batches Learning）**。因为如果数据集足够充分，那么用一半（甚至少得多）的数据训练算出来的梯度与用全部数据训练出来的梯度是几乎一样的。
@@ -38,7 +39,9 @@ Batch 的选择，**首先决定的是下降的方向**。如果数据集比较�
 
 ![实验用到的网络](https://img-blog.csdnimg.cn/20200302210218328.png)
 ![实验结果](https://img-blog.csdnimg.cn/20200302210232682.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 运行结果如上图所示，其中绝对时间做了标幺化处理。运行结果与上文分析相印证：
+
 - Batch_Size 太小，算法在 200 epoches 内不收敛。
 - 随着 Batch_Size 增大，处理相同数据量的速度越快。
 - 随着 Batch_Size 增大，达到相同精度所需要的 epoch 数量越来越多。
@@ -46,6 +49,7 @@ Batch 的选择，**首先决定的是下降的方向**。如果数据集比较�
 - 由于最终收敛精度会陷入不同的局部极值，因此 Batch_Size 增大到某些时候，达到最终收敛**精度上**的最优。
 
 **文章相关超链接**
+
 - **为什么 feature scaling 会使 gradient descent 的收敛更好?** https://www.zhihu.com/question/37129350/answer/70964527#
 - **theano安装**：http://deeplearning.net/software/theano/install.html#install
 - **theano教程**：http://deeplearning.net/tutorial/contents.html

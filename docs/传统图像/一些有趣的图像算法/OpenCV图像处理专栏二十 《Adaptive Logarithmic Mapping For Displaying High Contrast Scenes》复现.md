@@ -89,6 +89,7 @@ int work(cv::Mat input_img, cv::Mat out_img) {
 ```
 
 # 4. 效果
+
 ![原图1](https://img-blog.csdnimg.cn/20200401213946852.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
 
 ![结果图1](https://img-blog.csdnimg.cn/20200401213916630.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
@@ -96,7 +97,9 @@ int work(cv::Mat input_img, cv::Mat out_img) {
 
 
 ![原图2](https://img-blog.csdnimg.cn/20200401214038606.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
+
 ![结果图2](https://img-blog.csdnimg.cn/20200401214057367.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
+
 对于常态的图片，一般也能起到一定的视觉增强效果：
 
 

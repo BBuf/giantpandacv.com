@@ -8,17 +8,21 @@
 针对上面这个问题，孪生网络被提出，大致结构如下所示：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200117140619184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 然后孪生网络一般就使用这里要介绍的Contrastive Loss作为损失函数，这种损失函数可以有效的处理这种网络中的成对数据的关系。
 
 Contrastive Loss的公式如下：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200117132205211.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 其中$W$是网络权重，$Y$是成对标签，如果$X_1$，$X_2$这对样本属于同一个类，则$Y=0$，属于不同类则$Y=1$。$D_W$是$X_1$与$X_2$在潜变量空间的欧几里德距离。当$Y=0$，调整参数最小化$X_1$与$X_2$之间的距离。当$Y=1$，当$X_1$与$X_2$之间距离大于$m$，则不做优化（省时省力）当$X1$与 X2 之间的距离小于$m$, 则增大两者距离到m。下面的公式（4）是将上面的$L$展开写了一下，如下所示：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020011713220570.png)
+
 而下面的Figure1展示的就是损失函数$L$和样本特征的欧氏距离之间的关系，其中红色虚线表示相似样本的损失值，而蓝色实线表示的是不相似样本的损失值。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200117134404969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 在LeCun的论文中他用弹簧在收缩到一定程度的时候因为受到斥力的原因会恢复到原始长度来形象解释了这个损失函数，如下图：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200117135948640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -50,14 +54,18 @@ class ContrastiveLoss(torch.nn.Module):
 # Triplet Loss
 ## 原理
 Triplet Loss是Google在2015年发表的FaceNet论文中提出的，论文原文见附录。Triplet Loss即三元组损失，我们详细来介绍一下。
+
 - Triplet Loss定义：最小化锚点和具有相同身份的正样本之间的距离，最小化锚点和具有不同身份的负样本之间的距离。
 - Triplet Loss的目标：Triplet Loss的目标是使得相同标签的特征在空间位置上尽量靠近，同时不同标签的特征在空间位置上尽量远离，同时为了不让样本的特征聚合到一个非常小的空间中要求对于同一类的两个正例和一个负例，负例应该比正例的距离至少远`margin`。如下图所示：
 
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200117203441618.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 因为我们期望的是下式成立，即：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2020011720351165.png)其中$\alpha$就是上面提到的`margin`，$T$就是样本容量为$N$的数据集的各种三元组。然后根据上式，Triplet Loss可以写成：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020011720351165.png)
+
+其中$\alpha$就是上面提到的`margin`，$T$就是样本容量为$N$的数据集的各种三元组。然后根据上式，Triplet Loss可以写成：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200117204030299.png)
 
@@ -76,7 +84,9 @@ FaceNet网络可以更加形象的表示为下图：
 
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200117205140780.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 所以网络的最终的优化目标是要让`a,p`的距离近，而`a，n`的距离远。下面定义一下三种不同优化难度的三元组样本。
+
 - `easy triplets`：代表$L=0$，即$d(a,p)+margin<d(a,n)$，无需优化，$a，p$初始距离就很近，$a，n$初始的距离很远。
 - `hard triplets`：代表$d(a,n)<d(a,p)$，即$a，p$的初始距离很远。
 - `semi-hard triplets`：代表$d(a,p)<d(a,n)<d(a,p)+margin$，即$a,n$的距离靠得比较近，但是有一个`mergin`。
@@ -84,6 +94,7 @@ FaceNet网络可以更加形象的表示为下图：
 
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020011721215298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 然后FaceNet的训练策略是随机选取`semi-hard triplets`来进行训练的，当然也可以选择`hard triplets`或者两者结合来训练。关于FaceNet更多的训练细节我们就不再介绍了，这一节的目的是介绍Triplet Loss，之后在人脸识别专栏再单独写一篇介绍FaceNet训练测试以及网络参数细节的。
 
 
@@ -118,7 +129,9 @@ def triplet_loss(y_true, y_pred):
 
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200117213427137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 附录
+
 - Contrasstive Loss原文：http://www.cs.toronto.edu/~hinton/csc2535/readings/hadsell-chopra-lecun-06-1.pdf
 - Triplet Loss原文：https://arxiv.org/abs/1503.03832
 - 参考：https://zhuanlan.zhihu.com/p/76515370
@@ -126,6 +139,7 @@ def triplet_loss(y_true, y_pred):
 
 
 # 推荐阅读
+
 - [【损失函数合集】ECCV2016 Center Loss](https://mp.weixin.qq.com/s/aYrpdwd4J501hKyHozJZBw)
 - [目标检测算法之RetinaNet（引入Focal Loss）](https://mp.weixin.qq.com/s/2VZ_RC0iDvL-UcToEi93og)
 - [目标检测算法之AAAI2019 Oral论文GHM Loss](https://mp.weixin.qq.com/s/mHOo148aUIuK7fewTD1IyQ)

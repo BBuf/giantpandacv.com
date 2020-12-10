@@ -1,10 +1,16 @@
 # 前言
 这是OpenCV图像处理专栏的第六篇文章，我们一起来看看何凯明博士这篇CVPR 2009最佳论文。这篇论文的灵感来自于作者的两个观察，第一个是在3D游戏中的雾使得作者坚信人眼有特殊的东西去感知雾，而不仅仅是靠对比度。第二个是作者阅读了之前的一篇去雾方面的论文《Single Image Dehazing》，发现这篇论文中的Dark Object Subtraction可以处理均匀的雾，但是非均匀的就处理不好，所以作者尝试在局部使用了Dark Object Subtraction，然后得到了惊人的效果。
 # 原理
-- 暗通道先验：首先说在绝大多数非天空的局部区域里，某一些像素总会有至少一个颜色通道具有很低的值，也就是说该区域光强是一个很小的值。所以给暗通道下了个数学定义，对于任何输入的图像J,其暗通道可以用下面的公式来表示：![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115195716365.png)
+- 暗通道先验：首先说在绝大多数非天空的局部区域里，某一些像素总会有至少一个颜色通道具有很低的值，也就是说该区域光强是一个很小的值。所以给暗通道下了个数学定义，对于任何输入的图像J,其暗通道可以用下面的公式来表示：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115195716365.png)
+
 其中$J^C$表示彩色图像每个通道，$Ω(x)$表示以像素X为中心的一个窗口。要求暗通道的图像是比较容易的，先求出每个像素在3个通道的最小值，存到一个二维Mat中(灰度图)，然后做一个最小值滤波，滤波的半径由窗口大小决定，这里窗口大小为$WindowSize$，公式表示为$WindowsSize=2*Radius+1$，其中$Radius$表示滤波半径。
+
 - ![在这里插入图片描述](https://img-blog.csdnimg.cn/2018111520041669.png) 
+
 暗通道先验理论得出的结论，这个我不知道如何证明，不过论文给出了几个原因：
+
 - a)汽车、建筑物和城市中玻璃窗户的阴影，或者是树叶、树与岩石等自然景观的投影；
 - b)色彩鲜艳的物体或表面，在RGB的三个通道中有些通道的值很低（比如绿色的草地／树／植物，红色或黄色的花朵／叶子，或者蓝色的水面）；
 - c)颜色较暗的物体或者表面，例如灰暗色的树干和石头。
@@ -13,24 +19,49 @@
 
 - 基于这个先验，就是该论文中最核心的部分了。首先，在计算机视觉和图像处理中，下面这个雾生成模型被广泛的应用：$I(x)=J(x)t(x)+A(1-t(x))$，其中$I(x)$是我们待处理的图像，$J(x)$是我们要恢复的没有雾的图像，$A$是全球大气光成分，$t(x)$为透射率。现在已知了$I(X)$，我们需要求取$J(X)$，显然这个不定方程有无数解，所以还需要定义一些先验。
 - 将上式处理变形得到:$\frac{I^c(x)}{A^c}=t(x)\frac{J^c(x)}{A^c}+1-t(x)$，其中上标$c$代表$R、G、B$三个通道。然后假设在每一个窗口中透射率$t(x)$是一个常数，定义为$\hat{t(x)}$并且$A$值已经给定，然后对这个式子左右两边同时取2次最小值，得到下面的式子：
+
 - ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115201846184.png)
+
 其中$\hat{t(x)}$就是公式(8)中那个$t(x)$部分，因为我不知道怎么用markdown语法写这个符号。
-上式中，$J$是待求的无雾的图像，根据前述的暗原色先验理论有：![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115202255705.png) 
+上式中，$J$是待求的无雾的图像，根据前述的暗原色先验理论有：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115202255705.png) 
+
 因此，可推导出：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115202313428.png)  
+
 把式(10)带入式(8)中，得到：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115202331971.png)
+
 这就是透射率$\hat{t(x)}$的预估值。
  在现实生活中，即使是晴天白云，空气中也存在着一些颗粒，因此，看远处的物体还是能感觉到雾的影响，另外，雾的存在让人类感到景深的存在，因此，有必要在去雾的时候保留一定程度的雾，这可以通过在式（11）中引入一个在[0,1] 之间的系数，则式（11）被修正为：
- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115202438127.png) 
- 本推文中所有的测试结果依赖于：  $ω=0.95$。
-- 上述的推导是基于A已知的情况下，然而事实是A还不知道呢？A怎么计算呢？在实际中，我们可以借助于暗通道图来从有雾图像中获取该值。具体步骤如下：(1)从暗通道图中按照亮度的大小取前0.1%的像素。(2)在这些位置中，在原始有雾图像$I$中寻找对应的具有最高亮度的点的值，作为A值。  到这一步，我们就可以进行无雾图像的恢复了。由$I(x)=J(x)t(x)+A(1-t(x))$，推出 $J(x)=(I(x)-A)/t(x)+A$，现在$I、A、t$都已经求得了，因此，完全进行出J，也就是去雾后的图像了。当投射图$t$的值很小时，会导致$J$的值偏大，从而使得图像整体向白场过度，因此一般可设置一阈值$t_0$，当$t$值小于$t_0$时，令$t=t_0$，本推文中所有效果图均以$t_0=0.1$为标准计算得来。 
-- 最终的结果计算表示为：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115203002367.png)
-按照上面的公式复现了论文，给几张图片测试结果，都是**原图和算法处理后的图**这样的顺序：
-![原图1](https://img-blog.csdnimg.cn/20181119140950542.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![去雾后额图片](https://img-blog.csdnimg.cn/20181120113921207.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20181120114643152.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181120114023509.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)[](https://img-blog.csdnimg.cn/20181119141043379.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![原图3](https://img-blog.csdnimg.cn/20181119141157264.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20181120114054245.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+ ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115202438127.png) 
+
+ 本推文中所有的测试结果依赖于：  $ω=0.95$。
+
+- 上述的推导是基于A已知的情况下，然而事实是A还不知道呢？A怎么计算呢？在实际中，我们可以借助于暗通道图来从有雾图像中获取该值。具体步骤如下：(1)从暗通道图中按照亮度的大小取前0.1%的像素。(2)在这些位置中，在原始有雾图像$I$中寻找对应的具有最高亮度的点的值，作为A值。  到这一步，我们就可以进行无雾图像的恢复了。由$I(x)=J(x)t(x)+A(1-t(x))$，推出 $J(x)=(I(x)-A)/t(x)+A$，现在$I、A、t$都已经求得了，因此，完全进行出J，也就是去雾后的图像了。当投射图$t$的值很小时，会导致$J$的值偏大，从而使得图像整体向白场过度，因此一般可设置一阈值$t_0$，当$t$值小于$t_0$时，令$t=t_0$，本推文中所有效果图均以$t_0=0.1$为标准计算得来。 
+
+- 最终的结果计算表示为：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20181115203002367.png)
+
+按照上面的公式复现了论文，给几张图片测试结果，都是**原图和算法处理后的图**这样的顺序：
+
+![原图1](https://img-blog.csdnimg.cn/20181119140950542.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![去雾后额图片](https://img-blog.csdnimg.cn/20181120113921207.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20181120114643152.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20181120114023509.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![1](https://img-blog.csdnimg.cn/20181119141043379.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![原图3](https://img-blog.csdnimg.cn/20181119141157264.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20181120114054245.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 代码实现
 
 ```
@@ -221,12 +252,16 @@ int main(){
 
 # 参考文章
 论文原文：https://ieeexplore.ieee.org/document/5567108
+
 参考博客：https://www.cnblogs.com/Imageshop/p/3281703.html
+
 我的github链接：https://github.com/BBuf/Image-processing-algorithm
+
 # 后记
 关于何凯明博士的暗通道去雾算法就介绍到这里了，希望对你有帮助。代码也可以在我的github获取哦。
 
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

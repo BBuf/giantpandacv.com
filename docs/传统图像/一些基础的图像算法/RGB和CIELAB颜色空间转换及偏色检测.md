@@ -1,6 +1,7 @@
 # RGB转为CIELAB
-首先RGB是不可以直接转为CIELAB颜色空间的，RGB需要先转为CIEXYZ颜色空间，然后再由CIEXYZ颜色空间转为CIELAB颜色空间。关于这2个颜色空间的互转，主要参考了http://www.cnblogs.com/Imageshop/archive/2013/02/02/2889897.html这篇文章。
+首先RGB是不可以直接转为CIELAB颜色空间的，RGB需要先转为CIEXYZ颜色空间，然后再由CIEXYZ颜色空间转为CIELAB颜色空间。关于这2个颜色空间的互转，主要参考了  http://www.cnblogs.com/Imageshop/archive/2013/02/02/2889897.html 这篇文章。
 RGB转LAB颜色空间的代码如下：
+
 ```
 void RGB2LAB(Mat &rgb, Mat &Lab) {
 	//RGB 转XYZ
@@ -49,6 +50,7 @@ void RGB2LAB(Mat &rgb, Mat &Lab) {
 这种方法是《基于图像分析的偏色检测及颜色校正方法》——徐晓昭，蔡轶珩提出来的一个理论，大概是说：图像的偏色不仅与图像色度的平均值有直接关系，还与图像的色度分布特性有关。如果在 a - b色度坐标平面上的二维直方图中色度分布基本上为单峰值，或者分布较为集中，而色度平均值又较大时，一般都存在偏色，而且色度平均值越大，偏色越严重。因此引入等效圆的概念，采用图像平均色度D和色度中心距M的比值，即偏色因子K来衡量图像的偏色程度。其计算方法如下式：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181208192954797.jpg) 
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181208193006900.jpg)
 
 其中a,b代表的就是LAB色度空间的A,B。M,N代表图片长宽，一般来说当求出的K值不大于1.5我们可以认为其整体图像偏色的可能性不大。

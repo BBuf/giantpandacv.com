@@ -106,6 +106,7 @@ int main(){
 ```
 
 # 5. 效果
+
 ![经典人物Lena](https://img-blog.csdnimg.cn/2018121517094254.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 ![先进行Y方向的Sobel运算，然后再进行X方向的结果](https://img-blog.csdnimg.cn/20181215171002371.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)

@@ -5,11 +5,14 @@
 论文使用了Retinex的多尺度高斯滤波求取**光照分量**，然后使用了二**维Gamma函数**针对原图的**HSV空间的V(亮度)分量**进行亮度改变，得到结果。原理还是蛮简单的，因为是中文论文，且作者介绍得很清楚，我就不细说了，可以自己看论文，论文地址见附录。本文的重点在于对算法步骤的解读和OpenCV复现。
 
 # 算法步骤
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190315105109777.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70) 
+
 # 需要注意的点
 文中公式5(二维Gamma变换) 有误，公式5为：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020020319173958.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 其中$\gamma$ 的指数应该是$m-I(x,y)$，而不是$I(x,y)-m$，如果使用后者会得到错误结果，应该是作者笔误了。
 
 # OpenCV C++代码复现
@@ -153,7 +156,9 @@ Mat work(Mat src) {
 ![效果图1](https://img-blog.csdnimg.cn/2019031511054243.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 ![原图2](https://img-blog.csdnimg.cn/20190315110557148.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![效果图2](https://img-blog.csdnimg.cn/20190315110633745.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 结论
 可以看到这个算法对光照不均匀的图像校正效果还是不错的，且没有像Retiex那样在亮度突变处出现色晕现象。
 
