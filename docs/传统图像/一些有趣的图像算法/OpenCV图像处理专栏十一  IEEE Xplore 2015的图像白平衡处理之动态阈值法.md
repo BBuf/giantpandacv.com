@@ -3,6 +3,7 @@
 # 算法原理
 和灰度世界法和完美反射算法类似，动态阈值算法仍然分为两个步骤即白点检测和白点调整，具体如下：
 ## 白点检测
+
 - 1、把尺寸为$w\times h$的原图像从$RGB$空间转换到$YCrCb$空间。
 
 - 2、把图像分成$3\times 4$个块。
@@ -14,6 +15,7 @@
 - 6、若符合判别式，则作为“参考白色点”,并把该点$（i，j）$的亮度（$Y$分量）值赋给$RL(i,j)$。若不符合，则该点的$RL(i,j)$值为0。
 
 ## 白点调整
+
 - 1、选取参考“参考白色点”中最大的`10%`的亮度（`Y`分量）值，并选取其中的最小值`Lu_min`。
 - 2、调整`RL`，若`RL(i,j)<Lu_min`, `RL(i,j)=0`; 否则，`RL(i,j)=1`。
 - 3、分别把`R`，`G`，`B`与`RL`相乘，得到`R2`，`G2`，`B2`。  分别计算`R2`，`G2`，`B2`的平均值，`Rav`，`Gav`，`Bav`。
@@ -227,11 +229,17 @@ Mat AutomaticWhiteBalanceMethod(Mat src) {
 图像均为算法处理前和处理后的顺序。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191226212433721.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191226212446373.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191226212457237.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191226212540682.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191226212553768.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191226212627785.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 附录
 论文原文：http://140.112.114.62/bitstream/246246/200704191001444/1/01465458.pdf
 
@@ -244,4 +252,5 @@ Mat AutomaticWhiteBalanceMethod(Mat src) {
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+ 
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

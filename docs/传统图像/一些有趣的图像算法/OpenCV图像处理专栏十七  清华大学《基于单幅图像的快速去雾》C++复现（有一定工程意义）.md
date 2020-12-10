@@ -42,7 +42,9 @@ $t(x)=1-w\frac{I(x)}{A}..............................(8)$
 好了，上面复习完了何凯明博士的暗通道去雾，我们一起来看看清华大学这篇论文。
 
 # 3. 算法流程
+
 ![算法流程](https://img-blog.csdnimg.cn/20190514115722797.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 实际上有了这个算法流程就可以写出代码了，不过为了加深理解可以看下面的一些推导。
 
 # 4. 一些推导
@@ -192,12 +194,32 @@ int main() {
 ```
 
 # 6. 结果
-![原图1](https://img-blog.csdnimg.cn/20190514142516929.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![结果图1](https://img-blog.csdnimg.cn/20190514142526416.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![原图2](https://img-blog.csdnimg.cn/20190514142600933.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![结果图2](https://img-blog.csdnimg.cn/20190514142609903.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![原图3](https://img-blog.csdnimg.cn/20190514142649792.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![结果图3](https://img-blog.csdnimg.cn/20190514142707127.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![原图4](https://img-blog.csdnimg.cn/20190514142734371.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![结果图4](https://img-blog.csdnimg.cn/20190514142743381.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![原图5](https://img-blog.csdnimg.cn/20190514142837380.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)![结果图5](https://img-blog.csdnimg.cn/20190514142847223.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+![原图1](https://img-blog.csdnimg.cn/20190514142516929.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![结果图1](https://img-blog.csdnimg.cn/20190514142526416.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![原图2](https://img-blog.csdnimg.cn/20190514142600933.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![结果图2](https://img-blog.csdnimg.cn/20190514142609903.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![原图3](https://img-blog.csdnimg.cn/20190514142649792.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![结果图3](https://img-blog.csdnimg.cn/20190514142707127.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![原图4](https://img-blog.csdnimg.cn/20190514142734371.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![结果图4](https://img-blog.csdnimg.cn/20190514142743381.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![原图5](https://img-blog.csdnimg.cn/20190514142837380.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+![结果图5](https://img-blog.csdnimg.cn/20190514142847223.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 7. 结论
 算法里面有2个参数可以自己调节，滤波的半径和$\rho$。具体如何调节？我就不放在这里说了，这个算法后面会在我的新专题里面进行一遍优化，到时候再来回答这个问题。如果你迫切需要这个算法的实现或者对它感兴趣，可以自己尝试调整这两个参数获得想要的效果。这里的均值滤波也可以换成我们之前讲的Side Window Filter说不定可以获得更好的效果。
 
 
 # 8. 参考
+
 - https://blog.csdn.net/u013684730/article/details/76640321
 - https://www.cnblogs.com/Imageshop/p/3410279.html
 

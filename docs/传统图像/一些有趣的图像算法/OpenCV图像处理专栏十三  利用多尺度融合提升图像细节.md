@@ -8,6 +8,7 @@
 **从深度学习中特征金字塔网络的思想来看，这个算法实际上就是将不同尺度上的特征图进行了融合，不过这个方式是直接针对原图进行，比较粗暴，但有个好处就是这个算法用于预处理阶段是易于优化的，关于如何优化后面讲SSE指令集优化的时候再来讨论，今天先提供原始的实现啦。**
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181214174426609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 代码实现
 
 ```
@@ -108,9 +109,11 @@ Mat MultiScaleDetailBoosting(Mat src, int Radius){
 ```
 
 # 效果
+
 ![原图](https://img-blog.csdnimg.cn/20181214174846124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 ![效果图](https://img-blog.csdnimg.cn/20181214174905452.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 同期文章
 - [OpenCV图像处理专栏一 | 盘点常见颜色空间互转](https://mp.weixin.qq.com/s/c_7cdSmqkr8tXMXDORSA-Q)
 - [OpenCV图像处理专栏二 |《Local Color Correction 》论文阅读及C++复现](https://mp.weixin.qq.com/s/z7tIiD0wLikcjFwtwZaV8w)

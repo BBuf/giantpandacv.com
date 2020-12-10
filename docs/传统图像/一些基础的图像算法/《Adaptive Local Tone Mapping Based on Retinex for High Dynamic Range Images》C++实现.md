@@ -1,13 +1,20 @@
 # 前言
 最近在做低照度图像恢复时，发现了一个充满知识的github工程：[点这里](https://github.com/IsaacChanghau/OptimizedImageEnhance)，里面有一篇论文，《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》，它结合传统的Retinex技术提出了全局自适应和局部自适应的HDR实现过程，这里是参考了作者的matlab代码写出了暴力版本的代码实现，在720p的图像上处理速度为68ms/张。论文的讲解不是很好翻译，大家可以去查看原始论文，我也没怎么读啦。。。论文地址在这里：http://koasas.kaist.ac.kr/bitstream/10203/172985/1/73275.pdf  ，我只是实现了论文中的一小部分，就是全局自适应，发现对于低照度的彩色图像恢复效果很好。
 # 原理
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181113155554540.png)
 
 首先引入了这个公式，这些符号代表些啥呢？$L_g(x,y)$是全自适应输出的结果，我们这里就是需要得到它，$L_w(x,y)$代表输入图像的luminance值（亮度值），$L_{wmax}$表示输入图像亮度值对的最大值，${L_w}$横线 表示输入亮度对数的平均值。
 然后：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181113160141594.png)
 
-其中N表示像素的总数，而δ一般是个很小的值，其作用主要是为了避免对纯黑色像素进行log计算时数值溢出，这个问题在图像处理时非常常见。直接应用原文的话，(这段描述来自:https://www.cnblogs.com/Imageshop/p/9460334.html)上述算式的主要作用是：The input world luminance values and the maximum luminance values are divided by the log-average luminance of he scene. This enables (4) to adapt to each scene. As the log-verage luminance converges to the high value, the function converges from the shape of the logarithm function to the near function. Thus, scenes of the low log-average luminance reboosted more than scenes with high values. As a result, the overall scene luminance values are adequately compressed in ccordance with the log-average luminance of the scene.特别注意的是 scenes of the low log-average luminance reboosted more than scenes with high values. 这句话，他的意思是说低照度的亮度部分比高照度的部分要能得到更大程度的提升，所以对于低照度图，上述公式能起到很好的增强作用。而算式中使用了全局的对数平均值，这就有了一定的自适应性。
+其中N表示像素的总数，而δ一般是个很小的值，其作用主要是为了避免对纯黑色像素进行log计算时数值溢出，这个问题在图像处理时非常常见。直接应用原文的话，(这段描述来自: https://www.cnblogs.com/Imageshop/p/9460334.html )上述算式的主要作用是：
+
+The input world luminance values and the maximum luminance values are divided by the log-average luminance of he scene. This enables (4) to adapt to each scene. As the log-verage luminance converges to the high value, the function converges from the shape of the logarithm function to the near function. Thus, scenes of the low log-average luminance reboosted more than scenes with high values. As a result, the overall scene luminance values are adequately compressed in ccordance with the log-average luminance of the scene.
+
+特别注意的是 scenes of the low log-average luminance reboosted more than scenes with high values. 这句话，他的意思是说低照度的亮度部分比高照度的部分要能得到更大程度的提升，所以对于低照度图，上述公式能起到很好的增强作用。而算式中使用了全局的对数平均值，这就有了一定的自适应性。
+
 # 代码实现
 我暂时只实现了c++暴力版本，代码如下：
 

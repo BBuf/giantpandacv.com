@@ -284,10 +284,12 @@ int main() {
 
 
 ![原图](https://img-blog.csdnimg.cn/20190423130702112.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![不使用导向滤波的结果](https://img-blog.csdnimg.cn/20190423130751986.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 ![使用导向滤波的透射率图](https://img-blog.csdnimg.cn/20190423131042816.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 ![使用导向滤波的结果图](https://img-blog.csdnimg.cn/20190423131117440.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 结论
 可以看到效果确实好一些，关于导向滤波可以看我的这篇博客：https://blog.csdn.net/just_sort/article/details/84324239

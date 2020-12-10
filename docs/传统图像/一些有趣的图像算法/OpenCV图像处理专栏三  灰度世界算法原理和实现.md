@@ -5,6 +5,7 @@
 灰度世界算法以灰度世界假设为基础，假设为：对于一幅有着大量色彩变化的图像，RGB三个分量的平均值趋于同一个灰度值$\bar Gray$。从物理意思上讲，灰度世界算法假设自然界景物对于光线的平均反射的均值在整体上是一个定值，这个定值近似为“灰色”。颜色平衡算法将这一假设强制应用于待处理的图像，可以从图像中消除环境光的影响，获得原始场景图像。
 
 # 算法步骤
+
 - 确定Gray有2种方法，一种是取固定值，比如最亮灰度值的一半，8位显示为128。另一种就是通过计算图像R,G,B的三个通道$\bar R$,$\bar G$,$\bar B$，取$\bar Gray=\frac{\bar R + \bar G + \bar B}{3}$
 - 计算$R$,$G$,$B$，3个通道的增益系数：$k_r=\frac{\bar Gray}{\bar R}$,$k_g=\frac{\bar Gray}{\bar G}$,$k_b=\frac{\bar Gray}{\bar B}$
 - 根据Von Kries对角模型，对于图像中的每个像素C，调整其分量R,G,B分量：$C(R')=C(R)*k_r$,$C(G')=C(G)*k_g$,$C'(B)=C(B)*k_b$
@@ -51,13 +52,18 @@ Mat GrayWorld(Mat src) {
 ```
 # 效果
 **原图**
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190103203458190.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 **灰度世界算法处理后**
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191207144543324.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 后记
 可以看到灰度世界算法有了白平衡的效果，并且该算法的执行速度也是非常的快。
 
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPandaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)
