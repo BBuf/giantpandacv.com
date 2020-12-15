@@ -29,7 +29,9 @@ nn.CrossEntropyLoss(input, target)
 $L=-\sum_{c=1}^Mw_cy_clog(p_c)$
 
 可以看到只是在交叉熵Loss的基础上为每一个类别添加了一个权重参数，其中$w_c$的计算公式为：
+
 $w_c=\frac{N-N_c}{N}$
+
 其中$N$表示总的像素个数，而$N_c$表示GT类别为$c$的像素个数。这样相比于原始的交叉熵Loss，在样本数量不均衡的情况下可以获得更好的效果。
 
 # Focal Loss
@@ -37,15 +39,24 @@ $w_c=\frac{N-N_c}{N}$
 我们知道，One-Stage的目标检测器通常会产生`10k`数量级的框，但只有极少数是正样本，正负样本数量非常不平衡。我们在计算分类的时候常用的损失——交叉熵的公式如下：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191130140009825.png)
+
 为了解决**正负样本数量不平衡**的问题，我们经常在二元交叉熵损失前面加一个参数$\alpha$，即：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191130140758554.png)
+
 虽然$\alpha$平衡了正负样本的数量，但实际上，目标检测中大量的候选目标都是易分样本。这些样本的损失很低，但是由于数量极不平衡，易分样本的数量相对来讲太多，最终主导了总的损失。
 
 因此，这篇论文认为**易分样本（即，置信度高的样本）对模型的提升效果非常小，模型应该主要关注与那些难分样本** 。所以Focal Loss横空出世了。一个简单的想法就是只要我们将高置信度样本的损失降低一些就好了吧？
 也即是下面的公式：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191130141354387.png)我们取$\gamma$等于2来感受一下，如果$p=0.9$，那么,$(1-0.9)^2=0.001$，损失降低了1000倍。最终Focal Loss还结合了公式(2)，这很好理解，公式(3)解决了难易样本的不平衡，公式(2)解决了正负样本的不平衡，将公式（2）与（3）结合使用，同时解决正负难易2个问题！所以最终Focal Loss的形式如下：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191130141354387.png)
+
+我们取$\gamma$等于2来感受一下，如果$p=0.9$，那么,$(1-0.9)^2=0.001$，损失降低了1000倍。最终Focal Loss还结合了公式(2)，这很好理解，公式(3)解决了难易样本的不平衡，公式(2)解决了正负样本的不平衡，将公式（2）与（3）结合使用，同时解决正负难易2个问题！所以最终Focal Loss的形式如下：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191130141712610.png)
+
 下面这张图展示了Focal Loss取不同的$\lambda$时的损失函数下降。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191130142121863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 实验结果展示，当$\gamma=2$，$\alpha=0.75$时，效果最好，这样损失函数训练的过程中关注的样本优先级就是正难>负难>正易>负易了。
@@ -89,14 +100,23 @@ class FocalLoss(nn.Module):
 
 # Dice Loss
 - Dice系数：根据 Lee Raymond Dice[1]命令，是用来度量集合相似度的度量函数，通常用于计算两个样本之间的像素，公式如下：
+
 $s=\frac{2|X\bigcap Y|}{|X|+|Y|}$
+
 分子中之所以有一个系数2是因为分母中有重复计算$X$和$Y$的原因，最后$s$的取值范围是$[0,1]$。而针对我们的分割任务来说，$X$表示的就是Ground Truth分割图像，而Y代表的就是预测的分割图像。这里可能需要再讲一下，其实$s$除了上面那种形式还可以写成：
+
 $s=\frac{2TP}{2TP+FN+FP}$
+
 其中$TP，FP，FN$分别代表真阳性，假阳性，假阴性的像素个数。
+
 - Dice Loss：公式定义为 ：
+
  $loss = 1 - \frac{2|X\bigcap Y|}{|X|+|Y|}$
- Dice Loss使用与样本极度不均衡的情况，如果一般情况下使用Dice Loss会回反向传播有不利的影响，使得训练不稳定。
+
+Dice Loss使用与样本极度不均衡的情况，如果一般情况下使用Dice Loss会回反向传播有不利的影响，使得训练不稳定。
+
 - 训练分割网络，例如FCN，UNet是选择交叉熵Loss还是选择Dice Loss？
+
 	- 假设我们用$p$来表示预测值，而$t$来表示真实标签值，那么交叉熵损失关于$p$的梯度形式类似于$p-t$（我会在文后给出推导），而Dice Loss的值是$1- \frac{2pt}{p^2+t^2}$或$1 - \frac{2pt}{p+t}$，其关于$p$的梯度形式为$\frac{2t^2}{(p+t)^2}$或$\frac{2t(t^2-p^2)}{(p^2+t^2)^2}$，可以看到在极端情况下即$p$和$t$都很小的时候，计算得到的梯度值可能会非常大，即会导致训练十分不稳定。
 	- 另外一种解决类别不平衡的方法是简单的对每一个类别根据赋予不同的权重因子（如对数量少的类别赋予较大的权重因子），使得样本数量不均衡问题得到缓解（上面已经介绍过了，就是带权重的交叉熵Loss）。
 	- 这两种处理方式，哪种更好，还是建议自己针对自己的数据做一个实验。
@@ -132,6 +152,7 @@ $L = 1 - \frac{A\bigcap B}{A \bigcup B}$
 它和Dice Loss一样仍然存在训练过程不稳定的问题，IOU Loss在分割任务中应该是不怎么用的，如果你要试试的话代码实现非常简单，在上面Dice Loss的基础上改一下分母部分即可，不再赘述了。我们可以看一下将IOU loss应用到FCN上在VOC 2010上的实验结果：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200118174234343.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到IOU Loss是对大多数类别的分割结果有一定改善的，但是对`Person`类却性能反而下降了。
 
 # Tversky Loss
@@ -139,9 +160,12 @@ $L = 1 - \frac{A\bigcap B}{A \bigcup B}$
 $T(A,B)=\frac{A\bigcap B}{A\bigcap B+\alpha |A-B|+\beta |B-A|}$
 这里A表示预测值而B表示真实值。当$\alpha$和$\beta$均为$0.5$的时候，这个公式就是Dice系数，当$\alpha$和$\beta$均为$1$的时候，这个公式就是Jaccard系数。其中$|A-B|$代表FP（假阳性），$|B-A|$代表FN(假阴性)，通过调整$\alpha$和$\beta$这两个超参数可以控制这两者之间的权衡，进而影响召回率等指标。下表展示了对FCN使用Tversky Loss进行病灶分割，并且取不同的$\alpha$和$\beta$参数获得的结果，其中Sensitivity代表召回率Recall，而Specificity表示准确率Precision：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200118183953265.png)在极小的病灶下的分割效果图如下：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200118183953265.png)
+
+在极小的病灶下的分割效果图如下：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200118184400397.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 而在较大的病灶下的分割效果图如下：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200118184427500.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -202,14 +226,18 @@ def generalized_dice_loss(y_true, y_pred):
 这个Loss的组合应该最早见于腾讯医疗AI实验室2018年在《Medical Physics》上发表的这篇论文：`https://arxiv.org/pdf/1808.05238.pdf`。论文提出了使用Focal Loss和Dice Loss来处理小器官的分割问题。公式如下：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200118175706808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 其中$TP_p(c)$，$FN_p(c)$，$FP_p(c)$分别表示对于类别`c`的真阳性，假阴性，假阳性。可以看到这里使用Focal Loss的时候，里面的两个参数$\gamma$直接用对于类别`c`的正样本像素个数来代替。具体实验细节和效果可以去看看原论文。
 
 # Exponential Logarithmic loss
 这个Loss是MICCAI 2018的论文`3D Segmentation with Exponential LogarithmicLoss for Highly Unbalanced Object Sizes`提出来的，论文地址为：`https://arxiv.org/abs/1809.00076`。这个Loss结合了Focal Loss以及Dice loss。公式如下：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200118211749439.png)
+
 这里增加了两个参数权重分别为$w_{Dice}$和$w_{Cross}$，而$L_{Dice}$为指数log Dice损失，$L_{Cross}$为指数交叉熵损失。公式如下：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200118211817947.png)
+
 其中，$x$表示像素位置，$i$表示类别标签，$l$表示位置$x$处的ground truth类别，$p_i(x)$表示经过`softmax`操作之后的概率值。其中：
 $w_l=(\frac{\sum_kf_k}{f_l})^{0.5}$
 其中$f_k$表示标签$k$出现的频率，这个参数可以减小出现频率较高的类别权重。$\gamma Dice$和$\gamma Cross$可以提升函数的非线性，如Figure2所示：
@@ -230,7 +258,9 @@ $z_i = \sum_{ij}x_{ij}+b$
 其中$w_{ij}$是第$i$个神经元的第$j$个权重,b是偏移值.$z_i$表示网络的第$i$个输出。给这个输出加上一个softmax函数，可以写成:
 $a_i = \frac{e^{z_i}}{\sum_ke^{z_k}}$,
 其中$a_i$表示softmax函数的第i个输出值。这个过程可以用下图表示:
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190805105300811.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 (2)损失函数
 softmax的损失函数一般是选择交叉熵损失函数，交叉熵函数形式为：
 $C=-\sum_i{y_i lna_i}$
@@ -264,19 +294,25 @@ c'=0(c为常数）
 我们需要求的是loss对于神经元输出$z_i$的梯度，求出梯度后才可以反向传播，即是求:
 $\frac{\partial C}{\partial z_i}$, 根据链式法则(也就是复合函数求导法则)$\frac{\partial C}{\partial a_j}\frac{\partial a_j}{\partial z_i}$，初学的时候这个公式理解了很久，为什么这里是$a_j$而不是$a_i$呢？这里我们回忆一下softmax的公示，分母部分包含了所有神经元的输出，所以对于所有输出非i的输出中也包含了$z_i$，所以所有的a都要参与计算，之后我们会看到计算需要分为$i=j$和$i \neq j$两种情况分别求导数。
 首先来求前半部分：
+
 $\frac{\partial C}{ \partial a_j} = \frac{-\sum_jy_ilna_j}{\partial a_j} = -\sum_jy_j\frac{1}{a_j}$
+
 接下来求第二部分的导数：
+
 - 如果$i=j$，$\frac{\partial a_i}{\partial z_i} = \frac{\partial(\frac{e^{z_i}}{\sum_ke^{z_k}})}{\partial z_i}=\frac{\sum_ke^{z_k}e^{z_i}-(e^{z_i})^2}{(\sum_ke^{z_k})^2}=(\frac{e^z_i}{\sum_ke^{z_k}})(1 - \frac{e^{z_i}}{\sum_ke^{z_k}})=a_i(1-a_i)$
 -  如果$i \neq j$，$\frac{\partial a_i}{\partial z_i}=\frac{\partial\frac{e^{z_j}}{\sum_ke^{z_k}}}{\partial z_i} = -e^{z_j}(\frac{1}{\sum_ke^z_k})^2e^{z_i}=-a_ia_j$。
 
 接下来把上面的组合之后得到：
+
 $\frac{\partial C}{\partial z_i}$
 $=(-\sum_{j}y_j\frac{1}{a_j})\frac{\partial a_j}{\partial z_i}$
 $=-\frac{y_i}{a_i}a_i(1-a_i)+\sum_{j \neq i}\frac{y_j}{a_j}a_ia_j$
 $=-y_i+y_ia_i+\sum_{j \neq i}\frac{y_j}a_i$
 $=-y_i+a_i\sum_{j}y_j$。
+
 推导完成!
 (4)对于分类问题来说，我们给定的结果$y_i$最终只有一个类别是1,其他是0，因此对于分类问题，梯度等于：
+
 $\frac{\partial C}{\partial z_i}=a_i - y_i$
 
 最后放一份CS231N的代码实现，帮助进一步理解：
@@ -340,6 +376,7 @@ def softmax_loss_vectorized(W, X, y, reg):
 这篇文章介绍了近些年来算是非常常用的一些语义分割方面的损失函数，希望可以起到一个抛砖引玉的作用，引发大家对分割中的损失函数进一步思考。当然对于工程派和比赛派来讲，掌握一种新Loss并且应用于自己的项目或者比赛也是不错的。
 
 # 附录
+
 - 参考资料1：https://www.aiuai.cn/aifarm1159.html
 - 参考资料2：https://blog.csdn.net/m0_37477175/article/details/83004746
 - 参考资料3：https://blog.csdn.net/m0_37477175/article/details/85335415
@@ -348,6 +385,7 @@ def softmax_loss_vectorized(W, X, y, reg):
 - Lovasz-Softmax Loss代码：https://github.com/bermanmaxim/LovaszSoftmax
 
 # 推荐阅读
+
 - [【损失函数合集】Yann Lecun的Contrastive Loss 和 Google的Triplet Loss](https://mp.weixin.qq.com/s/h0N9OR_AcUw_lXgELohS0Q)
 - [【损失函数合集】ECCV2016 Center Loss](https://mp.weixin.qq.com/s/aYrpdwd4J501hKyHozJZBw)
 - [目标检测算法之RetinaNet（引入Focal Loss）](https://mp.weixin.qq.com/s/2VZ_RC0iDvL-UcToEi93og)

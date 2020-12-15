@@ -4,8 +4,11 @@
 一般，图像去雾问题可以用一个雾形成模型来描述：$I(p)=t(p)J(p)+(1−t(p))A$,其中，$J(p)=(Jr(p),Jg(p),Jb(p))$代表原始图像(R,G,B)3个通道，$I(p)=(Ir(p),Ig(p),Ib(p))$代表有误的图像。$A=(A_r,A_g,A_b)$是全球大气光值，它表示周围环境的大气光。$t(p)∈[0,1]$是反射光的透射率, 由场景点到照相机镜头之间的距离所决定。因为光传播的距离越远，光就越分散且越发减弱。所以上面这个公式的意思就是，本来没有被雾所笼罩的图像 J 与大气光 A 按一定比例进行混合后就得到我们最终所观察到的有雾图像。大气光 A 通常用图像中最明亮的颜色来作为估计。因为大量的灰霾通常会导致一个发亮（发白）的颜色。然而，在这个框架下，那些颜色比大气光更加明亮的物体通常会被选中，因而便会导致一个本来不应该作为大气光参考值的结果被用作大气光的估计。为了更加可靠的对大气光进行估计，算法的作者利用了这样一个事实：通常，那些灰蒙蒙的区域（也就是天空）中像素的方差（或者变动）总体来说就比较小。基于这个认识，算法的作者提出了一个基于四叉树子空间划分的层次搜索方法。如下图所示，我们首先把输入图像划分成四个矩形区域。然后，为每个子区域进行评分，这个评分的计算方法是“用区域内像素的平均值减去这些像素的标准差”。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181209214301834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 并记下来，选择具有最高得分的区域，并将其继续划分为更小的四个子矩形。我们重复这个过程直到被选中的区域小于某个提前指定的阈值。例如下图中的红色部分就是最终被选定的区域。在这被选定的区域里，我们选择使得距离 $||(Ir(p),Ig(p),Ib(p))−(255,255,255)||$ 最小化的颜色（包含 r,g,b 三个分量）来作为大气光的参考值。注意，这样做的意义在于我们希望选择那个离纯白色最近的颜色（也就是最亮的颜色）来作为大气光的参考值。
+
 我们假设在一个局部的小范围内，场景深度是相同的（也就是场景内的各点到相机镜头的距离相同），所以在一个小块内（例如32×32）我们就可以使用一个固定的透射率 t，所以前面给出的有雾图像与原始（没有雾的）图像之间的关系模型就可以改写为$J(p)=\frac{1}{t}(I(p)−A)+A$，所以，在求得大气光 A 的估计值之后，我们希望复原得到的原始（没有雾的）图像 $J(p)$ 将依赖于透射率$t$。
+
 总的来说，一个有雾的块内，对比度都是比较低的，而被恢复的块内的对比度则随着$t$的估计值的变小而增大，我们将设法来估计一个最优的$t$值，从而使得去雾后的块能够得到最大的对比度。
 下面我写的计算大气光值A(4叉树递归)C++代码：
 
@@ -136,16 +139,25 @@ void AirlightEstimation(cv::Mat src)
 ```
 
 计算出了A，接下来就是如何计算透射率$t$的问题了。我们首先给出图像对比度度量的方法（论文中，原作者给出了三个对比度定义式，我们只讨论其中第一个）：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181209215631945.png)
+
 其中$c\in{r,g,b}$是颜色通道，$I_c$是$I_c(p)$的均值，$p=1,...,N$为图像中像素的个数。且有：$J(p)=\frac{1}{t}(I(p)−A)+A$。由上2式可知，t越小，还原图片的对比度越高，反之越低。Fig.4 表明如果输入像素值在[α,β]范围可以映射到[0, 255]的输出。红色部分为阶段区域，t越小[α,β]范围越小。在图像中，对于有雾的部分减少t获取较高的对比度，对无雾的部分增加t减少图像信息损失。Fig.5 显示了不同的t值对还原图像的效果。
 
-![](https://img-blog.csdnimg.cn/20181209221335437.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)**Fig. 4. An example of the transformation function. Input pixel values are mapped to output pixel values according to the transformation function, depicted by the black line. The red regions represent the information loss due to the truncation of output pixel values. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of this article.)** 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181209221348603.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)**Fig. 5. Relationship between the transmission value and the information loss. A smaller transmission value causes more severe truncation of pixel values and a larger amount of information loss. (a) An input hazy image. The restored dehazed images with transmission values of (b) t=0.1, (c) t=0.3, (d)t=0.5, and (e) t=0.7。**
+![](https://img-blog.csdnimg.cn/20181209221335437.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+**Fig. 4. An example of the transformation function. Input pixel values are mapped to output pixel values according to the transformation function, depicted by the black line. The red regions represent the information loss due to the truncation of output pixel values. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of this article.)** 
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20181209221348603.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+**Fig. 5. Relationship between the transmission value and the information loss. A smaller transmission value causes more severe truncation of pixel values and a larger amount of information loss. (a) An input hazy image. The restored dehazed images with transmission values of (b) t=0.1, (c) t=0.3, (d)t=0.5, and (e) t=0.7。**
 
 为了解决在增强对比度的同时尽可能保留原图像信息。我们定义了两个损失函数，分别为对比度，信息丢失函数：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181209222612301.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 上式中，$h_c(i)$为图像颜色c像素i所在的直方图值，$\lambda$为权重因子。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181209223202586.png)
 
 C++代码：

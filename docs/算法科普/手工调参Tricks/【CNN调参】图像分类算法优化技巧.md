@@ -6,6 +6,7 @@
 下面的Table1展示了本文的一系列Tricks被用在ResNet50网络做分类任务上获得的结果。
 
 ![作者训练的ResNet50网络的效果](https://img-blog.csdnimg.cn/20200320152525234.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到使用本文的技巧，Top1准确率从75.3%提升到了79.29%，可以看到这一系列技巧还是非常给力的，接下来我们就一起来探索探索。
 
 # 2. BaseLine
@@ -14,6 +15,7 @@
 下面的Table2展示了作者复现的ResNet-50，Inception-V3，MobileNet三个BaseLine。
 
 ![作者复现的几个经典网络的BaseLine，和原论文的结果差不多](https://img-blog.csdnimg.cn/20200320161024825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 3. 训练调参经验
 介绍完BaseLine，接下来就来看看作者的优化方法。论文从加快模型训练，网络结构优化以及训练调优三个部分分别介绍如何提升模型的效果。
 
@@ -34,6 +36,7 @@
 作者将上面的Trick结合在一起进行训练，**下面的Table3展示了使用更大的Batch Size和16位浮点型进行训练的结果，可以看到这俩Trick相比于BaseLine训练速度提升了许多，并且精度也更好了。**
 
 ![使用更大的Batch Size和16位浮点型进行训练的结果](https://img-blog.csdnimg.cn/20200320212636528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 而下面的Table4则进一步展示了这些Trick的消融实验，证明确实是有效的。
 
 ![多种Trick的消融实验](https://img-blog.csdnimg.cn/20200320212746993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -43,10 +46,12 @@
 
 
 ![ResNet50结构简化图](https://img-blog.csdnimg.cn/2020032021370614.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 论文在网络结构部分的改进是针对残差结构而言的，改进的3种结构如`Figure2(a)，(b)，(c)`所示：
 
 
 ![网络结构调优结果](https://img-blog.csdnimg.cn/20200320213830539.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 - **ResNet-B**。ResNet-B改进的地方就是将4个Stage中做下采样的残差模块的下采样操作从第一个卷积层换到第三个卷积层，如果下采样操作放在$stride=2$的$1\times 1$卷积层，那么会丢失比较多的特征信息(通道缩减默认是$\frac{1}{4}$)，而将下采样操作放在第$3$个卷积层则可以减少这种损失，因为即便$stride=2$，但是卷积核尺寸更大，保留有效信息更多。
 - **ResNet-C**。ResNet-C改进的地方是将Figure1中的输入流部分的$7\times 7$卷积用两个$3\times 3$卷积来替换，这部分借鉴了Inception V2的思想，主要是为了减少运算量。但很遗憾，从后面的Table5可以看出$3$个$3\times 3$卷积的FLOPS比原始的$7\times 7$+$3\times 3$卷积的FLOPS还多。。
 - **ResNet-D**。ResNet-D改进的地方是将Stage部分做下采样的残差模块的支路从$stride=2$的$1\times 1$卷积层换成$stride=1$的卷积层，并在前面添加一个池化层来做下采样。
@@ -55,6 +60,7 @@
 
 
 ![网络结构调优](https://img-blog.csdnimg.cn/20200320215442991.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ## 3.3 模型训练调参
 这部分作者提到了4个调参技巧：
 
@@ -67,9 +73,11 @@
 
 
 ![2种学习率衰减策略](https://img-blog.csdnimg.cn/20200320220350830.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 - **使用标签平滑(label smooth)**。这部分是把原始的one-hot类型标签做软化，这样可以在计算损失时一定程度的减小过拟合。从交叉熵损失函数可以看出，只有真实标签对应的类别概率才会对损失值计算有所帮助，因此标签平滑相当于减少真实标签的类别概率在计算损失值时的权重，同时增加其他类别的预测概率在最终损失函数中的权重。**这样真实类别概率和其他类别的概率均值之间的gap（倍数）就会下降一些**，Lable Smooth实际上就是下面的公式(4)。
 
 ![Label Smooth公式](https://img-blog.csdnimg.cn/20200320221250982.png)
+
 代码实现可以简单表示为：
 
 ```python
@@ -110,25 +118,30 @@ class LabelSmoothing(nn.Module):
 具体细节和公式可以再阅读原文，这里展示一下Lable Smooth的效果。
 
 ![Figure4，展示了真实类别概率和其他类别的概率均值之间的gap的理想情况以及使用了Label Smooth后的情况](https://img-blog.csdnimg.cn/20200320221616682.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 总结就一句话，one-hot编码会自驱的向正类和负类的差值扩大的方向学习(过度的信任标签为1的为正类)，在训练数据不足的情况容易过拟合，所以使用Label Smooth来软化一下，使得没那么容易过拟合。
 
 
 - **知识蒸馏(knowledge distillation)**。知识蒸馏时模型压缩领域的一个重要分支，即采用一个效果更好的**teacher model**训练**student model**，使得**student model**在模型结构不改变的情况下提升效果。这篇论文使用ResNet-152作为**teacher model**，用ResNet-50作**student model**。代码实现细节上，通过在ResNet网络后添加一个蒸馏损失函数实现，这个损失函数用来评价**teacher model**输出和**student model**输出的差异，因此整体的损失函数原损失函数和蒸馏损失函数的结合，如公式(6)所示：
 
 ![知识蒸馏](https://img-blog.csdnimg.cn/20200320222315572.png)
+
 注意，$p$代表真实概率，$z$和$r$表示studnet model和techer model的最后一个全连接层的输出，$T$是超参数，用来平滑softmax函数的输出。
 
 - **Mixup**。论文还引入了Mixup这种数据增强方式，如果使用了Mixup数据增强来进行训练，那么每次需要读取2张输入图像，这里用$(x_i,y_i)$,$x_j,y_j$来表示，那么通过下面的公式就可以合成获得一张新的图像和标签$(\hat{x},\hat{y})$，然后使用张新图像进行训练，需要注意的是采用这种方式训练模型时要训更多`epoch`。式子中的$\lambda$是一个超参数，用来调节合成的比重，取值范围是$[0,1]$。
 
 ![Mixup过程](https://img-blog.csdnimg.cn/20200320222910853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 最终，在使用了这4个Tricks后的消融实验结果如Table6所示。
 
 
 ![实验上面几个Tricks](https://img-blog.csdnimg.cn/20200320223021117.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 4. 迁移学习
 当把上面的Tricks用于目标检测和语义分割任务同样是有效的，实验结果如Table8和Table9所示。
 
 ![将上面的Tricks用在检测/分割上的结果](https://img-blog.csdnimg.cn/20200320223206728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 5. 结论
 总的来说，这篇论文给了我们非常多的炼丹技巧，我们可以将这些技巧放迁移到我们自己的数据集上获得效果提升，是非常实用的一篇论文了。
 

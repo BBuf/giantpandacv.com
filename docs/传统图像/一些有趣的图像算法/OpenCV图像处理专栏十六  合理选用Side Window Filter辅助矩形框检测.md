@@ -10,6 +10,7 @@
 这个算法出自`https://stackoverflow.com/questions/8667818/opencv-c-obj-c-detecting-a-sheet-of-paper-square-detection`，接下来我们就从源码角度来理解一下吧。
 
 # 2. 算法原理
+
 - 对原始图像进行滤波。(关于滤波器的选择可以选择普通的中值滤波，也可以选择Side Window Filter的中值滤波，这取决于你是否需要图像保存更多的边缘和角点)。
 - 在图像的每个颜色通道寻找矩形区域。这可以细分为：
 	- 在每个颜色通道对应的图像中使用不同的阈值获得对应的二值图像。

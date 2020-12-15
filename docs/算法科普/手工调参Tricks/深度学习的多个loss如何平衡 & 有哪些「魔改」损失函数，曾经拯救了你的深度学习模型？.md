@@ -6,6 +6,7 @@
 
 
 ![不同版本mtcnn在FDDB上roc曲线](https://img-blog.csdnimg.cn/2020061220163313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 这是一件很困扰的事情，参数、网络结构大家设置都大差不差。但效果确实是迥异。
 
 $loss = a*clsloss+b*boxloss+c*landmarksloss$
@@ -37,6 +38,7 @@ https://github.com/hanson-young/ocr-table-ssd
 ```
 
 ![改进版本的SSD表格检测](https://img-blog.csdnimg.cn/20200612202933896.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 算法是基于SSD改的，与原有SSD相比增加了一个预测heatmap的分支，算是一种attention机制的表现吧。改进后训练达到相同的精度和loss，SSD用时10小时，改进后的方法耗时仅需10-20min。在训练过程中如果两个分支一起训练，很难发挥网络的真正意义，并且收敛到不是很理想的地方，所以训练过程也挺重要的，在实验中，将原来的optimizer从SGD（不易收敛，可能和学习率有关）换到RMSProp：
 
 - 先冻结SSD网络，然后训练segmentation分支，到收敛
@@ -44,13 +46,16 @@ https://github.com/hanson-young/ocr-table-ssd
 - 再将整个网络解冻训练到收敛，能达到比较好的效果
 
 ![原图](https://img-blog.csdnimg.cn/20200612203008788.png)
+
 ![预测结果](https://img-blog.csdnimg.cn/20200612203020964.png)![heatmap](https://img-blog.csdnimg.cn/20200612203033163.png)
+
 因为表格尺度的影响，不加入heatmap分支会导致图像被过分拉升，导致无法检测到表格框。
 
 加入heatmap后还有个好处就是为表格的对齐提供了可能。
 
 
 ![原图](https://img-blog.csdnimg.cn/20200612203056522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 如果直接检测，对于一个矩形框来说，恐怕是会非常吃力的。如果
 
 ```cpp
@@ -60,9 +65,11 @@ heatmap -> 阈值分割 -> Sobel -> HoughLineP -> angle
 求出表格的倾斜角angle后，可以将原图和heatmap旋转统一的angle后concatenation，这样再接着跑SSD，对齐后的效果比较明显，解决了倾斜角度过大，带来bbox框过大的影响，详细见下图。
 
 ![可以求出角度](https://img-blog.csdnimg.cn/2020061220321247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 然后进行对齐工作
 
 ![对齐后的结果](https://img-blog.csdnimg.cn/20200612203238422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 是不是能好很多。
 
 
@@ -74,6 +81,7 @@ heatmap -> 阈值分割 -> Sobel -> HoughLineP -> angle
 
 
 ![CrackForest数据集samples](https://img-blog.csdnimg.cn/20200612203454103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ## 2.2 weighted CrossEntropy
 
 在loss函数的选取时，类似focal loss，常规可以尝试使用cross_entropy_loss_RCF(`https://github.com/meteorshowers/RCF-pytorch/blob/master/functions.py`)，或者是weighted MSE，因为图像大部分像素为非缺陷区域，只有少部分像素为缺陷裂痕，这样可以方便解决样本分布不均匀的问题
@@ -91,6 +99,7 @@ training
 ```
 
 ![weighted CrossEntropy loss的最佳预测结果](https://img-blog.csdnimg.cn/20200612203612247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 weighted CrossEntropy 在实验过程中因为图片中的缺陷部分太过稀疏，导致了weights的选取有很大的问题存在，训练后会发现其recall极高，但是precision却也是很低，loss曲线也极其不规律,基本是没法参考的,能把很多疑似缺陷的地方给弄进来.因此只能将weights改为固定常量,这样可以在一定程度上控制均衡recall和precision,但调参也会相应变得麻烦
 
 
@@ -115,6 +124,7 @@ training
 ```
 
 ![MSE loss的最佳预测结果](https://img-blog.csdnimg.cn/20200612203805413.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 MSE在训练上较cross entropy就比较稳定，在heatmap预测上优势挺明显
 
 ## 2.4 weighted MSE（8:1）
@@ -132,6 +142,7 @@ training
 ```
 
 ![weighted MSE loss的最佳预测结果](https://img-blog.csdnimg.cn/20200612204006276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 **以上loss在性能表现上，MSE > weighted MSE > weighted CrossEntropy，最简单的却在该任务上取得了最好的效果，所以我们接下来该做的，就是去怀疑人生了！**
 
 有问题欢迎评论区留言交流。
@@ -142,6 +153,7 @@ training
 有对文章相关的问题，或者想要加入交流群，欢迎添加BBuf微信：
 
 ![二维码](https://img-blog.csdnimg.cn/20200110234905879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 为了方便读者获取资料以及我们公众号的作者发布一些Github工程的更新，我们成立了一个QQ群，二维码如下，感兴趣可以加入。
 
 ![公众号QQ交流群](https://img-blog.csdnimg.cn/20200517190745584.png#pic_center)

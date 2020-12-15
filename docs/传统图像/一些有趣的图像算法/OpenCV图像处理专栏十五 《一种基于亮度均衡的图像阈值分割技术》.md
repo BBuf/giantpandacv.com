@@ -2,6 +2,7 @@
 对于光照不均匀的图像,用通常的图像分割方法不能取得满意的效果。为了解决这个问题，论文《一种基于亮度均衡的图像阈值分割技术》提出了一种实用而简便的图像分割方法。该方法针对图像中不同亮度区域进行亮度补偿,使得整个图像亮度背景趋于一致后,再进行常规的阈值分割。实验结果表明，用该方法能取得良好的分割效果。关于常规的阈值分割不是我这篇推文关注的，我这里只实现前面光照补偿的部分。算法的原理可以仔细看论文。论文原文见附录。
 
 # 算法步骤
+
 - 如果是RGB图需要转化成灰度图。
 - 求取原始图src的平均灰度，并记录rows和cols。
 - 按照一定大小，分为$DX \times DY$个方块，求出每块的平均值，得到子块的亮度矩阵$D$。
@@ -69,7 +70,9 @@ Mat unevenLightCompensate(Mat src, int block_Size) {
 ```
 
 # 效果
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190314142018712.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到经过这个算法处理之后，亮度确实被均衡了一些，从视觉效果上来看还是有作用的。
 
 # 附录
@@ -77,6 +80,7 @@ Mat unevenLightCompensate(Mat src, int block_Size) {
 
 
 # 同期文章
+
 - [OpenCV图像处理专栏一 | 盘点常见颜色空间互转](https://mp.weixin.qq.com/s/c_7cdSmqkr8tXMXDORSA-Q)
 - [OpenCV图像处理专栏二 |《Local Color Correction 》论文阅读及C++复现](https://mp.weixin.qq.com/s/z7tIiD0wLikcjFwtwZaV8w)
 - [OpenCV图像处理专栏三 | 灰度世界算法原理和实现](https://mp.weixin.qq.com/s/aiVIci0NQVyUTJ7V8ElH3g)

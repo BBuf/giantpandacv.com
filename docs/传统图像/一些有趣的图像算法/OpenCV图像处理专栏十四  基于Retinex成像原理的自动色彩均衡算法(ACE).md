@@ -4,6 +4,7 @@
 
 # 算法原理
 在论文介绍中提到，高动态图像是指在一幅图像中，既有明亮的区域又有阴影区域，为了使细节清晰，需要满足以下几点：
+
 - （1）对动态范围具有一定的压缩能力
 - （2）对亮暗区域的细节有一定的显示能力
 - （3）在满足(1)，(2)的条件下不破坏图像的清晰度
@@ -37,6 +38,7 @@ $L(x)=\frac{R(x)-minR}{maxR-minR}$
 我实现代码时选择了后者，效果会好一点。
 
 # 快速ACE算法实现
+
 在查阅资料[参考2]的时候看到一个非常有趣的改进方法，可以让ACE算法速度更快，更利于实际应用。
 
 快速ACE算法基于两个基本假设：(1)对一副图像ACE增强后得到输出$Y$，如果对$Y$再进行一次ACE增强，输出仍然是$Y$本身；(2）对一副图像的ACE增强结果进行尺寸缩放得到$Y$，对$Y$进行ACE增强，输出仍然是$Y$本身。
@@ -249,14 +251,23 @@ int main() {
 
 # 效果
 ![原图1](https://img-blog.csdnimg.cn/20190412092022105.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![结果图1](https://img-blog.csdnimg.cn/20190412092036241.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![原图2](https://img-blog.csdnimg.cn/20190412092108660.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![结果图2](https://img-blog.csdnimg.cn/20190412092119568.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![原图3](https://img-blog.csdnimg.cn/2019041209231760.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![结果图3](https://img-blog.csdnimg.cn/20190412092325822.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![原图4](https://img-blog.csdnimg.cn/20190412092515409.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 ![结果图4](https://img-blog.csdnimg.cn/20190412092524389.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 参考
+
 - 论文原文：http://www.ipol.im/pub/art/2012/g-ace/
 - 作者开源代码：http://www.ipol.im/pub/art/2012/g-ace/
 - 参考1：https://blog.csdn.net/piaoxuezhong/article/details/78357815

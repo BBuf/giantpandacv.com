@@ -1,9 +1,10 @@
 # 前言 
 今天是OpenCV传统图像处理算法的第一篇，我们来盘点一下常见的6种颜色空间互转算法，并给出了一些简单的加速方案，希望可以帮助到学习OpenCV图像处理的同学。这6种算法分别是：
+
 - RGB和GRAY互转
 - RGB和YUV互转
 - RGB和HSV互转
-- RGB和HSI互转
+- RGB和HSI互转、
 - RGB和YCbCr互转
 - RGB和YDbDr互转
 
@@ -80,6 +81,7 @@ Mat speed_rgb2gray(Mat src) {
 ## 二，RGB和YUV互转
 首先介绍一下YUV颜色空间，YUV(亦称YCrCb)是被欧洲电视系统所采用的一种颜色编码方法。在现代彩色电视系统中，通常采用三管彩色摄像机或彩色CCD摄影机进行取像，然后把取得的彩色图像信号经分色、分别放大校正后得到RGB，再经过矩阵变换电路得到亮度信号Y和两个色差信号R-Y(即U)、B-Y(即V)，最后发送端将亮度和两个色差总共三个信号分别进行编码，用同一信道发送出去。这种色彩的表示方法就是所谓的YUV色彩空间表示。采用YUV色彩空间的重要性是它的亮度信号Y和色度信号U、V是分离的。如果只有Y信号分量而没有U、V信号分量，那么这样表示的图像就是黑白灰度图像。彩色电视采用YUV空间正是为了用亮度信号Y解决彩色电视机与黑白电视机的兼容问题，使黑白电视机也能接收彩色电视信号。
 YUV主要用于优化彩色视频信号的传输，使其向后相容老式黑白电视。与RGB视频信号传输相比，它最大的优点在于只需占用极少的频宽（RGB要求三个独立的视频信号同时传输）。其中“Y”表示明亮度（Luminance或Luma），也就是灰阶值；而“U”和“V” 表示的则是色度（Chrominance或Chroma），作用是描述影像色彩及饱和度，用于指定像素的颜色。“亮度”是透过RGB输入信号来建立的，方法是将RGB信号的特定部分叠加到一起。“色度”则定义了颜色的两个方面─色调与饱和度，分别用Cr和Cb来表示。其中，Cr反映了RGB输入信号红色部分与RGB信号亮度值之间的差异。而Cb反映的是RGB输入信号蓝色部分与RGB信号亮度值之同的差异。
+
 1，RGB转YUV
 
 Y = 0.299R + 0.587G + 0.114B
@@ -214,9 +216,14 @@ Mat speed_yuv2rgb(Mat src) {
 HSV是一种将RGB色彩空间中的点在倒圆锥体中的表示方法。HSV即色相(Hue)、饱和度(Saturation)、明度(Value)，又称HSB(B即Brightness)。色相是色彩的基本属性，就是平常说的颜色的名称，如红色、黄色等。饱和度（S）是指色彩的纯度，越高色彩越纯，低则逐渐变灰，取0-100%的数值。明度（V），取0-max(计算机中HSV取值范围和存储的长度有关)。HSV颜色空间可以用一个圆锥空间模型来描述。圆锥的顶点处，V=0，H和S无定义，代表黑色。圆锥的顶面中心处V=max，S=0，H无定义，代表白色。
 RGB颜色空间中，三种颜色分量的取值与所生成的颜色之间的联系并不直观。而HSV颜色空间，更类似于人类感觉颜色的方式，封装了关于颜色的信息：“这是什么颜色？深浅如何？明暗如何？”。
 从RGB转到HSV的计算公式为：设max等于r、g和b中的最大者，min为最小者。对应的HSV空间中的(h,s,v)值为：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190213154738127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)h在0到360°之间，s在0到100%之间，v在0到max之间。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190213154738127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+h在0到360°之间，s在0到100%之间，v在0到max之间。
 从HSV空间转回RGB空间的公式为：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190213154827434.png)
+
 代码实现，效果测试无误：
 ```
 Mat RGB2HSV(Mat src) {
@@ -300,17 +307,24 @@ Mat HSV2RGB(Mat src) {
 ```
 ## 四，RGB和HSI互转
 HSI色彩空间是从人的视觉系统出发，用色调(Hue)、饱和度(Saturation或Chroma)和亮度 (Intensity或Brightness)来描述色彩。
+
 - H——表示颜色的相位角。红、绿、蓝分别相隔120度；互补色分别相差180度，即颜色的类别。
 - S——表示成所选颜色的纯度和该颜色最大的纯度之间的比率，范围：[0,  1]，即颜色的深浅程度。
 - I——表示色彩的明亮程度，围：[0, 1]，人眼对亮度很敏感！
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190213163428719.png)
+
 可以看到HSI色彩空间和RGB色彩空间只是同一物理量的不同表示法，因而它们之间存在着转换关系：HSI颜色模式中的色调使用颜色类别表示，饱和度与颜色的白光光亮亮度刚好成反比，代表灰色与色调的比例，亮度是颜色的相对明暗程度。
 转自：https://blog.csdn.net/aoshilang2249/article/details/38070663
 RGB转换为HSI的公式：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190213163800518.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 HSI转RGB的公式为：给定 HSI空间中的 (h, s, l) 值定义的一个颜色，带有 h 在指示色相角度的值域 [0, 360）中，分别表示饱和度和亮度的s 和 l 在值域 [0, 1] 中，相应在 RGB 空间中的 (r, g, b) 三原色，带有分别对应于红色、绿色和蓝色的 r, g 和 b 也在值域 [0, 1] 中，它们可计算为：
 首先，如果 s = 0，则结果的颜色是非彩色的、或灰色的。在这个特殊情况，r, g 和 b 都等于 l。注意 h 的值在这种情况下是未定义的。当 s ≠ 0 的时候，可以使用下列过程：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190213163928189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 源码实现，测试无误：
 
 ```
@@ -422,7 +436,10 @@ Mat HSI2RGB(Mat src) {
 
 ## 五，RGB和YCbCr互转
  在常用的几种颜色空间中，YCbCr颜色空间在学术论文中出现的频率是相当高的，常用于肤色检测等等。其和RGB空间之间的相互转换公式在网上也有多种，我们这里取http://en.wikipedia.org/wiki/YCbCr 描述的JPG转换时使用的计算公式：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190409145140619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)和RGB与CIEXYZ空间互转的优化套路一样，测试无误的代码如下：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190409145140619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+和RGB与CIEXYZ空间互转的优化套路一样，测试无误的代码如下：
 
 ```
 const float YCbCrYRF = 0.299F;              // RGB转YCbCr的系数(浮点类型）
@@ -511,7 +528,10 @@ Mat YCbCr2RGB(Mat src) {
 
 ## 六，RGB和YDbDr互转
  YDbDr颜色空间和YCbCr颜色空间类似，其和RGB空间之间的相互转换公式里取http://en.wikipedia.org/wiki/YDbDr 所描述的。
- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190711114608334.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)代码：
+
+ ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190711114608334.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
+ 代码：
 
 ```
 const float YDbDrYRF = 0.299F;              // RGB转YDbDr的系数(浮点类型）
@@ -607,4 +627,5 @@ Mat YDbDr2RGB(Mat src) {
 ---------------------------------------------------------------------------
 
 欢迎关注我的微信公众号GiantPadaCV，期待和你一起交流机器学习，深度学习，图像算法，优化技术，比赛及日常生活等。
+
 ![图片.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xOTIzNzExNS1hZDY2ZjRmMjQ5MzRhZmQx?x-oss-process=image/format,png)

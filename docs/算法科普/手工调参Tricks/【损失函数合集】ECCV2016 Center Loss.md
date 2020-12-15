@@ -5,6 +5,7 @@
 我们知道在利用卷积神经网络(CNN)进行特征提取然后做分类任务的时候，最常用的就是Softmax Loss了。而Softmax Loss对CNN的分类特征没有什么强约束，只要最后可以把样本分开就可以了，没有明确的定义某个分类特征$x$和它的类别$y$需要有什么关系，也即是对$x$的约束并不强。当给CNN传入一些对抗样本的时候，CNN会表现出分类困难。原因就是CNN对对抗样本提取的特征基本处于最后一层分类特征的边界上，使得类别的区分度低。论文在Figure2为我们展示了Mnist数据集的特征分布图（这是降维可视化之后的），如下所示：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200116195039179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 Figure2(a)表示训练集的特征，可以看到不同的类别之间的特征是有明显的间隔的，所以分类器很容易区分样本的类别。而Figure2(b)表示的是测试集的特征，可以看到，有些测试集样本的特征位于分类的边界上，这使得分类器非常难以判断这些样本的具体类别。这种现象用更专业的话来说就是分类器的特征类间相似度小，而类内相似度大。这和聚类里面的思想有一点像，聚类的时候需要尽可能的让同一个簇里面的相似度更大大，而簇之间的相似度更小，这样聚类的结果才更好。
 
 更正式地，论文指出CNN学习到的特征应当具有“类内紧凑性”和“类间可分离性”，意思上面大概理解过了，下面就用这两个名词来描述了。
@@ -22,16 +23,21 @@ $L_{C}=\frac{1}{2}\sum_{i=1}^m||x_i-c_{y_i}||_2^2$
 关于$L_c$的梯度和$c_{y_i}$的更新公式如下：
 
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200116202541529.png)其中$\delta(x)$函数代表的是当x为真时返回$1$，否则为$0$。而分母的$1$是防止min-batch中没有类别$j$的样本而导致除$0$异常。然后论文还设置了一个$c_j$的更新速率$\alpha$，控制$c_j$的更新速度。最后训练的总损失函数为：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200116202541529.png)
+
+其中$\delta(x)$函数代表的是当x为真时返回$1$，否则为$0$。而分母的$1$是防止min-batch中没有类别$j$的样本而导致除$0$异常。然后论文还设置了一个$c_j$的更新速率$\alpha$，控制$c_j$的更新速度。最后训练的总损失函数为：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200116203400762.png)
 
 最后，Center Loss的算法表示如下：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200116205837541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 实验结果
 对于不同的$\lambda$，网络提取的特征具有不同的区分度，具体如Figure3所示，可以看到随着$\lambda$的增加，特征的“类内紧凑性”越高。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200116210439729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 同时作者还研究了不同的$\lambda$和$\alpha$对人脸识别任务的影响，如Figure5所示，可以看出当$\lambda=0.003$和$\alpha=0.5$的时候对人脸识别是效果最好的。
 
 
@@ -113,5 +119,6 @@ if __name__ == '__main__':
 这篇推文给大家介绍了Center Loss，可以改善分类的时候的“类内紧凑性”小的问题（这同时也放大了“类间可分离性”），是一个值得工程尝试的损失函数。
 
 # 附录
+
 - 论文原文：http://ydwen.github.io/papers/WenECCV16.pdf
 - 代码实现：https://github.com/jxgu1016/MNIST_center_loss_pytorch/blob/master/CenterLoss.py
