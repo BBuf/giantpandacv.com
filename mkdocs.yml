@@ -36,6 +36,9 @@ nav:
             - OpenCV图像处理专栏十八  手动构造Sobel算子完成边缘检测: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十八  手动构造Sobel算子完成边缘检测.md
             - OpenCV图像处理专栏十九  手动实现基于Canny算子的边缘检测: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏十九  手动实现基于Canny算子的边缘检测.md
             - OpenCV图像处理专栏二十 《Adaptive Logarithmic Mapping For Displaying High Contrast Scenes》复现: 传统图像/一些有趣的图像算法/OpenCV图像处理专栏二十 《Adaptive Logarithmic Mapping For Displaying High Contrast Scenes》复现.md
+            - 《Optimized contrast enhancement for real-time image and video dehazin》论文C++复现: 传统图像/一些有趣的图像算法/《Optimized contrast enhancement for real-time image and video dehazin》论文C++复现.md
+            - 《Single Image Haze Removal Using Dark Channel Prior》论文阅读及复现番外: 传统图像/一些有趣的图像算法/《Single Image Haze Removal Using Dark Channel Prior》论文阅读及复现番外(使用导向滤波估计更加精细的透射率).md
+            - 《改进非线性亮度提升模型的逆光图像恢复》论文复现: 传统图像/一些有趣的图像算法/《改进非线性亮度提升模型的逆光图像恢复》论文复现.md
         - 一些基础的图像算法:
             - 《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》C++实现: 传统图像/一些基础的图像算法/《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》C++实现.md
             - RGB和CIELAB颜色空间转换及偏色检测: 传统图像/一些基础的图像算法/RGB和CIELAB颜色空间转换及偏色检测.md
@@ -100,6 +103,8 @@ nav:
             - 卷积神经网络学习路线（二十二） Google Brain EfficientNet: 算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十二） Google Brain EfficientNet.md
             - 卷积神经网络学习路线（二十三） 经典网络回顾之XceptionNet: 算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十三） 经典网络回顾之XceptionNet.md
             - 卷积神经网络学习路线（二十一）  旷世科技 ECCV 2018  ShuffleNet V2: 算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十一）  旷世科技 ECCV 2018  ShuffleNet V2.md
+            - 【CNN结构设计】深入理解深度可分离卷积: 算法科普/尽览卷积神经网络/【CNN结构设计】深入理解深度可分离卷积.md
+            - CNN骨干网络新选择HS-ResNet: 算法科普/尽览卷积神经网络/CNN骨干网络新选择HS-ResNet.md
             - CSPNet: 算法科普/尽览卷积神经网络/CSPNet.md
             - EffNet: 算法科普/尽览卷积神经网络/EffNet.md
             - HRNet: 算法科普/尽览卷积神经网络/HRNet.md
@@ -208,9 +213,10 @@ nav:
                 - SNIP的升级版SNIPER（效果比Mosaic更佳）: 目标检测及跟踪/论文解析/one stage模型/SNIP的升级版SNIPER（效果比Mosaic更佳）.md
                 - YOLT 大尺寸图像目标检测的解决方案: 目标检测及跟踪/论文解析/one stage模型/YOLT 大尺寸图像目标检测的解决方案.md
                 - 不需要预训练模型的目标检测算法DSOD: 目标检测及跟踪/论文解析/one stage模型/不需要预训练模型的目标检测算法DSOD.md
+                - PPYOLO: 目标检测及跟踪/论文解析/one stage模型/PPYOLO.md
             - two stage模型:
                 - Group Sample：一个简单有效的目标检测升点Trick: 目标检测及跟踪/论文解析/two stage模型/Group Sample：一个简单有效的目标检测升点Trick.md
-                - 目标检测算法之CVPR 2018 Cascade R-CNN: 目标检测及跟踪/论文解析/two stage模型/Group Sample：一个简单有效的目标检测升点Trick.md
+                - 目标检测算法之CVPR 2018 Cascade R-CNN: 目标检测及跟踪/论文解析/two stage模型/目标检测算法之CVPR 2018 Cascade R-CNN.md
                 - 目标检测算法之CVPR 2019 Guided Anchoring: 目标检测及跟踪/论文解析/two stage模型/目标检测算法之CVPR 2019 Guided Anchoring.md
                 - 目标检测算法之Fast-RCNN: 目标检测及跟踪/论文解析/two stage模型/目标检测算法之Fast-RCNN.md
                 - 目标检测算法之Faster-RCNN: 目标检测及跟踪/论文解析/two stage模型/目标检测算法之Faster-RCNN.md
@@ -280,6 +286,7 @@ nav:
         - CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network: 超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md
         - DeepFake系列之FakeSpotter: 超分和GAN/DeepFake系列之FakeSpotter.md
         - 基于Kaggle DeepFake比赛的代码实战: 超分和GAN/基于Kaggle DeepFake比赛的代码实战.md
+        - 生成对抗网络中的数据增广：一种可微分的数据增广方法: 超分和GAN/生成对抗网络中的数据增广：一种可微分的数据增广方法.md
     - 部署优化: 
         - 专栏介绍: 部署优化/README.md
         - AI PC端优化: 
@@ -317,6 +324,7 @@ nav:
             - 快速exp算法: 部署优化/AI 部署及其它优化算法/快速exp算法.md
             - 折叠BN层: 部署优化/AI 部署及其它优化算法/折叠BN层.md
             - 并发编程: 部署优化/AI 部署及其它优化算法/并发编程.md
+            - Pytorch量化感知训练详解: 部署优化/AI 部署及其它优化算法/Pytorch量化感知训练详解.md
         - AI 移动端算法优化: 
             - 移动端arm cpu优化学习笔记:
                 - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
@@ -348,6 +356,11 @@ nav:
             - 超详细的Pytorch版yolov3代码中文注释详解（二）: 资源共享/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（二）.md
             - 超详细的Pytorch版yolov3代码中文注释详解（三）: 资源共享/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（三）.md
             - 超详细的Pytorch版yolov3代码中文注释详解（四）: 资源共享/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（四）.md
+        - Faster R-CNN原理及代码讲解电子书:
+            - 整体框架: 资源共享\【资源】Faster R-CNN原理及代码讲解电子书.assets\【Faster RCNN理解】1. 整体框架.md
+            - 概述: 资源共享\【资源】Faster R-CNN原理及代码讲解电子书.assets\【Faster RCNN】2. 概述.md
+            - Faster R-CNN原理及代码讲解电子书: 资源共享\【资源】Faster R-CNN原理及代码讲解电子书.assets\Faster R-CNN原理及代码讲解电子书.md
+            - 【资源】Faster R-CNN原理及代码讲解电子书: 资源共享\【资源】Faster R-CNN原理及代码讲解电子书.assets\【资源】Faster R-CNN原理及代码讲解电子书.md
         - 【资源】CenterNet代码解析: 资源共享/【资源】CenterNet代码解析.md
         - 【资源】DeepSORT原理及代码讲解: 资源共享/【资源】DeepSORT原理及代码讲解.md
         - 【资源】PyramidBox代码解析: 资源共享/【资源】PyramidBox代码解析.md
@@ -361,6 +374,8 @@ nav:
         - 专栏介绍: Msnhnet/README.md
         - 多平台轻量级PyTorch模型推理框架MsnhNet: Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
         - Pytorch直转Msnhnet思路分享: Msnhnet/Pytorch直转Msnhnet思路分享.md
+        - 人脸106点Caffe模型如何部署到MsnhNet: Msnhnet/人脸106点Caffe模型如何部署到MsnhNet.md
+        - 图解神秘的NC4HW4: Msnhnet/图解神秘的NC4HW4.md
     - 视频专栏: 
         - 视频专栏: video/video_1.md
     - 刷题面试:
