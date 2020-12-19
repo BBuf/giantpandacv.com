@@ -334,9 +334,10 @@ bbox_inside_weights数组用作掩码。仅对于每个前景ROI的正确类别�
 
 作物合并涉及两个步骤：
 
-1. 对于一组目标坐标，应用给定的仿射变换来生成源坐标的网格。
-    ![\ begin {bmatrix} x_i ^ s \\ y_i ^ s \ end {bmatrix} = \ begin {bmatrix} \ theta_ {11}＆\ theta_ {12}＆\ theta_ {13} \\ \ theta_ {21}＆\ theta_ {22}和\ theta_ {23} \ end {bmatrix} \ begin {bmatrix} x_i ^ t \\ y_i ^ t \\ 1 \ end {bmatrix} ](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-f60f960a880c0385d4d51cae39215333_l3.svg)。这![x_i ^ s，y_i ^ s，x_i ^ t，y_i ^ t](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-d71ed008c2b7407162e68fb434a5ecf3_l3.svg)是高度/宽度归一化坐标（类似于图形中使用的纹理坐标），因此![-1 \ leq x_i ^ s，y_i ^ s，x_i ^ t，y_i ^ t \ leq 1](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-60ee2d9b96282537c4daa3d77c382017_l3.svg)。
-2. 第二步，在源坐标处对输入（源）图进行采样以生成输出（目标）图。在此步骤中，每个![（x_i ^ s，y_i ^ s）](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-733fbd7b04e31ff38cd738e8f44d6a9d_l3.svg)坐标都定义了输入中的空间位置，在该位置上应用了采样核（例如双线性采样核）以获取输出特征图中特定像素处的值。
+**1**. 对于一组目标坐标，应用给定的仿射变换来生成源坐标的网格。
+   ![\ begin {bmatrix} x_i ^ s \\ y_i ^ s \ end {bmatrix} = \ begin {bmatrix} \ theta_ {11}＆\ theta_ {12}＆\ theta_ {13} \\ \ theta_ {21}＆\ theta_ {22}和\ theta_ {23} \ end {bmatrix} \ begin {bmatrix} x_i ^ t \\ y_i ^ t \\ 1 \ end {bmatrix} ](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-f60f960a880c0385d4d51cae39215333_l3.svg)。这![x_i ^ s，y_i ^ s，x_i ^ t，y_i ^ t](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-d71ed008c2b7407162e68fb434a5ecf3_l3.svg)是高度/宽度归一化坐标（类似于图形中使用的纹理坐标），因此![-1 \ leq x_i ^ s，y_i ^ s，x_i ^ t，y_i ^ t \ leq 1](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-60ee2d9b96282537c4daa3d77c382017_l3.svg)。
+
+**2**.第二步，在源坐标处对输入（源）图进行采样以生成输出（目标）图。在此步骤中，每个![（x_i ^ s，y_i ^ s）](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-733fbd7b04e31ff38cd738e8f44d6a9d_l3.svg)坐标都定义了输入中的空间位置，在该位置上应用了采样核（例如双线性采样核）以获取输出特征图中特定像素处的值。
 
 空间变换中描述的采样方法提供了一种可微分的采样机制，允许损耗梯度流回到输入要素图和采样网格坐标。
 
@@ -344,9 +345,11 @@ bbox_inside_weights数组用作掩码。仅对于每个前景ROI的正确类别�
 
 要使用作物池，我们需要执行以下操作：
 
-1. 用ROI坐标除以“头部”网络的步长。由提议目标层产生的ROI的坐标在原始图像空间中（！800600 ![\ times](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-3e2a3b7b9d8913e71519bf7df9eb51b3_l3.svg)）。为了将这些坐标带入由“ head”生成的输出特征图的空间中，我们必须将它们除以步幅长度（当前实现中为16）。
-2. 要使用上面显示的API，我们需要仿射变换矩阵。仿射变换矩阵的计算如下
-3. 我们还需要目标特征图上![X](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-ede05c264bba0eda080918aaa09c4658_l3.svg)和![ÿ](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-0af556714940c351c933bba8cf840796_l3.svg)维度中的点数。这由配置参数cfg.POOLING_SIZE提供（默认值为7）。因此，在作物合并期间，非方形ROI用于从卷积特征图中裁剪出扭曲到恒定大小的方形窗口的区域。当作物合并的输出传递到需要固定尺寸输入的其他卷积层和完全连接层时，必须进行此变形。
+**1**. 用ROI坐标除以“头部”网络的步长。由提议目标层产生的ROI的坐标在原始图像空间中（！800600 ![\ times](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-3e2a3b7b9d8913e71519bf7df9eb51b3_l3.svg)）。为了将这些坐标带入由“ head”生成的输出特征图的空间中，我们必须将它们除以步幅长度（当前实现中为16）。
+
+**2**. 要使用上面显示的API，我们需要仿射变换矩阵。仿射变换矩阵的计算如下
+
+**3**. 我们还需要目标特征图上![X](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-ede05c264bba0eda080918aaa09c4658_l3.svg)和![ÿ](http://www.telesens.co/wp-content/ql-cache/quicklatex.com-0af556714940c351c933bba8cf840796_l3.svg)维度中的点数。这由配置参数cfg.POOLING_SIZE提供（默认值为7）。因此，在作物合并期间，非方形ROI用于从卷积特征图中裁剪出扭曲到恒定大小的方形窗口的区域。当作物合并的输出传递到需要固定尺寸输入的其他卷积层和完全连接层时，必须进行此变形。
 
 
 ![](https://img-blog.csdnimg.cn/20200213102612505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
@@ -385,8 +388,6 @@ bbox_inside_weights数组用作掩码。仅对于每个前景ROI的正确类别�
 
 不使用定位目标和建议目标层。RPN网络应该已经学会了如何将锚框分为背景框和前景框，以及如何生成良好的边界框系数。建议层仅将边界框系数应用于排名最高的锚框，然后执行NMS来消除具有大量重叠的框。为了更清楚起见，这些步骤的输出如下所示。将结果框发送到分类层，在其中生成类分数和类特定的边界框回归系数。
 
-
-
 ![](https://img-blog.csdnimg.cn/20200213102819343.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
 红色框显示按得分排名的前6位锚。应用RPN网络计算的回归参数后，绿色框显示锚框。绿色框似乎更紧密地适合基础对象。请注意，在应用回归参数之后，矩形仍为矩形，即没有剪切。还要注意矩形之间的明显重叠。通过应用非最大值抑制来解决此冗余问题
@@ -394,8 +395,6 @@ bbox_inside_weights数组用作掩码。仅对于每个前景ROI的正确类别�
 ![](https://img-blog.csdnimg.cn/20200213102827650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 
 红色框显示NMS之前的前5个边界框，绿色框显示NMS之后的前5个边界框。通过抑制重叠的框，其他框（分数列表中的较低）有机会向上移动
-
-
 
 ![](https://img-blog.csdnimg.cn/20200213102833369.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0REX1BQX0pK,size_16,color_FFFFFF,t_70)
 

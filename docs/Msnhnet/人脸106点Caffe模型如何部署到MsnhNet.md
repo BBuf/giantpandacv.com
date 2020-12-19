@@ -312,6 +312,7 @@ landmark的结果还是比较正确的，另外我们对比了Caffe/Pytorch/Msnh
 Caffe2msnhnet工具首先将你的Caffe模型转换为Pytorch模型，然后调用Pytorch2msnhnet工具将Caffe模型转为`*.msnhnet`和`*.bin`。
 
 ## 5.2 依赖
+
 - Pycaffe
 - Pytorch 
 
@@ -402,6 +403,7 @@ Caffe2msnhnet工具首先将你的Caffe模型转换为Pytorch模型，然后调�
 至此，我们完成了`yoloface50k-landmark106`在MsnhNet上的模型转换和部署测试，如果对本框架感兴趣可以尝试部署自己的一个模型试试看，如果转换工具有问题请在github提出issue或者直接联系我们。点击阅读原文可以快速关注MsnhNet，这是我们业余开发的一个轻量级推理框架，如果对模型部署和算法优化感兴趣可以看看，我们也会在GiantPandaCV公众号分享我们的框架开发和算子优化相关的经历。
 
 # 7. 参考
+
 - https://github.com/UltronAI/pytorch-caffe
 - https://github.com/msnh2012/Msnhnet
 
