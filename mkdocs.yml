@@ -162,6 +162,7 @@ nav:
                 - CenterNet4-Loss计算: 目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet4-Loss计算.md
                 - CenterNet5-测试推理过程: 目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet5-测试推理过程.md
                 - CenterNet 电子书: 目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet电子书.md
+                - 用CenterNet对旋转目标进行检测: 目标检测及跟踪/经典检测算法代码解析/CenterNet/用CenterNet对旋转目标进行检测.md
             - FasterRCNN:
                 - 【Faster RCNN理解】1. 整体框架: 目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster RCNN理解】1. 整体框架.md
                 - 【Faster R-CNN】2. Faster RCNN代码解析第一弹: 目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster R-CNN】2. Faster RCNN代码解析第一弹.md
@@ -250,6 +251,8 @@ nav:
             - 小目标人脸检测SOTA网络PyramidBox++: 目标检测及跟踪/人脸识别/小目标人脸检测SOTA网络PyramidBox++.md
             - 用于人脸检测的SSH算法: 目标检测及跟踪/人脸识别/用于人脸检测的SSH算法.md
             - 百度 PyramidBox 人脸检测器: 目标检测及跟踪/人脸识别/百度 PyramidBox 人脸检测器.md
+        - 旋转目标检测:
+            - 旋转目标检测中anchor匹配机制的问题和一些思考: 目标检测及跟踪/旋转目标检测/旋转目标检测中anchor匹配机制的问题和一些思考.md
         - 文献综述:
             - 【综述】Pytorch YOLO项目推荐 建议收藏学习: 目标检测及跟踪/文献综述/【综述】Pytorch YOLO项目推荐 建议收藏学习.md
             - 深度学习检测网络论文阅读50篇--第一章: 目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第一章.md
@@ -257,6 +260,7 @@ nav:
             - 深度学习检测网络论文阅读50篇--第三章: 目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第三章.md
             - 深度学习检测网络论文阅读50篇--第四章: 目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第四章.md
             - 深度学习检测网络论文阅读50篇汇总: 目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇汇总.md
+            - 从检测角度理解label assign当前进展: 目标检测及跟踪/文献综述/从检测角度理解label assign当前进展.md
     - 语义及实例分割:
         - 专栏介绍: 语义及实例分割/README.md
         - DeepLab语义分割算法源码解析: 语义及实例分割/DeepLab语义分割算法源码解析.md
@@ -281,6 +285,8 @@ nav:
         - 如何改进yolov3: 科研及竞赛分享/如何改进yolov3.md
         - 验证码识别竞赛解决方案: 科研及竞赛分享/验证码识别竞赛解决方案.md
         - 关键点定位红外小目标: 科研及竞赛分享/关键点定位红外小目标.md
+        - 2019 天池县域农业大脑AI挑战赛冠军方案分享: 科研及竞赛分享/2019 天池县域农业大脑AI挑战赛冠军方案分享.md
+        - ACCV国际细粒度识别比赛复盘: 科研及竞赛分享/ACCV国际细粒度识别比赛复盘.md
     - 超分和GAN:
         - 专栏介绍: 超分和GAN/README.md
         - CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network: 超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md
@@ -357,10 +363,10 @@ nav:
             - 超详细的Pytorch版yolov3代码中文注释详解（三）: 资源共享/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（三）.md
             - 超详细的Pytorch版yolov3代码中文注释详解（四）: 资源共享/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（四）.md
         - Faster R-CNN原理及代码讲解电子书:
-            - 整体框架: 资源共享\【资源】Faster R-CNN原理及代码讲解电子书.assets\【Faster RCNN理解】1. 整体框架.md
-            - 概述: 资源共享\【资源】Faster R-CNN原理及代码讲解电子书.assets\【Faster RCNN】2. 概述.md
-            - Faster R-CNN原理及代码讲解电子书: 资源共享\【资源】Faster R-CNN原理及代码讲解电子书.assets\Faster R-CNN原理及代码讲解电子书.md
-            - 【资源】Faster R-CNN原理及代码讲解电子书: 资源共享\【资源】Faster R-CNN原理及代码讲解电子书.assets\【资源】Faster R-CNN原理及代码讲解电子书.md
+            - 整体框架: 资源共享/【资源】Faster R-CNN原理及代码讲解电子书.assets/【Faster RCNN理解】1. 整体框架.md
+            - 概述: 资源共享/【资源】Faster R-CNN原理及代码讲解电子书.assets/【Faster RCNN】2. 概述.md
+            - Faster R-CNN原理及代码讲解电子书: 资源共享/【资源】Faster R-CNN原理及代码讲解电子书.assets/Faster R-CNN原理及代码讲解电子书.md
+            - 【资源】Faster R-CNN原理及代码讲解电子书: 资源共享/【资源】Faster R-CNN原理及代码讲解电子书.assets/【资源】Faster R-CNN原理及代码讲解电子书.md
         - 【资源】CenterNet代码解析: 资源共享/【资源】CenterNet代码解析.md
         - 【资源】DeepSORT原理及代码讲解: 资源共享/【资源】DeepSORT原理及代码讲解.md
         - 【资源】PyramidBox代码解析: 资源共享/【资源】PyramidBox代码解析.md
@@ -383,6 +389,8 @@ nav:
         - 面经:
             - 蚂蚁金服: 刷题面试/面经/蚂蚁金服.md
             - 平安科技: 刷题面试/面经/平安科技.md
+        - Leetcode题解:
+            - LeetCode第42场双周赛赛后题解: 刷题面试/Leetcode题解/LeetCode第42场双周赛赛后题解.md
     - 算法商城:
         - 专栏介绍: 算法商城/README.md
         - 免费实用工具: 
