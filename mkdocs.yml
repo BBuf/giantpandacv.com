@@ -311,6 +311,7 @@ nav:
                 - vs2015 movidius 神经计算棒一代 ncsdk windows c++调用: 部署优化/AI 部署及其它优化算法/OpenVINO/vs2015 movidius 神经计算棒一代 ncsdk windows c++调用.md
                 - YOLOv3-tiny在VS2015上使用Openvino部署: 部署优化/AI 部署及其它优化算法/OpenVINO/YOLOv3-tiny在VS2015上使用Openvino部署.md
                 - 如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？: 部署优化/AI 部署及其它优化算法/OpenVINO/如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？.md
+                - c++实现yolov5的OpenVINO部署: 部署优化/AI 部署及其它优化算法/OpenVINO/c++实现yolov5的OpenVINO部署.md
             - TensorRT:
                 - 一，TensorRT介绍，安装及如何使用？: 部署优化/AI 部署及其它优化算法/TensorRT/一，TensorRT介绍，安装及如何使用？.md
                 - 二，TensorRT Mnist数字识别使用示例: 部署优化/AI 部署及其它优化算法/TensorRT/二，TensorRT Mnist数字识别使用示例.md
@@ -331,6 +332,8 @@ nav:
             - 折叠BN层: 部署优化/AI 部署及其它优化算法/折叠BN层.md
             - 并发编程: 部署优化/AI 部署及其它优化算法/并发编程.md
             - Pytorch量化感知训练详解: 部署优化/AI 部署及其它优化算法/Pytorch量化感知训练详解.md
+            - 一文带你了解NeurlPS2020的模型剪枝研究: 部署优化/AI 部署及其它优化算法/一文带你了解NeurlPS2020的模型剪枝研究.md
+            - 如何阅读一个前向推理框架？以NCNN为例: 部署优化/AI 部署及其它优化算法/如何阅读一个前向推理框架？以NCNN为例。.md
         - AI 移动端算法优化: 
             - 移动端arm cpu优化学习笔记:
                 - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md

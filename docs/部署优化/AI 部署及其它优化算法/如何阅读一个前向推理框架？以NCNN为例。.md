@@ -543,6 +543,7 @@ int ParamDict::load_param_bin(FILE* fp)
 - [道阻且长_再探矩阵乘法优化](https://mp.weixin.qq.com/s/w0YCm8TEPxFg0CR6g4A28w)
 
 NCNN中对卷积的加速过程(以Arm侧为例)在我看来有：
+
 - 无优化
 - 即用即取+共用行
 - Im2Col+GEMM
@@ -702,6 +703,7 @@ v8:
 介绍到这里就要结束了，这篇文章只是以我自己的视角看了一遍NCNN，如果有什么错误或者笔误欢迎评论区指出。在NCNN之后各家厂商纷纷推出了自己的开源前向推理框架，例如MNN，OpenAILab的Tengine，阿里的tengine，旷视的MegEngine，华为Bolt等等，希望各个CVer都能多多支持国产端侧推理框架。
 
 # 0x06. 友情链接
+
 - https://github.com/Tencent/ncnn
 - https://github.com/MegEngine/MegEngine
 - https://github.com/alibaba/tengine
