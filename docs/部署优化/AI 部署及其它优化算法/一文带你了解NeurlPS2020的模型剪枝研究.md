@@ -13,7 +13,12 @@
 - 结构化剪枝 VS 非结构化剪枝
 
   结构化剪枝和非结构化剪枝的主要区别在于剪枝权重的粒度。如下图所示，结构化剪枝的粒度较大，主要是在卷积核的channel和Filter维度进行裁剪，而非结构化剪枝主要是对单个权重进行裁剪。两类剪枝方法各有优势。其中，非结构化剪枝能够实现更高的压缩率，同时保持较高的模型性能。然而其稀疏结构对于硬件并不友好，实际加速效果并不明显，而结构化剪枝恰恰相反。
-![不同类型剪枝的差别](https://img-blog.csdnimg.cn/20201220011322385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZvdXJ0ZWVuX3poYW5n,size_16,color_FFFFFF,t_70)<center>图1 不同类型剪枝的差别</center>
+  
+
+![不同类型剪枝的差别](https://img-blog.csdnimg.cn/20201220011322385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZvdXJ0ZWVuX3poYW5n,size_16,color_FFFFFF,t_70)
+
+<center>图1 不同类型剪枝的差别</center>
+
 - 静态剪枝 VS 动态剪枝
 
   静态剪枝方法是根据整个训练集训练后的结果，评估权重的重要程度，**永久性**裁剪掉重要程度小的权重参数。然而，动态剪枝方法则是**保留**所有的权重参数，根据每次输入的数据不同衡量权重参数的重要程度，将不重要权重参数忽略计算，从而实现动态剪枝。动态剪枝方法能使CNN网络具备更多的表示形式，因此其通常能够有更好性能表现。
@@ -59,9 +64,11 @@
 - [Neuron-level StructuredPruning using Polarization Regularizer](https://papers.nips.cc/paper/2020/file/703957b6dd9e3a7980e040bee50ded65-Paper.pdf)	/ [Code](https://github.com/polarizationpruning/PolarizationPruning)
 
   该篇文章是2017年[network slimming](http://openaccess.thecvf.com/content_iccv_2017/html/Liu_Learning_Efficient_Convolutional_ICCV_2017_paper.html)的改进工作。在[network slimming](http://openaccess.thecvf.com/content_iccv_2017/html/Liu_Learning_Efficient_Convolutional_ICCV_2017_paper.html)的工作中，利用L1正则化技术让BN层的scale系数趋近于0，然后裁剪“不重要”的channel。然而，这篇文章认为这种做法存在一定问题。L1正则化技术会让所有的scale系数都趋近于0，更理想的做法应该是只减小“不重要”channel的scale系数，保持其他系数的仍处于较大状态。为了实现这一想法，该篇文章提出了polarization正则化技术，使scale系数两极化。
+  
   ![L1正则化和Polarization正则化下scale factor的对比](https://img-blog.csdnimg.cn/20201220011646419.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZvdXJ0ZWVuX3poYW5n,size_16,color_FFFFFF,t_70#pic_center)
   
   <center>图2 L1正则化和Polarization正则化下scale factor的对比</center>
+  
 - 如图所示，可以看出L1正则化的scale系数分布和polarization正则化的scale系数分布。Polarization正则化技术能够更准确的确定裁剪阈值。该篇文章通过实验证明该剪枝方法在CIFAR和ImageNet数据集上达到SOTA水平。
 
 - [Directional Pruning of Deep Neural Networks](https://arxiv.org/abs/2006.09358)	/ [Code](https://github.com/donlan2710/gRDA-Optimizer/tree/master/directional_pruning)
