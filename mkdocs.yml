@@ -111,6 +111,8 @@ nav:
             - ghostnet: 算法科普/尽览卷积神经网络/ghostnet.md
             - ThunderNet: 算法科普/尽览卷积神经网络/ThunderNet.md
             - IBN-Net 提升模型的域自适应性: 算法科普/尽览卷积神经网络/IBN-Net 提升模型的域自适应性.md
+            - NAS OR 手工设计网络，RegNet这样说: 算法科普/尽览卷积神经网络/NAS OR 手工设计网络，RegNet这样说.md
+            - 轻量级CNN架构设计: 算法科普/尽览卷积神经网络/轻量级CNN架构设计.md
         - 可变形卷积:
             - DCN V1代码阅读笔记: 算法科普/可变形卷积/DCN V1代码阅读笔记.md
             - MSRA DCN(可变形卷积) 算法笔记: 算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md

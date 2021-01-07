@@ -41,7 +41,9 @@
 
 论文中，我们的Block采取的是**带有组卷积的残差BottleNeck Block**（即ResNext里的结构），我们称在这样Block限制条件下的搜索空间为 AnyNetX
 ，Block的结构如下：
+
 ![带有组卷积的残差BottleNeck Block](https://img-blog.csdnimg.cn/20201114083945773.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
+
 此时 AnyNetX 中有**16个自由度可以设计，包含了4个stage，每个stage有4个Block参数：**
 
 - block的数目 di
@@ -68,7 +70,9 @@
 
 [AnyNetXd](https://img-blog.csdnimg.cn/20201114090819938.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
 
-- AnyNetXe 在 AnyNetXd 的基础上在除了最后一个stage上，**逐步增加Block的数量（深度）di**。网络性能略微有提升![AnyNetXe](https://img-blog.csdnimg.cn/20201114091037754.png#pic_center)
+- AnyNetXe 在 AnyNetXd 的基础上在除了最后一个stage上，**逐步增加Block的数量（深度）di**。网络性能略微有提升
+
+![AnyNetXe](https://img-blog.csdnimg.cn/20201114091037754.png#pic_center)
 
 # RegNet 设计空间
 
@@ -79,27 +83,33 @@
 但是我们的**Block宽度都是离散数值，所以我们需要在此基础上进行量化**，下面是具体量化过程：
 
 首先我们设计一个线性函数：
+
 $$
 式子1 \\
 u_j = w_0 + w_a*j (0\leq{j}\lt{d}) 
 $$
+
 其中$w_0$是初始宽度，$w_a$是斜率
 
 为了量化，我们引入一个值大于0的额外参数$w_m$，注意这个参数是我们自己设计的。
 
 公式有：
+
 $$
 式子2 \\
 u_j = w_0*w_m^{s_j}
 $$
+
 令**其与前面的式子1相等，我们就能求解得到$s_j$**
 
 为了对$u_j$量化，我们对$s_j$进行**四舍五入**。
 
 这样我们就得到了每个Block的宽度
+
 $$
 w_j = w_0*w_m^{[s_j]}
 $$
+
 量化完后，**我们就得到了 RegNet 搜索空间**
 
 ![设计空间总结](https://img-blog.csdnimg.cn/20201114100437619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70#pic_center)
