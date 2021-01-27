@@ -45,6 +45,7 @@ Protobuf协议是一个以`*.proto`后缀文件为基础的，这个文件描述
 
 # 0x4. onnx.helper
 现在我们知道ONNX是把一个网络的每一层或者说一个算子当成节点`node`，使用这些`Node`去构建一个`Graph`，即一个网络。最后将`Graph`和其它的生产者信息，版本信息等合并在一起生成一个`Model`，也即是最终的ONNX模型文件。
+
 在构建ONNX模型的时候，`https://github.com/onnx/onnx/blob/master/onnx/helper.py`这个文件非常重要，我们可以利用它提供的`make_node`，`make_graph`，`make_tensor`等等接口完成一个ONNX模型的构建，一个示例如下：
 
 ```python
@@ -398,13 +399,13 @@ def eliminate_const_nodes(model: onnx.ModelProto, const_nodes: List[onnx.NodePro
 介于篇幅原因，介绍ONNX的第一篇文章就介绍到这里了,后续可能会结合更多实践的经验来谈谈ONNX了，例如OneFlow模型导出ONNX进行部署？。总之，文章很长，谢谢你的观看，希望这篇文章有帮助到你。最后欢迎star大老师的onnx-simplifier。
 
 # 0x7. 参考资料
+
 - 【1】https://zhuanlan.zhihu.com/p/86867138
 - 【2】https://oldpan.me/archives/talk-about-onnx
 - 【3】https://blog.csdn.net/chengzi_comm/article/details/53199278
 - 【4】https://www.jianshu.com/p/a24c88c0526a
 - 【5】https://bindog.github.io/blog/2020/03/13/deep-learning-model-convert-and-depoly/
 - 【6】 https://github.com/daquexian/onnx-simplifier
-
 
 -----------------------------------------------------------------------------------------------
 欢迎关注GiantPandaCV, 在这里你将看到独家的深度学习分享，坚持原创，每天分享我们学习到的新鲜知识。( • ̀ω•́ )✧

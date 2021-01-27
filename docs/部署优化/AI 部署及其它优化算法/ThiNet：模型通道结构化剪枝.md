@@ -43,11 +43,15 @@ ThiNet通道重要性判断是：找到一组通道子集近似通道全集的�
 
 公式1：
 
-$$y=\sum_{c=1}^{C} \sum_{k_{1}=1}^{K} \sum_{k_{2}=1}^{K} \widehat{\mathcal{W}}_{c, k_{1}, k_{2}} \times x_{c, k_{1}, k_{2}}+b$$
+$$
+y=\sum_{c=1}^{C} \sum_{k_{1}=1}^{K} \sum_{k_{2}=1}^{K} \widehat{\mathcal{W}}_{c, k_{1}, k_{2}} \times x_{c, k_{1}, k_{2}}+b
+$$
 
 公式2：
 
-$$\hat{x}_{c}=\sum_{k_{1}=1}^{K} \sum_{k_{2}=1}^{K} \widehat{\mathcal{W}}_{c, k_{1}, k_{2}} \times x_{c, k_{1}, k_{2}}$$
+$$
+\hat{x}_{c}=\sum_{k_{1}=1}^{K} \sum_{k_{2}=1}^{K} \widehat{\mathcal{W}}_{c, k_{1}, k_{2}} \times x_{c, k_{1}, k_{2}}
+$$
 
 其中，$\mathcal{I}_{i} \in \mathbb{R}^{C \times H \times W}$是第$i_{i}$层输入张量，
 
@@ -71,17 +75,21 @@ $\hat{y}=\sum_{c=1}^{C} \hat{x}_{c}$， $\hat{y}=y-b$
 
 公式5是为了最小化留下来的channel的计算结果与原来channel全集的计算结果，即为思路1：
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \underset{S}{\arg \min } & \sum_{i=1}^{m}\left(\hat{y}_{i}-\sum_{j \in S} \hat{\mathbf{x}}_{i, j}\right)^{2} \\
 \text { s.t. } &|S|=C \times r, \quad S \subset\{1,2, \ldots, C\}
-\end{aligned}$$
+\end{aligned}
+$$
 
 变为公式6，即为思路2：
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \underset{T}{\arg \min } & \sum_{i=1}^{m}\left(\sum_{j \in T} \hat{\mathbf{x}}_{i, j}\right)^{2} \\
 \text { s.t. } &|T|=C \times(1-r), \quad T \subset\{1,2, \ldots, C\}
-\end{aligned}$$
+\end{aligned}
+$$
 
 其中，S ∪ T = {1, 2, . . . , C}，S ∩ T = ∅，r是压缩率，C是filter数量。
 
@@ -140,7 +148,11 @@ def channel_selection(inputs, module, sparsity=0.5, method='greedy'):
 
 首先先来看看numpy.linalg.lstsq()，是线性矩阵方程的最小二乘法求解。
 
-最小二乘法的公式为：$$J(\theta)=\min \sum_{i=1}^{m}\left(f\left(x_{i}\right)-y_{i}\right)^{2}$$ 
+最小二乘法的公式为：
+
+$$
+J(\theta)=\min \sum_{i=1}^{m}\left(f\left(x_{i}\right)-y_{i}\right)^{2}
+$$
 
 | **方法**                                                     | **描述**                         |
 | ------------------------------------------------------------ | -------------------------------- |
