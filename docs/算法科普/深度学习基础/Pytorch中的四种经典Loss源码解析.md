@@ -10,7 +10,9 @@
 
 RankingLoss系列是来计算输入样本的距离，而不像MSELoss这种直接进行回归。 
 其主要思想就是分为 `Margin` 和 `Ranking`。
+
 ![MarginRankingLoss公式](https://img-blog.csdnimg.cn/20201227120411746.png)
+
 Margin 这个词是页边空白的意思，平常我们打印的时候，文本内容外面的空白就叫 Margin。
 
 而在Loss中也是表达类似的意思，相当于是一个固定的`范围`，**当样本距离（即Loss）超过范围，即表示样本差异性足够了**，不需要再计算Loss。
@@ -35,14 +37,23 @@ def np_margin_ranking_loss(input1, input2, target, margin, reduction):
 ## TripletMarginLoss
 
 TripletLoss最早是在 FaceNet 提出的，它是用于衡量不同人脸特征之间的距离，进而实现人脸识别和聚类
+
 ![TripletLoss](https://img-blog.csdnimg.cn/20201227123407394.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 而TripletMarginLoss则是结合了TripletLoss和MarginRankingLoss的思想，具体可参考 [Learning local feature descriptors with triplets and shallow convolutional neural networks](http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf)
+
 其公式如下
+
 ![TripletMarginLoss公式](https://img-blog.csdnimg.cn/2020122712211038.png)
+
 其中d是p范数函数
+
 ![距离函数](https://img-blog.csdnimg.cn/2020122713271188.png)
+
 范数的具体公式是
+
 ![范数公式](https://img-blog.csdnimg.cn/20201227143942882.png)
+
 该Loss针对不同样本配对，有以下三种情况
 
 1. 简单样本，即
@@ -68,9 +79,13 @@ d(ai, pi) < d(ai, ni) < d(ai, pi) + margin
 $$
 
 此时虽然 **负样本距离anchor的距离d(ai, ni)** 大于 **正样本距离anchor的距离d(ai, pi)**，但是还不够大，没有超过 Margin，需要优化
+
 <img src="https://img-blog.csdnimg.cn/20201227133819609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70" alt="source: https://omoindrot.github.io/triplet-loss" style="zoom:50%;" />
+
 此外论文作者还提出了 swap 这个概念，原因是我们公式里**只考虑了anchor距离正类和负类的距离**，而**没有考虑正类和负类之间的距离**，考虑以下情况
+
 <img src="https://img-blog.csdnimg.cn/20201227141930534.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70" alt="Swap" style="zoom:67%;" />
+
 **可能Anchor距离正样本和负样本的距离相同，但是负样本和正样本的距离很近，不利于模型区分**，因此会做一个swap，即交换操作，在代码里体现的操作是取最小值。
 
 ```python
@@ -82,7 +97,9 @@ if swap:
 这样取了最小值后，在Loss计算公式中，Loss值会增大，进一步帮助区分负样本。
 
 有了前面的铺垫，我们理解Pytorch的TripletMarginRankingLoss源码也非常简单
+
 ![TripletMarginLoss源码](https://img-blog.csdnimg.cn/20201227134107721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 `at::pairwise_distance`是距离计算函数，首先计算出了anchor与正类和负类的距离。 然后根据参数`swap`，来确定是否考虑正类和负类之间的距离。 最后`output`就是按照公式进行计算，下面是numpy的对应代码
 
 ```python
@@ -110,9 +127,11 @@ def np_triplet_margin_loss(anchor, postive, negative, margin, swap, reduction="m
 ```
 
 这里比较**容易踩坑的是p范数的计算**，因为当p=2，根据范数的公式，**如果输入有负数是不合法的**， 比如
+
 $$
 \sqrt{-20} = ?
 $$
+
 于是我们从distance函数开始找线索，发现它是调用`at::norm`
 ![pairwise_distance](https://img-blog.csdnimg.cn/20201227150544135.png)
 根据Pytorch的文档，它其实在**计算的时候调用了abs绝对值**，来避免最后负数出现，从而保证运算的合理性![Norm文档](https://img-blog.csdnimg.cn/20201227152755290.png)
@@ -120,15 +139,21 @@ $$
 ## KLDivLoss
 
 该损失函数是计算KL散度（即相对熵），它可以用于衡量两个分布的差异
+
 ![KL散度基本定义](https://img-blog.csdnimg.cn/20201227153800971.png)
+
 当p和q分布越接近，则$\frac{p(x)}{q(x)}$趋近于1，经过log运算后，loss值为0
 
 当分布差异比较大，则损失值就比较高
 
 Pytorch中计算公式中还不太一样
+
 ![Pytorch的KLDivLoss公式](https://img-blog.csdnimg.cn/20201227154342809.png)
+
 下面我们看看Pytorch对应的源码
+
 ![KLDivLoss源码](https://img-blog.csdnimg.cn/2020122715410193.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 首先可以观察到，除了常规的input，target，reduction，还有一个额外的参数 `log_target`，用于表示target是否已经经过log运算。 根	据这个参数，KLDivLoss进而分成两个函数 `_kl_div_log_target` 和 `_kl_div_non_log_target` 实现。
 
 `_kl_div_log_target` 的实现比较简单，就是按照公式进行计算
@@ -164,9 +189,13 @@ def np_kldivloss(input, target, log_target, reduction="mean"):
 
 下面是其计算公式
 其中 $\sigma$ 表示sigmoid运算
+
 ![BCEWithLogitsLoss](https://img-blog.csdnimg.cn/2020122716115630.png)
+
 BCEWithLogitsLoss 相当于 sigmoid + BCELoss，但实际上 Pytorch为了更好的数值稳定性，并不是这么做的，下面我们看看对应的源代码
+
 ![Pytorch的BCEWithLogitsLoss源码](https://img-blog.csdnimg.cn/20201227161659719.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 这段源代码其实看的不太直观，我们可以看下numpy对应的代码
 
 ```python
@@ -194,6 +223,7 @@ def np_bce_with_logits_loss(np_input, np_target, np_weight, np_pos_weight, reduc
 ```
 
 因为涉及到了sigmoid运算，所以有以下公式
+
 $$
 log(\sigma(x)) = log(\frac{1}{1+e^{-x}}) 
 $$
@@ -204,6 +234,7 @@ $$
 
 计算中，如果x过大或过小，会**导致指数运算$e^x$出现上溢或下溢**，因此我们可以
 用 `log-sum-exp` 的技巧来**避免数值溢出**，具体可以看下面公式推导（**特此感谢德澎！**）
+
 ![公式推导](https://img-blog.csdnimg.cn/20201227163126231.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 
 ### 总结

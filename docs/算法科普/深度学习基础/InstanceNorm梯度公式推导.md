@@ -7,6 +7,7 @@
 对一个形状为 (N, C, H, W) 的张量应用 InstanceNorm`[4]` 操作，其实等价于先把该张量 reshape 为 (1, N * C, H, W)的张量，然后应用 BatchNorm`[5]` 操作。而 gamma 和 beta 参数的每个通道所对应输入张量的位置都是一致的。
 
 而 InstanceNorm 与 BatchNorm 不同的地方在于：
+
 - InstanceNorm 训练与预测阶段行为一致，都是利用当前 batch 的均值和方差计算；
 - BatchNorm 训练阶段利用当前 batch 的均值和方差，测试阶段则利用训练阶段通过移动平均统计的均值和方差；
 
@@ -27,23 +28,27 @@
 
 而输入张量 reshape 成 (1, N * C, M)之后，每个通道上是一个长度为 M 的向量，这些向量之间的计算是不像干的，每个向量计算自己的 normalize 结果。所以求导也是各自独立。因此下面的均值、方差符号约定和求导也只关注于其中一个向量，其他通道上的向量计算都是一样的。
 
-- 一个向量上的均值 $ \mu = \frac{1}{M}\sum_{i=1}^{M}x_i $
-- 一个向量上的方差 $ \sigma^2 = \frac{1}{M}\sum_{i=1}^{M}(x_i-\mu)^2 $
-- 一个向量上一个点的 normalize 中间输出 $ \hat{x}_i= \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}$
-- 一个向量上一个点的 normalize 最终输出 $ y_i = \gamma_c \hat{x}_i + \beta_c = \gamma_c \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta_c$，其中 $ \gamma_c $ 和 $ \beta_c $ 表示这个向量所对应的 gamma 和 beta 参数的通道值。
+- 一个向量上的均值 $\mu = \frac{1}{M}\sum_{i=1}^{M}x_i$
+- 一个向量上的方差 $\sigma^2 = \frac{1}{M}\sum_{i=1}^{M}(x_i-\mu)^2$
+- 一个向量上一个点的 normalize 中间输出 $\hat{x}_i= \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}$
+- 一个向量上一个点的 normalize 最终输出 $y_i = \gamma_c \hat{x}_i + \beta_c = \gamma_c \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta_c$，其中 $\gamma_c$ 和 $\beta_c$ 表示这个向量所对应的 gamma 和 beta 参数的通道值。
 - loss 函数的符号约定为 $L$
 
 ### gamma 和 beta 参数梯度的推导
 
 先计算简单的部分，求 loss 对 $\gamma_c$ 和 $\beta_c$ 的偏导：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial \gamma_c} = \frac{\partial L}{\partial y} \frac{\partial y}{\partial \gamma_c} = \sum_{n_c=1}^{N}\sum_{j=1}^{M} \frac{\partial L}{\partial y_{{n_c}j}} \hat{x}_{{n_c}j} \\ = \sum_{n_c=1}^{N}\sum_{j=1}^{M} \frac{\partial L}{\partial y_{{n_c}j}} \frac{x_{{n_c}j} - \mu_{n_c}}{\sqrt{\sigma_{n_c}^2 + \epsilon}}
-\end{aligned}$
+\end{aligned}
+$$
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial \beta_c} = \frac{\partial L}{\partial y} \frac{\partial y}{\partial \beta_c} = \sum_{n_c=1}^{N}\sum_{j=1}^{M} \frac{\partial L}{\partial y_{{n_c}j}}
-\end{aligned}$
+\end{aligned}
+$$
 
 其中 $n_c$ 表示 gamma 和 beta 参数的第 $c$ 个通道参与了哪些 batch 上向量的 normalize 计算。
 
@@ -58,16 +63,20 @@ $\begin{aligned}
 
 先看 loss 函数对于 $x_i$ 的求导：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial x_i} = \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial x_i}
-\end{aligned}$
+\end{aligned}
+$$
 
-而从上文约定的公式可知，对于 $ \hat{x}_i= \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}$ 的计算中涉及到 $x_i$ 的有三部分，分别是 $x_i$、$\mu$ 和 $\sigma^2$。所以 loss 对于 $x_i$ 的偏导可以写成以下的形式：
+而从上文约定的公式可知，对于 $\hat{x}_i= \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}$ 的计算中涉及到 $x_i$ 的有三部分，分别是 $x_i$、$\mu$ 和 $\sigma^2$。所以 loss 对于 $x_i$ 的偏导可以写成以下的形式：
 
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial x_i} = \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial x_i} = \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial x_i} \\+ \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \mu} \frac{\partial \mu}{\partial x_i} \\+ \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \sigma^2} \frac{\partial \sigma^2}{\partial x_i}
-\end{aligned}$
+\end{aligned}
+$$
 
 接下来就是，分别求上面式子最后三项的梯度公式
 
@@ -75,109 +84,141 @@ $\begin{aligned}
 
 在求第一项的时候，把 $\mu$ 和 $\sigma^2$ 看做常量，则有：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial \hat{x}_i}{\partial x_i}=\frac{\partial \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}}{\partial x_i}=\frac{1}{\sqrt{\sigma^2 + \epsilon}}
-\end{aligned}$
+\end{aligned}
+$$
 
 然后有：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}=\frac{\partial L}{\partial y_i}\frac{\partial \gamma_c \hat{x}_i + \beta_c}{\partial \hat{x}_i}=\frac{\partial L}{\partial y_i}\gamma_c
-\end{aligned}$
+\end{aligned}
+$$
 
 最后可得第一项梯度公式：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial x_i}=\frac{\partial L}{\partial y_i}\gamma_c\frac{1}{\sqrt{\sigma^2 + \epsilon}}
-\end{aligned}$
+\end{aligned}
+$$
 
 ### 第三项梯度推导
 接着先看第三项梯度 $\frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \sigma^2} \frac{\partial \sigma^2}{\partial x_i}$，因为第三项的推导形式简单一些。
 
 先计算上式最后一项 $\frac{\partial \sigma^2}{\partial x_i}$，把 $\mu$ 看做常量：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial \sigma^2}{\partial x_i}=\frac{\partial \frac{1}{M}\sum_{j=1}^{M}(x_j-\mu)^2}{\partial x_i}=\frac{2(x_i-\mu)}{M}
-\end{aligned}$
+\end{aligned}
+$$
 
 然后计算 $\frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \sigma^2}$，等价于求 $\frac{\partial L}{\partial \sigma^2}$。而因为每个长度是 M 的向量都会计算一个方差 $\sigma^2$，而计算出来的方差又会参数到所有 M 个元素的 normalize 的计算，所以 loss 对于 $\sigma^2$ 的偏导需要把所有 M 个位置的梯度累加，所以有：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial \sigma^2}= \sum_{j=1}^{M} \frac{\partial L}{\partial y_j}\frac{\partial y_j}{\partial \hat{x}_j}\frac{\partial \hat{x}_j}{\partial \sigma^2} \\=\sum_{j=1}^{M} \frac{\partial L}{\partial y_j}\frac{\partial y_j}{\partial \hat{x}_j}\frac{\partial\frac{x_j - \mu}{\sqrt{\sigma^2 + \epsilon}} }{\partial \sigma^2}
-\end{aligned}$
+\end{aligned}
+$$
 
 接着计算 $\frac{\partial\frac{x_j - \mu}{\sqrt{\sigma^2 + \epsilon}} }{\partial \sigma^2}$，
 
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial\frac{x_j - \mu}{\sqrt{\sigma^2 + \epsilon}} }{\partial \sigma^2}=\frac{\partial(x_j - \mu)(\sigma^2 + \epsilon)^{-\frac{1}{2}}}{\partial \sigma^2}
 \\=\frac{\partial(x_j - \mu)}{\partial \sigma^2}(\sigma^2 + \epsilon)^{-\frac{1}{2}}\\+(x_j - \mu)\frac{\partial(\sigma^2 + \epsilon)^{-\frac{1}{2}}}{\partial \sigma^2}
 \\= 第一项求偏导为0 \\+ (x_j - \mu)\frac{-1}{2}(\sigma^2 + \epsilon)^{-\frac{3}{2}}
 \\=(x_j - \mu)\frac{-1}{2}(\sigma^2 + \epsilon)^{-\frac{3}{2}}
-\end{aligned}$
+\end{aligned}
+$$
 
 最后可得：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial \sigma^2}\frac{\partial \sigma^2}{\partial x_i}= (\sum_{j=1}^{M} \frac{\partial L}{\partial y_j}\frac{\partial y_j}{\partial \hat{x}_j}\frac{\partial \hat{x}_j}{\partial \sigma^2})\frac{\partial \sigma^2}{\partial x_i}
-\end{aligned}$
+\end{aligned}
+$$
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 =\frac{2(x_i-\mu)}{M}\sum_{j=1}^{M} \frac{\partial L}{\partial y_j}\gamma_c(x_j - \mu)\frac{-1}{2}(\sigma^2 + \epsilon)^{-\frac{3}{2}}
-\end{aligned}$
-
-
+\end{aligned}
+$$
 
 
 ### 第二项梯度推导
 
 最后计算第二项的梯度 $\frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \mu} \frac{\partial \mu}{\partial x_i}$，一样先计算最后一项 $\frac{\partial \mu}{\partial x_i}$：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial \mu}{\partial x_i}=\frac{\partial \frac{1}{M}\sum_{j=1}^{M}x_j}{\partial x_i}=\frac{1}{M}
-\end{aligned}$
+\end{aligned}
+$$
 
 接着计算 $\frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \mu}$，等价于是求 $\frac{\partial L}{\partial \mu}$。而因为每个长度是 M 的向量都会计算一个均值 $\mu$，而计算出来的均值又会参与到所有 M 个元素的 normalize 的计算，所以 loss 对于 $\mu$ 的偏导需要把所有 M 个位置的梯度累加，所以有：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial \mu}= \sum_{i=1}^{M} \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \mu} \\=\sum_{i=1}^{M} \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial\frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} }{\partial \mu}
-\end{aligned}$
+\end{aligned}
+$$
 
 接着计算 $\frac{\partial\frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} }{\partial \mu}$，
 
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial\frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} }{\partial \mu}=\frac{\partial(x_i - \mu)(\sigma^2 + \epsilon)^{-\frac{1}{2}}}{\partial \mu}
 \\=\frac{\partial(x_i - \mu)}{\partial \mu}(\sigma^2 + \epsilon)^{-\frac{1}{2}}\\+(x_i - \mu)\frac{\partial(\sigma^2 + \epsilon)^{-\frac{1}{2}}}{\partial \mu}
 \\= \frac{-1}{\sqrt{\sigma^2 + \epsilon}}+(x_i - \mu)\frac{-1}{2}(\sigma^2 + \epsilon)^{-\frac{3}{2}}\frac{\partial \sigma^2}{\partial \mu}
 \\= \frac{-1}{\sqrt{\sigma^2 + \epsilon}}\\+(x_i - \mu)\frac{-1}{2}(\sigma^2 + \epsilon)^{-\frac{3}{2}}\frac{\partial \frac{1}{M}\sum_{j=1}^{M}(x_j-\mu)^2}{\partial \mu}
 \\= \frac{-1}{\sqrt{\sigma^2 + \epsilon}}\\+(x_i - \mu)\frac{-1}{2}(\sigma^2 + \epsilon)^{-\frac{3}{2}}\frac{ -2\sum_{j=1}^{M}(x_j-\mu)}{M}
-\end{aligned}$
+\end{aligned}
+$$
 
 最后可得：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial \mu}\frac{\partial \mu}{\partial x_i}= \sum_{i=1}^{M} \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \mu} \\= \frac{1}{M} \sum_{i=1}^{M} \frac{\partial L}{\partial y_i}\gamma_c\frac{-1}{\sqrt{\sigma^2 + \epsilon}}
-\end{aligned}$
+\end{aligned}
+$$
 
-$\begin{equation*} 
+$$
+\begin{equation*} 
 +\frac{1}{M}\sum_{i=1}^{M} \frac{\partial L}{\partial y_i}\gamma_c(x_i - \mu)\frac{-1}{2}(\sigma^2 + \epsilon)^{-\frac{3}{2}}\frac{ -2\sum_{j=1}^{M}(x_j-\mu)}{M}
-\end{equation*}$
+\end{equation*}
+$$
 
 ### 输入梯度最终的公式
 
 分别计算完上面三项，就能得到对于输入张量每个位置上梯度的最终公式了：
 
-$\begin{aligned} 
+$$
+\begin{aligned} 
 \frac{\partial L}{\partial x_i} = \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial x_i} \\+ \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \mu} \frac{\partial \mu}{\partial x_i} \\+ \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial \hat{x}_i}\frac{\partial \hat{x}_i}{\partial \sigma^2} \frac{\partial \sigma^2}{\partial x_i}
 \\=\frac{\partial L}{\partial y_i}\gamma_c\frac{1}{\sqrt{\sigma^2 + \epsilon}} + \frac{1}{M}\sum_{i=1}^{M} \frac{\partial L}{\partial y_i}\gamma_c\frac{-1}{\sqrt{\sigma^2 + \epsilon}}
-\end{aligned}$
-$\begin{equation*} 
+\end{aligned}
+$$
+
+$$
+\begin{equation*} 
 +\frac{1}{M}\sum_{i=1}^{M} \frac{\partial L}{\partial y_i}\gamma_c(x_i - \mu)\frac{-1}{2}(\sigma^2 + \epsilon)^{-\frac{3}{2}}\frac{ -2\sum_{j=1}^{M}(x_j-\mu)}{M}
-\end{equation*}$
-$\begin{aligned} 
+\end{equation*}
+$$
+
+$$
+\begin{aligned} 
 +\frac{2(x_i-\mu)}{M}\sum_{j=1}^{M} \frac{\partial L}{\partial y_j}\gamma_c(x_j - \mu)\frac{-1}{2}(\sigma^2 + \epsilon)^{-\frac{3}{2}}
-\end{aligned}$
+\end{aligned}
+$$
 
 观察上式可以发现，loss 对 $\mu$ 的求导公式包括了 loss 对 $\sigma^2$ 求导的公式，所以这也是为什么先计算第三项的原因，在下面代码实现上也可以体现。
 

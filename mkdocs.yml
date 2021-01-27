@@ -126,6 +126,10 @@ nav:
             - 回炉重造：计算图: 算法科普/深度学习基础/回炉重造：计算图.md
             - 深度学习中的优化算法与实现: 算法科普/深度学习基础/深度学习中的优化算法与实现.md
             - 优化器文章: 算法科普/深度学习基础/优化器文章.md
+            - Kaiming He初始化详解: 算法科普/深度学习基础/Kaiming He初始化详解.md
+            - InstanceNorm梯度公式推导: 算法科普/深度学习基础/InstanceNorm梯度公式推导.md
+            - Pytorch中的四种经典Loss源码解析: 算法科普/深度学习基础/Pytorch中的四种经典Loss源码解析.md
+            - 谈谈我眼中的Label Smooth: 算法科普/深度学习基础/谈谈我眼中的Label Smooth.md
         - 手工调参Tricks:
             - 【CNN结构设计】无痛的涨点技巧：ACNet: 算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
             - 【CNN调参】目标检测算法优化技巧: 算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
@@ -396,6 +400,10 @@ nav:
             - 平安科技: 刷题面试/面经/平安科技.md
         - Leetcode题解:
             - LeetCode第42场双周赛赛后题解: 刷题面试/Leetcode题解/LeetCode第42场双周赛赛后题解.md
+            - LeetCode 221场周赛题解: 刷题面试/Leetcode题解/LeetCode 221场周赛题解.md
+            - LeetCode 222场周赛题解: 刷题面试/Leetcode题解/LeetCode 222场周赛题解.md
+            - LeetCode 224场周赛题解: 刷题面试/Leetcode题解/LeetCode 224场周赛题解.md
+            - LeetCode 225场周赛题解: 刷题面试/Leetcode题解/LeetCode第225场周赛题解.md
     - 算法商城:
         - 专栏介绍: 算法商城/README.md
         - 免费实用工具: 
