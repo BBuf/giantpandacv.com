@@ -155,7 +155,9 @@ $$
 论文《bag of tricks for image classification with convolutional neural networks》还画出了gap图，此处的gap就是导数等于0的情况下，$z_{true}$和$z_{false}$之间的数值误差
 
 
-![gap.jpg](https://imgkr2.cn-bj.ufileos.com/3c9cfada-a4e6-4557-a72c-33d0af89ac80.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=ioYXTq5jLi10MVzzK4MXoFHfQ%252FU%253D&Expires=1611234103)
+![gap.jpg](https://img-blog.csdnimg.cn/20210127231033186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
+
+
 
 
 gap就是$log(\frac{(K-1)(1-\varepsilon )}{\varepsilon})$，其中**K**是分类的类别数，$\varepsilon$（eps）是label smooth的超参数。假设$\varepsilon$取0.5且是1000分类，那么
