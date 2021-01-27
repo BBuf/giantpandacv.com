@@ -18,6 +18,7 @@
 
 神经网络的输出称为**logits**，简记为$z$，经过**softmax**之后转化为和为1的概率形式，记为$\hat{y}$，真值target记为$y$，$K$为分类类别的数量。本文所有讨论的内容是在导数等于0的情况下（解析解的情况下），$z$为多少（神经网络的输出是多少）。
 当损失函数为交叉熵且target的编码和为1时, 导数则为$\hat y_i-y_i$（求导过程文章：https://zhuanlan.zhihu.com/p/343988823 ）, 假设总共有$K$个类. 可以有如下的公式.
+
 $$
 \begin{aligned}
 \hat y_i=\frac{exp(z_i)}{\Sigma _{j=1} ^{K}exp(z_j)}\\
@@ -32,6 +33,7 @@ $$
 $$
 
 $\hat y$ 是通过$softmax$推导出来的, 则
+
 $$
 \frac{exp(z_{true})}{\Sigma _{j=1} ^{K}exp(z_j)}=1 {..........公式3.1}
 $$
@@ -41,14 +43,19 @@ $$
 $$
 
 通过公式（3.1）可得
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 exp(z_{true})=exp(z_{true})+\Sigma _{j\neq true} ^{K}exp(z_j) \\ \to
 \Sigma _{j\neq true} ^{K}exp(z_j)=0\\ \to
 exp(z_j)_{j\neq true}=0\\ \to z_{false}=-\infty
 \end{aligned}{\tag3}
 $$
+
 通过公式（3.2）也可以得上面的结果。
+
 所以**target**为**one-hot**编码，损失函数为交叉熵的情况下。解析解是
+
 $$
 exp(z_{true})\to C , exp(z_{false})\to 0
 $$
@@ -56,9 +63,13 @@ $$
 $$
 z_{true}\to C, z_{false}\to -\infty
 $$
+
 所以通过上述推导可以得到：最优的情况下，在one-hot编码和交叉熵的损失函数下，错误类的logit值要是负无穷，正确类要是一个常数。这种最优的情况一般是不能达到的，且$z_{true}$会远大于$z_{false}$.
+
 在文章《Rethinking the inception architecture for computer vision》里面认为如果$z_{true}$远大于$z_{false}$，会出现两个不好的性质
+
 1. 导致过拟合，将所有的概率都赋给了真值，会导致泛化能力下降
+
 2. 鼓励真值对应的logit远大于其他值的logit，但是导数$\frac{\partial l}{\partial z_i}$是有界的，也就是数值不会很大，想要达成远大于的效果，要更新很多很多次。
 
 个人认为：logit要是负无穷，损失才会变为0，神经网络很难会有输出负无穷的情况（权重衰减还会约束着神经网络的参数）
@@ -67,11 +78,14 @@ $$
 **label smooth**是在《Rethinking the inception architecture for computer vision》里面提出来的。我觉得作者的想法应该是这样的：蒸馏改变了学习的真值，能获得更好的结果，但是它需要准确率更高的教师网络；如果我现在想要训练出一个准确率最高的模型，那么是没有网络能给我知识的，所以就通过label smooth学习一种简单的知识。
 
 label smooth 学习的编码形式如公式（4）所示，其中$\varepsilon$是预定义好的一个超参数，一般取值0.1，$K$是该分类问题的类别个数
+
 $$
 y_i=\left\{ \begin{aligned} 1-\varepsilon \quad if \quad i=true,\\ 
 \frac{\varepsilon}{K-1} \quad \quad otherwise \end{aligned} \right. .......公式(4)
 $$
+
 令公式（4）导数等于0，可得到公式（5.1）和（5.2）。类似于公式（1）的求导，但是要注意target编码的和要为1（ https://zhuanlan.zhihu.com/p/343988823 里面有解释）.
+
 $$
 \frac{exp(z_{true})}{exp(z_{true})+\Sigma _{j\neq true} ^{N}exp(z_j)}=1-\varepsilon .......公式(5.1)
 $$
@@ -79,9 +93,11 @@ $$
 $$
 \frac{exp(z_{false})}{\Sigma _{j=1} ^{N}exp(z_j)}=\frac{\varepsilon}{K-1} .....公式(5.2)
 $$
+
 因为正确的类只有**1**个；错误的类有**K-1**个，且解析解的情况下，错误类的概率是相等的。所以公式(5.1)可以推导为公式（6）：
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 exp(z_{true})=(1-\varepsilon)exp(z_{true})+(1-\varepsilon)(K-1)exp(z_{false})\\ \to
 \varepsilon exp(z_{true})=(1-\varepsilon)(K-1)exp(z_{false})
 \end{aligned} ......公式(6)
@@ -94,18 +110,23 @@ z_{true}=log(\frac{(K-1)(1-\varepsilon )}{\varepsilon})+z_{false} ......公式(7
 $$
 
 我们通过公式（5.2）也能推出相同的解。右边的公式分子分母颠倒一下可得公式（8）
+
 $$
 \frac{\Sigma_{j=1}^{N}exp(z_j)}{exp(z_{false})}=\frac{K-1}{\varepsilon} ......公式(8)
 $$
 
 因为错误类的值是相等的，所以$\Sigma_{j=1}^{N}exp(z_j)=exp(z_{true})+(K-1)exp(z_{false})$,则可得公式（9）
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 (K-1)+exp(z_{true}-z_{false})=\frac{K-1}{\varepsilon} \\ \to
 z_{true}-z_{false}=log(\frac{(K-1)(1-\varepsilon )}{\varepsilon})\\ \to
 z_{true}=log(\frac{(K-1)(1-\varepsilon )}{\varepsilon})+z_{false}
 \end{aligned}{\tag9}
 $$
+
 将$z_{false}$记为$\alpha$, 则可得公式（10），即导数等于0的情况下，logit的取值。
+
 $$
 z_i^*=
 \left\{ \begin{aligned}
@@ -113,8 +134,10 @@ log(\frac{(K-1)(1-\varepsilon )}{\varepsilon})+\alpha \quad if i=y,\\
 \alpha \quad otherwise
 \end{aligned}\right. .......公式(10)
 $$
+
 和论文《bag of tricks for image classification with convolutional neural networks》中，给出的结果是一样的（文章里面交叉熵的$p$和$q$好像写反了）
 带入label smooth定义的公式验算一下则是
+
 $$
 \frac{exp(z_{true})}{exp(z_{true})+\Sigma _{j\neq true} ^{N}exp(z_j)}=\frac{exp(\alpha)\frac{(K-1)(1-\varepsilon )}{\varepsilon}}{exp(\alpha)\frac{(K-1)(1-\varepsilon )}{\varepsilon}+(K-1)exp(\alpha)}=\frac{(K-1)(1-\varepsilon )}{(K-1)(1-\varepsilon )+\varepsilon(K-1)}=1-\varepsilon ....公式(11)
 $$
@@ -124,16 +147,19 @@ $$
 $$
 \frac{exp(z_{false})}{\Sigma _{j=1} ^{N}exp(z_j)}=\frac{exp(\alpha)}{exp(\alpha)\frac{(K-1)(1-\varepsilon )}{\varepsilon}+(K-1)exp(\alpha)}=\frac{\varepsilon}{K-1} .......公式（12）
 $$
+
 所以，在损失函数为交叉熵的情况下，如果我们使用label-smooth编码，错误类的logit不会要求是负无穷。且错误类和正确类的logit值有一定大小误差的情况下，loss就会很小很小。
+
 # label smooth中的gap
+
 论文《bag of tricks for image classification with convolutional neural networks》还画出了gap图，此处的gap就是导数等于0的情况下，$z_{true}$和$z_{false}$之间的数值误差
 
 
 ![gap.jpg](https://imgkr2.cn-bj.ufileos.com/3c9cfada-a4e6-4557-a72c-33d0af89ac80.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=ioYXTq5jLi10MVzzK4MXoFHfQ%252FU%253D&Expires=1611234103)
 
 
-gap就是$
-log(\frac{(K-1)(1-\varepsilon )}{\varepsilon})$，其中**K**是分类的类别数，$\varepsilon$（eps）是label smooth的超参数。假设$\varepsilon$取0.5且是1000分类，那么
+gap就是$log(\frac{(K-1)(1-\varepsilon )}{\varepsilon})$，其中**K**是分类的类别数，$\varepsilon$（eps）是label smooth的超参数。假设$\varepsilon$取0.5且是1000分类，那么
+
 $$
 log(\frac{(K-1)(1-\varepsilon )}{\varepsilon})=log(\frac{(1000-1)(1-0.5 )}{0.5})=log(999)\approx 7（以e为底，不是以10为底）
 $$
@@ -149,7 +175,6 @@ label-smooth的编码方式只要正确类和错误类有一定的数值误差�
 # 代码
 
 这里推荐https://github.com/CoinCheung/pytorch-loss/blob/master/label_smooth.py，大家需要注意的是这个代码的编码表示值和好像不为1.
-
 
 -----------------------------------------------------------------------------------------------
 欢迎关注GiantPandaCV, 在这里你将看到独家的深度学习分享，坚持原创，每天分享我们学习到的新鲜知识。( • ̀ω•́ )✧
