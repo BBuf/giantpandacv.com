@@ -350,8 +350,7 @@ def clean_constant_nodes(const_nodes: List[onnx.NodeProto], res: Dict[str, np.nd
 
 不过从一些实际经验来看，还是保留吧，毕竟不能保证ONNX的图优化就完全正确，前段时间刚发现了TensorRT图优化出了一个BUG。保留这个函数可以提升一些程序的稳定性。
 
-
-![TensorRT存在一个BUG，这个结构的relu会被tensorrt的优化器给移动到eltwise之后](https://imgkr2.cn-bj.ufileos.com/916844d5-1e48-4d54-9735-5e8aaae820ca.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=6znlqj1DxnavnxgXQBfQnfNhgIQ%253D&Expires=1611487950)
+![TensorRT存在一个BUG，这个结构的relu会被tensorrt的优化器给移动到eltwise之后](https://img-blog.csdnimg.cn/20210127231754470.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
 
 
 接下来就是这个onnx-simplifier最核心的步骤了，即将常量节点从原始的ONNX Graph中移除，函数接口为`eliminate_const_nodes`：
