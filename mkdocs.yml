@@ -39,6 +39,7 @@ nav:
             - 《Optimized contrast enhancement for real-time image and video dehazin》论文C++复现: 传统图像/一些有趣的图像算法/《Optimized contrast enhancement for real-time image and video dehazin》论文C++复现.md
             - 《Single Image Haze Removal Using Dark Channel Prior》论文阅读及复现番外: 传统图像/一些有趣的图像算法/《Single Image Haze Removal Using Dark Channel Prior》论文阅读及复现番外(使用导向滤波估计更加精细的透射率).md
             - 《改进非线性亮度提升模型的逆光图像恢复》论文复现: 传统图像/一些有趣的图像算法/《改进非线性亮度提升模型的逆光图像恢复》论文复现.md
+            - CVPR论文《100+ Times Faster Weighted Median Filter (WMF)》的实现和解析: 传统图像\一些有趣的图像算法\CVPR论文《100+ Times Faster Weighted Median Filter (WMF)》的实现和解析.md
         - 一些基础的图像算法:
             - 《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》C++实现: 传统图像/一些基础的图像算法/《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》C++实现.md
             - RGB和CIELAB颜色空间转换及偏色检测: 传统图像/一些基础的图像算法/RGB和CIELAB颜色空间转换及偏色检测.md
@@ -194,6 +195,7 @@ nav:
             - 目标检测算法之NMS后处理相关: 目标检测及跟踪/经典检测算法代码解析/目标检测算法之NMS后处理相关.md
             - 目标检测算法之YOLO系列算法的Anchor聚类: 目标检测及跟踪/经典检测算法代码解析/目标检测算法之YOLO系列算法的Anchor聚类.md
             - 目标检测算法之评价标准和常见数据集盘点: 目标检测及跟踪/经典检测算法代码解析/目标检测算法之评价标准和常见数据集盘点.md
+            - 比NMS更优的Confluence论文复现: 目标检测及跟踪\经典检测算法代码解析\比NMS更优的Confluence论文复现.md
         - 论文解析:
             - anchor free模型:
                 - 【目标检测Anchor-Free】CVPR 2019 CenterNet: 目标检测及跟踪/论文解析/anchor free模型/【目标检测Anchor-Free】CVPR 2019 CenterNet.md
@@ -293,6 +295,7 @@ nav:
         - 关键点定位红外小目标: 科研及竞赛分享/关键点定位红外小目标.md
         - 2019 天池县域农业大脑AI挑战赛冠军方案分享: 科研及竞赛分享/2019 天池县域农业大脑AI挑战赛冠军方案分享.md
         - ACCV国际细粒度识别比赛复盘: 科研及竞赛分享/ACCV国际细粒度识别比赛复盘.md
+        - 基于CenterFace的模型优化记录: 科研及竞赛分享\基于CenterFace的模型优化记录.md
     - 超分和GAN:
         - 专栏介绍: 超分和GAN/README.md
         - CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network: 超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md
