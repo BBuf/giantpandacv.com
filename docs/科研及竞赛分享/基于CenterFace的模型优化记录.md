@@ -33,8 +33,11 @@ CenterFace是基于CenterNet的一种**AnchorFree**人脸检测模型。在wider
 - #### **模型结构**
 
   CenterFace模型构造比较简单，基础backbone+FPN+head即完成网络构建。
+  
       1. **backbone**模型上采用了mobilenetv2作为backbone，mobilenetv3因为多分支以及SE模块，手机端移植不是很友好，实机测试，iphonex上mbv3相比mbv2要慢1ms左右，如果是低端机，这个差距会更大。
+
       2. **FPN**采用的是传统的top-down结构，没有使用PAN。
+
       3. **Head**采用4个conv+bn结构分别输出**locationmap**，**scalemap**，**offsetmap**和**pointsmap**。
   整体结构图如下：
 
@@ -53,27 +56,58 @@ CenterFace是基于CenterNet的一种**AnchorFree**人脸检测模型。在wider
 
   CenterFace的损失函数和CenterNet一样，由FocalLoss形式Location分类损失和L1回归损失构成
 
-1. Location分类损失：
-     $$L_{location} = \left\{ \begin{array}{ll}
+  1.Location分类损失：
+
+$$
+L_{location} = \left\{ \begin{array}{ll}
          \textrm{$-(1 - \hat{Y}_{xyc})^\alpha log(\hat{Y}_{xyc})$ $\quad \quad \quad \quad \quad$ $ if \quad Y_{xyc}=1$} \\
          \textrm{$-(1-Y_{xyc})^\beta (\hat{Y}_{xyc})^\alpha log(1 - \hat{Y}_{xyc}) $ $\quad otherwise$}
          \end{array} \right. .......(1)
-     $$
+$$
 
-2. L1回归损失：
-     - offset
-       $$o_{k} = (\frac{x_{k}}{n} - \lfloor \frac{x_{k}}{n} \rfloor , \frac{y_{k}}{n} - \lfloor \frac{{y_{k}}}{n} \rfloor) .......(2)$$
-       $$L_{offset} = \frac{1}{N} \sum_{i=1}^n SmoothL1(o_{k}, \hat{o_{k}}) .......(3)$$
-     - points
-       $$ lm_{{x_{gt}}} = \frac{lm_{x}}{box_{w}} - \frac{c_{x}}{box_{w}} $$
-       $$ lm_{{y_{gt}}} = \frac{lm_{y}}{box_{h}} - \frac{c_{y}}{box_{h}} .......(4)$$
-       $$ L_{points} =  \frac{1}{N} \sum_{i=1}^nSmoothL1(lm, \hat{lm}) .......(5)$$
-     - scale
-       $$ \hat{h} = log(\frac{y2}{R} - \frac{y1}{R}) $$
-       $$ \hat{w} = log(\frac{x2}{R} - \frac{x1}{R}) .......(6) $$
-       $$ L_{scale} = \frac{1}{N}\sum_{i=1}^nSmoothL1(scale, \hat{scale}) .......(7)$$
-3. 最终损失：
-     $$L = L_{location} + \lambda_{offset}L_{offset} + \lambda_{scale}L_{scale} + \lambda_{points}L_{points} .......(8)$$
+  2.L1回归损失：
+- offset
+
+$$
+o_{k} = (\frac{x_{k}}{n} - \lfloor \frac{x_{k}}{n} \rfloor , \frac{y_{k}}{n} - \lfloor \frac{{y_{k}}}{n} \rfloor) .......(2)
+$$
+
+$$
+L_{offset} = \frac{1}{N} \sum_{i=1}^n SmoothL1(o_{k}, \hat{o_{k}}) .......(3)
+$$
+
+- points
+
+$$
+lm_{{x_{gt}}} = \frac{lm_{x}}{box_{w}} - \frac{c_{x}}{box_{w}} 
+$$
+
+$$ lm_{{y_{gt}}} = \frac{lm_{y}}{box_{h}} - \frac{c_{y}}{box_{h}} .......(4)
+$$
+
+$$ 
+L_{points} =  \frac{1}{N} \sum_{i=1}^nSmoothL1(lm, \hat{lm}) .......(5)
+$$
+
+- scale
+
+$$
+\hat{h} = log(\frac{y2}{R} - \frac{y1}{R}) 
+$$
+
+$$
+\hat{w} = log(\frac{x2}{R} - \frac{x1}{R}) .......(6) 
+$$
+
+$$
+L_{scale} = \frac{1}{N}\sum_{i=1}^nSmoothL1(scale, \hat{scale}) .......(7)
+$$
+       
+  3.最终损失：
+
+$$
+L = L_{location} + \lambda_{offset}L_{offset} + \lambda_{scale}L_{scale} + \lambda_{points}L_{points} .......(8)
+$$
 
   对于location损失，只有每个bbox的中心点为正样本，其余点均为负样本，公式$(1)中$$\alpha=2，\beta=4$。对于offset损失，由于featuremap进行下采样的时候，计算中心点会由于取整产生偏移，需要用l1损失计算这个偏差。对于scale损失，这个是对bbox的w和h进行回归，取log便于计算。对于points损失，计算的是人脸5个关键点到中心点之间的距离的损失，做了normalize处理。最后的损失，就是各个损失的加权之和$\lambda_{offset}=1, \lambda_{scale}=0.1, \lambda_{points}=0.1$。
 
