@@ -5,6 +5,7 @@
 - 最终Rank：231 / 4033。
 
 # 题目一：盒子中小球的最大数量
+
 ![题面](https://img-blog.csdnimg.cn/20210131161418326.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 - 解题思路：按照题意模拟一下即可。
@@ -41,8 +42,11 @@ public:
 
 
 # 题目二：从相邻元素对还原数组
+
 ![题面](https://img-blog.csdnimg.cn/20210131161814526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 - 解题思路：看了一分钟似乎没有思路？然后再想想我们会发现如果把这个相邻关系看成一个无向图的边这个图会是什么样子？其实这个图会退化成一条链，我们只需要找到这个链的头部或者尾部节点就可以一下把这个链拎起来，然后我们就获得了答案了。头部节点或者尾部节点怎么找？直接找入度或者出度为0的点就可以了。另外注意一下，图中节点可能是负数，所以需要加一个offset（我直接取了100000）来方便处理。
+
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(n)$
 - 解题代码如下：
@@ -89,6 +93,7 @@ public:
 
 # 题目三：你能在你最喜欢的那天吃到你最喜欢的糖果吗？
 ![题面](https://img-blog.csdnimg.cn/202101311626164.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 - 解题思路：其实是一个非常简单的题目，只要推一下第一组样例应该就差不多了。对于每一个查询，我们可以O(1)判断是否可以在第`favoriteDayi`天吃到`favoriteTypei`类糖果。具体怎么判断呢？我们可以看到由于第二个条件的限制，在吃第$i$类糖果的时候，那么$i-1$类一定被吃掉了，那么我们可以i对所有的糖果维护一个前缀和。然后我们反向思考什么情况下这个人在第$favoriteDayi$天是吃不到`favoriteTypei`类苹果的：
 	- 一种情况就是这个人每天都吃了`dailyCapi`（上限）这么多个苹果，但是还是不够数，也就是说`favoriteTypei`类之前的苹果还有剩余。
 	- 另外一种情况就是这个人每天只吃一个苹果，但是到`favoriteDayi`天吃的苹果数量（也就是天数）都已经超过了`favoriteTypei`前所有的苹果数量，这样也是不行的。
@@ -132,6 +137,7 @@ public:
 
 # 题目四：回文串分割 IV
 ![题面](https://img-blog.csdnimg.cn/20210131163755285.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 - 解题思路：这道题其实有两种解法，一种是适合本地2e3的数据范围，一种是适合2e4的数据范围，接下来我就讲一下这两种做法。
 
 ## 解题方法一：O(n^2) DP
