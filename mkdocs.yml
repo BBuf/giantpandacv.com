@@ -321,7 +321,7 @@ nav:
                 - YOLOv3-tiny在VS2015上使用Openvino部署: 部署优化/AI 部署及其它优化算法/OpenVINO/YOLOv3-tiny在VS2015上使用Openvino部署.md
                 - 如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？: 部署优化/AI 部署及其它优化算法/OpenVINO/如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？.md
                 - c++实现yolov5的OpenVINO部署: 部署优化/AI 部署及其它优化算法/OpenVINO/c++实现yolov5的OpenVINO部署.md
-                - 手把手教你使用OpenVINO部署NanoDet模型: 部署优化\AI 部署及其它优化算法\OpenVINO\手把手教你使用OpenVINO部署NanoDet模型.md
+                - 手把手教你使用OpenVINO部署NanoDet模型: 部署优化/AI 部署及其它优化算法/OpenVINO/手把手教你使用OpenVINO部署NanoDet模型.md
             - TensorRT:
                 - 一，TensorRT介绍，安装及如何使用？: 部署优化/AI 部署及其它优化算法/TensorRT/一，TensorRT介绍，安装及如何使用？.md
                 - 二，TensorRT Mnist数字识别使用示例: 部署优化/AI 部署及其它优化算法/TensorRT/二，TensorRT Mnist数字识别使用示例.md
@@ -329,6 +329,8 @@ nav:
                 - 四，TensorRT 如何进行细粒度的Profiling: 部署优化/AI 部署及其它优化算法/TensorRT/四，TensorRT 如何进行细粒度的Profiling.md
                 - 五，在VS2015上利用TensorRT部署YOLOV3-Tiny模型: 部署优化/AI 部署及其它优化算法/TensorRT/五，在VS2015上利用TensorRT部署YOLOV3-Tiny模型.md
                 - 六，利用TensorRT部署YOLOV3-Tiny INT8量化模型: 部署优化/AI 部署及其它优化算法/TensorRT/六，利用TensorRT部署YOLOV3-Tiny INT8量化模型.md
+                - 基于TensorRT量化部署RepVGG模型: 部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署RepVGG模型.md
+                - 基于TensorRT量化部署YOLOV5s 4.0模型: 部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署YOLOV5s 4.0模型.md
             - 如何让你的YOLOV3模型更小更快？: 部署优化/AI 部署及其它优化算法/如何让你的YOLOV3模型更小更快？.md
             - 基于Pytorch构建一个可训练的BNN: 部署优化/AI 部署及其它优化算法/基于Pytorch构建一个可训练的BNN.md
             - 基于Pytorch构建三值化网络TWN: 部署优化/AI 部署及其它优化算法/基于Pytorch构建三值化网络TWN.md
@@ -371,6 +373,7 @@ nav:
             - 海思NNIE之RetinaFace量化部署: 部署优化/AI 移动端算法优化/海思NNIE之RetinaFace量化部署.md
             - 海思NNIE之PFPLD训练与量化: 部署优化/AI 移动端算法优化/海思NNIE之PFPLD训练与量化.md
             - 深入理解深度学习中的反(转置)卷积: 部署优化/AI 移动端算法优化/深入理解深度学习中的反(转置)卷积.md
+            - 道阻且长_再探矩阵乘法优化: 部署优化/AI 移动端算法优化/道阻且长_再探矩阵乘法优化.md
         - 深度学习编译器:
             - 多面体模型在深度学习编译器的应用: 部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
     - 资源共享:
