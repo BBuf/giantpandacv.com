@@ -57,6 +57,7 @@ nav:
         - 专栏介绍: 算法科普/README.md
         - AutoML: 
             - 你所需要知道的关于AutoML和NAS的知识点: 算法科普/AutoML/你所需要知道的关于AutoML和NAS的知识点.md
+            - 【神经网络搜索】1. NAS-RL（ICLR 2017）: 算法科普/AutoML/【神经网络搜索】1. NAS-RL（ICLR 2017）.md
         - CV中的特征金字塔:
             - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
             - 【CV中的特征金字塔】二，Feature Pyramid Network: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】二，Feature Pyramid Network.md
@@ -302,6 +303,7 @@ nav:
         - DeepFake系列之FakeSpotter: 超分和GAN/DeepFake系列之FakeSpotter.md
         - 基于Kaggle DeepFake比赛的代码实战: 超分和GAN/基于Kaggle DeepFake比赛的代码实战.md
         - 生成对抗网络中的数据增广：一种可微分的数据增广方法: 超分和GAN/生成对抗网络中的数据增广：一种可微分的数据增广方法.md
+        - 仅使用少量数据训练生成对抗网络: 超分和GAN/仅使用少量数据训练生成对抗网络.md
     - 部署优化: 
         - 专栏介绍: 部署优化/README.md
         - AI PC端优化: 
@@ -397,6 +399,7 @@ nav:
         - 【资源】超详细的Pytorch版yolov3代码中文注释汇总: 资源共享/【资源】超详细的Pytorch版yolov3代码中文注释汇总.md
         - 快速学习使用tikz绘制CNN示意图: 资源共享/快速学习使用tikz绘制CNN示意图.md
         - 计算机视觉 书籍数据集标注工具学习路线整理: 资源共享/计算机视觉 书籍数据集标注工具学习路线整理.md
+        - Pytorch_lightning工具推荐: 资源共享/Pytorch_lightning工具推荐.md
     - MsnhNet:
         - 专栏介绍: Msnhnet/README.md
         - 多平台轻量级PyTorch模型推理框架MsnhNet: Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
