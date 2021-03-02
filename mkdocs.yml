@@ -79,6 +79,7 @@ nav:
             - 【CV中的Attention机制】最简单最易实现的SE模块:  算法科普/CV中的注意力机制/【CV中的Attention机制】最简单最易实现的SE模块.md
         - Transformer: 
             - 解析Transformer模型: 算法科普/Transformer/解析Transformer模型.md
+            - 解析Vision Transformer: 算法科普/Transformer/解析Vision Transformer.md
         - 半监督&无监督:
             - WSCL: 算法科普/半监督&无监督/WSCL.md
         - 尽览卷积神经网络:
@@ -118,6 +119,7 @@ nav:
         - 可变形卷积:
             - DCN V1代码阅读笔记: 算法科普/可变形卷积/DCN V1代码阅读笔记.md
             - MSRA DCN(可变形卷积) 算法笔记: 算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md
+            - 再思考可变形卷积: 算法科普/可变形卷积/再思考可变形卷积.md
         - 频域中的CNN:
             - CVPR 2020 在频域中学习的DCTNet: 算法科普/频域中的CNN/CVPR 2020 在频域中学习的DCTNet.md
             - ECCV2020 F3-Net 商汤Deepfake检测模型: 算法科普/频域中的CNN/ECCV2020 F3-Net 商汤Deepfake检测模型.md
