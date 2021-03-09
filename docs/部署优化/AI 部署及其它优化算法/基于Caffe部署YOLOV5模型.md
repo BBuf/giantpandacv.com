@@ -7,6 +7,7 @@
 ![推理速度截图](https://img-blog.csdnimg.cn/20210302230601597.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 # 环境配置
+
 - ubuntu：18.04
 - cuda：10.0
 - cudnn：7.6.5
@@ -19,6 +20,7 @@
 - Anaconda安装
 - chmod +x Anaconda3-5.2.0-Linux-x86_64.sh（从上面百度云盘链接下载）
 .- /Anaconda3-5.2.0-Linux-x86_64.sh
+
 - 按ENTER，然后按q调至结尾
 - 接受协议　yes
 - 安装路径　使用默认路径
@@ -37,6 +39,7 @@
 - source ~/.bashrc
 
 # 编译过程踩过的坑
+
 **libstdc++.so.6: version `GLIBCXX_3.4.21' not found**
 解决方案：https://blog.csdn.net/phdsky/article/details/84104769?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf#commentBox
 
@@ -59,6 +62,7 @@
 - python -m onnxsim onnx模型名称 yolov5s-simple.onnx 得到最终简化后的onnx模型
 
 # onnx模型转换caffe模型
+
 - git clone https://github.com/Wulingtian/yolov5_onnx2caffe.git
 - cd yolov5_onnx2caffe
 v- im convertCaffe.py 

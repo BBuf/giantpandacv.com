@@ -335,6 +335,7 @@ nav:
                 - 六，利用TensorRT部署YOLOV3-Tiny INT8量化模型: 部署优化/AI 部署及其它优化算法/TensorRT/六，利用TensorRT部署YOLOV3-Tiny INT8量化模型.md
                 - 基于TensorRT量化部署RepVGG模型: 部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署RepVGG模型.md
                 - 基于TensorRT量化部署YOLOV5s 4.0模型: 部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署YOLOV5s 4.0模型.md
+                - 基于TensorRT完成NanoDet模型部署: 部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT完成NanoDet模型部署.md
             - 如何让你的YOLOV3模型更小更快？: 部署优化/AI 部署及其它优化算法/如何让你的YOLOV3模型更小更快？.md
             - 基于Pytorch构建一个可训练的BNN: 部署优化/AI 部署及其它优化算法/基于Pytorch构建一个可训练的BNN.md
             - 基于Pytorch构建三值化网络TWN: 部署优化/AI 部署及其它优化算法/基于Pytorch构建三值化网络TWN.md
@@ -355,6 +356,9 @@ nav:
             - 基于一阶泰勒展开式的结构化剪枝: 部署优化/AI 部署及其它优化算法/基于一阶泰勒展开式的结构化剪枝.md
             - ONNX再探: 部署优化/AI 部署及其它优化算法/ONNX再探.md
             - 浅谈深度学习模型量化: 部署优化/AI 部署及其它优化算法/浅谈深度学习模型量化.md
+            - onnx simplifier和onnx optimizer: 部署优化/AI 部署及其它优化算法/onnx simplifier和onnx optimizer.md
+            - onnx2pytorch和onnx-simplifier新版介绍: 部署优化/AI 部署及其它优化算法/onnx2pytorch和onnx-simplifier新版介绍.md
+            - 基于Caffe部署YOLOV5模型: 部署优化/AI 部署及其它优化算法/基于Caffe部署YOLOV5模型.md
         - AI 移动端算法优化: 
             - 移动端arm cpu优化学习笔记:
                 - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
