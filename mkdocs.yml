@@ -79,6 +79,7 @@ nav:
             - 【CV中的Attention机制】最简单最易实现的SE模块:  算法科普/CV中的注意力机制/【CV中的Attention机制】最简单最易实现的SE模块.md
         - Transformer: 
             - 解析Transformer模型: 算法科普/Transformer/解析Transformer模型.md
+            - 解析Vision Transformer: 算法科普/Transformer/解析Vision Transformer.md
         - 半监督&无监督:
             - WSCL: 算法科普/半监督&无监督/WSCL.md
         - 尽览卷积神经网络:
@@ -118,6 +119,7 @@ nav:
         - 可变形卷积:
             - DCN V1代码阅读笔记: 算法科普/可变形卷积/DCN V1代码阅读笔记.md
             - MSRA DCN(可变形卷积) 算法笔记: 算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md
+            - 再思考可变形卷积: 算法科普/可变形卷积/再思考可变形卷积.md
         - 频域中的CNN:
             - CVPR 2020 在频域中学习的DCTNet: 算法科普/频域中的CNN/CVPR 2020 在频域中学习的DCTNet.md
             - ECCV2020 F3-Net 商汤Deepfake检测模型: 算法科普/频域中的CNN/ECCV2020 F3-Net 商汤Deepfake检测模型.md
@@ -333,6 +335,7 @@ nav:
                 - 六，利用TensorRT部署YOLOV3-Tiny INT8量化模型: 部署优化/AI 部署及其它优化算法/TensorRT/六，利用TensorRT部署YOLOV3-Tiny INT8量化模型.md
                 - 基于TensorRT量化部署RepVGG模型: 部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署RepVGG模型.md
                 - 基于TensorRT量化部署YOLOV5s 4.0模型: 部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署YOLOV5s 4.0模型.md
+                - 基于TensorRT完成NanoDet模型部署: 部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT完成NanoDet模型部署.md
             - 如何让你的YOLOV3模型更小更快？: 部署优化/AI 部署及其它优化算法/如何让你的YOLOV3模型更小更快？.md
             - 基于Pytorch构建一个可训练的BNN: 部署优化/AI 部署及其它优化算法/基于Pytorch构建一个可训练的BNN.md
             - 基于Pytorch构建三值化网络TWN: 部署优化/AI 部署及其它优化算法/基于Pytorch构建三值化网络TWN.md
@@ -353,6 +356,9 @@ nav:
             - 基于一阶泰勒展开式的结构化剪枝: 部署优化/AI 部署及其它优化算法/基于一阶泰勒展开式的结构化剪枝.md
             - ONNX再探: 部署优化/AI 部署及其它优化算法/ONNX再探.md
             - 浅谈深度学习模型量化: 部署优化/AI 部署及其它优化算法/浅谈深度学习模型量化.md
+            - onnx simplifier和onnx optimizer: 部署优化/AI 部署及其它优化算法/onnx simplifier和onnx optimizer.md
+            - onnx2pytorch和onnx-simplifier新版介绍: 部署优化/AI 部署及其它优化算法/onnx2pytorch和onnx-simplifier新版介绍.md
+            - 基于Caffe部署YOLOV5模型: 部署优化/AI 部署及其它优化算法/基于Caffe部署YOLOV5模型.md
         - AI 移动端算法优化: 
             - 移动端arm cpu优化学习笔记:
                 - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
@@ -415,12 +421,14 @@ nav:
             - 平安科技: 刷题面试/面经/平安科技.md
         - Leetcode题解:
             - LeetCode第42场双周赛赛后题解: 刷题面试/Leetcode题解/LeetCode第42场双周赛赛后题解.md
+            - LeetCode第47场周赛题解: 刷题面试/Leetcode题解/LeetCode第47场周赛题解.md
             - LeetCode 221场周赛题解: 刷题面试/Leetcode题解/LeetCode 221场周赛题解.md
             - LeetCode 222场周赛题解: 刷题面试/Leetcode题解/LeetCode 222场周赛题解.md
             - LeetCode 224场周赛题解: 刷题面试/Leetcode题解/LeetCode 224场周赛题解.md
             - LeetCode 225场周赛题解: 刷题面试/Leetcode题解/LeetCode第225场周赛题解.md
             - LeetCode 226场周赛题解: 刷题面试/Leetcode题解/LeetCode 226场周赛题解.md
             - LeetCode 227场周赛题解: 刷题面试/Leetcode题解/LeetCode 227场周赛题解.md
+            - LeetCode 230场周赛题解: 刷题面试/Leetcode题解/LeetCode 230场周赛题解.md
     - 算法商城:
         - 专栏介绍: 算法商城/README.md
         - 免费实用工具: 

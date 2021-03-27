@@ -8,13 +8,20 @@ NanoDet （https://github.com/RangiLyu/nanodet）是一个速度超快和轻量�
 # NanoDet损失函数GFocal Loss
 
 目前比较强力的one-stage anchor-free的检测器（以FCOS，ATSS为代表）基本会包含3个表示：
+
 1. 分类表示
+
 2. 检测框表示
+
 3. 检测框的质量估计（在FCOS/ATSS中，目前采用centerness，当然也有一些其他类似的工作会采用IoU，这些score基本都在0~1之间）
+
 存在问题1：classification score 和 IoU/centerness score 训练测试不一致。
+
 存在问题2：bbox regression 表示不够灵活，没有办法建模复杂场景下的uncertainty
 对于第一个问题，为了保证training和test一致，同时还能够兼顾分类score和质量预测score都能够训练到所有的正负样本，作者提出一个方案：就是将两者的表示进行联合
+
 对于第二个问题，作者选择直接回归一个任意分布来建模框的表示。
+
 一句话总结：基于任意one-stage 检测器上，调整框本身与框质量估计的表示，同时用泛化版本的GFocal Loss训练该改进的表示，无cost涨点（一般1个点出头）AP
 
 # NanoDet 检测头FCOS架构
