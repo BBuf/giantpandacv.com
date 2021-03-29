@@ -180,25 +180,35 @@ class T2T_module(nn.Module):
 首先设置三个划窗大小分别为7x7, 3x3, 3x3的Unfold操作，和两个Token Transformer模块。
 
 假设输入数据格式是
+
 $$
 N*C*H*W
 $$
+
 在forward中，先进行一次soft_split操作，数据变为
+
 $$
 N*C'*K
 $$
+
 然后进行一次transpose操作，将通道维调整到最后一维度
+
 $$
 N*K*C'
 $$
+
 送入到Attention模块后，再把通道维调整回来
+
 $$
 N*C'*K
 $$
+
 最后reshape成4维数据
+
 $$
 N*C'*new\_HW*new\_HW
 $$
+
 再重复上述类似的步骤，最后经过一个全连接层，调整通道数到合适的Embedding dim。
 
 ## T2T ViT
