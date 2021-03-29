@@ -77,6 +77,8 @@ nav:
             - 【CV中的Attention机制】易于集成的Convolutional-Block-Attention-Module-CBAM模块: 算法科普/CV中的注意力机制/【CV中的Attention机制】易于集成的Convolutional-Block-Attention-Module-CBAM模块.md
             - 【CV中的attention机制】语义分割中的scSE模块: 算法科普/CV中的注意力机制/【CV中的attention机制】语义分割中的scSE模块.md
             - 【CV中的Attention机制】最简单最易实现的SE模块:  算法科普/CV中的注意力机制/【CV中的Attention机制】最简单最易实现的SE模块.md
+            - 【CV中的Attention机制】DCANet解读: 算法科普/CV中的注意力机制/【CV中的Attention机制】DCANet解读.md
+            - 【CV中的Attention机制】ShuffleAttention: 算法科普/CV中的注意力机制/【CV中的Attention机制】ShuffleAttention.md
         - Transformer: 
             - 解析Transformer模型: 算法科普/Transformer/解析Transformer模型.md
             - 解析Vision Transformer: 算法科普/Transformer/解析Vision Transformer.md
@@ -299,6 +301,7 @@ nav:
         - 2019 天池县域农业大脑AI挑战赛冠军方案分享: 科研及竞赛分享/2019 天池县域农业大脑AI挑战赛冠军方案分享.md
         - ACCV国际细粒度识别比赛复盘: 科研及竞赛分享/ACCV国际细粒度识别比赛复盘.md
         - 基于CenterFace的模型优化记录: 科研及竞赛分享/基于CenterFace的模型优化记录.md
+        - 人物属性模型移动端实验记录: 科研及竞赛分享/人物属性模型移动端实验记录.md
     - 超分和GAN:
         - 专栏介绍: 超分和GAN/README.md
         - CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network: 超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md

@@ -35,25 +35,33 @@
 **Extraction**
 
 这个阶段是从特征图上进行特征提取，规定特征图为：
+
 $$
 X\in R^{C\times W\times H}
 $$
+
 经过特征提取器g（wg是这个特征提取操作的参数，G是输出结果）:
+
 $$
 G=g(X,w_g)
 $$
+
 **Transformation**
 
 这个阶段处理上一个阶段得到的聚集的信息，然后将他们转化到非线性注意力空间中。规定转换t为（wt是参数，T是这个阶段的输出结果）：
+
 $$
 T=t(G,w_t)
 $$
+
 **Fusion**
 
 这个阶段整合上个阶段获取的特征图，可以表达为：
+
 $$
 X'_i=T_i\circledast \mathbf{X}_{i}
 $$
+
 其中$X'_i$代表最终这一层的输出结果，$\circledast$代表特征融合方式，比如dot-product，summation等操作。
 
 **Attention Connection**
