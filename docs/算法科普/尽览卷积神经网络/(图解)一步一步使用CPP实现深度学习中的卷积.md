@@ -1,25 +1,39 @@
 > 【GiantPandaCV导语】**卷积操作在深度学习中的重要性,想必大家都很清楚了。接下来将通过图解的方式,使用cpp一步一步从简单到复杂来实现卷积操作。**
 
 - **符号约定**
-  **F**为输入;
-  **width**为输入的宽;
-  **height**为输入的高;
-  **channel**为输入的通道;
-  **K**为kernel;
-  **kSizeX**为kernel的宽;
-  **kSizeY**为kernel的高;
-  **filters**为kernel的个数;
-  **O**为输出;
-  **outWidth**为输出的宽;
-  **outHeight**为输出的高;
-  **outChannel**为输出的通道;
-  <br/>
+
+**F**为输入;
+
+**width**为输入的宽;
+
+**height**为输入的高;
+
+**channel**为输入的通道;
+
+**K**为kernel;
+
+**kSizeX**为kernel的宽;
+
+**kSizeY**为kernel的高;
+
+**filters**为kernel的个数;
+
+**O**为输出;
+
+**outWidth**为输出的宽;
+
+**outHeight**为输出的高;
+
+**outChannel**为输出的通道;
+<br/>
 
 - **卷积输出尺寸计算公式**
+
   $W_2=\frac{W_1+2*padding - (dilation*(ksize-1)+1)}{stride}+1$
   <br/>
 
 - **1. 最简单的3x3卷积**
+
   首先, 我们不考虑任何padding, stride, 多维度等情况,来一个最简单的3x3卷积操作.计算思路很简单, 对应元素相乘最后相加即可.此处:
 
   - **width=3**
@@ -73,6 +87,7 @@ void demo0()
 <br/>
 
 - **2. 最简单卷积(1)**
+
   接下来考虑能适用于任何尺寸的简单卷积, 如输入为4x4x1, kernel为3x3x1. 这里考虑卷积步长为1, 则此处的参数为:
 
   - **width=4**
@@ -93,6 +108,7 @@ void demo0()
   - **outWidth=2**
   - **outHeight=2**
   - **outChannel=1**
+  
     ![](https://img-blog.csdnimg.cn/img_convert/da90224e961fdd33d113d4a8b4d23497.png)
 
     <center>图2 最简单卷积(1)</center>
@@ -152,6 +168,7 @@ void demo1()
 <br/>
 
 - **3. 最简单卷积(2)**
+
   接下来考虑在步长上为任意步长的卷积,  如输入为4x4x1, kernel为2x2x1. 这里考虑卷积步长为2, 则此处的参数为:
 
   - **width=4**
@@ -232,6 +249,7 @@ void demo2()
 <br/>
 
 - **4. 带padding的卷积**
+
   接下来考虑带padding的卷积,  如输入为4x4x1, kernel为3x3x1. 卷积步长为1, padding为1 则此处的参数为:
 
   - **width=4**
@@ -252,6 +270,7 @@ void demo2()
   - **outWidth=2**
   - **outHeight=2**
   - **outChannel=1**
+
     ![](https://img-blog.csdnimg.cn/img_convert/0fad4724a7f9eab6f13ae3f9576f497e.png)
 
     <center>图4 考虑padding卷积</center>
@@ -317,6 +336,7 @@ void demo3()
 <br/>
 
 - **5. 多通道卷积**
+
   接下来考虑多通道卷积,  如输入为4x4x1, kernel为3x3x1. 卷积步长为1, padding为1, 输入通道为2, 则此处的参数为:
 
   - **width=4**
@@ -337,6 +357,7 @@ void demo3()
   - **outWidth=2**
   - **outHeight=2**
   - **outChannel=1**
+  
     ![](https://img-blog.csdnimg.cn/img_convert/92558b26d90c7590f436592bd4ace397.png)
 
     <center>图5 多通道卷积</center>
@@ -406,6 +427,7 @@ void demo4()
 <br/>
 
 - **6. 多kernel卷积**
+
   接下来考虑多kernel卷积,  如输入为4x4x1, kernel为3x3x1. 卷积步长为1, padding为1, 输入通道为2, filters为2, 则此处的参数为:
 
   - **width=4**
@@ -507,6 +529,7 @@ void demo5()
 <br/>
 
 - **7. 膨胀卷积**
+
   接下来考虑多膨胀卷积,  如输入为4x4x1, kernel为3x3x1. 卷积步长为1, padding为1, 输入通道为2, filters为2, dilate为2则此处的参数为:
 
   - **width=4**
@@ -609,6 +632,9 @@ void demo6()
 <br/>
 
 - **git源码**
+
   https://github.com/msnh2012/ConvTest
+
 - **最后**
+
   欢迎关注我和BBuf及公众号的小伙伴们一块维护的一个深度学习框架Msnhnet:  https://github.com/msnh2012/Msnhnet
