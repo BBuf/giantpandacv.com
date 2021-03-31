@@ -5,6 +5,7 @@
 早期卷积网络结构主要是手工设计，通过不断堆叠卷积层以取得更好的效果（如AlexNet和VGG），而近些年来，为了提高网络性能，研究者基于NAS和手工也衍生出了很多复杂的结构，如：
 
 - **基于多分支结构设计**，如残差网络add，Inception系列中的concat操作。多分支结构带来的问题是难以自定义，增加推理时间，增加显存消耗（因为需要保存各个分支的结果，直到add操作后，显存才会减少，后续会分析）
+
 - **一些网络结构组件**，比如为轻量化网络设计的DepthwiseConv和ShuffleNet中的channel shuffle。这些操作会提高访存消耗，FLOPS看起来很低，但并不能反应实际推理速度。
 
 新颖的组件固然能提升模型精度，但是复杂的结构会影响推理速度。因此直到现在，VGG和ResNet仍然被广泛应用。当然，其中一个巨大的挑战是如何提升VGG这种plain结构的精度。
@@ -38,11 +39,13 @@ VGG这种单路网络的缺点就是性能不好，72%的准确率放在当下�
 ![RepVGG结构总览](https://img-blog.csdnimg.cn/20210210202203732.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 
 相当于一个Block内所作的计算为
+
 $$
 Out = F(X)+G(X)+X \\
 F(X)表示3*3卷积 \\
 G(X)表示1*1卷积
 $$
+
 后续的消融实验了证明了这两个分支对性能提升的重要性
 
 ![多分支消融实验](https://img-blog.csdnimg.cn/20210210223227315.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
@@ -56,31 +59,43 @@ $$
 RepVGG里面大量使用卷积层和BN层，这里首先将两者合并起来，能提高推理速度
 
 卷积层公式为
+
 $$
 Conv(x) = W(x)+b
 $$
+
 而BN层公式为
+
 $$
 BN(x) = \gamma*\frac{(x-mean)}{\sqrt{var}}+\beta
 $$
+
 然后我们将卷积层结果带入到BN公式中
+
 $$
 BN(Conv(x)) = \gamma*\frac{W(x)+b-mean}{\sqrt{var}}+\beta
 $$
+
 进一步化简为
+
 $$
 BN(Conv(x)) = \frac{\gamma*W(x)}{\sqrt{var}}+(\frac{\gamma*(b-mean)}{\sqrt{var}}+\beta)
 $$
+
 看到这个公式是不是很熟悉？这其实就是一个卷积层，只不过权重考虑了BN的参数
 我们令
+
 $$
 W_{fused}=\frac{\gamma*W}{\sqrt{var}} \\
 B_{fused}=\frac{\gamma*(b-mean)}{\sqrt{var}}+\beta
 $$
+
 最终融合的结果就是
+
 $$
 BN(Conv(x)) = W_{fused}(x)+B_{fused}
 $$
+
 相关代码
 
 ```python
