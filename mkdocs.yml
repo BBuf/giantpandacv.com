@@ -366,6 +366,7 @@ nav:
             - onnx simplifier和onnx optimizer: 部署优化/AI 部署及其它优化算法/onnx simplifier和onnx optimizer.md
             - onnx2pytorch和onnx-simplifier新版介绍: 部署优化/AI 部署及其它优化算法/onnx2pytorch和onnx-simplifier新版介绍.md
             - 基于Caffe部署YOLOV5模型: 部署优化/AI 部署及其它优化算法/基于Caffe部署YOLOV5模型.md
+            - Int 4量化用于目标检测: 部署优化/AI 部署及其它优化算法/Int 4量化用于目标检测.md
         - AI 移动端算法优化: 
             - 移动端arm cpu优化学习笔记:
                 - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
@@ -391,6 +392,7 @@ nav:
             - 道阻且长_再探矩阵乘法优化: 部署优化/AI 移动端算法优化/道阻且长_再探矩阵乘法优化.md
         - 深度学习编译器:
             - 多面体模型在深度学习编译器的应用: 部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
+            - 【从零开始学深度学习编译器】一，深度学习编译器及TVM 介绍: 部署优化\深度学习编译器\【从零开始学深度学习编译器】一，深度学习编译器及TVM 介绍.md
     - 资源共享:
         - 专栏介绍: 资源共享/README.md
         - Pytorch YOLOV3:
