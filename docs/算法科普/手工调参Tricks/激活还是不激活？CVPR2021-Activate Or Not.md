@@ -9,13 +9,17 @@
 # Smooth Maximum
 
 我们常用的ReLU激活函数本质是一个MAX函数，其公式如下
+
 $$
 ReLU(x) = MAX(0, x)
 $$
+
 而MAX函数的平滑，可微分变体我们称为Smooth Maximum，其公式如下
+
 $$
 S_\beta(x_1, ..., x_n) = \frac{\sum^n_{i=1}{x_i*e^{\beta*x_i}}}{\sum^n_{i=1}{e^{\beta*x_i}}}
 $$
+
 其中 $\beta$ 是一个**平滑因子**，**当 $\beta$ 趋近于无穷大时，Smooth Maximum就变为标准的MAX函数，而当 $\beta$ 为0时，Smooth Maximum就是一个算术平均的操作**
 
 这里我们只考虑Smooth Maximum只有两个输入量的情况，于是有以下公式
@@ -52,13 +56,17 @@ def smooth_maximum(x, x1_func, x2_func, beta=0.0):
 # 从ReLU推广到Swish
 
 考虑平滑形式下的ReLU，即
+
 $$
 S_\beta(0, x)
 $$
+
 代入公式我们得到
+
 $$
 S_\beta(0, x) = x * \sigma(\beta*x)
 $$
+
 而这个结果就是Swish激活函数！所以我们可以得到，**Swish激活函数是ReLU函数的一种平滑近似**。我们称其为ACON-A
 
 我们也可以用上述代码验证下
@@ -87,9 +95,11 @@ plt.show()
 
 上述的平滑形式可以推广到ReLU激活函数家族里（PReLU，Leaky-ReLU)
 因此我们提出了ACON-B的变体，即
+
 $$
 ACON-B(x)=S_{\beta}(x, p*x)=(1-p)*x *\sigma(\beta*(1-p)*x)+p*x
 $$
+
 我们按照前面的代码实验一下Leaky ReLU和它的平滑形式
 
 ```python
@@ -114,9 +124,11 @@ plt.show()
 # ACON-C
 
 最后我们提出最广泛的一种形式ACON-C，即
+
 $$
 ACON-C(x)=S_{\beta}(p_1*x, p_2*x)=(p_1-p_2)*x*\sigma[\beta*(p_1-p_2)*x] + p_2*x
 $$
+
 它能涵盖之前的，甚至是更复杂的形式，在代码实现中，**p1和p2使用的是两个可学习参数来自适应调整**
 
 我们简单看下ACON-C的函数性质
@@ -148,9 +160,11 @@ $$
 而自适应函数的设计空间包含了layer-wise，channel-wise，pixel-wise这三种空间，分别对应的是层，通道，像素。
 
 这里我们选择了channel-wise，首先分别对H, W维度求均值，然后通过两个卷积层，使得每一个通道所有像素共享一个权重。公式如下
+
 $$
 \beta_c=\sigma W_1W_2\sum^H_{h=1}\sum^W_{w=1}x_{c, h, w}
 $$
+
 为了节省参数量，我们在$W_1(C*C/r)$和$W_2(C/r*C)$之间加了个缩放参数r，我们设置为16
 
 # 代码解读
