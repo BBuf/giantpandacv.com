@@ -465,8 +465,7 @@ def CreateMapping(max_onnx_opset_version, extra_opsets):
 {'min_max_observer': (<bound method MinMaxObserver.Version_13 of <class 'oneflow_onnx.oneflow2onnx.handlers.quantize.MinMaxObserver'>>, None, {}), 'fake_quantization': (<bound method FakeQuantization.Version_13 of <class 'oneflow_onnx.oneflow2onnx.handlers.quantize.FakeQuantization'>>, 'QuantizeLinear', {})}
 ```
 
-可以看到对于ONNX的每一个Opset Version的OP都对应了OneFlow实现的OP，需要特别注意的是这个OP Mapper过程在是在`https://github.com/Oneflow-Inc/oneflow_convert_tools/tree/main/oneflow_onnx/oneflow2onnx/handlers`这里完成的，只要安装了oneflow-onnx这个包或者编译了oneflow-onnx工程源码，Python就会自动将OneFlow的OP和ONNX的OP进行映射，这是通过`
-@flow_op(["avg_pool_2d"], onnx_op="AveragePool")`装饰器来实现的，`flow_op`装饰器的具体实现在`https://github.com/Oneflow-Inc/oneflow_convert_tools/blob/main/oneflow_onnx/oneflow2onnx/handler.py#L34`这里。
+可以看到对于ONNX的每一个Opset Version的OP都对应了OneFlow实现的OP，需要特别注意的是这个OP Mapper过程在是在`https://github.com/Oneflow-Inc/oneflow_convert_tools/tree/main/oneflow_onnx/oneflow2onnx/handlers`这里完成的，只要安装了oneflow-onnx这个包或者编译了oneflow-onnx工程源码，Python就会自动将OneFlow的OP和ONNX的OP进行映射，这是通过`@flow_op(["avg_pool_2d"], onnx_op="AveragePool")`装饰器来实现的，`flow_op`装饰器的具体实现在`https://github.com/Oneflow-Inc/oneflow_convert_tools/blob/main/oneflow_onnx/oneflow2onnx/handler.py#L34`这里。
 
 完成了ONNX每个Opset版本的OP和OneFlow OP的mapper之后，我们需要对`Graph`里面的ONNX节点（注意现在的ONNX节点并不是合法的ONNX节点，因为还没有执行一对一的转换，只是复制了OneFlow OP的类型、输入输出和属性值）先执行拓扑排序，然后再一对一的转换。这个地方很有意思，为什么要进行拓扑排序呢？
 
