@@ -122,6 +122,7 @@ nav:
             - (图解)一步一步使用CPP实现深度学习中的卷积: 算法科普/尽览卷积神经网络/(图解)一步一步使用CPP实现深度学习中的卷积.md
             - 图解RepVG: 算法科普/尽览卷积神经网络/图解RepVGG.md
             - 我卷我自己——cvpr2021：Involution: 算法科普/尽览卷积神经网络/我卷我自己——cvpr2021：Involution.md
+            - 白给的性能不要？cvpr2021-Diverse branch block: 算法科普/尽览卷积神经网络/白给的性能不要？cvpr2021-Diverse branch block.md
         - 可变形卷积:
             - DCN V1代码阅读笔记: 算法科普/可变形卷积/DCN V1代码阅读笔记.md
             - MSRA DCN(可变形卷积) 算法笔记: 算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md
@@ -140,6 +141,7 @@ nav:
             - InstanceNorm梯度公式推导: 算法科普/深度学习基础/InstanceNorm梯度公式推导.md
             - Pytorch中的四种经典Loss源码解析: 算法科普/深度学习基础/Pytorch中的四种经典Loss源码解析.md
             - 谈谈我眼中的Label Smooth: 算法科普/深度学习基础/谈谈我眼中的Label Smooth.md
+            - CVPR2021-Representative BatchNorm: 算法科普/深度学习基础/CVPR2021-Representative BatchNorm.md
         - 手工调参Tricks:
             - 【CNN结构设计】无痛的涨点技巧：ACNet: 算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
             - 【CNN调参】目标检测算法优化技巧: 算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
@@ -244,6 +246,7 @@ nav:
                 - 目标检测算法之NIPS 2016 R-FCN（来自微软何凯明团队）: 目标检测及跟踪/论文解析/two stage模型/目标检测算法之NIPS 2016 R-FCN（来自微软何凯明团队）.md
                 - 目标检测算法之RCNN: 目标检测及跟踪/论文解析/two stage模型/目标检测算法之RCNN.md
                 - 目标检测算法之RetinaNet（引入Focal Loss）: 目标检测及跟踪/论文解析/two stage模型/目标检测算法之RetinaNet（引入Focal Loss）.md
+                - Towards Open World Object Detection -CVPR2021 Oral（开放世界中的目标检测）: 目标检测及跟踪/论文解析/two stage模型/Towards Open World Object Detection -CVPR2021 Oral（开放世界中的目标检测）.md
             - 嵌入式端小模型:
                 - Pelee 移动端实时检测骨干网络: 目标检测及跟踪/论文解析/嵌入式端小模型/Pelee 移动端实时检测骨干网络.md
         - 目标跟踪:
