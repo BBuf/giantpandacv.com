@@ -37,6 +37,7 @@ BatchNorm的一个前提是，**我们假定了不同实例对应的特征都服
 # Representative Batch Normalization
 
 为了解决上述问题，我们提出了RBN，其中RBN也分为两个步骤，**一个是中心化校准(Centering Calibration)，一个是缩放校准(Scaling Calibration)**
+
 ![Representative BatchNorm](https://img-blog.csdnimg.cn/20210412135413205.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 
 ## Centering Calibration
@@ -44,9 +45,11 @@ BatchNorm的一个前提是，**我们假定了不同实例对应的特征都服
 我们先看下公式
 
 在对X求均值的时候，我们先对其做一个变换
+
 $$
 X_{cm(n,c,h,w)} = X_{(n,c,h,w)} + w_m \odot K_m
 $$
+
 其中 $X$ 是输入特征，$w_m$ 则是一个形状为(N, C, 1, 1)的**可学习变量**，$K_m$ 则是表示各个实例的特征，**它可以有多种shape（只要是合理的变换，能表征各个实例的特征即可）**，这里我们对输入使用一个**全局平均池化**来得到实例特征，因此形状为(N, C, 1, 1)。
 
 我们首先将实例特征与可学习变量相乘，最后与输入进行相加
@@ -54,29 +57,37 @@ $$
 ### 公式推导
 
 对于使用全局平均池化得到实例特征，我们有如下的公式
+
 $$
 K_m = \frac{1}{HW} \sum_{h=1}^H{\sum_{w=1}^W} X_{(n,c,h,w)}
 $$
+
 因为后续我们要对变换后的X求均值（在BN里是对N,H,W这三个维度求均值），对于 $K_m$ 来说，已经是X对HW维度上求过均值了，后续不过是在N的维度上再求一次均值。所以我们有
+
 $$
 E(X) = E(K_{m})
 $$
 
 我们针对变换后的X求均值，有
+
 $$
 E(X_{cm} ) =(1+W_m)*E(X)
 $$
 
 然后我们来对比一下该变换带来的差异
+
 $$
 X_{cal} = X - E(X_{cm}) 即输入减去中心校准过的均值 \\
 X_{no} = X - E(X) 即输入减去均值
 $$
+
 我们将两个进行相减比较差异
+
 $$
 X_{cal} - X_{no} = X + w_m*K_m - (1+w_m)*E(X) - (X - E(X)) \\
 = w_m(K_m - E(X))
 $$
+
 可以看到，当 $w_m$ 的绝对值接近于0，$X_{cal}$ 和 $X_{no}$的差值接近于0，说明此时还是依赖于batch内的统计信息。当 $w_m$ 的绝对值较大，具体可以分以下两种情况来考虑
 
 - 当 $w_m$ 大于0，且$K_m$ > $E(X)$，此时Representative Feature得到增强，反之亦然
@@ -87,6 +98,7 @@ $$
 我们在**BN后，拉伸调整之前**做一次缩放对齐
 
 公式如下：
+
 $$
 X_{cs(n,c,h,w)} = X_{(n,c,h,w)} *R(w_v \odot K_s + w_b)
 $$
@@ -96,13 +108,17 @@ $$
 ### 公式推导
 
 我们的限制函数是 `sigmoid`，于是有
+
 $$
 0 < R() < 1
 $$
+
 那么我们可以找到一个 $\tau$  满足
+
 $$
 Var(X_{cs})  < Var(X_{cs}*\tau) = \tau^2*Var(X_{cs})
 $$
+
 可以看到我们的方差**因为限制函数而变得更小了**，让分布更加的均匀
 
 ![各通道均值的标准差比较](https://img-blog.csdnimg.cn/20210412172052299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
@@ -111,19 +127,26 @@ $$
 ## 整体流程
 
 首先对输入做中心校准
+
 $$
 X_{cm} = X + w_m \odot K_m
 $$
+
 然后就是熟悉的减均值，除方差
+
 $$
 X_m = X_{cm} - E(X_{cm}) \\
 X_s = \frac{X_m}{\sqrt{Var(X_{cm}) + \epsilon}}
 $$
+
 接着是做缩放校准
+
 $$
 X_{cs} = X_s*R(w_v \odot K_s + w_b)
 $$
+
 最后是做拉伸，偏移，得到最终结果
+
 $$
 Y = \gamma*X_{cs} + \beta
 $$
@@ -131,8 +154,11 @@ $$
 # 实验对比
 
 ![实验](https://img-blog.csdnimg.cn/20210412172017145.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 作者在主流的网络里测试了常见的Normalize模块，并进行对比，可以看到提升还是比较显著的
+
 ![消融实验](https://img-blog.csdnimg.cn/20210412172430690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 另外也通过消融实验证明均值校准和缩放校准的有效性，另外更多实验可以看下原文。
 
 # 代码
@@ -269,7 +295,6 @@ else:
 # 总结
 
 作者提出了一种简单有效的方法，将BN层的mini-batch的统计特征和各个实例独自的特征（Representative也就体现在这里）巧妙的结合起来，使得能够更好自适应集合里的数据，最后各个实验也证明了其有效性。期待更多在Norm方面的工作~
-
 
 -----------------------------------------------------------------------------------------------
 

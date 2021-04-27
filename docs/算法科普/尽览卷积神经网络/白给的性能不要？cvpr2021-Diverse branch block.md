@@ -10,26 +10,32 @@
 # 卷积的性质
 
 常规卷积核本质上也是一个张量，其形状为（输出通道数，输入通道数，卷积核大小，卷积核大小）
+
 $$
 C_{out}，C_{in}，KernelSize, KernelSize
 $$
+
 而卷积操作本质上也是一个线性操作，因此卷积在某些情况下具备一些线性的性质
 
 ## 可加性
 
 可加性即在两个**卷积核形状一致**的情况下，卷积结果满足可加性
 即
+
 $$
 Input \otimes F_1 + Input \otimes F_2 = Input \otimes (F_1+F_2)
 $$
+
 其中 $F_1$ 和 $F_2$ 分别表示两个独立的卷积操作
 
 ## 同质性
 
 即
+
 $$
 Input \otimes (p*F_1) =p* (Input \otimes F_1)
 $$
+
 后续我们针对多分支结构的转换都是基于这两种基本性质来操作的
 
 ![论文提及的6种转换](https://img-blog.csdnimg.cn/20210329111340501.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
@@ -38,28 +44,39 @@ $$
 
 在CNN中，卷积层和BN层经常是成对出现的，我们可以把BN的参数融入到卷积层里（**这里偷懒，直接复制粘贴以前RepVGG写的推导了**）
 卷积层公式为
+
 $$
 Conv(x) = W(x)+b
 $$
+
 BN层公式为
+
 $$
 BN(x) = \gamma*\frac{(x-mean)}{\sqrt{var}}+\beta
 $$
+
 将卷积层结果带入到BN公式中
+
 $$
 BN(Conv(x)) = \gamma*\frac{W(x)+b-mean}{\sqrt{var}}+\beta
 $$
+
 化简为
+
 $$
 BN(Conv(x)) = \frac{\gamma*W(x)}{\sqrt{var}}+(\frac{\gamma*(b-mean)}{\sqrt{var}}+\beta)
 $$
+
 这其实就是一个卷积层，只不过权重考虑了BN的参数
 令
+
 $$
 W_{fused}=\frac{\gamma*W}{\sqrt{var}} \\
 B_{fused}=\frac{\gamma*(b-mean)}{\sqrt{var}}+\beta
 $$
+
 融合的结果就是
+
 $$
 BN(Conv(x)) = W_{fused}(x)+B_{fused}
 $$
@@ -104,20 +121,25 @@ print("Is Match: ", np.allclose(original_conv_add, merge_conv_add, atol=1e-5))
 在网络设计中，我们也会用到1x1卷积接3x3卷积这种设计（如ResNet的BottleNeck块），它能调整通道数，减少一定的参数量。
 
 其原始公式如下
+
 $$
 F_1(D,C,1,1) \\
 F_2(E,D,K,K) \\
 Out=F2 \otimes (F1 \otimes Input)
 $$
+
 我们假设输入是一个三通道的图片，1x1卷积的输出通道为2，3x3卷积的输出通道为4，那么图示如下
 
 ![1x1接3x3](https://img-blog.csdnimg.cn/20210329112155937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 
 作者提出了这么一个转换方法，**首先将1x1卷积核的第零维和第一维互相调换位置**
+
 $$
 Transpose(F_1):F_1(D, C, 1, 1) ->F_1(C, D, 1, 1)
 $$
+
 然后3x3卷积核权重与转置后的"1x1卷积核"进行卷积操作
+
 $$
 F_2 \otimes Transpose(F_1) 形状为(E, C, K, K)
 $$
@@ -125,9 +147,11 @@ $$
 ![1x1和KxK卷积转换](https://img-blog.csdnimg.cn/2021032911375140.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 
 最后输入与其做卷积操作，整个流程可以写为
+
 $$
 Input \otimes F_2 \otimes (Transpose(F_1))
 $$
+
 这里我也简单写了一个测试代码
 
 ```python
@@ -253,9 +277,11 @@ print("Is Match: ", np.allclose(avg_pool_out, conv_avg_pool, atol=1e-5))
 # 转换6 多尺度卷积融合
 
 这部分其实就是ACNet的思想，存在一个卷积核
+
 $$
 kh × kw (kh ≤ K, kw ≤ K)
 $$
+
 那么我们可以把卷积核周围补0，来等效替代KxK卷积核
 下面是一个示意图
 
