@@ -83,6 +83,7 @@ nav:
             - 解析Transformer模型: 算法科普/Transformer/解析Transformer模型.md
             - 解析Vision Transformer: 算法科普/Transformer/解析Vision Transformer.md
             - 解析 Token to Token Vision Transformer: 算法科普/Transformer/解析 Token to Token Vision Transformer.md
+            - 图解swin transformer: 算法科普/Transformer/图解swin transformer.md
         - 半监督&无监督:
             - WSCL: 算法科普/半监督&无监督/WSCL.md
         - 尽览卷积神经网络:
