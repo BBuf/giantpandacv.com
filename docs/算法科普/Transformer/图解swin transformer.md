@@ -195,9 +195,11 @@ def window_reverse(windows, window_size, H, W):
 这是这篇文章的关键。传统的Transformer都是**基于全局来计算注意力的**，因此计算复杂度十分高。而Swin Transformer则将**注意力的计算限制在每个窗口内**，进而减少了计算量。
 
 我们先简单看下公式
+
 $$
 Attention(Q, K, V) = Softmax(\frac{QK^T}{\sqrt{d}}+B)V
 $$
+
 主要区别是在原始计算Attention的公式中的Q,K时**加入了相对位置编码**。后续实验有证明相对位置编码的加入提升了模型性能。
 
 
