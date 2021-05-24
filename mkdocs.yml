@@ -143,6 +143,7 @@ nav:
             - Pytorch中的四种经典Loss源码解析: 算法科普/深度学习基础/Pytorch中的四种经典Loss源码解析.md
             - 谈谈我眼中的Label Smooth: 算法科普/深度学习基础/谈谈我眼中的Label Smooth.md
             - CVPR2021-Representative BatchNorm: 算法科普/深度学习基础/CVPR2021-Representative BatchNorm.md
+            - ResNet与常见ODE初值问题的数值解法​: 算法科普/深度学习基础/ResNet与常见ODE初值问题的数值解法​.md
         - 手工调参Tricks:
             - 【CNN结构设计】无痛的涨点技巧：ACNet: 算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
             - 【CNN调参】目标检测算法优化技巧: 算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md

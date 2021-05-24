@@ -51,6 +51,7 @@ NODEs已经归纳出了连续的方式，为什么还要重新回到离散呢？
 长久以来，DNN的设计都以sub-net为主。VGG风格的两层3x3或者是bottleneck。这其实很好理解，ResNet突然把深度从十几层拉到1000层，人为的设计每一层确实显得不那么合理。这种从ResNet开启的2-3层乘以X就形成了XXNet(subnet,[S1,S2,S3,S4])的模型构筑风格。在最新的ResNet-RS中甚至有单个stage可以堆叠84个ResBlock。我们认为，在不考虑sub-net设计的情况下，blocks之间的关联也应该得到重视。
 
 因为前人已经做了很多Sub-net设计的工作，因此这次考虑数值方法的时候，我们的视角更多的放在了block之间的链接上。在layer之间每两层就要加一个shortcut，如果把2-3层的sub-net看作是一层layer，直接前向堆叠几十次的做法感觉上收益会迅速递减。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210420220506220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
 
 
@@ -64,7 +65,11 @@ NODEs已经归纳出了连续的方式，为什么还要重新回到离散呢？
 
 这时候如果适当调节学习率，问题就会得到缓解，我相信大家在各种项目中也饱受过学习率之苦，都有过类似的经验。可正因为微调一下学习率就解决了问题，这才让人很容易忽视背后的问题。我们经过试验发现，在大lr导致较深ResNet早期收敛变慢的时候，高阶的ResNet仍旧可以一切如常，快速收敛。其现象与上图所示一致。我们特意寻找到ResNet会梯度爆炸的设置，高阶堆叠的ResNet同样可以正常快速的收敛。
 
-基于这个现象，我们对鲁棒性也进行了进一步的测试。假设一个非常简单的情况，Conv(3,64)，然后堆叠N个(64,64)维度的VGG风格双层3x3的block。整个过程中，仅有一次stride=2的feature下采样。对比两种情况：1，下采样发生在Conv(3,64)阶段，在升维的过程中，下采样。2.在第一个Conv(64,64)layer下采样。结果一个简单变化，Baseline ResNet的性能就发生了较大的波动，而高阶堆叠的ResNet则非常稳定。
+基于这个现象，我们对鲁棒性也进行了进一步的测试。假设一个非常简单的情况，Conv(3,64)，然后堆叠N个(64,64)维度的VGG风格双层3x3的block。整个过程中，仅有一次stride=2的feature下采样。对比两种情况：
+
+1，下采样发生在Conv(3,64)阶段，在升维的过程中，下采样。
+
+2.在第一个Conv(64,64)layer下采样。结果一个简单变化，Baseline ResNet的性能就发生了较大的波动，而高阶堆叠的ResNet则非常稳定。
 
 ## 同参数的堆叠对比 （实质上的提升）
 
@@ -73,13 +78,16 @@ NODEs已经归纳出了连续的方式，为什么还要重新回到离散呢？
 而我们设计的对比实验中，在离散的情况下，则是把反复堆叠的低阶办法看作是一种另类的高阶办法。以实际参数量和符点运算次数相等的情况来做公平对比，因此虽然名义上是高阶堆叠的ResNet，但由于Block的数量不同，在对比的过程中是完全同层数，深度，参数量和计算量的。
 
 ![image](https://img-blog.csdnimg.cn/img_convert/c5f9ac2eb0d1abed8d450cb18845ac8e.png)
+
 以ResNet-50为例，如采用VGG风格的2层3x3设计。标准ResNet也就是欧拉前向法，就应当是堆叠24次。Res-50(2+2x24)。若采用二阶办法，则只堆叠12次来公平对比，为2+4x12。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2021042022082285.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70#pic_center)
 
 
 若为四阶，则是2+8x6。 如此一来，高阶办法的弊端就得到了极大的缓解。而即便在这种情况下，这种堆叠方式同样可以带来显著的提升。
 
 ![image](https://img-blog.csdnimg.cn/img_convert/8639cbca1257af60a7d087413b8c9305.png)
+
 这种提升在浅层的时候差距很小，但随着深度的增加逐渐拉大，我们观测到的这个现象，也是符合上面不同阶数值方法的误差情况的。
 
 在具有一定深度的情况下，不论是具体性能还是收敛的情况，都随着方法的阶数上升而获得了相应的提升。大家总说训网络是玄学，炼丹，这次能有这么清晰，性能按阶数逐步增强，差距随深度加深变大，这么符合理论的结果出现，说实话我个人也是吃了一惊。
