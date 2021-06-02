@@ -319,6 +319,8 @@ nav:
         - 基于Kaggle DeepFake比赛的代码实战: 超分和GAN/基于Kaggle DeepFake比赛的代码实战.md
         - 生成对抗网络中的数据增广：一种可微分的数据增广方法: 超分和GAN/生成对抗网络中的数据增广：一种可微分的数据增广方法.md
         - 仅使用少量数据训练生成对抗网络: 超分和GAN/仅使用少量数据训练生成对抗网络.md
+        - Deblurring by Realistic Blurring 图像去模糊论文解读: 超分和GAN/Deblurring by Realistic Blurring 图像去模糊论文解读.md
+        - 基于GAN来做低光照图像增强，EnlightenGAN论文解读: 超分和GAN/基于GAN来做低光照图像增强，EnlightenGAN论文解读.md
     - 部署优化: 
         - 专栏介绍: 部署优化/README.md
         - AI PC端优化: 
@@ -452,6 +454,7 @@ nav:
             - LeetCode 226场周赛题解: 刷题面试/Leetcode题解/LeetCode 226场周赛题解.md
             - LeetCode 227场周赛题解: 刷题面试/Leetcode题解/LeetCode 227场周赛题解.md
             - LeetCode 230场周赛题解: 刷题面试/Leetcode题解/LeetCode 230场周赛题解.md
+            - LeetCode 240场周赛题解: 刷题面试/Leetcode题解/LeetCode第240场周赛.md
     - 算法商城:
         - 专栏介绍: 算法商城/README.md
         - 免费实用工具: 
