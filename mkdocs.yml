@@ -341,6 +341,7 @@ nav:
                 - 如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？: 部署优化/AI 部署及其它优化算法/OpenVINO/如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？.md
                 - c++实现yolov5的OpenVINO部署: 部署优化/AI 部署及其它优化算法/OpenVINO/c++实现yolov5的OpenVINO部署.md
                 - 手把手教你使用OpenVINO部署NanoDet模型: 部署优化/AI 部署及其它优化算法/OpenVINO/手把手教你使用OpenVINO部署NanoDet模型.md
+                - 基于Pytorch对YOLOV5 进行简易实现: 部署优化/AI 部署及其它优化算法/OpenVINO/基于Pytorch对YOLOV5 进行简易实现.md
             - TensorRT:
                 - 一，TensorRT介绍，安装及如何使用？: 部署优化/AI 部署及其它优化算法/TensorRT/一，TensorRT介绍，安装及如何使用？.md
                 - 二，TensorRT Mnist数字识别使用示例: 部署优化/AI 部署及其它优化算法/TensorRT/二，TensorRT Mnist数字识别使用示例.md
