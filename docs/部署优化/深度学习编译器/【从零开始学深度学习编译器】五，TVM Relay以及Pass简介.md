@@ -82,7 +82,7 @@ def @myfunc(%x) {
 
 在上面的例子中，`@myfunc`递归调用它自己。使用GlobalVar `@myfunc`来表示函数避免了数据结构中的循环依赖性。至此，已经介绍完了Relay中的基本概念。值得注意的是，相比NNVM，Relay在如下方面进行了改进：
 
--  有文本形式中间表示，便于开发和 debug 
+- 有文本形式中间表示，便于开发和 debug 
 - 支持子图函数、联合模块，便于联合优化 
 - 前端用户友好，便于调优
 
@@ -245,6 +245,7 @@ fn (%data: Tensor[(1, 3, 224, 224), float32], %graph_conv_weight, %graph_bn_gamm
 with tvm.transform.PassContext(opt_level=3):
     lib = relay.build(func, "llvm", params=params)
 ```
+
 实际上`tvm.transform.PassContext`这个接口就定义了Pass，如文档所示：
 
 ![tvm.transform.PassContext用来控制对relay IR使用哪些Pass进行优化](https://img-blog.csdnimg.cn/20210523163313758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
@@ -349,7 +350,9 @@ bool BasicBlockNormalFormCheck(const Expr& e) {
 ```
 
 `ToBasicBlockNormalForm`这个函数通过遍历Relay IR中的function，将每个function转换为基本块形式（即`ToBasicBlockNormalFormAux`这个函数），`ToBasicBlockNormalFormAux`这个函数分成以下几个部分：
+
 - 调用`DependencyGraph dg = DependencyGraph::Create(&arena, e)`创建一个DependencyGraph，这个数据结构是一个表达式相互依赖的图结构。
+
 - 通过`std::pair<NodeScopeMap, ExprSet> scopes = CalcScope(dg)`计算每个节点的scope，这个scope可以简单理解为由跳转指令如Ifnode，FunctionNode,LetNode等隔开的那些子图，因为一旦碰到这些节点在上面通过Relay Function创建DependencyGraph就会为这种节点分配一个`new_scope`标志。然后CalcScope这个函数具体做了哪些事情，我们需要跟进去看一下：
 
 
@@ -405,11 +408,17 @@ std::pair<NodeScopeMap, ExprSet> CalcScope(const DependencyGraph& dg) {
 最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。为了方便，我们记某点集 $S={v_1,v_2,\ldots,v_n}$ 的最近公共祖先为 $\text{LCA}(v_1,v_2,\ldots,v_n)$ 或 $\text{LCA}(S)$。LCA有以下性质，引自OI-wiki：
 
 1. $\text{LCA}({u})=u$；
+
 2. $u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)=u$；
+
 3. 如果 $u$ 不为 $v$ 的祖先并且 $v$ 不为 $u$ 的祖先，那么 $u,v$ 分别处于 $\text{LCA}(u,v)$ 的两棵不同子树中；
+
 4. 前序遍历中，$\text{LCA}(S)$ 出现在所有 $S$ 中元素之前，后序遍历中 $\text{LCA}(S)$ 则出现在所有 $S$ 中元素之后；
+
 5. 两点集并的最近公共祖先为两点集分别的最近公共祖先的最近公共祖先，即 $\text{LCA}(A\cup B)=\text{LCA}(\text{LCA}(A), \text{LCA}(B))$；
+
 6. 两点的最近公共祖先必定处在树上两点间的最短路上；
+
 7. $d(u,v)=h(u)+h(v)-2h(\text{LCA}(u,v))$，其中 $d$ 是树上两点间的距离，$h$ 代表某点到树根的距离。
 
 
