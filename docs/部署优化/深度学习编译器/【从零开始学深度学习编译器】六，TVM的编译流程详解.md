@@ -1,4 +1,5 @@
 # 一. 前言
+
 上一篇文章对TVM Relay和Pass进行了介绍，但还没有介绍整体的编译流程。这一篇文章将继续介绍一下TVM的编译流程，即TVM是如何将深度学习框架的模型转换成Relay IR之后进一步编译和优化为硬件可以执行的IR，再将这个底层IR和运行时库以及模型参数打包为一个`tvm.Module`返回。关于为什么要将底层IR和运行时库以及模型参数打包，根据官方文档可以知道这样是为了可以更方便的保存底层IR和运行时库，做到一次编译，可持久化推理。
 
 # 二. TVM编译流程详解
@@ -25,6 +26,7 @@ def _build_module_no_factory(mod, target=None, target_host=None, params=None, mo
     return build(mod, target, params=params, mod_name=mod_name).module
 
 ```
+
 对于**上面调用的例子**，`target`为`llvm`代表这个模型会被TVM编译成CPU的可执行程序。`Target.check_and_update_host_consist`这个函数应该是用来检查目标设备类型`targer`以及`target`对应的`host`端是否指定正确的，如果指定正确则将这两个参数合并到一个`Target`类中并返回。`Target`这个类的实现在`tvm/python/tvm/target/target.py`这里，是用来管理TVM支持的设备后端的。
 
 接着就来到了build这个函数，代码实现如下：
