@@ -58,6 +58,11 @@ nav:
         - AutoML: 
             - 你所需要知道的关于AutoML和NAS的知识点: 算法科普/AutoML/你所需要知道的关于AutoML和NAS的知识点.md
             - 【神经网络搜索】1. NAS-RL（ICLR 2017）: 算法科普/AutoML/【神经网络搜索】1. NAS-RL（ICLR 2017）.md
+            - 【神经网络搜索】DARTS: 算法科普/AutoML/【神经网络搜索】DARTS.md
+            - 【神经网络搜索】ENAS: 算法科普/AutoML/【神经网络搜索】ENAS.md
+            - 【神经网络搜索】NasBench101: 算法科普/AutoML/【神经网络搜索】NasBench101.md
+            - 【神经网络搜索】Once for all: 算法科普/AutoML/【神经网络搜索】Once for all.md
+            - 【神经网络搜索】Single Path One Shot: 算法科普/AutoML/【神经网络搜索】Single Path One Shot.md
         - CV中的特征金字塔:
             - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
             - 【CV中的特征金字塔】二，Feature Pyramid Network: 算法科普/CV中的特征金字塔/【CV中的特征金字塔】二，Feature Pyramid Network.md

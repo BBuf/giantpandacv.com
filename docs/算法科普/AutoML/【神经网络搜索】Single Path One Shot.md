@@ -70,9 +70,11 @@ $$
 $\mathcal{A}$代表网络搜索空间，W代表超网权重，$\mathcal{N}(\mathcal{A}, W)$代表超网中编码的搜索空间。
 
 第二步，网络架构搜索为：
+
 $$
 a^{*}=\underset{a \in \mathcal{A}}{\operatorname{argmax}} \mathrm{ACC}_{\text {val }}\left(\mathcal{N}\left(a, W_{\mathcal{A}}(a)\right)\right)
 $$
+
 a代表被采样的子网架构，它会继承超网的权重$W_{\mathcal{A}}(a)$,  然后在这个过程中挑选验证集上准确率最高的子网结构。
 
 **耦合问题的缓解方法**

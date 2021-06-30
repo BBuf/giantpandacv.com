@@ -1,7 +1,8 @@
 # 【神经网络搜索】DARTS: Differentiable Architecture Search
 
-【GiantPandaCV】DARTS将离散的搜索空间松弛，从而可以用梯度的方式进行优化，从而求解神经网络搜索问题。本文首发于GiantPandaCV，未经允许，不得转载。![https://arxiv.org/pdf/1806.09055v2.pdf](https://img-blog.csdnimg.cn/20210226222235337.png)
+【GiantPandaCV】DARTS将离散的搜索空间松弛，从而可以用梯度的方式进行优化，从而求解神经网络搜索问题。本文首发于GiantPandaCV，未经允许，不得转载。
 
+![https://arxiv.org/pdf/1806.09055v2.pdf](https://img-blog.csdnimg.cn/20210226222235337.png)
 
 
 ## 1. 简介
@@ -53,12 +54,15 @@ $$
 $$
 
 这个可以分为两个部分理解，一个是$o(x)$代表操作，一个代表选择概率 $\frac{\exp \left(\alpha_{o}^{(i, j)}\right)}{\sum_{o^{\prime} \in \mathcal{O}} \exp \left(\alpha_{o^{\prime}}^{(i, j)}\right)}$，这是一个softmax构成的概率，其中$\alpha_o^{(i,j)}$表示 **第i个节点到第j个节点之间操作的权重**，这也是之后需要搜索的网络结构参数，会影响该操作的概率。即以下公式：
+
 $$
 softmax(\alpha)\times operation_{w}(x)
 $$
+
 左侧代表当前操作的概率，右侧代表当前操作的参数。
 
 **(c)和(d)图** 是保留的边，训练完成以后，从所有的边中找到概率最大的边，即以下公式：
+
 $$
 o^{(i, j)}=\operatorname{argmax}_{o \in \mathcal{O}} \alpha_{o}^{(i, j)}
 $$
@@ -90,9 +94,11 @@ $w*(\alpha)$ 代表当前网络结构参数$\alpha$的情况下，训练获得�
 ![DARTS伪代码](https://img-blog.csdnimg.cn/20210301092133238.png)
 
 交替优化的复杂度非常高，是$O(|\alpha||w|)$, 这种复杂度不可能投入使用，所以要将复杂度进行优化，用复杂度低的公式近似目标函数。
+
 $$
 \nabla_{\alpha} \mathcal{L}_{\text {val }}\left(w^{*}(\alpha), \alpha\right) \approx \nabla_{\alpha} \mathcal{L}_{v a l}\left(w-\xi \nabla_{w} \mathcal{L}_{t r a i n}(w, \alpha), \alpha\right)
 $$
+
 这种近似方法在Meta Learning中经常用到，详见《Model-agnostic meta-learning for fast adaptation of deep networks》，也就是通过使用单个step的训练调整w，让这个结果来近似$w*(\alpha)$。
 
 然后对右侧公式进行推导，得到梯度优化以后的表达式：
@@ -102,11 +108,13 @@ $$
 ---
 
 这里求梯度使用的是链式法则，回顾一下：
+
 $$
 z=f(g1(x),g2(x))
 $$
 
 则梯度计算为：
+
 $$
 \frac{\partial z}{\partial x}=\frac{\partial g1}{\partial x} \times \frac{\partial z}{\partial g1} + \frac{\partial g2}{\partial x}\times\frac{\partial z}{\partial g2}
 $$
@@ -132,6 +140,7 @@ $$
 利用最右下角的公式：
 
 令$A=\nabla_{\omega^{\prime}} \mathcal{L}_{v a l}\left(\omega^{\prime}, \alpha\right)$,$h=\epsilon$, $x_0=w$, $f=\nabla_{\alpha} \mathcal{L}_{\text {train }}(\cdot, \cdot)$, 代入可得(其中经验上设置$\epsilon=\frac{0.01}{||\nabla_{w'}\mathcal{L}_{val}(w',\alpha)||_2}$)
+
 $$
 \nabla_{\alpha, \omega}^{2} \mathcal{L}_{\text {train }}(\omega, \alpha) \cdot \nabla_{\omega^{\prime}} \mathcal{L}_{\text {val }}\left(\omega^{\prime}, \alpha\right) \approx \frac{\nabla_{\alpha} \mathcal{L}_{\text {train }}\left(\omega^{+}, \alpha\right)-\nabla_{\alpha} \mathcal{L}_{\text {train }}\left(\omega^{-}, \alpha\right)}{2 \epsilon}
 $$
