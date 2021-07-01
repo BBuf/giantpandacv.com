@@ -14,6 +14,7 @@
 最近的一些关于Vision Transformer的工作表明了在大量数据下，抛弃CNN的局部先验是可行的。本文尝试将全连接层替换部分卷积层中，以提供全局表征能力和位置感知能力。并将引入卷积层，赋予全连接层其不具备的捕捉局部信息能力。最后通过重参数化的方法，将卷积层和全连接层重参数化为一个全连接层，提升推理速度。
 
 ![RepMLP整体流程图](https://img-blog.csdnimg.cn/20210520103809336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 `RepMLP`主要分为`Global Perceptron`, `Partition Perceptron` 和 `Local Perceptron` 三部分，下面会分别讲解这两部分的做法
 
 # Global Perceptron 
@@ -134,6 +135,7 @@ def forward(...):
 # 重参数化——将卷积权重融合到全连接层
 
 ![重参数化](https://img-blog.csdnimg.cn/20210520114621338.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 在推理阶段，我们会把 `Local Perceptron` 和 `Partition Perceptron` 这两部分融合成一个全连接层
 
 > 这是我觉得本文最大的亮点，也是最难理解的部分，下面我会拿一些图例来讲解这一重参数化过程。
@@ -154,13 +156,17 @@ $$
 
 ![插入单位矩阵](https://img-blog.csdnimg.cn/20210520115854871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
 所以有
+
 $$
 V_{out} = V_{in} * (I*W^{(F,p)}) 其中I表示单位矩阵
 $$
+
 而
+
 $$
 I*W^{(F,p)}
 $$
+
 可以看成是卷积核F在单位矩阵上进行卷积得到的结果，具体做法如下：
 
 - 将单位矩阵reshape为

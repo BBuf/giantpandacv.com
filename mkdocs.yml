@@ -129,6 +129,9 @@ nav:
             - 图解RepVG: 算法科普/尽览卷积神经网络/图解RepVGG.md
             - 我卷我自己——cvpr2021：Involution: 算法科普/尽览卷积神经网络/我卷我自己——cvpr2021：Involution.md
             - 白给的性能不要？cvpr2021-Diverse branch block: 算法科普/尽览卷积神经网络/白给的性能不要？cvpr2021-Diverse branch block.md
+            - 图解MLP: 算法科普/尽览卷积神经网络/图解MLP.md
+            - 深度学习中的重参数机制总结与代码实现: 算法科普/尽览卷积神经网络/深度学习中的重参数机制总结与代码实现.md
+            - 百度团队新作：Spatial Shift MLP: 算法科普/尽览卷积神经网络/百度团队新作：Spatial Shift MLP.md
         - 可变形卷积:
             - DCN V1代码阅读笔记: 算法科普/可变形卷积/DCN V1代码阅读笔记.md
             - MSRA DCN(可变形卷积) 算法笔记: 算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md
