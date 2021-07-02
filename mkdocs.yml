@@ -444,6 +444,8 @@ nav:
         - 快速学习使用tikz绘制CNN示意图: 资源共享/快速学习使用tikz绘制CNN示意图.md
         - 计算机视觉 书籍数据集标注工具学习路线整理: 资源共享/计算机视觉 书籍数据集标注工具学习路线整理.md
         - Pytorch_lightning工具推荐: 资源共享/Pytorch_lightning工具推荐.md
+        - 如何标准化管理深度学习实验: 资源共享/如何标准化管理深度学习实验.md
+        - 如何阅读和学习项目代码: 资源共享/如何阅读和学习项目代码.md
     - MsnhNet:
         - 专栏介绍: Msnhnet/README.md
         - 多平台轻量级PyTorch模型推理框架MsnhNet: Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
