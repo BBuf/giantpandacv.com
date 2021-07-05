@@ -10,14 +10,19 @@
 # 回顾原始self attention
 
 给定一个形状为(N, d)的输入X，其中N代表token数量，d代表通道数。自注意力机制先通过三个独立的线性操作得到Q,K,V
+
 $$
 Q = XW^Q, K = XW^K, V = XW^V
 $$
+
 然后使用Q,K得到注意力特征图
+
 $$
 A(K, Q) = Softmax(\frac{QK^T}{\sqrt{d_k}})
 $$
+
 最后与V相乘
+
 $$
 Attention(Q, K, V) = A(K, Q)V
 $$
@@ -31,19 +36,23 @@ $$
 而这两个矩阵的特征向量可以互相计算得到，如果V是G的特征向量，那么C的特征向量U可以由$U=XV$计算得到。
 
 原始的自注意力计算过程可以看作是类似格拉姆矩阵的计算过程：
+
 $$
 QK^T = XW_qW_k^TX^T
 $$
 
 我们考虑使用互协方差矩阵的形式去替代，即：
+
 $$
 K^TQ = W_k^TX^TXW_q
 $$
+
 这样可以把复杂度减少$O(Nd^2)$
 
 # 互协方差注意力
 
 互协方差注意力公式如下：
+
 $$
 XC_{Attention}(Q, K, V) = V*Softmax(\frac{K^TQ}{\tau})
 $$
@@ -61,6 +70,7 @@ $$
 $$
 W_q(h,d,d_q), W_k(h,d,d_k), W_v(h,d,d_v)
 $$
+
 其中$d_q=d_k=d_v=d/h$，这么做有两个好处
 
 - 注意力复杂度能够进一步通过h来控制
@@ -118,13 +128,17 @@ class XCA(nn.Module):
 采用CaiT的做法，在最后两层引入一个叫class attention的结构，跟注意力是一样的结构，只不过引入了一个class embedding，只有这个class embedding接如后面的FFN，完成分类的任务。
 
 首先我们给x拼入一个class token
+
 $$
 x = [cls\_token, x]
 $$
+
 跟计算注意力一样，我们得到Q,K,V，**但是对于Q，我们只取其中的第一个元素，也就是输入X中的class_token得到的Qc**
+
 $$
 Qc = W_q x_{cls\_token}
 $$
+
 接着就是和自注意力机制一样的计算过程，由于只更新这个class_token相关的部分，所以计算的结果和输入x[1:] (因为输入x第一个元素是我们的class_token)拼接在一起，相关伪代码如下：
 
 ```python

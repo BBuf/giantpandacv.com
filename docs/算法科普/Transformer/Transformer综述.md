@@ -25,9 +25,11 @@ Transformer没有像CNN引入归纳偏置，导致其在小规模数据集上难
 ### Attention模块
 
 Attention公式原型如下：
+
 $$
 Attetntion(Q, K, V) = softmax(\frac{QK^T}{\sqrt{D_k}})V = AV
 $$
+
 而Transformer中使用的是多头注意力机制，首先使用多组 $W_k$, $W_q$, &W_v&来分别计算，然后将多组注意力结果拼接起来，并最后再和 $W_o$做一次线性变换。整个过程如下: 
 
 $$
@@ -49,6 +51,7 @@ $$
 ### FFN模块
 
 前馈层就是两层全连接层加一个激活层，可以写为
+
 $$
 FFN(X) = ReLU(W_1X + b^1)W_2 + b^2
 $$
@@ -56,6 +59,7 @@ $$
 ### 残差连接和LayerNorm
 
 在每个Transformer Block中，都加入了残差连接和LayerNorm。整个过程可以写为
+
 $$
 H’ = LayerNorm(SelfAttention(X)+X)
 $$
@@ -183,6 +187,7 @@ Axial Transformer对于图像的每个轴，应用独立的注意力模块
 Routing Transformer采用K-means聚类方法，对中心向量集合上的key和query进行聚类。**每个query只与其处在相同cluster下的key进行交互。**
 
 中心向量采用滑动平均的方法进行更新：
+
 $$
 \widetilde{\mu} = {\lambda}\widetilde{\mu} + (1-\lambda)(\sum_{i:\mu(q_i)=\mu}^{}{q_i}+\sum_{j:\mu(k_j)=\mu}^{}{k_j})
 $$
@@ -200,6 +205,7 @@ $$
 Reformer则采用`local-sensitive hashing(LSH)`哈希方法来为每个query选择key-value。**其主要思想是对query和key哈希，分到多个桶内，在同一个桶内的query，key参与交互。** 
 
 设b为桶的个数，给定一个大小为$[D_k, b/2]$的矩阵，LSH可写为
+
 $$
 h(x) = argmax([-xR; xR])
 $$
@@ -217,12 +223,15 @@ $$
 $$
 z_i = \sum_j^{}\frac{sim(q_i, k_j)}{\sum_{j’}^{}sim(q_i, k_j)}v_j
 $$
+
 其中 `sim` 是一个用于计算向量相似性的函数。在原始Transformer是对向量做内积+softmax，我们选择用一个核函数来代替
+
 $$
 K(x, y) = \phi(x)\phi(y)^T
 $$
 
 那么前面的Attention可以改写为
+
 $$
 z_i = \sum_j^{}\frac{\phi(q_i)\phi(k_j)^T\otimes{v_j}}{\phi(q_i)\sum_{j’}^{}{\phi(k_{j’})^T}}
 $$
@@ -234,6 +243,7 @@ $$
 即前面提到的$\phi$，Linear Transformer使用的是$\phi(x) = elu(x)+1$，其目的不是近似标准Attention中的点积，只是性能能与标准Transformer相当。
 
 Performer则使用的是随机特征映射方式：
+
 $$
 \phi(x) = \frac{h(x)}{\sqrt{m}}[f_1(w_1^Tx), ..., f_m(w_m^Tx), ..., f_l(w_1^Tx), ..., f_l(w_m^Tx)]
 $$
@@ -308,6 +318,7 @@ Performer使用随机傅里叶映射来去近似高斯核函数。
 Nyström method对输入使用平均池化进行降采样，选取m个landmark节点，
 
 记$\widetilde{Q}$和$\widetilde{K}$为landamark query和key，近似的注意力矩阵可以按如下所示计算：
+
 $$
 \widetilde{A} = softmax(Q\widetilde{K}^T)(softmax(\widetilde{Q}\widetilde{K}^T))^{-1}softmax(\widetilde{Q}K^T)
 $$
@@ -327,17 +338,20 @@ Gaussian Transformer认为句子中的词符合距离正态分布(离中心词�
 ### 从底层模块获取先验
 
 相关研究者观察到相邻几层的注意力分布是相似的，**很自然想到使用前面层的注意力矩阵参与当前层注意力的运算**
+
 $$
 \hat{A} = w1*A^{(l)}+w2*g(A^{(l-1)})
 $$
 
 Predictive Transformer则对先前的attention score进行二维卷积
 并加入到当前层运算，可以写为
+
 $$
 \hat{A} = \alpha*A^{(l)} + (1-\alpha)*Conv(A^{(l-1)})
 $$
 
 Realformer则是将先前的attention score直接加到当前层
+
 $$
 \hat{A} = A^{(l)} + A^{(l-1)}
 $$
@@ -369,6 +383,7 @@ Li等人在损失函数引入正则项以增加注意力头的多样性
 Talking-head Attention使用talking head机制，从$h_k$到$h$头生成注意力分数，进行softmax，并从$h_v$来实现value聚合。(也不是很懂这部分工作)
 
 Collaborative Multi-head Attention则对所有注意力头共享使用矩阵$W^Q$和$W^K$，并用一个混合向量为第i个注意力头来过滤参数，公式如下：
+
 $$
 head_i = Attention(QW^Qdiag(m_i), KW^K, VW^V)
 $$
@@ -391,10 +406,13 @@ Multi-Scale Transformer采用了固定的跨度，但在不同层的不同头中
 原始的多头注意力机制是先将每个头的结果concat拼接到一起，然后经过一个全连接层$W_O$。
 
 这种做法可以等价于重参数化注意力输出并求和，我们可以先把最后的全连接层分组为
+
 $$
 W_O = [W_1^O;W_2^O;...W_H^O;]
 $$
+
 多头注意力机制可以重写为
+
 $$
 MultiheadAttn(Q, K, V)=\sum_{i=1}^{H}(QW_i^Q, KW_i^K, VW_i^VW_i^O)
 $$
@@ -416,6 +434,7 @@ Bhojanapalli等人将注意力头的大小和注意力头的个数解耦开来(�
 ### 绝对位置编码
 
 在原始的Transformer中采取的是绝对正弦位置编码
+
 $$
 PE(t)_{i}= \begin{cases}
             sin(\omega_it) & \text{ if i is even}\\
@@ -432,6 +451,7 @@ Wang等人提出使用正弦位置编码，但是每个频率$\omega_i$是学习
 这种方法主要关注的是token之间的关系(绝对位置编码则是把token都考虑为独立的一个个体)。
 
 Shaw等人将可学习的相对位置编码Emebedding加入到注意力机制中的key，公式如下：
+
 $$
 clip(x) = max(-K, min(x, K))
 $$
@@ -491,6 +511,7 @@ Xiong等人分析得到在`post-LN`下，输出层的梯度比较大，这也导
 ### LN的一些替代品
 
 Xu等人观察到LN中大部分可学习参数不起作用，并且会增加模型过拟合的风险，提出了一种不依赖可学习参数的归一化方法`AdaNorm`
+
 $$
 y = \frac{x-\mu}{\sigma}
 $$
@@ -502,9 +523,11 @@ $$
 其中$C, k$是超参数
 
 Nguyen和Salazar提出用L2范数来替代
+
 $$
 z = g\frac{x}{||x||}
 $$
+
 其中g是一个可学习标量
 
 Shen等人探讨了BN在Transformer上表现不好的原因，并提出PowerNorm，作出如下改进：
@@ -518,6 +541,7 @@ Shen等人探讨了BN在Transformer上表现不好的原因，并提出PowerNorm
 ### 无Normalization的Transformer
 
 ReZero使用了一个可学习残差分支来代替LN，公式如下
+
 $$
 H’ = H + \alpha*F(H)
 $$
@@ -617,10 +641,13 @@ Conditional Computation Transformer加入一个门控模块，来决定是否跳
 类似于RNN，循环Transformer设置了一个cache来存储历史信息，每次处理一段子序列，网络会将cache作为额外输入进行运算，运算完后写入新的cache。如上图a所示。
 
 Transformer XL则重用了前面片段的cache，进而生成K,V。对于第$l$层和${\tau}+1$个片段
+
 $$
 \widetilde{H}_{\tau+1}^{(l)} = [SG(H_{\tau}^{(l)})o(H_{\tau+1}^{(l-1)})]
 $$
+
 其中SG表示停止梯度更新，o表示拼接操作
+
 $$
 K_{\tau+1}^{(l)},V_{\tau+1}^{(l)} = \widetilde{H}_{\tau+1}^{(l)}W^K, \widetilde{H}_{\tau+1}^{(l)}W^V 
 $$
