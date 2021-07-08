@@ -93,6 +93,7 @@ nav:
             - 《互协方差注意力Transformer：XCiT》: 算法科普/Transformer/《互协方差注意力Transformer：XCiT》.md
         - 半监督&无监督:
             - WSCL: 算法科普/半监督&无监督/WSCL.md
+            - 弱监督方法在森林病虫害检测中的应用: 算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
         - 尽览卷积神经网络:
             - 卷积神经网络学习路线（一） 卷积神经网络的组件以及卷积层是如何在图像中起作用的？: 算法科普/尽览卷积神经网络/卷积神经网络学习路线（一） 卷积神经网络的组件以及卷积层是如何在图像中起作用的？.md
             - 卷积神经网络学习路线（二） 卷积层有哪些参数及常用卷积核类型盘点？: 算法科普/尽览卷积神经网络/卷积神经网络学习路线（二） 卷积层有哪些参数及常用卷积核类型盘点？.md
@@ -228,6 +229,7 @@ nav:
                 - 【目标检测Anchor-Free】ECCV 2018 CornerNet: 目标检测及跟踪/论文解析/anchor free模型/【目标检测Anchor-Free】ECCV 2018 CornerNet.md
                 - CenterNet-Object As Points: 目标检测及跟踪/论文解析/anchor free模型/CenterNet-Object As Points.md
                 - 目标检测算法之Anchor Free的起源：CVPR 2015 DenseBox: 目标检测及跟踪/论文解析/anchor free模型/目标检测算法之Anchor Free的起源：CVPR 2015 DenseBox.md
+                - RepPoint及RepPointv2初探: 目标检测及跟踪/论文解析/anchor free模型/RepPoint及RepPointv2初探.md
             - one stage模型:
                 - 目标检测算法之YOLOv1: 目标检测及跟踪/论文解析/one stage模型/目标检测算法之YOLOv1.md
                 - 目标检测算法之YOLOv2: 目标检测及跟踪/论文解析/one stage模型/目标检测算法之YOLOv2.md
@@ -322,6 +324,7 @@ nav:
         - ACCV国际细粒度识别比赛复盘: 科研及竞赛分享/ACCV国际细粒度识别比赛复盘.md
         - 基于CenterFace的模型优化记录: 科研及竞赛分享/基于CenterFace的模型优化记录.md
         - 人物属性模型移动端实验记录: 科研及竞赛分享/人物属性模型移动端实验记录.md
+        - 基于深度学习的RGBD深度图补全算法文章鉴赏: 科研及竞赛分享/基于深度学习的RGBD深度图补全算法文章鉴赏.md
     - 超分和GAN:
         - 专栏介绍: 超分和GAN/README.md
         - CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network: 超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md
@@ -448,6 +451,7 @@ nav:
         - Pytorch_lightning工具推荐: 资源共享/Pytorch_lightning工具推荐.md
         - 如何标准化管理深度学习实验: 资源共享/如何标准化管理深度学习实验.md
         - 如何阅读和学习项目代码: 资源共享/如何阅读和学习项目代码.md
+        - 让vscode在远程连接服务器时候如本地般顺滑地debug: 资源共享\让vscode在远程连接服务器时候如本地般顺滑地debug.md
     - MsnhNet:
         - 专栏介绍: Msnhnet/README.md
         - 多平台轻量级PyTorch模型推理框架MsnhNet: Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
