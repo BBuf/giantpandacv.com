@@ -84,6 +84,8 @@ nav:
             - 【CV中的Attention机制】最简单最易实现的SE模块:  算法科普/CV中的注意力机制/【CV中的Attention机制】最简单最易实现的SE模块.md
             - 【CV中的Attention机制】DCANet解读: 算法科普/CV中的注意力机制/【CV中的Attention机制】DCANet解读.md
             - 【CV中的Attention机制】ShuffleAttention: 算法科普/CV中的注意力机制/【CV中的Attention机制】ShuffleAttention.md
+            - 深度学习中的Attention机制: 算法科普/CV中的注意力机制/深度学习中的Attention机制.md
+            - 深度学习中的Attention机制-Part2: 算法科普/CV中的注意力机制/深度学习中的Attention机制-Part2.md
         - Transformer: 
             - 解析Transformer模型: 算法科普/Transformer/解析Transformer模型.md
             - 解析Vision Transformer: 算法科普/Transformer/解析Vision Transformer.md
@@ -416,7 +418,7 @@ nav:
             - 深入理解深度学习中的反(转置)卷积: 部署优化/AI 移动端算法优化/深入理解深度学习中的反(转置)卷积.md
             - 道阻且长_再探矩阵乘法优化: 部署优化/AI 移动端算法优化/道阻且长_再探矩阵乘法优化.md
             - ARM Neon Intrinsics 学习指北：从入门、进阶到学个通透: 部署优化/AI 移动端算法优化/ARM Neon Intrinsics 学习指北：从入门、进阶到学个通透.md
-            - NCNN+INT8+YOLOV4量化模型和实时推理: 部署优化\AI 移动端算法优化\NCNN+INT8+YOLOV4量化模型和实时推理.md
+            - NCNN+INT8+YOLOV4量化模型和实时推理: 部署优化/AI 移动端算法优化/NCNN+INT8+YOLOV4量化模型和实时推理.md
         - 深度学习编译器:
             - 多面体模型在深度学习编译器的应用: 部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
             - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: 部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md
@@ -428,7 +430,7 @@ nav:
             - 【从零开始学深度学习编译器】七，万字长文入门TVM Pass: 部署优化/深度学习编译器/【从零开始学深度学习编译器】七，万字长文入门TVM Pass.md
             - 【从零开始学深度学习编译器】八，TVM的算符融合以及如何使用TVM Pass Infra自定义Pass: 部署优化/深度学习编译器/【从零开始学深度学习编译器】八，TVM的算符融合以及如何使用TVM Pass Infra自定义Pass.md
             - 【从零开始学深度学习编译器】番外一，Data Flow和Control Flow: 部署优化/深度学习编译器/【从零开始学深度学习编译器】番外一，Data Flow和Control Flow.md
-            - 【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM: 部署优化\深度学习编译器\【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM.md
+            - 【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM: 部署优化/深度学习编译器/【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM.md
     - 资源共享:
         - 专栏介绍: 资源共享/README.md
         - Pytorch YOLOV3:
@@ -453,7 +455,7 @@ nav:
         - Pytorch_lightning工具推荐: 资源共享/Pytorch_lightning工具推荐.md
         - 如何标准化管理深度学习实验: 资源共享/如何标准化管理深度学习实验.md
         - 如何阅读和学习项目代码: 资源共享/如何阅读和学习项目代码.md
-        - 让vscode在远程连接服务器时候如本地般顺滑地debug: 资源共享\让vscode在远程连接服务器时候如本地般顺滑地debug.md
+        - 让vscode在远程连接服务器时候如本地般顺滑地debug: 资源共享/让vscode在远程连接服务器时候如本地般顺滑地debug.md
     - MsnhNet:
         - 专栏介绍: Msnhnet/README.md
         - 多平台轻量级PyTorch模型推理框架MsnhNet: Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
