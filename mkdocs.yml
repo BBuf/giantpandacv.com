@@ -93,6 +93,8 @@ nav:
             - 图解swin transformer: 算法科普/Transformer/图解swin transformer.md
             - Transformer综述: 算法科普/Transformer/Transformer综述.md
             - 《互协方差注意力Transformer：XCiT》: 算法科普/Transformer/《互协方差注意力Transformer：XCiT》.md
+            - OutLook Attention：具有局部信息感知能力的ViT: 算法科普/Transformer/OutLook Attention：具有局部信息感知能力的ViT.md
+            - Vision Transformer新秀：VOLO: 算法科普/Transformer/Vision Transformer新秀：VOLO.md
         - 半监督&无监督:
             - WSCL: 算法科普/半监督&无监督/WSCL.md
             - 弱监督方法在森林病虫害检测中的应用: 算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md

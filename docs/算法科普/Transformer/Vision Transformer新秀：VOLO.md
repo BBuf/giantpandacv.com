@@ -20,9 +20,11 @@
 先看下作者的insight：
 
 1. 每一个空间位置上的feature**足以生成周边feature**的注意力权重
+
 2. Dense和局部空间聚合可以有效地编码fine-level级别特征
 
 下图是Outlook Attention的全局图
+
 ![Outlook Attention](https://files.mdnice.com/user/4601/4b4cd27f-e9c1-463b-8a7a-ef56805acac9.png)
 
 我们先看上面一条路，对于(C, H, W)输入，我们先经过全连接层压缩到$(K^2*K^2, H, W)$。其中K表示的是Kernel的大小，你可以理解为每一个空间feature生成周边KxK个特征的注意力权重。
@@ -34,6 +36,7 @@
 他的大小为$(K^2*K^2, 1, 1)$，然后我们可以reshape成$(1, K^2, K^2)$
 
 ![reshape后](https://files.mdnice.com/user/4601/9d2c77ef-fc39-431d-8c15-48b66966314c.png)
+
 接着经过softmax，获得注意力。下面我们来看下面一条路
 
 熟悉Unfold的同学应该会知道，unfold就是取每一个位置的KxK大小窗口的元素(因此unfold+矩阵乘其实就是卷积操作，unfold的别名也叫img2col)。
@@ -94,7 +97,9 @@ def outlook_attention(x):
 ### 补充一些细节
 
 1. 不同于VIT无重叠的图像分块，这里的Patch Embedding采用了有重叠的卷积层来操作，并且是4个卷积层叠加(可能对最后准确率有一定帮助)
+
 2. 分类部分沿用CaiT的class Attention及相关模块(看来这个是真好用)
+
 3. 不同模型分头数不一样，对于小模型D1，分头数为[6, 12, 12, 12], 而对于更大的D3模型，分头数为\[8, 16, 16, 16\]
 
 # 结果概览
