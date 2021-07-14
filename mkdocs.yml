@@ -179,6 +179,7 @@ nav:
             - 关于目标检测和感受野的一点总结和想法: 算法科普/综述类/关于目标检测和感受野的一点总结和想法.md
             - 卷积核梳理: 算法科普/综述类/卷积核梳理.md
             - 盘点当前最流行的激活函数及选择经验: 算法科普/综述类/盘点当前最流行的激活函数及选择经验.md
+            - 思考NLP和CV中的Local和Global建模: 算法科普/综述类/思考NLP和CV中的Local和Global建模.md
     - 目标检测及跟踪:
         - 专栏介绍: 目标检测及跟踪/README.md
         - Darknet:
@@ -464,6 +465,7 @@ nav:
         - Pytorch直转Msnhnet思路分享: Msnhnet/Pytorch直转Msnhnet思路分享.md
         - 人脸106点Caffe模型如何部署到MsnhNet: Msnhnet/人脸106点Caffe模型如何部署到MsnhNet.md
         - 图解神秘的NC4HW4: Msnhnet/图解神秘的NC4HW4.md
+        - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
     - 视频专栏: 
         - 视频专栏: video/video_1.md
     - 刷题面试:
