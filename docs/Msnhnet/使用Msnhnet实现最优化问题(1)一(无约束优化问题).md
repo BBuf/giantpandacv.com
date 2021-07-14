@@ -4,42 +4,61 @@
 
 #####  范数
 
-$ L_1范数: \Vert{x}\Vert_1=\sum_{i=1}^n \mid{x_i}\mid $
+$L_1范数: \Vert{x}\Vert_1=\sum_{i=1}^n \mid{x_i}\mid$
 
-$ L_2范数: \Vert{x}\Vert_2=\sqrt{\sum_{i=1}^n \mid{x_i}\mid }$
+$L_2范数: \Vert{x}\Vert_2=\sqrt{\sum_{i=1}^n \mid{x_i}\mid }$
 
-$ L_\infty 范数: \Vert{x}\Vert_\infty= \max{\mid x_i \mid, i\in\{1,2,3,...,n\}} $
+$L_\infty 范数: \Vert{x}\Vert_\infty= \max{\mid x_i \mid, i\in\{1,2,3,...,n\}}$
 
-$ L_p 范数: \Vert{x}\Vert_p= (\sum_{i=1}^n \mid{x_i}\mid^p)^{\frac{1}{p}}, p\in[1,\infty)$
+$sL_p 范数:\Vert{x}\Vert_p= (\sum_{i=1}^n \mid{x_i}\mid^p)^{\frac{1}{p}}, p\in[1,\infty)$
 
-$范数之间的关系: \Vert{x}\Vert_\infty \le \Vert{x}\Vert_2 \le \Vert{x}\Vert_1$
+$范数之间的关系:\Vert{x}\Vert_\infty \le \Vert{x}\Vert_2 \le \Vert{x}\Vert_1$
 
 #####  梯度、Jacobian矩阵和Hessian矩阵
 
 1.梯度: f(x)多元标量函数一阶连续可微
-$$ \nabla f(x) = \left[ \frac{\partial{f}}{\partial x_1},\frac{\partial{f}}{\partial x_2}, ...,\frac{\partial{f}}{\partial x_n} \right]^T $$
+
+$$
+\nabla f(x) = \left[ \frac{\partial{f}}{\partial x_1},\frac{\partial{f}}{\partial x_2}, ...,\frac{\partial{f}}{\partial x_n} \right]^T 
+$$
 
 2.Jacobian矩阵: f(x)多元向量函数一阶连续可微
-$$ J(x) = \left[ \begin{matrix} \frac{\partial f_1}{\partial x_1}  &\dots & \frac{\partial f_1}{\partial x_n} \\ \vdots  & \ddots & \vdots \\ \frac{\partial f_m}{\partial x_1} & \dots & \frac{\partial f_m}{\partial x_n} \end{matrix}\right] $$
+
+$$
+J(x) = \left[ \begin{matrix} \frac{\partial f_1}{\partial x_1}  &\dots & \frac{\partial f_1}{\partial x_n} \\ \vdots  & \ddots & \vdots \\ \frac{\partial f_m}{\partial x_1} & \dots & \frac{\partial f_m}{\partial x_n} \end{matrix}\right] 
+$$
 
 3.Hessian矩阵: f(x)二阶连续可微
-$$ H(x) = \left[ \begin{matrix} \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1\partial x_2} & \dots & \frac{\partial^2 f}{\partial x_1\partial x_n} \\ \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \dots & \frac{\partial^2 f}{\partial x_2\partial x_n} \\ \vdots & \dots & \ddots & \vdots \\ \frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{{\partial x_n \partial x_2}} & \dots & \frac{\partial^2 f}{\partial x_n^2} \end{matrix}\right]$$
+
+$$
+H(x) = \left[ \begin{matrix} \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1\partial x_2} & \dots & \frac{\partial^2 f}{\partial x_1\partial x_n} \\ \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \dots & \frac{\partial^2 f}{\partial x_2\partial x_n} \\ \vdots & \dots & \ddots & \vdots \\ \frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{{\partial x_n \partial x_2}} & \dots & \frac{\partial^2 f}{\partial x_n^2} \end{matrix}\right]
+$$
 
 注: 二次函数$f(x)=\frac{1}{2}x^TAx+x^Tb+c$,其中$A\in R^{n\times n},b\in R^N, c \in R,对称矩阵则$：
 
-$$ \nabla f(x)=Ax+b, \nabla^2f(x)=A $$
+$$
+\nabla f(x)=Ax+b, \nabla^2f(x)=A 
+$$
 
 ##### Taylor公式
 
 如果$f(x)$在$x_k$处是一阶连续可微，令$x-x_k=\delta$,则其Maclaurin余项的一阶Taylor展开式为L:
 
-$$f(x_k+\delta)=f(x_k)+\nabla f(x_k)^T(\delta)+O(\Vert\delta\Vert)$$
+$$
+f(x_k+\delta)=f(x_k)+\nabla f(x_k)^T(\delta)+O(\Vert\delta\Vert)
+$$
 
 如果$f(x)$在$x_k$处是二阶连续可微，令$x-x_k=\delta$,则其Maclaurin余项的二阶Taylor展开式为:
 
- $$f(x_k+\delta)=f(x_k)+\nabla f(x_k)^T(\delta)+\frac{1}{2}\delta^T\nabla^2f(x_k)\delta+O(\Vert\delta\Vert)$$
- 或者:
- $$f(x_k+\delta)=f(x_k)+\nabla f(x_k)^T(\delta)+\frac{1}{2}\delta^TH(x_k)f(x_k)\delta+O(\Vert\delta\Vert)$$
+$$
+ f(x_k+\delta)=f(x_k)+\nabla f(x_k)^T(\delta)+\frac{1}{2}\delta^T\nabla^2f(x_k)\delta+O(\Vert\delta\Vert)
+$$
+
+或者:
+
+$$
+f(x_k+\delta)=f(x_k)+\nabla f(x_k)^T(\delta)+\frac{1}{2}\delta^TH(x_k)f(x_k)\delta+O(\Vert\delta\Vert)
+$$
 
 #### 2. 凸函数判别准则
 
@@ -75,7 +94,9 @@ $f(y)−f(x)\ge \nabla f(x)^T(y−x)$
 
 #####  无约束优化基本架构
 
-$$ x_\ast=argmin f(x)$$
+$$
+x_\ast=argmin f(x)
+$$
 
 **step1**.给定初始点$x_0 \in R^n$, k=0以及最小误差$\xi$
 
@@ -91,7 +112,9 @@ $$ x_\ast=argmin f(x)$$
 
 #### 4. 梯度下降法
 
-$$(x_k+1)=f(x_k)−\alpha \nabla f(x_k)$$
+$$
+(x_k+1)=f(x_k)−\alpha \nabla f(x_k)
+$$
 
 $\alpha$在梯度下降算法中被称作为学习率或者步长;$\nabla f(x_k)$梯度的方向
 
@@ -255,15 +278,21 @@ int main()
 
 目标函数$argmin f({x})$在${x}_k$处进行二阶泰勒展开:
 
-$$f({x}_k+{d}_k)\approx f({x}_k)+J({x}_k)^T{d}_k+ \frac{1}{2}{d}_k^TH({x}_k){d}_k$$
+$$
+f({x}_k+{d}_k)\approx f({x}_k)+J({x}_k)^T{d}_k+ \frac{1}{2}{d}_k^TH({x}_k){d}_k
+$$
 
 目标函数变为:
 
-$$argmin(f({x}_k)+J({x}_k)^T\Delta x+\frac{1}{2}{d}_k^TH({x}_k){d}_k)$$
+$$
+argmin(f({x}_k)+J({x}_k)^T\Delta x+\frac{1}{2}{d}_k^TH({x}_k){d}_k)
+$$
 
 关于${d}_k$求导,并让其为0,可以得到步长:
 
-$${d}_k= -H({x}_k)^{-1}J{x}_k$$
+$$
+{d}_k= -H({x}_k)^{-1}J{x}_k
+$$
 
 **与梯度下降法比较，牛顿法的好处：**
 
@@ -509,7 +538,6 @@ https://github.com/msnh2012/Msnhnet(`https://github.com/msnh2012/Msnhnet`)
 - 欢迎关注我们维护的一个深度学习框架Msnhnet:
 - https://github.com/msnh2012/Msnhnet
   Msnhnet除了是一个深度网络推理库之外，还是一个小型矩阵库，包含了矩阵常规操作，LU分解，Cholesky分解，SVD分解。
-
 
 -----------------------------------------------------------------------------------------------
 
