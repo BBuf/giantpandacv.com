@@ -432,6 +432,7 @@ nav:
             - 【从零开始学深度学习编译器】六，TVM的编译流程详解: 部署优化/深度学习编译器/【从零开始学深度学习编译器】六，TVM的编译流程详解.md
             - 【从零开始学深度学习编译器】七，万字长文入门TVM Pass: 部署优化/深度学习编译器/【从零开始学深度学习编译器】七，万字长文入门TVM Pass.md
             - 【从零开始学深度学习编译器】八，TVM的算符融合以及如何使用TVM Pass Infra自定义Pass: 部署优化/深度学习编译器/【从零开始学深度学习编译器】八，TVM的算符融合以及如何使用TVM Pass Infra自定义Pass.md
+            - 【从零开始学深度学习编译器】九，TVM的CodeGen流程: 部署优化/深度学习编译器/【从零开始学深度学习编译器】九，TVM的CodeGen流程.md
             - 【从零开始学深度学习编译器】番外一，Data Flow和Control Flow: 部署优化/深度学习编译器/【从零开始学深度学习编译器】番外一，Data Flow和Control Flow.md
             - 【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM: 部署优化/深度学习编译器/【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM.md
     - 资源共享:
@@ -459,6 +460,7 @@ nav:
         - 如何标准化管理深度学习实验: 资源共享/如何标准化管理深度学习实验.md
         - 如何阅读和学习项目代码: 资源共享/如何阅读和学习项目代码.md
         - 让vscode在远程连接服务器时候如本地般顺滑地debug: 资源共享/让vscode在远程连接服务器时候如本地般顺滑地debug.md
+        - 如何让vscode远程连接服务器上的docker环境进行debug: 资源共享/如何让vscode远程连接服务器上的docker环境进行debug.md
     - MsnhNet:
         - 专栏介绍: Msnhnet/README.md
         - 多平台轻量级PyTorch模型推理框架MsnhNet: Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
