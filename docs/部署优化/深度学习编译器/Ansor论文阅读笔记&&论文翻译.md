@@ -2,23 +2,23 @@
 
 - 论文链接：https://arxiv.org/abs/2006.06762   OSDI 2020
 - 前置知识：
-  - 需要了解scheduler，推荐一篇文章：https://zhuanlan.zhihu.com/p/94846767 。
-  - 在Ansor论文中主要使用了parallel，cache_read，reorder，unroll，vectorize这些scheduler来描述整个算法，但在Ansor的TVM开源代码实现中不仅限于这些scheduler，在看Ansor论文之前建议先了解一下。
-  - 在AutoTVM和Ansor之前，要生成高性能的张量化程序需要手动指定模板，这些模板不仅需要指定high-level的scheduler，还需要包含low-level的计算逻辑，因为CPU/GPU/ASIC等等芯片底层对张量的计算方式不同。推荐陈天奇的一个对TVM的报告：https://www.bilibili.com/video/BV1vW411R7Zb?from=search&seid=5300327607655608948 。
+    - 需要了解scheduler，推荐一篇文章：https://zhuanlan.zhihu.com/p/94846767 。
+    - 在Ansor论文中主要使用了parallel，cache_read，reorder，unroll，vectorize这些scheduler来描述整个算法，但在Ansor的TVM开源代码实现中不仅限于这些scheduler，在看Ansor论文之前建议先了解一下。
+    - 在AutoTVM和Ansor之前，要生成高性能的张量化程序需要手动指定模板，这些模板不仅需要指定high-level的scheduler，还需要包含low-level的计算逻辑，因为CPU/GPU/ASIC等等芯片底层对张量的计算方式不同。推荐陈天奇的一个对TVM的报告：https://www.bilibili.com/video/BV1vW411R7Zb?from=search&seid=5300327607655608948 。
 - 个人理解
-  - Ansor具体是怎么做到自动生成张量化程序的呢？首先是要做子图切分，子图切分的规则和TVM的算符融合一致，对于每一个子图主要是通过草图和注释来生成对应的程序。
-  - 草图，就是基于上面介绍的那些scheduler和一些推导规则来做的，推导规则是什么？比如对于卷积和矩阵乘法这种计算密集型算子，在CPU上Ansor就给它定义了一个tile规则叫“SSRSRS”，对于矩阵乘法来说"SSRSRS" tile规则就是将原始的三重for循环$(i, j, k)$扩展为$(i_0,j_0,i_1,j_1,k_0,i_2,j_2,k_1,i_3,j_3)$。这就是论文中Figure5里面的第一个示例。除了这个tile规则还有还有数据复用算子和简单算子融合，无数据复用的简单算子inline优化，数据复用算子其输入需要做计算分窗和输入的 Cache Read，Cache Write，rfactor等等多种规则。由于GPU和CPU架构不同，所以定义的规则也不完全相同，比如矩阵乘法的多级tiling结构就会从“SSRSRS”改为“SSSRRSRS”以匹配 GPU 的架构。tiling中的前三个空间循环分别绑定到 BlockIdx、虚拟线程（用于减少 bank 冲突）和 ThreadIdx。另外用户也可以自定义规则。
-  - 注释，就是在草图的基础上，随机确定GPU thread bind，for 循环的 unroll、vectorize、parallize，Split 的 factor等等生成完成的代码。（并行外循环，矢量化和展开内循环，这个就对应了GEMM优化中的优化的关键思路）虽然生成了完整的代码，但这个代码的性能是由 Evolutionary Search 来保证的。另外，用户也可以自定义注释。
-  - 然后如何更有效的遍历搜索空间以及剪枝掉一些无用的搜索空间可以看下原论文的相关介绍。
+    - Ansor具体是怎么做到自动生成张量化程序的呢？首先是要做子图切分，子图切分的规则和TVM的算符融合一致，对于每一个子图主要是通过草图和注释来生成对应的程序。
+    - 草图，就是基于上面介绍的那些scheduler和一些推导规则来做的，推导规则是什么？比如对于卷积和矩阵乘法这种计算密集型算子，在CPU上Ansor就给它定义了一个tile规则叫“SSRSRS”，对于矩阵乘法来说"SSRSRS" tile规则就是将原始的三重for循环$(i, j, k)$扩展为$(i_0,j_0,i_1,j_1,k_0,i_2,j_2,k_1,i_3,j_3)$。这就是论文中Figure5里面的第一个示例。除了这个tile规则还有还有数据复用算子和简单算子融合，无数据复用的简单算子inline优化，数据复用算子其输入需要做计算分窗和输入的 Cache Read，Cache Write，rfactor等等多种规则。由于GPU和CPU架构不同，所以定义的规则也不完全相同，比如矩阵乘法的多级tiling结构就会从“SSRSRS”改为“SSSRRSRS”以匹配 GPU 的架构。tiling中的前三个空间循环分别绑定到 BlockIdx、虚拟线程（用于减少 bank 冲突）和 ThreadIdx。另外用户也可以自定义规则。
+    - 注释，就是在草图的基础上，随机确定GPU thread bind，for 循环的 unroll、vectorize、parallize，Split 的 factor等等生成完成的代码。（并行外循环，矢量化和展开内循环，这个就对应了GEMM优化中的优化的关键思路）虽然生成了完整的代码，但这个代码的性能是由 Evolutionary Search 来保证的。另外，用户也可以自定义注释。
+    - 然后如何更有效的遍历搜索空间以及剪枝掉一些无用的搜索空间可以看下原论文的相关介绍。
 - 优缺点
-  - 由于Ansor具有超大的搜索空间，在一些主流DNN模型和硬件上都能搜索到性能较好的程序。GPU上可以超越TensorRT，CPU上可以超越TensorflowLite，AutoTVM等。
-  - 但Ansor的搜索时间相比于TVM的提升并不是非常大，要将ResNet50搜索到超越TensorRT的性能需要多个小时。
+    - 由于Ansor具有超大的搜索空间，在一些主流DNN模型和硬件上都能搜索到性能较好的程序。GPU上可以超越TensorRT，CPU上可以超越TensorflowLite，AutoTVM等。
+    - 但Ansor的搜索时间相比于TVM的提升并不是非常大，要将ResNet50搜索到超越TensorRT的性能需要多个小时。
 - 可优化之处思考
-  - 搜索时间如何减少？
-  - 子图划分的粒度比较细，子图太多会不会使得优化算法陷入局部最优？
-  - NC4HW4，Winograd等是否可以添加到推导规则？
+    - 搜索时间如何减少？
+    - 子图划分的粒度比较细，子图太多会不会使得优化算法陷入局部最优？
+    - NC4HW4，Winograd等是否可以添加到推导规则？
 - 论文翻译
-  - 为了更好的理解Ansor，我翻译了一下论文，欢迎大家勘误。
+    - 为了更好的理解Ansor，我翻译了一下论文，欢迎大家勘误。
 
 # Ansor: Generating High-Performance Tensor Programs for Deep Learning
 
