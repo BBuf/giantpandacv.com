@@ -435,6 +435,7 @@ nav:
             - 【从零开始学深度学习编译器】九，TVM的CodeGen流程: 部署优化/深度学习编译器/【从零开始学深度学习编译器】九，TVM的CodeGen流程.md
             - 【从零开始学深度学习编译器】番外一，Data Flow和Control Flow: 部署优化/深度学习编译器/【从零开始学深度学习编译器】番外一，Data Flow和Control Flow.md
             - 【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM: 部署优化/深度学习编译器/【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM.md
+            - Ansor论文阅读笔记&&论文翻译: 部署优化/深度学习编译器/Ansor论文阅读笔记&&论文翻译.md
     - 资源共享:
         - 专栏介绍: 资源共享/README.md
         - Pytorch YOLOV3:
@@ -469,6 +470,7 @@ nav:
         - 人脸106点Caffe模型如何部署到MsnhNet: Msnhnet/人脸106点Caffe模型如何部署到MsnhNet.md
         - 图解神秘的NC4HW4: Msnhnet/图解神秘的NC4HW4.md
         - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
+        - 基于Msnhnet实现最优化问题(中)一(无约束优化问题): Msnhnet/基于Msnhnet实现最优化问题(中)一(无约束优化问题).md
     - 视频专栏: 
         - 视频专栏: video/video_1.md
     - 刷题面试:
