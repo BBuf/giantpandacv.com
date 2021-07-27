@@ -7,29 +7,34 @@
 
 **补充：一维搜索非精确搜索方法。**
 
-1. Armijo条件(控制步长太大)
+1.Armijo条件(控制步长太大)
 
-$$f({x}_k +\alpha_k{d}_k)≤f({x}_k )+\rho\alpha_kf’({x}_k )^T{d}_k,\rho \in (0,0.5)$$
+$$
+f({x}_k +\alpha_k{d}_k)≤f({x}_k )+\rho\alpha_kf’({x}_k )^T{d}_k,\rho \in (0,0.5)
+$$
 
 满足Armijo条件的点为$[0,\beta_1]$和$[\beta_2,\beta_3]$区间的点.
 
 ![Armijo条件](https://img-blog.csdnimg.cn/img_convert/1dc051b03a57260f4501be09788b57ca.png#pic_center)
 
 
-2. Goldstein准则(控制步长太小)
+2.Goldstein准则(控制步长太小)
 
-$$f({x}_k +\alpha_k{d}_k)≤f({x}_k )+\rho\alpha_kf’({x}_k )^T{d}_k\\
+$$
+f({x}_k +\alpha_k{d}_k)≤f({x}_k )+\rho\alpha_kf’({x}_k )^T{d}_k\\
 f({x}_k +\alpha_k{d}_k)≥f({x}_k )+(1−\rho)\alpha_kf’({x}_k )^T{d}_k\\
-\rho \in (0,0.5)$$
+\rho \in (0,0.5)
+$$
 
 满足Goldstein准则的点为$[\beta_7,\beta_4]$和$[\beta_3,\beta_6]$区间的点.
 
 ![Goldstein准则](https://img-blog.csdnimg.cn/img_convert/610bfb230930b2ce4a4f6bd7e15f6e6f.png#pic_center)
 
 
-3. Wolfe准则
+3.Wolfe准则
 
-$$f({x}_k +\alpha_k{d}_k)≤f({x}_k )+\rho\alpha_kf’({x}_k )^T{d}_k\\
+$$
+f({x}_k +\alpha_k{d}_k)≤f({x}_k )+\rho\alpha_kf’({x}_k )^T{d}_k\\
 f’({x}_k +\alpha_k{d}_k)^T{d}_k≥\sigma f’({x}_k )^T{d}_k\\
 1 > \sigma >\rho > 0
 $$
@@ -285,7 +290,9 @@ int main()
 
 LM(Levenberg-Marquardt)法是处理Hessian矩阵$H$奇异、不正定等情形的一个最简单有效的方法，求解${d}_k$公式变为：
 
-$${d}_k=−(H({x}_k)+{\color{red}{v_kI}})^{−1}J({x}_k)$$
+$$
+{d}_k=−(H({x}_k)+{\color{red}{v_kI}})^{−1}J({x}_k)
+$$
 
 式中：
 
@@ -531,36 +538,55 @@ int main()
 ```
 
 结果: 对于初始点 **(0,3)** ,迭代8次即可完成,解决了Newton法Hessian矩阵不正定的问题.
+
 ![牛顿LM法8次迭代求解成功](https://img-blog.csdnimg.cn/img_convert/20db3449c899c1b826582465167e8e74.png#pic_center)
+
 ![牛顿LM法X中间点可视化](https://img-blog.csdnimg.cn/img_convert/1be50cfdca4fa7c094985fa427d19643.png#pic_center)
 
 
 #### 3.拟牛顿法
 
 牛顿法虽然收敛速度快,但是计算过程中需要计算目标函数的Hassian矩阵,有时候Hassian矩阵不能保持正定从而导致牛顿法失效.从而提出拟牛顿法.
+
 **思路:**
+
 通过用不含二阶导数的矩阵$U$代替牛顿法中的$H^{−1}$,然后沿着$−UJ$的方向做一维搜索.不同的构建$U$的方法有不同的拟牛顿法.
+
 **特点:**
+
 1.不用求Hessian矩阵;
+
 2.不用求逆;
+
 **拟牛顿条件**
+
 $令{y}_k=J({x}_k+1)−J({x}_k), {s}_k={x}_{k+1}−{x}_k,有:$
-$${y}_k=H({x}_{k+1}){s}_k\quad or \quad {s}_k=H({x}_{k+1})^{−1}{y}_k$$
+
+$$
+{y}_k=H({x}_{k+1}){s}_k\quad or \quad {s}_k=H({x}_{k+1})^{−1}{y}_k
+$$
 
 **- DFP法**
 不含二阶导数的矩阵$U$(这里写成$D$区分$BFGS$)代替$H^{−1}$,拟牛顿条件写成:
 
-$${s}_k=D_{k+1}{y}_k$$
+$$
+{s}_k=D_{k+1}{y}_k
+$$
 
 叠加方式求$D_{k+1}$,一般取$D_0=I$:
 
-$${d}_k+1={d}_k+\Delta {d}_k,k=0,1,2...$$
+$$
+{d}_k+1={d}_k+\Delta {d}_k,k=0,1,2...
+$$
 
 $\Delta {d}_k$确定(推导过程省略):
 
-$$\Delta {d}_k=\frac{{s}_k{s}_k^T}{{s}_k^T{y}_k}−\frac{{d}_k{y}_k{y}_k^T{d}_k}{{y}_k^T{d}_k{y}_k}$$
+$$
+\Delta {d}_k=\frac{{s}_k{s}_k^T}{{s}_k^T{y}_k}−\frac{{d}_k{y}_k{y}_k^T{d}_k}{{y}_k^T{d}_k{y}_k}
+$$
 
 **步骤:**
+
 $step1.$给定初始点${x}_0 \in R^n,k=0,\rho \in(0,0.5), \tau\in(0,1),$以及最小误差$\xi;$
 
 $step2.$判断${x}_k$是否满足终止条件,是则终止;
@@ -580,6 +606,7 @@ $step8.$计算$\Delta {d}_k=\frac{{s}_k{s}_k^T}{{s}_k^T{y}_k}−\frac{{d}_k{y}_k
 $step9. k=k+1;$返回$step2.$
 
 **- BFGS法**
+
 不含二阶导数的矩阵$U$(这里写成$B$区分$DFP$)代替$H$,拟牛顿条件写成:
 
 $${y}_k=B_{k+1}{s}_k$$
@@ -589,22 +616,33 @@ $${y}_k=B_{k+1}{s}_k$$
 $$B_{k+1}=B_k+\Delta B_k,k=0,1,2...$$
 
 $\Delta B_k$确定(推导过程省略):
-$$\Delta B_k=\frac{{y}_k{y}_k^T}{{y}_k^T{s}_k}−\frac{B_k{s}_k{s}_k^TB_k}{{s}_k^TB{s}_k}$$
+
+$$
+\Delta B_k=\frac{{y}_k{y}_k^T}{{y}_k^T{s}_k}−\frac{B_k{s}_k{s}_k^TB_k}{{s}_k^TB{s}_k}
+$$
 
 利用$Sheman−Morrison$公式:
+
 设$A\in R^n$为非奇异方正,$u,v\in R^n$,若$1+v^TA^{−1}u≠0$,则有:
 
-$$(A+uv^T)^{−1}=A^{−1}−\frac{A^{−1}uv^TA^{−1}}{1+v^TA^{−1}u}$$
+$$
+(A+uv^T)^{−1}=A^{−1}−\frac{A^{−1}uv^TA^{−1}}{1+v^TA^{−1}u}
+$$
 
 得到$B_{k+1}^{−1}$和$B_k^{−1}$的关系:
 
-$$B_{k+1}^{−1}=(I−\frac{{s}_k{y}_k^T}{{y}_k^T{s}_k})B_k^{−1}(I−\frac{{y}_k{s}_k^T}{{y}_k^T{s}_k})+\frac{{s}_k{s}_k^T}{{y}_k^T{s}_k}$$
+$$
+B_{k+1}^{−1}=(I−\frac{{s}_k{y}_k^T}{{y}_k^T{s}_k})B_k^{−1}(I−\frac{{y}_k{s}_k^T}{{y}_k^T{s}_k})+\frac{{s}_k{s}_k^T}{{y}_k^T{s}_k}
+$$
 
 令${d}_k=B_k^{−1}$:
 
-$$D_{k+1}=(I−\frac{{s}_k{y}_k^T}{{y}_k^T{s}_k}){d}_k(\frac{I−{y}_k{s}_k^T}{{y}_k^T{s}_k})+\frac{{s}_k{s}_k^T}{{y}_k^T{s}_k}$$
+$$
+D_{k+1}=(I−\frac{{s}_k{y}_k^T}{{y}_k^T{s}_k}){d}_k(\frac{I−{y}_k{s}_k^T}{{y}_k^T{s}_k})+\frac{{s}_k{s}_k^T}{{y}_k^T{s}_k}
+$$
 
 **步骤:**
+
 $step1.$给定初始点${x}_0\in R^n,k=0,\rho\in (0,0.5), \tau\in (0,1),$以及最小误差$\xi;$
 
 $step2.$判断${x}_k$是否满足终止条件,是则终止;
@@ -624,6 +662,7 @@ $step8.$计算$D_{k+1}=(I−\frac{{s}_k{y}_k^T}{{y}_k^T{s}_k}){d}_k(\frac{I−{y
 $step9. k=k+1;$返回$step2.$
 
 ##### 举例
+
 $y = 3x_1^2+3x_2^2-x_1^2+x_2,$初始点(4,3),$\xi=10^{-3}$
 
 ```c++
