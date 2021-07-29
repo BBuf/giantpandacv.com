@@ -24,7 +24,7 @@
 
 混合精度训练，以pytorch 1.6版本为基础的话，大致是有3种方案，依次介绍如下：
 
-1. 模型和输入输出直接half，如果有BN，那么BN计算需要转为FP32精度，我上面的问题就是基于此来训练的，代码如下：
+1.模型和输入输出直接half，如果有BN，那么BN计算需要转为FP32精度，我上面的问题就是基于此来训练的，代码如下：
 
 ```python
     if args.FP16:
@@ -44,7 +44,7 @@
         optimizer.step()
 ```
 
-2. 使用NVIDIA的Apex库，这里有O1,O2,O3三种训练模式，代码如下：
+2.使用NVIDIA的Apex库，这里有O1,O2,O3三种训练模式，代码如下：
 
 ```python
 try:
@@ -75,7 +75,7 @@ for data in dataloader:
         optimizer.step()
 ```
 
-3. pytorch1.6版本以后把apex并入到了自身的库里面，代码如下：
+3.pytorch1.6版本以后把apex并入到了自身的库里面，代码如下：
 
 ```python
 from torch.cuda.amp import autocast as autocast
@@ -171,7 +171,9 @@ pytorch分布式有两种不同的启动方法，一种是单机多卡启动，�
 
 实验均在ResNet50和imagenet下面进行的，LR随着BS变换和线性增长，公式如下
 
-$$ Lr = Lr_{init} * \frac{BatchSize}{256} $$
+$$
+Lr = Lr_{init} * \frac{BatchSize}{256} 
+$$
 
 - 实验结果
 
