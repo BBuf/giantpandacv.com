@@ -86,6 +86,7 @@ nav:
             - 【CV中的Attention机制】ShuffleAttention: 算法科普/CV中的注意力机制/【CV中的Attention机制】ShuffleAttention.md
             - 深度学习中的Attention机制: 算法科普/CV中的注意力机制/深度学习中的Attention机制.md
             - 深度学习中的Attention机制-Part2: 算法科普/CV中的注意力机制/深度学习中的Attention机制-Part2.md
+            - 结合代码看深度学习中的Attention机制-Part2: 算法科普/CV中的注意力机制/结合代码看深度学习中的Attention机制-Part2.md
         - Transformer: 
             - 解析Transformer模型: 算法科普/Transformer/解析Transformer模型.md
             - 解析Vision Transformer: 算法科普/Transformer/解析Vision Transformer.md
