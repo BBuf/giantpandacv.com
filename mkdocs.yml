@@ -87,6 +87,7 @@ nav:
             - 深度学习中的Attention机制: 算法科普/CV中的注意力机制/深度学习中的Attention机制.md
             - 深度学习中的Attention机制-Part2: 算法科普/CV中的注意力机制/深度学习中的Attention机制-Part2.md
             - 结合代码看深度学习中的Attention机制-Part2: 算法科普/CV中的注意力机制/结合代码看深度学习中的Attention机制-Part2.md
+            - Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显: 算法科普/CV中的注意力机制/Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显.md
         - Transformer: 
             - 解析Transformer模型: 算法科普/Transformer/解析Transformer模型.md
             - 解析Vision Transformer: 算法科普/Transformer/解析Vision Transformer.md
