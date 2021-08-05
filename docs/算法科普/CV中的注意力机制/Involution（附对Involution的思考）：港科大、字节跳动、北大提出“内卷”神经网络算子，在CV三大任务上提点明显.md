@@ -45,8 +45,11 @@ CNN的通道特异性指的是：输出特征的每个通道信息是由输入�
 （图来自[https://zhuanlan.zhihu.com/p/339835983](https://zhuanlan.zhihu.com/p/339835983)）
 
 如上图所示，正常卷积的卷积核大小为$C_o \times C_{in} \times K \times K$，可以看出卷积核矩阵的大小，我们也可以看出，卷积的参数与输入特征的大小H和W是无关的，因此具有空间不变性；与输入和输出通道的数量是呈正比的，因此具有通道特异性。可以表示成下面的公式：
+
 ![](https://img-blog.csdnimg.cn/20210712101321332.png)
+
 ![](https://img-blog.csdnimg.cn/20210712101333742.png)
+
 ![Depthwise卷积过程](https://img-blog.csdnimg.cn/20210712101340410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phc29uX2FuZHJvaWQ5OA==,size_16,color_FFFFFF,t_70)
 
 
@@ -168,6 +171,7 @@ Involution可以表示成下面的公式：
 
 
 ## 4.5. 消融实验
+
 ![不同kernel size的结果](https://img-blog.csdnimg.cn/20210712101824690.png)
 
 ![不同group数的结果](https://img-blog.csdnimg.cn/2021071210183747.png)
