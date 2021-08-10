@@ -174,6 +174,7 @@ nav:
             - 深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？: 算法科普/手工调参Tricks/深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？.md
             - 激活还是不激活？CVPR2021-Activate Or Not: 算法科普/手工调参Tricks/激活还是不激活？CVPR2021-Activate Or Not.md
             - 浅谈混合精度训练ImageNet: 算法科普/手工调参Tricks/浅谈混合精度训练ImageNet.md
+            - Piecewise Linear Unit：分段线性激活函数: 算法科普/手工调参Tricks/Piecewise Linear Unit：分段线性激活函数.md
         - 综述类:
             - 【综述】Dropout模式和发展: 算法科普/综述类/【综述】Dropout模式和发展.md
             - 【综述】图像去雾的前世今生: 算法科普/综述类/【综述】图像去雾的前世今生.md
