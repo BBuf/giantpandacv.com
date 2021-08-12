@@ -469,6 +469,7 @@ nav:
         - 让vscode在远程连接服务器时候如本地般顺滑地debug: 资源共享/让vscode在远程连接服务器时候如本地般顺滑地debug.md
         - 如何让vscode远程连接服务器上的docker环境进行debug: 资源共享/如何让vscode远程连接服务器上的docker环境进行debug.md
         - 我们是如何搭建GiantPandaCV.com的: 资源共享/我们是如何搭建GiantPandaCV.com的.md
+        - Linux中Shell编程语法: 资源共享/Linux中Shell编程语法.md
     - MsnhNet:
         - 专栏介绍: Msnhnet/README.md
         - 多平台轻量级PyTorch模型推理框架MsnhNet: Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
