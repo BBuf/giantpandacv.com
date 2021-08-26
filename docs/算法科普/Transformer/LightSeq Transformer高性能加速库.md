@@ -11,12 +11,15 @@ Transformer，Bert模型在NLP领域取得巨大成功，得到广泛应用。�
 类似LightSeq的高性能加速库也有很多，下面的三个主要特性是我们比别的加速库表现好的原因：
 
 1. 我们将Tensorflow/Pytorch实现中的一些细粒度Kernel，进一步融合实现成一个粗粒度的Kernel，从而避免大量核函数启动和GPU memory IO带来的时间成本
+ 
 2. 我们设计了一种hierarchical（层级） auto regressive search来替代auto regressive search，进一步加速
+
 3. 我们提出了一种动态显存复用策略，在NLP处理中，我们经常会遇到变长数据，给内存分配带来了困难。LightSeq预先定义了每个kernel最大可使用显存，并给不存在依赖关系的kernel进行共享，能够减少8倍内存分配。
 
 ### 方法
 
 ![Transformer模型概览](https://files.mdnice.com/user/4601/7f0c64c2-fe1b-4efe-b69e-594aeb38251a.png)
+
 Transformer主要分为两部分，特征计算层和输出层。特征计算层就是自注意力机制+FFN这些，而输出层则会随着任务不同而有些许改变。在NLU上是分类，而在NLG上是搜索(用beam search)。
 
 我们做了一下三个优化来分别解决前面提到的问题
@@ -68,9 +71,11 @@ __global__ void ker_layer_norm(T *ln_res, T *vars, T *means, const T *inp,
 分别对sum，和square_sum做一次reduce操作。然后在0号线程上，计算得到mean和var。
 
 这里的var用的是公式
+
 $$
 D(x) = E(X^2) - E(X)^2
 $$
+
 得到，然后进行同步。注意这里的`s_mean`和`s_var`是一个shared变量，可以被同一个block内的其他线程得到。
 
 最后就是减均值，除方差，拉伸变换这部分操作
@@ -141,6 +146,7 @@ Transformer，Bert模型在NLP领域取得巨大成功，得到广泛应用。�
 ### 方法
 
 ![Transformer模型概览](https://files.mdnice.com/user/4601/7f0c64c2-fe1b-4efe-b69e-594aeb38251a.png)
+
 Transformer主要分为两部分，特征计算层和输出层。特征计算层就是自注意力机制+FFN这些，而输出层则会随着任务不同而有些许改变。在NLU上是分类，而在NLG上是搜索(用beam search)。
 
 我们做了一下三个优化来分别解决前面提到的问题
@@ -192,9 +198,11 @@ __global__ void ker_layer_norm(T *ln_res, T *vars, T *means, const T *inp,
 分别对sum，和square_sum做一次reduce操作。然后在0号线程上，计算得到mean和var。
 
 这里的var用的是公式
+
 $$
 D(x) = E(X^2) - E(X)^2
 $$
+
 得到，然后进行同步。注意这里的`s_mean`和`s_var`是一个shared变量，可以被同一个block内的其他线程得到。
 
 最后就是减均值，除方差，拉伸变换这部分操作
@@ -219,10 +227,12 @@ kernel fusion这种优化也是在别的加速库很常见，nvidia出品的Mega
 auto regressive search方法如beam seach, diverse beam search等方法计算过于复杂。通常我们只需要置信度较高的几个label/tokens，而不是所有token都需要参与最终输出的计算。 
 
 我们简单回顾下beam search做法：
+
 1. 使用softmax计算，并将结果写入gpu memory
 2. 读取结果，并从中选取top-K的beams和tokens
 
 而lightseq受启发于推荐系统的检索+重排，采用了两阶段策略：
+
 1. 随机将logits组分到k个组
 2. 计算每个group($g_i$)的最大值，记为$m_i$
 3. 在$m_i$中，计算最小值$R$，可以看作是logits粗略的top-k值

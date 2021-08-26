@@ -98,6 +98,9 @@ nav:
             - 《互协方差注意力Transformer：XCiT》: 算法科普/Transformer/《互协方差注意力Transformer：XCiT》.md
             - OutLook Attention：具有局部信息感知能力的ViT: 算法科普/Transformer/OutLook Attention：具有局部信息感知能力的ViT.md
             - Vision Transformer新秀：VOLO: 算法科普/Transformer/Vision Transformer新秀：VOLO.md
+            - LightSeq Transformer高性能加速库: 算法科普/Transformer/LightSeq Transformer高性能加速库.md
+            - 浅谈CMT以及复现: 算法科普/Transformer/浅谈CMT以及复现.md
+            - 浅谈CSWin-Transformers: 算法科普/Transformer/浅谈CSWin-Transformers.md
         - 半监督&无监督:
             - WSCL: 算法科普/半监督&无监督/WSCL.md
             - 弱监督方法在森林病虫害检测中的应用: 算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
@@ -322,6 +325,7 @@ nav:
         - 语义分割算法之PSPNet论文理解: 语义及实例分割/语义分割算法之PSPNet论文理解.md
         - 语义分割算法之SegNet论文理解: 语义及实例分割/语义分割算法之SegNet论文理解.md
         - 语义分割算法之Unet论文理解: 语义及实例分割/语义分割算法之Unet论文理解.md
+        - 图像分割的一些理解: 语义及实例分割/图像分割的一些理解.md
     - 科研及竞赛分享:
         - 专栏介绍: 科研及竞赛分享/README.md
         - 前沿论文阅读:
@@ -469,6 +473,8 @@ nav:
         - 让vscode在远程连接服务器时候如本地般顺滑地debug: 资源共享/让vscode在远程连接服务器时候如本地般顺滑地debug.md
         - 如何让vscode远程连接服务器上的docker环境进行debug: 资源共享/如何让vscode远程连接服务器上的docker环境进行debug.md
         - 我们是如何搭建GiantPandaCV.com的: 资源共享/我们是如何搭建GiantPandaCV.com的.md
+        - Linux中Shell编程语法: 资源共享/Linux中Shell编程语法.md
+        - docker基础知识分享: 资源共享/docker基础知识分享.md
     - MsnhNet:
         - 专栏介绍: Msnhnet/README.md
         - 多平台轻量级PyTorch模型推理框架MsnhNet: Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
