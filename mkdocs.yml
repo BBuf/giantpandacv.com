@@ -406,6 +406,7 @@ nav:
             - INT8 量化训练: 部署优化/AI 部署及其它优化算法/INT8 量化训练.md
             - 深度学习框架OneFlow是如何和ONNX交互的？: 部署优化/AI 部署及其它优化算法/深度学习框架OneFlow是如何和ONNX交互的？.md
             - EagleEye：一种用模型剪枝的快速衡量子网络性能的方法: 部署优化/AI 部署及其它优化算法/EagleEye：一种用模型剪枝的快速衡量子网络性能的方法​.md
+            - 基于OneFlow实现量化感知训练: 部署优化/AI 部署及其它优化算法/基于OneFlow实现量化感知训练.md
         - AI 移动端算法优化: 
             - 移动端arm cpu优化学习笔记:
                 - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: 部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md

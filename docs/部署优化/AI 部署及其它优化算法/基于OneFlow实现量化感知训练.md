@@ -33,6 +33,7 @@ $Z = round(q_{max} - \frac{r_{max}}{S})$
 ![OneFlow MinMaxObserver文档](https://img-blog.csdnimg.cn/70d3c0db0eec496daaeba7b3fb22b056.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 从这个文档我们可以看到MinMaxObserver操作被封装成`oneflow.nn.MinMaxObserver`这个Module（Module在Pytorch中对应`torch.nn.Module`，然后OneFlow的接口也在靠近Pytorch，也对应有`oneflow.nn.Module`，因此这里将其封装为`oneflow.nn.Module`）。这个Module的参数有：
+
 - `quantization_bit`表示量化Bit数
 - `quantization_scheme` 表示量化的方式，有对称量化`symmetric`和非对称量化`affine`两种，区别就是对称量化浮点0和量化空间中的0一致
 - `quantization_formula` 表示量化的方案，有Google和Cambricon两种，Cambricon是中科寒武纪的意思
@@ -122,6 +123,7 @@ void GenQuantScaleCambricon(const T* in_ptr, const int32_t quantization_bit,
 ![OneFlow FakeQuantization文档](https://img-blog.csdnimg.cn/52a51a7b2c554b259e256ea397aaf4f7.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
 
 同样，FakeQuantization也被封装为一个`oneflow.nn.Module`。在上一节提到，量化感知训练和后训练量化的主要区别在于它会对激活以及权重参数做模拟量化操作，即FP32->INT8->FP32。通过这种模拟将量化过程中产生的误差也作为一个特征提供给网络学习，以期在实际量化部署时获得更好的准确率。这个接口有以下参数：
+
 - `scale`：由MinMaxObserver组件算出来的量化`scale`
 - `zero_point`：由MinMaxObserver组件算出来的量化`zero_point`
 - `quantization_bit`： 量化比特数
@@ -443,7 +445,6 @@ model_int8 = convert_fx(model_prepared)
 - [神经网络量化入门--后训练量化](https://mp.weixin.qq.com/s/sRvpzJjMdAyaxA6Gr6a8HA)
 - [神经网络量化入门--量化感知训练](https://mp.weixin.qq.com/s/LiM4A182730ap_aqxbO4CQ)
 - [神经网络量化入门--Folding BN ReLU代码实现](https://mp.weixin.qq.com/s/JVnEpErvyzEewfTahyP_RA)
-
 
 -----------------------------------------------------------------------------------------------
 欢迎关注GiantPandaCV, 在这里你将看到独家的深度学习分享，坚持原创，每天分享我们学习到的新鲜知识。( • ̀ω•́ )✧
