@@ -63,7 +63,138 @@ nav:
                 - 图像处理中的模糊算法: academic/传统图像/一些基础的图像算法/图像处理中的模糊算法.md
                 - 图像处理中的锐化算: academic/传统图像/一些基础的图像算法/图像处理中的锐化算法.md
                 - 引导滤波 原理及实现: academic/传统图像/一些基础的图像算法/引导滤波 原理及实现.md
-    
+        - 科研及竞赛分享:
+            - 专栏介绍: academic/科研及竞赛分享/README.md
+            - 红外目标检测实验结果收集: academic/科研及竞赛分享/红外目标检测实验结果收集.md
+            - 如何改进yolov3: academic/科研及竞赛分享/如何改进yolov3.md
+            - 验证码识别竞赛解决方案: academic/科研及竞赛分享/验证码识别竞赛解决方案.md
+            - 关键点定位红外小目标: academic/科研及竞赛分享/关键点定位红外小目标.md
+            - 2019 天池县域农业大脑AI挑战赛冠军方案分享: academic/科研及竞赛分享/2019 天池县域农业大脑AI挑战赛冠军方案分享.md
+            - ACCV国际细粒度识别比赛复盘: academic/科研及竞赛分享/ACCV国际细粒度识别比赛复盘.md
+            - 基于CenterFace的模型优化记录: academic/科研及竞赛分享/基于CenterFace的模型优化记录.md
+            - 人物属性模型移动端实验记录: academic/科研及竞赛分享/人物属性模型移动端实验记录.md
+            - 基于深度学习的RGBD深度图补全算法文章鉴赏: academic/科研及竞赛分享/基于深度学习的RGBD深度图补全算法文章鉴赏.md
+        - 目标检测及跟踪:
+            - 专栏介绍: academic/目标检测及跟踪/README.md
+            - Darknet:
+                - Darknet源码阅读综合版: academic/目标检测及跟踪/Darknet/Darknet源码阅读综合版.md
+                - 基于CS231N和Darknet解析BatchNorm层的前向和反向传播: academic/目标检测及跟踪/Darknet/基于CS231N和Darknet解析BatchNorm层的前向和反向传播.md
+            - YOLOV3特色专题:
+                - YOLOV3损失函数再思考 Plus: academic/目标检测及跟踪/YOLOV3特色专题/YOLOV3损失函数再思考 Plus.md
+                - 官方DarkNet YOLO V3损失函数完结版: academic/目标检测及跟踪/YOLOV3特色专题/官方DarkNet YOLO V3损失函数完结版.md
+                - 你对YOLOV3损失函数真的理解正确了吗？: academic/目标检测及跟踪/YOLOV3特色专题/你对YOLOV3损失函数真的理解正确了吗？.md
+                - 史上最详细的Yolov3边框预测分析: academic/目标检测及跟踪/YOLOV3特色专题/史上最详细的Yolov3边框预测分析.md
+            - 经典检测算法代码解析:
+                - CenterNet: 
+                    - Centernet0-数据集配置: academic/目标检测及跟踪/经典检测算法代码解析/CenterNet/Centernet0-数据集配置.md
+                    - CenterNet1-数据集构建: academic/目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet1-数据集构建.md
+                    - CenterNet2-骨干网络之hourglass: academic/目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet2-骨干网络之hourglass.md
+                    - CenterNet3-骨干网络之DeepLayerAgregation: academic/目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet3-骨干网络之DeepLayerAgregation.md
+                    - CenterNet4-Loss计算: academic/目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet4-Loss计算.md
+                    - CenterNet5-测试推理过程: academic/目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet5-测试推理过程.md
+                    - CenterNet 电子书: academic/目标检测及跟踪/经典检测算法代码解析/CenterNet/CenterNet电子书.md
+                    - 用CenterNet对旋转目标进行检测: academic/目标检测及跟踪/经典检测算法代码解析/CenterNet/用CenterNet对旋转目标进行检测.md
+                - FasterRCNN:
+                    - 【Faster RCNN理解】1. 整体框架: academic/目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster RCNN理解】1. 整体框架.md
+                    - 【Faster R-CNN】2. Faster RCNN代码解析第一弹: academic/目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster R-CNN】2. Faster RCNN代码解析第一弹.md
+                    - 【Faster R-CNN】3. Faster RCNN代码解析第二弹: academic/目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster R-CNN】3. Faster RCNN代码解析第二弹.md
+                    - 【Faster R-CNN】4. Faster RCNN代码解析第三弹: academic/目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster R-CNN】4. Faster RCNN代码解析第三弹.md
+                    - 【Faster R-CNN】5. Faster RCNN代码解析第四弹: academic/目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster R-CNN】5. Faster RCNN代码解析第四弹.md
+                    - 【Faster RCNN】概述（番外）: academic/目标检测及跟踪/经典检测算法代码解析/FasterRCNN/【Faster RCNN】概述（番外）.md
+                - SSD:
+                    - 目标检测算法之SSD代码解析(万字长文超详细): academic/目标检测及跟踪/经典检测算法代码解析/SSD/目标检测算法之SSD代码解析(万字长文超详细).md
+                    - 目标检测算法之SSD的数据增强策略: academic/目标检测及跟踪/经典检测算法代码解析/SSD/目标检测算法之SSD的数据增强策略.md
+                - YOLOV3:
+                    - 【从零开始学习YOLOv3】1. YOLO cfg文件解析: academic/目标检测及跟踪/经典检测算法代码解析/YOLOV3/【从零开始学习YOLOv3】1. YOLO cfg文件解析.md
+                    - 【从零开始学习YOLOv3】2. 代码配置和数据集处理: academic/目标检测及跟踪/经典检测算法代码解析/YOLOV3/【从零开始学习YOLOv3】2. 代码配置和数据集处理.md
+                    - 【从零开始学习YOLOv3】3. YOLOv3的数据组织与处理: academic/目标检测及跟踪/经典检测算法代码解析/YOLOV3/【从零开始学习YOLOv3】3. YOLOv3的数据组织与处理.md
+                    - 【从零开始学习YOLOv3】4. YOLOv3中的参数进化: academic/目标检测及跟踪/经典检测算法代码解析/YOLOV3/【从零开始学习YOLOv3】4. YOLOv3中的参数进化.md
+                    - 【从零开始学习YOLOv3】5. 网络模型的构建: academic/目标检测及跟踪/经典检测算法代码解析/YOLOV3/【从零开始学习YOLOv3】5. 网络模型的构建.md
+                    - 【从零开始学习YOLOv3】6. 模型构建中的YOLOLayer: academic/目标检测及跟踪/经典检测算法代码解析/YOLOV3/【从零开始学习YOLOv3】6. 模型构建中的YOLOLayer.md
+                    - 【从零开始学习YOLOv3】7. 教你在YOLOv3模型中添加Attention机制: academic/目标检测及跟踪/经典检测算法代码解析/YOLOV3/【从零开始学习YOLOv3】7. 教你在YOLOv3模型中添加Attention机制.md
+                    - 【从零开始学习YOLOv3】8. YOLOv3中Loss部分计算: academic/目标检测及跟踪/经典检测算法代码解析/YOLOV3/【从零开始学习YOLOv3】8. YOLOv3中Loss部分计算.md
+                    - 从零开始学习YOLOv3汇总版_GiantPandaCV公众号: academic/目标检测及跟踪/经典检测算法代码解析/YOLOV3/从零开始学习YOLOv3汇总版_GiantPandaCV公众号.md
+                - 来自AlexeyAB的目标检测建议: academic/目标检测及跟踪/经典检测算法代码解析/来自AlexeyAB的目标检测建议.md
+                - 利用Darket 和YOLOV3训练自己的数据集(制作VOC): academic/目标检测及跟踪/经典检测算法代码解析/利用Darket 和YOLOV3训练自己的数据集(制作VOC).md
+                - 目标检测算法之NMS后处理相关: academic/目标检测及跟踪/经典检测算法代码解析/目标检测算法之NMS后处理相关.md
+                - 目标检测算法之YOLO系列算法的Anchor聚类: academic/目标检测及跟踪/经典检测算法代码解析/目标检测算法之YOLO系列算法的Anchor聚类.md
+                - 目标检测算法之评价标准和常见数据集盘点: academic/目标检测及跟踪/经典检测算法代码解析/目标检测算法之评价标准和常见数据集盘点.md
+                - 比NMS更优的Confluence论文复现: academic/目标检测及跟踪/经典检测算法代码解析/比NMS更优的Confluence论文复现.md
+            - 论文解析:
+                - anchor free模型:
+                    - 【目标检测Anchor-Free】CVPR 2019 CenterNet: academic/目标检测及跟踪/论文解析/anchor free模型/【目标检测Anchor-Free】CVPR 2019 CenterNet.md
+                    - 【目标检测Anchor-Free】CVPR 2019 ExtremeNet（相比CornerNet涨点5.3%）: academic/目标检测及跟踪/论文解析/anchor free模型/【目标检测Anchor-Free】CVPR 2019 ExtremeNet（相比CornerNet涨点5.3%）.md
+                    - 【目标检测Anchor-Free】CVPR 2019 Object as Points（CenterNet）: academic/目标检测及跟踪/论文解析/anchor free模型/【目标检测Anchor-Free】CVPR 2019 Object as Points（CenterNet）.md
+                    - 【目标检测Anchor-Free】ECCV 2018 CornerNet: academic/目标检测及跟踪/论文解析/anchor free模型/【目标检测Anchor-Free】ECCV 2018 CornerNet.md
+                    - CenterNet-Object As Points: academic/目标检测及跟踪/论文解析/anchor free模型/CenterNet-Object As Points.md
+                    - 目标检测算法之Anchor Free的起源：CVPR 2015 DenseBox: academic/目标检测及跟踪/论文解析/anchor free模型/目标检测算法之Anchor Free的起源：CVPR 2015 DenseBox.md
+                    - RepPoint及RepPointv2初探: academic/目标检测及跟踪/论文解析/anchor free模型/RepPoint及RepPointv2初探.md
+                - one stage模型:
+                    - 目标检测算法之YOLOv1: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之YOLOv1.md
+                    - 目标检测算法之YOLOv2: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之YOLOv2.md
+                    - 目标检测算法之YOLOv2损失函数详解: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之YOLOv2损失函数详解.md
+                    - 目标检测算法之YOLOv3及YOLOV3-Tiny: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之YOLOv3及YOLOV3-Tiny.md
+                    - 一张图梳理YOLOv4: academic/目标检测及跟踪/论文解析/one stage模型/一张图梳理YOLOv4.md
+                    - 目标检测算法之AAAI2019 Oral论文GHM Loss: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之AAAI2019 Oral论文GHM Loss.md
+                    - 目标检测算法之AAAI 2020 《Distance-IoU Loss Faster and Better Learning for Bounding Box Regression》已开源: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之AAAI 2020 《Distance-IoU Loss Faster and Better Learning for Bounding Box Regression》已开源.md
+                    - 目标检测算法之CVPR 2018 RefineDet: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之CVPR 2018 RefineDet.md
+                    - 目标检测算法之CVPR2019 GIoU Loss: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之CVPR2019 GIoU Loss.md
+                    - 目标检测算法之ECCV 2018 RFBNet，在检测中调感受野: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之ECCV 2018 RFBNet，在检测中调感受野.md
+                    - 目标检测算法之ICCV 2019 TridentNet（三叉戟网络，刷新COCO纪录，已开源）: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之ICCV 2019 TridentNet（三叉戟网络，刷新COCO纪录，已开源）.md
+                    - 目标检测算法之ICCV2019 Gaussian YOLOv3: academic/目标检测及跟踪/论文解析/one stage模型/目标检测算法之ICCV2019 Gaussian YOLOv3.md
+                    - 在小目标检测上另辟蹊径的SNIP: academic/目标检测及跟踪/论文解析/one stage模型/在小目标检测上另辟蹊径的SNIP.md
+                    - Repulsion Loss 遮挡场景下的目标检测: academic/目标检测及跟踪/论文解析/one stage模型/Repulsion Loss 遮挡场景下的目标检测.md
+                    - SNIP的升级版SNIPER（效果比Mosaic更佳）: academic/目标检测及跟踪/论文解析/one stage模型/SNIP的升级版SNIPER（效果比Mosaic更佳）.md
+                    - YOLT 大尺寸图像目标检测的解决方案: academic/目标检测及跟踪/论文解析/one stage模型/YOLT 大尺寸图像目标检测的解决方案.md
+                    - 不需要预训练模型的目标检测算法DSOD: academic/目标检测及跟踪/论文解析/one stage模型/不需要预训练模型的目标检测算法DSOD.md
+                    - PPYOLO: academic/目标检测及跟踪/论文解析/one stage模型/PPYOLO.md
+                - two stage模型:
+                    - Group Sample：一个简单有效的目标检测升点Trick: academic/目标检测及跟踪/论文解析/two stage模型/Group Sample：一个简单有效的目标检测升点Trick.md
+                    - 目标检测算法之CVPR 2018 Cascade R-CNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之CVPR 2018 Cascade R-CNN.md
+                    - 目标检测算法之CVPR 2019 Guided Anchoring: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之CVPR 2019 Guided Anchoring.md
+                    - 目标检测算法之Fast-RCNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之Fast-RCNN.md
+                    - 目标检测算法之Faster-RCNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之Faster-RCNN.md
+                    - 目标检测算法之FPN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之FPN.md
+                    - 目标检测算法之Light-Head R-CNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之Light-Head R-CNN.md
+                    - 目标检测算法之NIPS 2016 R-FCN（来自微软何凯明团队）: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之NIPS 2016 R-FCN（来自微软何凯明团队）.md
+                    - 目标检测算法之RCNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之RCNN.md
+                    - 目标检测算法之RetinaNet（引入Focal Loss）: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之RetinaNet（引入Focal Loss）.md
+                    - Towards Open World Object Detection -CVPR2021 Oral（开放世界中的目标检测）: academic/目标检测及跟踪/论文解析/two stage模型/Towards Open World Object Detection -CVPR2021 Oral（开放世界中的目标检测）.md
+                - 嵌入式端小模型:
+                    - Pelee 移动端实时检测骨干网络: academic/目标检测及跟踪/论文解析/嵌入式端小模型/Pelee 移动端实时检测骨干网络.md
+            - 目标跟踪:
+                - darklabel教程: academic/目标检测及跟踪/目标跟踪/darklabel教程.md
+                - deepsort框架梳理: academic/目标检测及跟踪/目标跟踪/deepsort框架梳理.md
+                - 多目标跟踪数据集解析: academic/目标检测及跟踪/目标跟踪/多目标跟踪数据集解析.md
+                - deep sort论文: academic/目标检测及跟踪/目标跟踪/deep sort论文.md
+                - Deep Sort多目标跟踪算法解析(上): academic/目标检测及跟踪/目标跟踪/Deep Sort多目标跟踪算法解析(上).md
+                - Deep Sort多目标跟踪算法解析(下): academic/目标检测及跟踪/目标跟踪/Deep Sort多目标跟踪算法解析(下).md
+                - DeepSORT算法代码解析(全): academic/目标检测及跟踪/目标跟踪/DeepSORT算法代码解析(全).md
+                - 多目标跟踪快速入门: academic/目标检测及跟踪/目标跟踪/多目标跟踪快速入门.md
+            - 人脸识别:
+                - CPU上的实时人脸检测算法FaceBoxes: academic/目标检测及跟踪/人脸识别/CPU上的实时人脸检测算法FaceBoxes.md
+                - InsightFace力作：RetinaFace单阶段人脸检测器: academic/目标检测及跟踪/人脸识别/InsightFace力作：RetinaFace单阶段人脸检测器.md
+                - 一个实用价值很大的人脸关键点检测算法PFLD: academic/目标检测及跟踪/人脸识别/一个实用价值很大的人脸关键点检测算法PFLD.md
+                - 人脸识别系列一  特征脸法: academic/目标检测及跟踪/人脸识别/人脸识别系列一  特征脸法.md
+                - 人脸识别系列二  FisherFace，LBPH算法及Dlib人脸检测: academic/目标检测及跟踪/人脸识别/人脸识别系列二  FisherFace，LBPH算法及Dlib人脸检测.md
+                - 人脸识别系列三  MTCNN算法详解上篇: academic/目标检测及跟踪/人脸识别/人脸识别系列三  MTCNN算法详解上篇.md
+                - 人脸轻量级: academic/目标检测及跟踪/人脸识别/人脸轻量级.md
+                - 利用渐进校准网络(PCN)的实时角度无关人脸检测: academic/目标检测及跟踪/人脸识别/利用渐进校准网络(PCN)的实时角度无关人脸检测.md
+                - 在小尺寸人脸检测上发力的S3FD: academic/目标检测及跟踪/人脸识别/在小尺寸人脸检测上发力的S3FD.md
+                - 小目标人脸检测SOTA网络PyramidBox++: academic/目标检测及跟踪/人脸识别/小目标人脸检测SOTA网络PyramidBox++.md
+                - 用于人脸检测的SSH算法: academic/目标检测及跟踪/人脸识别/用于人脸检测的SSH算法.md
+                - 百度 PyramidBox 人脸检测器: academic/目标检测及跟踪/人脸识别/百度 PyramidBox 人脸检测器.md
+            - 旋转目标检测:
+                - 旋转目标检测中anchor匹配机制的问题和一些思考: academic/目标检测及跟踪/旋转目标检测/旋转目标检测中anchor匹配机制的问题和一些思考.md
+            - 文献综述:
+                - 【综述】Pytorch YOLO项目推荐 建议收藏学习: academic/目标检测及跟踪/文献综述/【综述】Pytorch YOLO项目推荐 建议收藏学习.md
+                - 深度学习检测网络论文阅读50篇--第一章: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第一章.md
+                - 深度学习检测网络论文阅读50篇--第二章: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第二章.md
+                - 深度学习检测网络论文阅读50篇--第三章: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第三章.md
+                - 深度学习检测网络论文阅读50篇--第四章: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第四章.md
+                - 深度学习检测网络论文阅读50篇汇总: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇汇总.md
+                - 从检测角度理解label assign当前进展: academic/目标检测及跟踪/文献综述/从检测角度理解label assign当前进展.md
+
 
 # Theme
 theme:
