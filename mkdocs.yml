@@ -194,7 +194,158 @@ nav:
                 - 深度学习检测网络论文阅读50篇--第四章: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第四章.md
                 - 深度学习检测网络论文阅读50篇汇总: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇汇总.md
                 - 从检测角度理解label assign当前进展: academic/目标检测及跟踪/文献综述/从检测角度理解label assign当前进展.md
-
+        - 算法科普:
+            - 专栏介绍: academic/算法科普/README.md
+            - AutoML: 
+                - 你所需要知道的关于AutoML和NAS的知识点: academic/算法科普/AutoML/你所需要知道的关于AutoML和NAS的知识点.md
+                - 【神经网络搜索】1. NAS-RL（ICLR 2017）: academic/算法科普/AutoML/【神经网络搜索】1. NAS-RL（ICLR 2017）.md
+                - 【神经网络搜索】DARTS: academic/算法科普/AutoML/【神经网络搜索】DARTS.md
+                - 【神经网络搜索】ENAS: academic/算法科普/AutoML/【神经网络搜索】ENAS.md
+                - 【神经网络搜索】NasBench101: academic/算法科普/AutoML/【神经网络搜索】NasBench101.md
+                - 【神经网络搜索】Once for all: academic/算法科普/AutoML/【神经网络搜索】Once for all.md
+                - 【神经网络搜索】Single Path One Shot: academic/算法科普/AutoML/【神经网络搜索】Single Path One Shot.md
+            - CV中的特征金字塔:
+                - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
+                - 【CV中的特征金字塔】二，Feature Pyramid Network: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】二，Feature Pyramid Network.md
+                - 【CV中的特征金字塔】三，两阶段实时监测网络ThunderNet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】三，两阶段实时监测网络ThunderNet.md
+                - 【CV中的特征金字塔】四，CVPR 2018 PANet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】四，CVPR 2018 PANet.md
+                - 【CV中的特征金字塔】五，Google Brain EfficientDet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】五，Google Brain EfficientDet.md
+                - 【CV中的特征金字塔】六，ECCV 2018 PFPNet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】六，ECCV 2018 PFPNet.md
+                - 【CV中的特征金字塔】七，SSD算法的改进版Rainbow SSD: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】七，SSD算法的改进版Rainbow SSD.md
+                - 【CV中的特征金字塔】八，SSD的改进版之DSSD: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】八，SSD的改进版之DSSD.md
+            - CV中的注意力机制:
+                - 【CV中的Attention机制】BiSeNet中的FFM模块与ARM模块: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】BiSeNet中的FFM模块与ARM模块.md
+                - 【CV中的Attention机制】CBAM的姊妹篇-BAM模块:  academic/算法科普/CV中的注意力机制/【CV中的Attention机制】CBAM的姊妹篇-BAM模块.md
+                - 【CV中的Attention机制】Non-Local-neural-networks的理解与实现:  academic/算法科普/CV中的注意力机制/【CV中的Attention机制】Non-Local-neural-networks的理解与实现.md
+                - 【CV中的Attention机制】Non-Local改进CCNet:  academic/算法科普/CV中的注意力机制/【CV中的Attention机制】Non-Local改进CCNet.md
+                - 【CV中的Attention机制】Selective-Kernel-Networks-SE进化版: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】Selective-Kernel-Networks-SE进化版.md
+                - 【CV中的Attention机制】融合Non-Local和SENet的GCNet: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】融合Non-Local和SENet的GCNet.md
+                - 【CV中的Attention机制】易于集成的Convolutional-Block-Attention-Module-CBAM模块: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】易于集成的Convolutional-Block-Attention-Module-CBAM模块.md
+                - 【CV中的attention机制】语义分割中的scSE模块: academic/算法科普/CV中的注意力机制/【CV中的attention机制】语义分割中的scSE模块.md
+                - 【CV中的Attention机制】最简单最易实现的SE模块:  academic/算法科普/CV中的注意力机制/【cv中的Attention机制】最简单最易实现的SE模块.md
+                - 【CV中的Attention机制】DCANet解读: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】DCANet解读.md
+                - 【CV中的Attention机制】ShuffleAttention: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】ShuffleAttention.md
+                - 深度学习中的Attention机制: academic/算法科普/CV中的注意力机制/深度学习中的Attention机制.md
+                - 深度学习中的Attention机制-Part2: academic/算法科普/CV中的注意力机制/深度学习中的Attention机制-Part2.md
+                - 结合代码看深度学习中的Attention机制-Part2: academic/算法科普/CV中的注意力机制/结合代码看深度学习中的Attention机制-Part2.md
+                - Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显: academic/算法科普/CV中的注意力机制/Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显.md
+                - OutLook Attention：具有局部信息感知能力的ViT: academic/算法科普/CV中的注意力机制/OutLook Attention：具有局部信息感知能力的ViT.md
+            - Transformer: 
+                - 解析Transformer模型: academic/算法科普/Transformer/解析Transformer模型.md
+                - 解析Vision Transformer: academic/算法科普/Transformer/解析Vision Transformer.md
+                - 解析 Token to Token Vision Transformer: academic/算法科普/Transformer/解析 Token to Token Vision Transformer.md
+                - 图解swin transformer: academic/算法科普/Transformer/图解swin transformer.md
+                - Transformer综述: academic/算法科普/Transformer/Transformer综述.md
+                - 《互协方差注意力Transformer：XCiT》: academic/算法科普/Transformer/《互协方差注意力Transformer：XCiT》.md
+                - OutLook Attention：具有局部信息感知能力的ViT: academic/算法科普/Transformer/OutLook Attention：具有局部信息感知能力的ViT.md
+                - Vision Transformer新秀：VOLO: academic/算法科普/Transformer/Vision Transformer新秀：VOLO.md
+                - LightSeq Transformer高性能加速库: academic/算法科普/Transformer/LightSeq Transformer高性能加速库.md
+                - 浅谈CMT以及复现: academic/算法科普/Transformer/浅谈CMT以及复现.md
+                - 浅谈CSWin-Transformers: academic/算法科普/Transformer/浅谈CSWin-Transformers.md
+            - 半监督&无监督:
+                - WSCL: academic/算法科普/半监督&无监督/WSCL.md
+                - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
+            - 尽览卷积神经网络:
+                - 卷积神经网络学习路线（一） 卷积神经网络的组件以及卷积层是如何在图像中起作用的？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（一） 卷积神经网络的组件以及卷积层是如何在图像中起作用的？.md
+                - 卷积神经网络学习路线（二） 卷积层有哪些参数及常用卷积核类型盘点？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二） 卷积层有哪些参数及常用卷积核类型盘点？.md
+                - 卷积神经网络学习路线（三） 盘点不同类型的池化层、11卷积的作用和卷积核是否一定越大越好？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（三） 盘点不同类型的池化层、11卷积的作用和卷积核是否一定越大越好？.md
+                - 卷积神经网络学习路线（四） 如何减少卷积层计算量，使用宽卷积的好处及转置卷积中的棋盘效应？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（四） 如何减少卷积层计算量，使用宽卷积的好处及转置卷积中的棋盘效应？.md
+                - 卷积神经网络学习路线（五） 卷积神经网络参数设置，提高泛化能力？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（五） 卷积神经网络参数设置，提高泛化能力？.md
+                - 卷积神经网络学习路线（六） 经典网络回顾之LeNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（六） 经典网络回顾之LeNet.md
+                - 卷积神经网络学习路线（七） 经典网络回顾之AlexNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（七） 经典网络回顾之AlexNet.md
+                - 卷积神经网络学习路线（八） 经典网络回顾之ZFNet和VGGNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（八） 经典网络回顾之ZFNet和VGGNet.md
+                - 卷积神经网络学习路线（九） 经典网络回顾之GoogLeNet系列: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（九） 经典网络回顾之GoogLeNet系列.md
+                - 卷积神经网络学习路线（十） 里程碑式创新的ResNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十） 里程碑式创新的ResNet.md
+                - 卷积神经网络学习路线（十一） Stochastic Depth（随机深度网络）: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十一） Stochastic Depth（随机深度网络）.md
+                - 卷积神经网络学习路线（十二） 继往开来的DenseNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十二） 继往开来的DenseNet.md
+                - 卷积神经网络学习路线（十三） CVPR2017 Deep Pyramidal Residual Networks: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十三） CVPR2017 Deep Pyramidal Residual Networks.md
+                - 卷积神经网络学习路线（十四）  CVPR 2017 ResNeXt（ResNet进化版）: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线十四  CVPR 2017 ResNeXt（ResNet进化版）.md
+                - 卷积神经网络学习路线（十五）  NIPS 2017 Dual Path Network（ResNeXt+DensetNet结合版）: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十五）  NIPS 2017 Dual Path Network（ResNeXt+DensetNet结合版）.md
+                - 卷积神经网络学习路线（十六）  ICLR 2017 SqueezeNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十六）  ICLR 2017 SqueezeNet.md
+                - 卷积神经网络学习路线（十七）  Google CVPR 2017 MobileNet V1: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十七）  Google CVPR 2017 MobileNet V1.md
+                - 卷积神经网络学习路线（十八）  Google CVPR 2018 MobileNet V2: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十八）  Google CVPR 2018 MobileNet V2.md
+                - 卷积神经网络学习路线（十九）  旷世科技 2017 ShuffleNetV1: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十九）  旷世科技 2017 ShuffleNetV1.md
+                - 卷积神经网络学习路线（二十）  Google ICCV 2019 MobileNet V3: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十）  Google ICCV 2019 MobileNet V3.md
+                - 卷积神经网络学习路线（二十二） Google Brain EfficientNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十二） Google Brain EfficientNet.md
+                - 卷积神经网络学习路线（二十三） 经典网络回顾之XceptionNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十三） 经典网络回顾之XceptionNet.md
+                - 卷积神经网络学习路线（二十一）  旷世科技 ECCV 2018  ShuffleNet V2: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十一）  旷世科技 ECCV 2018  ShuffleNet V2.md
+                - 【CNN结构设计】深入理解深度可分离卷积: academic/算法科普/尽览卷积神经网络/【CNN结构设计】深入理解深度可分离卷积.md
+                - CNN骨干网络新选择HS-ResNet: academic/算法科普/尽览卷积神经网络/CNN骨干网络新选择HS-ResNet.md
+                - CSPNet: academic/算法科普/尽览卷积神经网络/CSPNet.md
+                - EffNet: academic/算法科普/尽览卷积神经网络/EffNet.md
+                - HRNet: academic/算法科普/尽览卷积神经网络/HRNet.md
+                - ghostnet: academic/算法科普/尽览卷积神经网络/ghostnet.md
+                - ThunderNet: academic/算法科普/尽览卷积神经网络/ThunderNet.md
+                - IBN-Net 提升模型的域自适应性: academic/算法科普/尽览卷积神经网络/IBN-Net 提升模型的域自适应性.md
+                - NAS OR 手工设计网络，RegNet这样说: academic/算法科普/尽览卷积神经网络/NAS OR 手工设计网络，RegNet这样说.md
+                - 轻量级CNN架构设计: academic/算法科普/尽览卷积神经网络/轻量级CNN架构设计.md
+                - (图解)一步一步使用CPP实现深度学习中的卷积: academic/算法科普/尽览卷积神经网络/(图解)一步一步使用CPP实现深度学习中的卷积.md
+                - 图解RepVG: academic/算法科普/尽览卷积神经网络/图解RepVGG.md
+                - 我卷我自己——cvpr2021：Involution: academic/算法科普/尽览卷积神经网络/我卷我自己——cvpr2021：Involution.md
+                - 白给的性能不要？cvpr2021-Diverse branch block: academic/算法科普/尽览卷积神经网络/白给的性能不要？cvpr2021-Diverse branch block.md
+                - 图解MLP: academic/算法科普/尽览卷积神经网络/图解MLP.md
+                - 深度学习中的重参数机制总结与代码实现: academic/算法科普/尽览卷积神经网络/深度学习中的重参数机制总结与代码实现.md
+                - 百度团队新作：Spatial Shift MLP: academic/算法科普/尽览卷积神经网络/百度团队新作：Spatial Shift MLP.md
+            - 可变形卷积:
+                - DCN V1代码阅读笔记: academic/算法科普/可变形卷积/DCN V1代码阅读笔记.md
+                - MSRA DCN(可变形卷积) 算法笔记: academic/算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md
+                - 再思考可变形卷积: academic/算法科普/可变形卷积/再思考可变形卷积.md
+            - 频域中的CNN:
+                - CVPR 2020 在频域中学习的DCTNet: academic/算法科普/频域中的CNN/CVPR 2020 在频域中学习的DCTNet.md
+                - ECCV2020 F3-Net 商汤Deepfake检测模型: academic/算法科普/频域中的CNN/ECCV2020 F3-Net 商汤Deepfake检测模型.md
+            - 深度学习基础:
+                - CNN一定需要池化层吗？: academic/算法科普/深度学习基础/CNN一定需要池化层吗？.md
+                - Rethinking ImageNet Pre-training: academic/算法科普/深度学习基础/Rethinking ImageNet Pre-training.md
+                - SVM Loss以及梯度推导: academic/算法科普/深度学习基础/SVM Loss以及梯度推导.md
+                - 回炉重造：计算图: academic/算法科普/深度学习基础/回炉重造：计算图.md
+                - 深度学习中的优化算法与实现: academic/算法科普/深度学习基础/深度学习中的优化算法与实现.md
+                - 优化器文章: academic/算法科普/深度学习基础/优化器文章.md
+                - Kaiming He初始化详解: academic/算法科普/深度学习基础/Kaiming He初始化详解.md
+                - InstanceNorm梯度公式推导: academic/算法科普/深度学习基础/InstanceNorm梯度公式推导.md
+                - Pytorch中的四种经典Loss源码解析: academic/算法科普/深度学习基础/Pytorch中的四种经典Loss源码解析.md
+                - 谈谈我眼中的Label Smooth: academic/算法科普/深度学习基础/谈谈我眼中的Label Smooth.md
+                - CVPR2021-Representative BatchNorm: academic/算法科普/深度学习基础/CVPR2021-Representative BatchNorm.md
+                - ResNet与常见ODE初值问题的数值解法​: academic/算法科普/深度学习基础/ResNet与常见ODE初值问题的数值解法​.md
+            - 手工调参Tricks:
+                - 【CNN结构设计】无痛的涨点技巧：ACNet: academic/算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
+                - 【CNN调参】目标检测算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
+                - 【CNN调参】图像分类算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】图像分类算法优化技巧.md
+                - 【损失函数合集】ECCV2016 Center Loss: academic/算法科普/手工调参Tricks/【损失函数合集】ECCV2016 Center Loss.md
+                - 【损失函数合集】Yann Lecun的Contrastive Loss 和 Google的Triplet Loss: academic/算法科普/手工调参Tricks/【损失函数合集】Yann Lecun的Contrastive Loss 和 Google的Triplet Loss.md
+                - 【损失函数合集】超详细的语义分割中的Loss大盘点: academic/算法科普/手工调参Tricks/【损失函数合集】超详细的语义分割中的Loss大盘点.md
+                - CNN结构设计技巧-兼顾速度精度与工程实现: academic/算法科普/手工调参Tricks/CNN结构设计技巧-兼顾速度精度与工程实现.md
+                - 快2020年了，你还在为深度学习调参而烦恼吗？: academic/算法科普/手工调参Tricks/快2020年了，你还在为深度学习调参而烦恼吗？.md
+                - 深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？: academic/算法科普/手工调参Tricks/深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？.md
+                - 激活还是不激活？CVPR2021-Activate Or Not: academic/算法科普/手工调参Tricks/激活还是不激活？CVPR2021-Activate Or Not.md
+                - 浅谈混合精度训练ImageNet: academic/算法科普/手工调参Tricks/浅谈混合精度训练ImageNet.md
+                - Piecewise Linear Unit：分段线性激活函数: academic/算法科普/手工调参Tricks/Piecewise Linear Unit：分段线性激活函数.md
+            - 综述类:
+                - 【综述】Dropout模式和发展: academic/算法科普/综述类/【综述】Dropout模式和发展.md
+                - 【综述】图像去雾的前世今生: academic/算法科普/综述类/【综述】图像去雾的前世今生.md
+                - precision和recall重新理解: academic/算法科普/综述类/precision和recall重新理解.md
+                - pytorch中的模型可复现性: academic/算法科普/综述类/pytorch中的模型可复现性.md
+                - 池化: academic/算法科普/综述类/池化.md
+                - 关于目标检测和感受野的一点总结和想法: academic/算法科普/综述类/关于目标检测和感受野的一点总结和想法.md
+                - 卷积核梳理: academic/算法科普/综述类/卷积核梳理.md
+                - 盘点当前最流行的激活函数及选择经验: academic/算法科普/综述类/盘点当前最流行的激活函数及选择经验.md
+                - 思考NLP和CV中的Local和Global建模: academic/算法科普/综述类/思考NLP和CV中的Local和Global建模.md
+        - 语义及实例分割:
+            - 专栏介绍: academic/语义及实例分割/README.md
+            - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
+            - 当UNet遇见ResNet会发生什么？: academic/语义及实例分割/当UNet遇见ResNet会发生什么？.md
+            - 实例分割算法之Mask R-CNN论文解读.md: academic/语义及实例分割/实例分割算法之Mask R-CNN论文解读.md
+            - 语义分割算法之CVPR 2017 RefineNet（精度高且对稠密物体分割效果好，已开源）.md: academic/语义及实例分割/语义分割算法之CVPR 2017 RefineNet（精度高且对稠密物体分割效果好，已开源）.md
+            - 语义分割算法之Deeplab V1论文理解: academic/语义及实例分割/语义分割算法之Deeplab V1论文理解.md
+            - 语义分割算法之DeepLab V2论文理解: academic/语义及实例分割/语义分割算法之DeepLab V2论文理解.md
+            - 语义分割算法之DeepLab V3论文理解: academic/语义及实例分割/语义分割算法之DeepLabV3论文理解.md
+            - 语义分割算法之DeepLab V3+论文理解及代码分析: academic/语义及实例分割/语义分割算法之DeepLabV3+论文理解及代码分析.md
+            - 语义分割算法之ENet论文理解: academic/语义及实例分割/语义分割算法之ENet论文理解.md
+            - 语义分割算法之FCN论文理解: academic/语义及实例分割/语义分割算法之FCN论文理解.md
+            - 语义分割算法之ICNet论文理解: academic/语义及实例分割/语义分割算法之ICNet论文理解.md
+            - 语义分割算法之PSPNet论文理解: academic/语义及实例分割/语义分割算法之PSPNet论文理解.md
+            - 语义分割算法之SegNet论文理解: academic/语义及实例分割/语义分割算法之SegNet论文理解.md
+            - 语义分割算法之Unet论文理解: academic/语义及实例分割/语义分割算法之Unet论文理解.md
+            - 图像分割的一些理解: academic/语义及实例分割/图像分割的一些理解.md
 
 # Theme
 theme:
