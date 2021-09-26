@@ -346,6 +346,115 @@ nav:
             - 语义分割算法之SegNet论文理解: academic/语义及实例分割/语义分割算法之SegNet论文理解.md
             - 语义分割算法之Unet论文理解: academic/语义及实例分割/语义分割算法之Unet论文理解.md
             - 图像分割的一些理解: academic/语义及实例分割/图像分割的一些理解.md
+    - project:
+        - MsnhNet:
+            - 专栏介绍: project/Msnhnet/README.md
+            - 多平台轻量级PyTorch模型推理框架MsnhNet: project/Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
+            - Pytorch直转Msnhnet思路分享: project/Msnhnet/Pytorch直转Msnhnet思路分享.md
+            - 人脸106点Caffe模型如何部署到MsnhNet: project/Msnhnet/人脸106点Caffe模型如何部署到MsnhNet.md
+            - 图解神秘的NC4HW4: project/Msnhnet/图解神秘的NC4HW4.md
+            - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): project/Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
+            - 基于Msnhnet实现最优化问题(中)一(无约束优化问题): Msnhnet/基于Msnhnet实现最优化问题(中)一(无约束优化问题).md
+        - 部署优化: 
+            - 专栏介绍: project/部署优化/README.md
+            - AI PC端优化: 
+                - 【AI PC端算法优化】一，一步步优化RGB转灰度图算法: project/部署优化/AI PC端优化/【AI PC端算法优化】一，一步步优化RGB转灰度图算法.md
+                - 【AI PC端算法优化】二，一步步优化自然饱和度算法: project/部署优化/AI PC端优化/【AI PC端算法优化】二，一步步优化自然饱和度算法.md
+                - 【AI PC端算法优化】三，深入优化RGB转灰度图算法: project/部署优化/AI PC端优化/【AI PC端算法优化】三，深入优化RGB转灰度图算法.md
+                - 【AI PC端算法优化】四，一步步将Sobel边缘检测加速22倍: project/部署优化/AI PC端优化/【AI PC端算法优化】四，一步步将Sobel边缘检测加速22倍.md
+                - 【AI PC端算法优化】五，常量阶最大值最小值滤波算法: project/部署优化/AI PC端优化/【AI PC端算法优化】五，常量阶最大值最小值滤波算法.md
+                - 【AI PC端算法优化】六，优化一个简单的肤色检测算法: project/部署优化/AI PC端优化/【AI PC端算法优化】六，优化一个简单的肤色检测算法.md
+                - 【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化: project/部署优化/AI PC端优化/【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化.md
+                - 【AI PC端算法优化】八，小半径中值滤波的SSE极速优化: project/部署优化/AI PC端优化/【AI PC端算法优化】八，小半径中值滤波的SSE极速优化.md
+            - AI 部署及其它优化算法: 
+                - NCNN:
+                    - Keras2NCNN？Yes: project/部署优化/AI 部署及其它优化算法/NCNN/Keras2NCNN？Yes.md
+                - OpenVINO:
+                    - vs2015 movidius 神经计算棒一代 ncsdk windows c++调用: project/部署优化/AI 部署及其它优化算法/OpenVINO/vs2015 movidius 神经计算棒一代 ncsdk windows c++调用.md
+                    - YOLOv3-tiny在VS2015上使用Openvino部署: project/部署优化/AI 部署及其它优化算法/OpenVINO/YOLOv3-tiny在VS2015上使用Openvino部署.md
+                    - 如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？: project/部署优化/AI 部署及其它优化算法/OpenVINO/如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？.md
+                    - c++实现yolov5的OpenVINO部署: project/部署优化/AI 部署及其它优化算法/OpenVINO/c++实现yolov5的OpenVINO部署.md
+                    - 手把手教你使用OpenVINO部署NanoDet模型: project/部署优化/AI 部署及其它优化算法/OpenVINO/手把手教你使用OpenVINO部署NanoDet模型.md
+                    - 基于Pytorch对YOLOV5 进行简易实现: project/部署优化/AI 部署及其它优化算法/OpenVINO/基于Pytorch对YOLOV5 进行简易实现.md
+                - TensorRT:
+                    - 一，TensorRT介绍，安装及如何使用？: project/部署优化/AI 部署及其它优化算法/TensorRT/一，TensorRT介绍，安装及如何使用？.md
+                    - 二，TensorRT Mnist数字识别使用示例: project/部署优化/AI 部署及其它优化算法/TensorRT/二，TensorRT Mnist数字识别使用示例.md
+                    - 三，如何使用tensorRT C++ API搭建网络: project/部署优化/AI 部署及其它优化算法/TensorRT/三，如何使用tensorRT C++ API搭建网络.md
+                    - 四，TensorRT 如何进行细粒度的Profiling: project/部署优化/AI 部署及其它优化算法/TensorRT/四，TensorRT 如何进行细粒度的Profiling.md
+                    - 五，在VS2015上利用TensorRT部署YOLOV3-Tiny模型: project/部署优化/AI 部署及其它优化算法/TensorRT/五，在VS2015上利用TensorRT部署YOLOV3-Tiny模型.md
+                    - 六，利用TensorRT部署YOLOV3-Tiny INT8量化模型: project/部署优化/AI 部署及其它优化算法/TensorRT/六，利用TensorRT部署YOLOV3-Tiny INT8量化模型.md
+                    - 基于TensorRT量化部署RepVGG模型: project/部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署RepVGG模型.md
+                    - 基于TensorRT量化部署YOLOV5s 4.0模型: project/部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署YOLOV5s 4.0模型.md
+                    - 基于TensorRT完成NanoDet模型部署: project/部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT完成NanoDet模型部署.md
+                - 如何让你的YOLOV3模型更小更快？: project/部署优化/AI 部署及其它优化算法/如何让你的YOLOV3模型更小更快？.md
+                - 基于Pytorch构建一个可训练的BNN: project/部署优化/AI 部署及其它优化算法/基于Pytorch构建一个可训练的BNN.md
+                - 基于Pytorch构建三值化网络TWN: project/部署优化/AI 部署及其它优化算法/基于Pytorch构建三值化网络TWN.md
+                - 低比特量化之XNOR-Net: project/部署优化/AI 部署及其它优化算法/低比特量化之XNOR-Net.md
+                - 低比特量化之DoreFa-Net理论与实践: project/部署优化/AI 部署及其它优化算法/低比特量化之DoreFa-Net理论与实践.md
+                - YOLOV3剪枝方法汇总: project/部署优化/AI 部署及其它优化算法/YOLOV3剪枝方法汇总.md
+                - Pytorch实现卷积神经网络训练量化（QAT）: project/部署优化/AI 部署及其它优化算法/Pytorch实现卷积神经网络训练量化（QAT）.md
+                - ICCV 2017 Learning Efficient Convolutional Networks through Network Slimming（模型剪枝）: project/部署优化/AI 部署及其它优化算法/ICCV 2017 Learning Efficient Convolutional Networks through Network Slimming（模型剪枝）.md
+                - VGG，ResNet，DenseNe模型剪枝代码实战: project/部署优化/AI 部署及其它优化算法/VGG，ResNet，DenseNe模型剪枝代码实战.md
+                - 快速exp算法: project/部署优化/AI 部署及其它优化算法/快速exp算法.md
+                - 折叠BN层: project/部署优化/AI 部署及其它优化算法/折叠BN层.md
+                - 并发编程: project/部署优化/AI 部署及其它优化算法/并发编程.md
+                - Pytorch量化感知训练详解: project/部署优化/AI 部署及其它优化算法/Pytorch量化感知训练详解.md
+                - 一文带你了解NeurlPS2020的模型剪枝研究: project/部署优化/AI 部署及其它优化算法/一文带你了解NeurlPS2020的模型剪枝研究.md
+                - 如何阅读一个前向推理框架？以NCNN为例: project/部署优化/AI 部署及其它优化算法/如何阅读一个前向推理框架？以NCNN为例。.md
+                - ONNX学习笔记: project/部署优化/AI 部署及其它优化算法/ONNX学习笔记.md
+                - ThiNet：模型通道结构化剪枝: project/部署优化/AI 部署及其它优化算法/ThiNet：模型通道结构化剪枝.md
+                - 基于一阶泰勒展开式的结构化剪枝: project/部署优化/AI 部署及其它优化算法/基于一阶泰勒展开式的结构化剪枝.md
+                - ONNX再探: project/部署优化/AI 部署及其它优化算法/ONNX再探.md
+                - 浅谈深度学习模型量化: project/部署优化/AI 部署及其它优化算法/浅谈深度学习模型量化.md
+                - onnx simplifier和onnx optimizer: project/部署优化/AI 部署及其它优化算法/onnx simplifier和onnx optimizer.md
+                - onnx2pytorch和onnx-simplifier新版介绍: project/部署优化/AI 部署及其它优化算法/onnx2pytorch和onnx-simplifier新版介绍.md
+                - 基于Caffe部署YOLOV5模型: project/部署优化/AI 部署及其它优化算法/基于Caffe部署YOLOV5模型.md
+                - Int 4量化用于目标检测: project/部署优化/AI 部署及其它优化算法/Int 4量化用于目标检测.md
+                - INT8 量化训练: project/部署优化/AI 部署及其它优化算法/INT8 量化训练.md
+                - 深度学习框架OneFlow是如何和ONNX交互的？: project/部署优化/AI 部署及其它优化算法/深度学习框架OneFlow是如何和ONNX交互的？.md
+                - EagleEye：一种用模型剪枝的快速衡量子网络性能的方法: project/部署优化/AI 部署及其它优化算法/EagleEye：一种用模型剪枝的快速衡量子网络性能的方法​.md
+                - 基于OneFlow实现量化感知训练: project/部署优化/AI 部署及其它优化算法/基于OneFlow实现量化感知训练.md
+            - AI 移动端算法优化: 
+                - 移动端arm cpu优化学习笔记:
+                    - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
+                    - 移动端arm cpu优化学习笔记第2弹--常量阶时间复杂度中值滤波: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第2弹--常量阶时间复杂度中值滤波.md
+                    - 移动端arm cpu优化学习笔记第3弹--绑定cpu(cpu affinity): project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第3弹--绑定cpu(cpu affinity).md
+                    - 移动端arm cpu优化学习笔记第4弹--内联汇编入门: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第4弹--内联汇编入门.md
+                - AI移动端优化之Im2Col+Pack+Sgemm: project/部署优化/AI 移动端算法优化/AI移动端优化之Im2Col+Pack+Sgemm.md
+                - CNN不用乘法 AdderNet和DeepShift论文阅读: project/部署优化/AI 移动端算法优化/CNN不用乘法 AdderNet和DeepShift论文阅读.md
+                - ICCV2019 高通Data-Free Quantization论文解读: project/部署优化/AI 移动端算法优化/ICCV2019 高通Data-Free Quantization论文解读.md
+                - Im2Col+GEMM的改进方法MEC，一种更加高效的卷积计算策略: project/部署优化/AI 移动端算法优化/Im2Col+GEMM的改进方法MEC，一种更加高效的卷积计算策略.md
+                - 基于NCNN的3x3可分离卷积再思考盒子滤波: project/部署优化/AI 移动端算法优化/基于NCNN的3x3可分离卷积再思考盒子滤波.md
+                - 基于how-to-optimize-gemm初探矩阵乘法优化: project/部署优化/AI 移动端算法优化/基于how-to-optimize-gemm初探矩阵乘法优化.md
+                - 详解卷积中的Winograd加速算法: project/部署优化/AI 移动端算法优化/详解卷积中的Winograd加速算法.md
+                - 一份朴实无华的移动端盒子滤波算法优化笔记: project/部署优化/AI 移动端算法优化/一份朴实无华的移动端盒子滤波算法优化笔记.md
+                - EasyQuant 后量化算法论文解读: project/部署优化/AI 移动端算法优化/EasyQuant 后量化算法论文解读.md
+                - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project/部署优化/AI 移动端算法优化/Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
+                - Side Window Filtering 论文解读和C++实现: project/部署优化/AI 移动端算法优化/Side Window Filtering 论文解读和C++实现.md
+                - 如何判断算法是否有可优化空间？: project/部署优化/AI 移动端算法优化/如何判断算法是否有可优化空间？.md
+                - 海思NNIE之Mobilefacenet量化部署: project/部署优化/AI 移动端算法优化/海思NNIE之Mobilefacenet量化部署.md
+                - 海思NNIE之RetinaFace量化部署: project/部署优化/AI 移动端算法优化/海思NNIE之RetinaFace量化部署.md
+                - 海思NNIE之PFPLD训练与量化: project/部署优化/AI 移动端算法优化/海思NNIE之PFPLD训练与量化.md
+                - 深入理解深度学习中的反(转置)卷积: project/部署优化/AI 移动端算法优化/深入理解深度学习中的反(转置)卷积.md
+                - 道阻且长_再探矩阵乘法优化: project/部署优化/AI 移动端算法优化/道阻且长_再探矩阵乘法优化.md
+                - ARM Neon Intrinsics 学习指北：从入门、进阶到学个通透: project/部署优化/AI 移动端算法优化/ARM Neon Intrinsics 学习指北：从入门、进阶到学个通透.md
+                - NCNN+INT8+YOLOV4量化模型和实时推理: project/部署优化/AI 移动端算法优化/NCNN+INT8+YOLOV4量化模型和实时推理.md
+                - Atlas基础知识: project/部署优化/AI 移动端算法优化/Atlas基础知识.md
+            - 深度学习编译器:
+                - 多面体模型在深度学习编译器的应用: project/部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
+                - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md
+                - 【从零开始学深度学习编译器】二，TVM中的scheduler: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】二，TVM中的scheduler.md
+                - 【从零开始学TVM】三，基于ONNX模型结构了解TVM的前端: project/部署优化/深度学习编译器/【从零开始学TVM】三，基于ONNX模型结构了解TVM的前端.md
+                - 【从零开始学深度学习编译器】四，解析TVM算子: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】四，解析TVM算子.md
+                - 【从零开始学深度学习编译器】五，TVM Relay以及Pass简介: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】五，TVM Relay以及Pass简介.md
+                - 【从零开始学深度学习编译器】六，TVM的编译流程详解: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】六，TVM的编译流程详解.md
+                - 【从零开始学深度学习编译器】七，万字长文入门TVM Pass: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】七，万字长文入门TVM Pass.md
+                - 【从零开始学深度学习编译器】八，TVM的算符融合以及如何使用TVM Pass Infra自定义Pass: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】八，TVM的算符融合以及如何使用TVM Pass Infra自定义Pass.md
+                - 【从零开始学深度学习编译器】九，TVM的CodeGen流程: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】九，TVM的CodeGen流程.md
+                - 【从零开始学深度学习编译器】番外一，Data Flow和Control Flow: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】番外一，Data Flow和Control Flow.md
+                - 【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM.md
+                - Ansor论文阅读笔记&&论文翻译: project/部署优化/深度学习编译器/Ansor论文阅读笔记&&论文翻译.md
+    
 
 # Theme
 theme:
