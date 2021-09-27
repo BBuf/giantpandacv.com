@@ -454,7 +454,35 @@ nav:
                 - 【从零开始学深度学习编译器】番外一，Data Flow和Control Flow: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】番外一，Data Flow和Control Flow.md
                 - 【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM.md
                 - Ansor论文阅读笔记&&论文翻译: project/部署优化/深度学习编译器/Ansor论文阅读笔记&&论文翻译.md
-    
+    - resources:
+        - 专栏介绍: resources/README.md
+        - Pytorch YOLOV3:
+            - 超详细的Pytorch版yolov3代码中文注释汇总: resources/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释汇总.md
+            - 超详细的Pytorch版yolov3代码中文注释详解（二）: resources/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（二）.md
+            - 超详细的Pytorch版yolov3代码中文注释详解（三）: resources/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（三）.md
+            - 超详细的Pytorch版yolov3代码中文注释详解（四）: resources/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（四）.md
+        - Faster R-CNN原理及代码讲解电子书:
+            - 整体框架: resources/【资源】Faster R-CNN原理及代码讲解电子书.assets/【Faster RCNN理解】1. 整体框架.md
+            - 概述: resources/【资源】Faster R-CNN原理及代码讲解电子书.assets/【Faster RCNN】2. 概述.md
+            - Faster R-CNN原理及代码讲解电子书: resources/【资源】Faster R-CNN原理及代码讲解电子书.assets/Faster R-CNN原理及代码讲解电子书.md
+            - 【资源】Faster R-CNN原理及代码讲解电子书: resources/【资源】Faster R-CNN原理及代码讲解电子书.assets/【资源】Faster R-CNN原理及代码讲解电子书.md
+        - 【资源】CenterNet代码解析: resources/【资源】CenterNet代码解析.md
+        - 【资源】DeepSORT原理及代码讲解: resources/【资源】DeepSORT原理及代码讲解.md
+        - 【资源】PyramidBox代码解析: resources/【资源】PyramidBox代码解析.md
+        - 【资源】从零开始学习YOLOv3: resources/【资源】从零开始学习YOLOv3.md
+        - 【资源】卷积神经网络中的即插即用模块电子书: resources/【资源】卷积神经网络中的即插即用模块电子书.md
+        - 【资源】数据增强开源库推荐: resources/【资源】数据增强开源库推荐.md
+        - 【资源】超详细的Pytorch版yolov3代码中文注释汇总: resources/【资源】超详细的Pytorch版yolov3代码中文注释汇总.md
+        - 快速学习使用tikz绘制CNN示意图: resources/快速学习使用tikz绘制CNN示意图.md
+        - 计算机视觉 书籍数据集标注工具学习路线整理: resources/计算机视觉 书籍数据集标注工具学习路线整理.md
+        - Pytorch_lightning工具推荐: resources/Pytorch_lightning工具推荐.md
+        - 如何标准化管理深度学习实验: resources/如何标准化管理深度学习实验.md
+        - 如何阅读和学习项目代码: resources/如何阅读和学习项目代码.md
+        - 让vscode在远程连接服务器时候如本地般顺滑地debug: resources/让vscode在远程连接服务器时候如本地般顺滑地debug.md
+        - 如何让vscode远程连接服务器上的docker环境进行debug: resources/如何让vscode远程连接服务器上的docker环境进行debug.md
+        - 我们是如何搭建GiantPandaCV.com的: resources/我们是如何搭建GiantPandaCV.com的.md
+        - Linux中Shell编程语法: resources/Linux中Shell编程语法.md
+        - docker基础知识分享: resources/docker基础知识分享.md
 
 # Theme
 theme:
