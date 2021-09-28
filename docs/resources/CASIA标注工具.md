@@ -18,10 +18,11 @@ B站: https://www.bilibili.com/video/BV1dA411b7F4/
 
 - **1. 支持图片格式**</br>
   
+
 png,jpg,jpeg,bmp</br>
-  
+
   **注：** 单次标注不能超过200张</br>
-  
+
 - **2. 支持视频格式**</br>
   
   avi,mp4,wmv,mov,asf</br>
@@ -47,8 +48,9 @@ png,jpg,jpeg,bmp</br>
  符合该格式的标注文档，同样可导入本软件。</br>
  如果想要COCO，Labelme等支持的格式，用python转换一下就行啦~</br>
 
- - **6. 支持平台**</br>
+- **6. 支持平台**</br>
     支持windows10和ubuntu1804+.</br>
+    
 - **7. 特殊说明**
  工程路径中不能带有空格！</br>
 
