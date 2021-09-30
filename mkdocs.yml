@@ -242,6 +242,8 @@ nav:
                 - LightSeq Transformer高性能加速库: academic/算法科普/Transformer/LightSeq Transformer高性能加速库.md
                 - 浅谈CMT以及复现: academic/算法科普/Transformer/浅谈CMT以及复现.md
                 - 浅谈CSWin-Transformers: academic/算法科普/Transformer/浅谈CSWin-Transformers.md
+                - mogrifierlstm: academic\算法科普\Transformer\mogrifierlstm.md
+                - 如何将Transformer应用在移动端: academic\算法科普\Transformer\如何将Transformer应用在移动端.md
             - 半监督&无监督:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
@@ -486,7 +488,8 @@ nav:
         - CASIA标注工具: resources/CASIA标注工具.md
         - darklabel教程: resources/darklabel教程.md
         - 简易关键点标注软件: resources/简易关键点标注软件.md
-
+    - video:
+        - video: video/video_1.md
 # Theme
 theme:
   name: 'material'
