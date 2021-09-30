@@ -28,7 +28,9 @@ https://arxiv.org/pdf/1909.01792.pdf
 这个迭代轮数在实验中是作为一个==超参数==，研究者可以根据任务不同自行调节
 
 我这里也简单地画了一个图
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200302112314761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDEwNjkyOA==,size_16,color_FFFFFF,t_70)
+
 # 代码实现
 作者将这个工作整理成了一个jupyter notebook发布在了github上
 https://github.com/RMichaelSwan/MogrifierLSTM/blob/master/MogrifierLSTM.ipynb
