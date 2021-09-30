@@ -13,7 +13,7 @@
 ​																      	 **公众号二维码，欢迎关注**
 
 
-![公众号二维码](./introduction/images/2.jpg)
+![公众号二维码](./video/GiantPandaCV.jpg)
 
 
 ## Material color palette 颜色主题
