@@ -10,10 +10,10 @@ copyright: 'Copyright &copy; GiantPandaCV Team <a href="http://beian.miit.gov.cn
 
 # Contents
 nav:
-    - 首页:
+    - HOME:
         - Getting Started: index.md
-        - GiantPandaCV 简介: introduction/introduction.md
-    - academic:
+        - GiantPandaCV 简介: introduction.md
+    - ACADEMIC:
         - 超分和GAN:
             - 专栏介绍: academic/超分和GAN/README.md
             - CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network: academic/超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md
@@ -348,7 +348,7 @@ nav:
             - 语义分割算法之SegNet论文理解: academic/语义及实例分割/语义分割算法之SegNet论文理解.md
             - 语义分割算法之Unet论文理解: academic/语义及实例分割/语义分割算法之Unet论文理解.md
             - 图像分割的一些理解: academic/语义及实例分割/图像分割的一些理解.md
-    - project:
+    - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
             - 多平台轻量级PyTorch模型推理框架MsnhNet: project/Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
@@ -456,7 +456,7 @@ nav:
                 - 【从零开始学深度学习编译器】番外一，Data Flow和Control Flow: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】番外一，Data Flow和Control Flow.md
                 - 【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM.md
                 - Ansor论文阅读笔记&&论文翻译: project/部署优化/深度学习编译器/Ansor论文阅读笔记&&论文翻译.md
-    - resources:
+    - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3:
             - 超详细的Pytorch版yolov3代码中文注释汇总: resources/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释汇总.md
@@ -488,7 +488,7 @@ nav:
         - CASIA标注工具: resources/CASIA标注工具.md
         - darklabel教程: resources/darklabel教程.md
         - 简易关键点标注软件: resources/简易关键点标注软件.md
-    - video:
+    - VIDEO:
         - video: video/video_1.md
 # Theme
 theme:
