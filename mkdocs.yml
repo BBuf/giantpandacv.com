@@ -356,6 +356,15 @@ nav:
             - 图解神秘的NC4HW4: project/Msnhnet/图解神秘的NC4HW4.md
             - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): project/Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
             - 基于Msnhnet实现最优化问题(中)一(无约束优化问题): Msnhnet/基于Msnhnet实现最优化问题(中)一(无约束优化问题).md
+        - OneFlow:
+            - 专栏介绍: project\OneFlow\README.md
+            - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project\OneFlow\Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
+            - 以OneFlow为例梳理深度学习框架的那些插值方法: project\OneFlow\以OneFlow为例梳理深度学习框架的那些插值方法.md
+            - 在OneFlow实现数据类型自动提升: project\OneFlow\在OneFlow实现数据类型自动提升.md
+            - 于OneFlow实现Unfold Fold算子: project\OneFlow\基于OneFlow实现Unfold Fold算子.md
+            - 基于OneFlow实现量化感知训练: project\OneFlow\基于OneFlow实现量化感知训练.md
+            - 深度学习框架OneFlow是如何和ONNX交互的: project\OneFlow\深度学习框架OneFlow是如何和ONNX交互的？.md
+            - 深度学习框架量化感知训练的思考及OneFlow的一种解决方案: project\OneFlow\深度学习框架量化感知训练的思考及OneFlow的一种解决方案.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
@@ -412,9 +421,7 @@ nav:
                 - 基于Caffe部署YOLOV5模型: project/部署优化/AI 部署及其它优化算法/基于Caffe部署YOLOV5模型.md
                 - Int 4量化用于目标检测: project/部署优化/AI 部署及其它优化算法/Int 4量化用于目标检测.md
                 - INT8 量化训练: project/部署优化/AI 部署及其它优化算法/INT8 量化训练.md
-                - 深度学习框架OneFlow是如何和ONNX交互的？: project/部署优化/AI 部署及其它优化算法/深度学习框架OneFlow是如何和ONNX交互的？.md
                 - EagleEye：一种用模型剪枝的快速衡量子网络性能的方法: project/部署优化/AI 部署及其它优化算法/EagleEye：一种用模型剪枝的快速衡量子网络性能的方法​.md
-                - 基于OneFlow实现量化感知训练: project/部署优化/AI 部署及其它优化算法/基于OneFlow实现量化感知训练.md
             - AI 移动端算法优化: 
                 - 移动端arm cpu优化学习笔记:
                     - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
@@ -430,7 +437,6 @@ nav:
                 - 详解卷积中的Winograd加速算法: project/部署优化/AI 移动端算法优化/详解卷积中的Winograd加速算法.md
                 - 一份朴实无华的移动端盒子滤波算法优化笔记: project/部署优化/AI 移动端算法优化/一份朴实无华的移动端盒子滤波算法优化笔记.md
                 - EasyQuant 后量化算法论文解读: project/部署优化/AI 移动端算法优化/EasyQuant 后量化算法论文解读.md
-                - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project/部署优化/AI 移动端算法优化/Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
                 - Side Window Filtering 论文解读和C++实现: project/部署优化/AI 移动端算法优化/Side Window Filtering 论文解读和C++实现.md
                 - 如何判断算法是否有可优化空间？: project/部署优化/AI 移动端算法优化/如何判断算法是否有可优化空间？.md
                 - 海思NNIE之Mobilefacenet量化部署: project/部署优化/AI 移动端算法优化/海思NNIE之Mobilefacenet量化部署.md
