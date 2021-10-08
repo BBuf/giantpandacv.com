@@ -241,8 +241,8 @@ nav:
                 - LightSeq Transformer高性能加速库: academic/算法科普/Transformer/LightSeq Transformer高性能加速库.md
                 - 浅谈CMT以及复现: academic/算法科普/Transformer/浅谈CMT以及复现.md
                 - 浅谈CSWin-Transformers: academic/算法科普/Transformer/浅谈CSWin-Transformers.md
-                - mogrifierlstm: academic\算法科普\Transformer\mogrifierlstm.md
-                - 如何将Transformer应用在移动端: academic\算法科普\Transformer\如何将Transformer应用在移动端.md
+                - mogrifierlstm: academic/算法科普/Transformer/mogrifierlstm.md
+                - 如何将Transformer应用在移动端: academic/算法科普/Transformer/如何将Transformer应用在移动端.md
             - 半监督&无监督:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
@@ -357,14 +357,14 @@ nav:
             - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): project/Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
             - 基于Msnhnet实现最优化问题(中)一(无约束优化问题): Msnhnet/基于Msnhnet实现最优化问题(中)一(无约束优化问题).md
         - OneFlow:
-            - 专栏介绍: project\OneFlow\README.md
-            - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project\OneFlow\Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
-            - 以OneFlow为例梳理深度学习框架的那些插值方法: project\OneFlow\以OneFlow为例梳理深度学习框架的那些插值方法.md
-            - 在OneFlow实现数据类型自动提升: project\OneFlow\在OneFlow实现数据类型自动提升.md
-            - 于OneFlow实现Unfold Fold算子: project\OneFlow\基于OneFlow实现Unfold Fold算子.md
-            - 基于OneFlow实现量化感知训练: project\OneFlow\基于OneFlow实现量化感知训练.md
-            - 深度学习框架OneFlow是如何和ONNX交互的: project\OneFlow\深度学习框架OneFlow是如何和ONNX交互的？.md
-            - 深度学习框架量化感知训练的思考及OneFlow的一种解决方案: project\OneFlow\深度学习框架量化感知训练的思考及OneFlow的一种解决方案.md
+            - 专栏介绍: project/OneFlow/README.md
+            - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project/OneFlow/Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
+            - 以OneFlow为例梳理深度学习框架的那些插值方法: project/OneFlow/以OneFlow为例梳理深度学习框架的那些插值方法.md
+            - 在OneFlow实现数据类型自动提升: project/OneFlow/在OneFlow实现数据类型自动提升.md
+            - 于OneFlow实现Unfold Fold算子: project/OneFlow/基于OneFlow实现Unfold Fold算子.md
+            - 基于OneFlow实现量化感知训练: project/OneFlow/基于OneFlow实现量化感知训练.md
+            - 深度学习框架OneFlow是如何和ONNX交互的: project/OneFlow/深度学习框架OneFlow是如何和ONNX交互的？.md
+            - 深度学习框架量化感知训练的思考及OneFlow的一种解决方案: project/OneFlow/深度学习框架量化感知训练的思考及OneFlow的一种解决方案.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
