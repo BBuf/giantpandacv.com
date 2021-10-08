@@ -12,7 +12,6 @@ copyright: 'Copyright &copy; GiantPandaCV Team <a href="http://beian.miit.gov.cn
 nav:
     - HOME:
         - Getting Started: index.md
-        - GiantPandaCV 简介: introduction.md
     - ACADEMIC:
         - 超分和GAN:
             - 专栏介绍: academic/超分和GAN/README.md
