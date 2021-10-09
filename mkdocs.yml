@@ -320,6 +320,9 @@ nav:
                 - 激活还是不激活？CVPR2021-Activate Or Not: academic/算法科普/手工调参Tricks/激活还是不激活？CVPR2021-Activate Or Not.md
                 - 浅谈混合精度训练ImageNet: academic/算法科普/手工调参Tricks/浅谈混合精度训练ImageNet.md
                 - Piecewise Linear Unit：分段线性激活函数: academic/算法科普/手工调参Tricks/Piecewise Linear Unit：分段线性激活函数.md
+                - 余弦退火重启动学习率机制: academic/算法科普/手工调参Tricks/余弦退火重启动学习率机制.md
+                - 如何让你的分类性能提升之LARS_蒋神: academic/算法科普/手工调参Tricks/如何让你的分类性能提升之LARS_蒋神.md
+                - 提升分类性能之bag of tricks_蒋神: academic/算法科普/手工调参Tricks/提升分类性能之bag of tricks_蒋神.md
             - 综述类:
                 - 【综述】Dropout模式和发展: academic/算法科普/综述类/【综述】Dropout模式和发展.md
                 - 【综述】图像去雾的前世今生: academic/算法科普/综述类/【综述】图像去雾的前世今生.md

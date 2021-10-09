@@ -30,15 +30,15 @@ ps: 简单的说明一下，由于部分实验是从实际的业务数据得到�
 
 ### 数据增强
 
-1. 朴素数据增强
+#### 1. 朴素数据增强
 
 通用且常用的数据增强有```random flip```, ```colorjitter```, ```random crop```，基本上可以适用于任意的数据集，```colorjitter```注意一点是一般不给```hue```赋值。
 
-2. RandAug
+#### 2. RandAug
 
 AutoAug系列之RandAug，相比autoaug的是和否的搜索策略，randaug通过概率的方法来进行搜索，对于大数据集的增益更强，迁移能力更好。实际使用的时候，直接用搜索好的imagnet的策略即可。
 
-3. mixup & cutmix
+#### 3. mixup & cutmix
 
 mixup和cutmix均在imagenet上有这不错的提升，实际使用发现，cutmix相比mixup的通用性更强，业务数据上mixup几乎没有任何的提升，cutmix会提高一点点。不过两者都会带来训练时间的开销, 因为都会导致简单的样本变难，需要更多的iter次数来update，除非0.1%的提升都很重要，不然个人觉得收益不高。在物体识别上，两者可以一起使用。公式如下：
 
@@ -48,9 +48,10 @@ $$
 \widetilde{y} = \lambda y_{i} + (1 - \lambda) y_{j}
 $$
 
-4. gaussianblur和gray这些方法，除非是数据集有这样的数据，不然实际意义不大，用不用都没啥影响。
+#### 4. gaussianblur和gray这些方法，除非是数据集有这样的数据，不然实际意义不大，用不用都没啥影响。
 
 实验结论:
+
 - 20% imagenet数据集 & CMT-tiny
 
 |模型|数据集|数据增强|训练周期|acc@top-1|
@@ -65,15 +66,16 @@ autoaug&randaug没有任何的提升(主要问题还是domain不同，搜出来�
 
 ### 学习率衰减
 
-1. warmup
-  深度学习更新权重的计算公式为$W_{i} = W_{i-1} - \eta \alpha \frac{loss}{W_{i-1}}$，如果bs过大，lr保持不变，会导致Weights更新的次数相对变少，最终的精度不高。
-  
+#### 1. warmup
+
+    深度学习更新权重的计算公式为$W_{i} = W_{i-1} - \eta \alpha \frac{loss}{W_{i-1}}$，如果bs过大，lr保持不变，会导致Weights更新的次数相对变少，最终的精度不高。
+
 
 要调整lr随着bs线性增加而增加，但是lr变大，会导致W更新过快，最终都接近于0，出现nan。
 
 所以需要warmup，在训练前几个epoch，按很小的概率线性增长为初始的LR后再进行LRdecay。
 
-2. LRdecay
+#### 2. LRdecay
 
 笔者常用的LR decay方法一般是Step Decay，按照epoch或者iter的范围来进行线性衰减，对于SGD等优化器来说，效果稳定，精度高。
 
@@ -86,6 +88,7 @@ CosineDecay公式如下:
 $$
 \eta_{t} = \frac{1}{2}(1 + cos(\frac{t\pi}{T}))\eta
 $$
+
 如果不计较训练时间，可以使用更暴力的方法，余弦退火算法(Cosine Annealing Decay), 公式如下:
 
 $$
@@ -106,7 +109,7 @@ $$
 
 这两个方法均是针对卡的显存比较小，batchsize小(batchszie总数小于32)的情况。
 
-1. SyncBN
+#### 1. SyncBN
 
 虽然笔者在训练的时候采用的是ddp，实际上就是数据并行训练，每个卡的batchnorm只会更新自己的数据，那么实际上得到的running_mean和running_std只是局部的而不是全局的。
 
@@ -115,12 +118,12 @@ $$
 
 所以需要SyncBN同步一下mean和std以及后向的更新。
 
-2. GradAccumulate
-  
+#### 2. GradAccumulate
+
   梯度累加和同步BN机制并不相同，也并不冲突，同步BN可以用于任意的bs情况，只是大的bs下没必要用。
-  
+
   跨卡bn则是为了解决小bs的问题所带来的性能问题，通过loss.backward的累加梯度来达到增大bs的效果，由于bn的存在只能近似不是完全等价。代码如下:
-  
+
 ```python
   for idx, (images, target) in enumerate(train_loader):
   images = images.cuda()
@@ -141,6 +144,7 @@ optimizer.zero_grad()
 LabelSmooth目前应该算是最通用的技术了
 
 优点如下:
+
 - 可以缓解训练数据中错误标签的影响；
 - 防止模型过于自信，充当正则，提升泛华性。
 
