@@ -24,10 +24,13 @@
 所有的实验的超参都是统一的,warmup 5个epoch，训练90个epoch，StepLR进行衰减，学习率的设置和bs线性相关，公式为$lr = \frac{BatchSize}{256} * baselr$，优化器使用带有0.9的动量的SGD，baselr为0.1(如果采用Adam或者AdamW优化器的话，公式需要调整为$lr=\frac{BatchSize}{512} * baselr$)，训练的数据增强只有```RandomCropResize```,```RandomFlip```，验证的数据增强为```Resize```和```CenterCrop```。
 
 训练情况如下：
+
 - lr调整曲线如下：
     ![lr](https://img-blog.csdnimg.cn/img_convert/499bb18286ad9d2bd6a38808563f095e.png)
+    
 - 训练曲线如下:
     ![train](https://img-blog.csdnimg.cn/img_convert/c0e9b25a41d4e7bdebca9cdd1d58e9f5.png)
+    
 - 验证曲线如下:
     ![val](https://img-blog.csdnimg.cn/img_convert/64688f2421deadbebdb8eb01746d71e5.png)
 
@@ -50,14 +53,19 @@
 由于bs的增加，在同样的epoch的情况下，会使网络的weights更新迭代的次数变少，所以需要对LR随着bs的增加而线性增加，但是这样会导致上面我们看到的问题，过大的lr会导致最终的收敛不稳定，精度有所下降。
 
 LARS的出发点则是各个层的更新参数使用的学习率应该根据自己的情况有所调整，而不是所有层使用相同的学习率，也就是每层有自己的local lr，所以有：
+
 $$
 \lambda^{l} = \eta * \frac{||w^{l}||}{||\nabla L(w^{l})|| + \beta * ||w^{l}||}
 $$
+
 这里，$l$表示的是第几层，$\eta$表示的是超参数，这个超参数远小于1，表示每层会改变参数的confidence，局部学习率可以很方便的替换每层的全局学习率，参数的更新大小为:
+
 $$
 \nabla w_{t}^{l} = \gamma * \lambda^{l} * \nabla L(w_{t}^{l})
 $$
+
 与SGD联合使用的算法如下：
+
 ![LARS](https://img-blog.csdnimg.cn/img_convert/ef7440dda41ecaac07b6c1d1e76fc41a.png)
 
 LARS代码如下：
@@ -128,12 +136,3 @@ LARS一定程度上可以提升精度，但是强依赖超参，还是需要细�
 ## 五、结束语
 
 本文是**提升分类模型acc**系列的第一篇，后续会讲解一些通用的trick和数据处理的方法，敬请关注。
-
-
-
-
-
-
-
-
-
