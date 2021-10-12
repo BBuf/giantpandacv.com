@@ -39,9 +39,11 @@ Paper Author: Pei Wang;Yijun Li;Nuno Vasconcelos
 ##### L2 loss的离群值敏感性
 
 让我们回顾一下$Style loss$:
+
 $$
 \mathcal{L}_{\text {style }}\left(\mathbf{x}_{0}^{s}, \mathbf{x}\right)=\sum_{l=1}^{L} \frac{w_{l}}{4 D_{l}^{2} M_{l}^{2}}\left\|G^{l}\left(F^{l}(\mathbf{x})\right)-G^{l}\left(F^{l}\left(\mathbf{x}_{0}^{s}\right)\right)\right\|_{2}^{2}
 $$
+
 可以看到，使用了L2 loss，L2损失有一个特点，即其**对离群值有着敏感性**。当导出的$Gram$矩阵为"峰值"（低熵）时，优化将集中于那些峰值上，而较少关注那些其余的值，也就是说，$Gram$矩阵峰值确定了通道维度上高度相关的强激活位置，因此导致了对一些风格样式过度优化（overfit)，却忽略了其余大部分的风格样式。带残差的model无法捕获纹理和风格感知所需的远距离相关特征。
 
 ##### 知识蒸馏角度理解——成对的高熵更易学习
@@ -68,11 +70,13 @@ $L_{style}$中的$G^l(F(^l(x)))$可以看作是学生网络，$G^l(F(^l(x_0^s)))
 ### Stylization With Activation smoothinG(SWAG) 
 
 解决方案其实也非常简单，前文其实已经说过了。**作者提出使用基于$Softmax$的平滑变换来平滑所有激活，从而避免熵的峰值激活即可：**
+
 $$
 \sigma\left(F_{i k}^{l}(\mathbf{x})\right)=\frac{e^{F_{i k}^{l}(\mathbf{x})}}{\sum_{m, n} e^{F_{m n}^{l}(\mathbf{x})}}
 $$
 
 我们来看一下使用SWAG后的两个损失函数：
+
 $$
 \mathcal{L}_{\text {content }}\left(\mathbf{x}_{0}^{c}, \mathbf{x}\right)=\frac{1}{2}\left\|\sigma\left(F^{l}(\mathbf{x})\right)-\sigma\left(F^{l}\left(\mathbf{x}_{0}^{c}\right)\right)\right\|_{2}^{2}
 $$

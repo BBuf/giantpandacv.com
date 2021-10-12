@@ -22,6 +22,9 @@ nav:
             - 仅使用少量数据训练生成对抗网络: academic/超分和GAN/仅使用少量数据训练生成对抗网络.md
             - Deblurring by Realistic Blurring 图像去模糊论文解读: academic/超分和GAN/Deblurring by Realistic Blurring 图像去模糊论文解读.md
             - 基于GAN来做低光照图像增强，EnlightenGAN论文解读: academic/超分和GAN/基于GAN来做低光照图像增强，EnlightenGAN论文解读.md
+            - CVPR21 Oral 图像风格化鲁棒性的再思考和提升 论文解读: academic/超分和GAN/CVPR21 Oral 图像风格化鲁棒性的再思考和提升 论文解读.md
+            - Deepfake视频中的时空不一致性学习_zzk: academic/超分和GAN/Deepfake视频中的时空不一致性学习_zzk.md
+            - Rethinking and Improving the Robustness of Image Style Transfer: academic/超分和GAN/Rethinking and Improving the Robustness of Image Style Transfer.md
         - 传统图像: 
             - 专栏介绍: academic/传统图像/README.md
             - 一些有趣的图像算法: 
