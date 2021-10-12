@@ -1,6 +1,7 @@
 # 0. 简介
 
 ![论文题目&作者团队](https://img-blog.csdnimg.cn/20200608205124788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 今天给大家解读的是最近一篇关于Deepfake检测的论文，出自阿里巴巴，小米AI lab联合出品的FakeSpotter，由于以往的Deepfake检测网络鲁棒性并不高，这篇文章探讨一个更简单的方式，增强网络的鲁棒性。
 
 
@@ -42,6 +43,7 @@
 下图是描述这两种策略的算法
 
 ![Algorithm 1](https://img-blog.csdnimg.cn/20200608205811582.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 # 3. 其它实现细节
 
 - 优化器是**动量为0.9的SGD**，起始学习率为0.0001。
@@ -54,12 +56,14 @@
 我们通过压缩，模糊，缩放，加噪声来评价模型的鲁棒性。
 
 ![通过压缩，模糊，缩放，加噪声来评价模型的鲁棒性](https://img-blog.csdnimg.cn/20200608205910344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到在检测DFDC这个数据集上表现并不是那么好。
 
 因为该数据集有**人脸替换，声音替换**这两种类型，而声音替换是超过FakeSpotter这种基于图像的检测框架范围内了。
 
 
 ![其它检测模型在Cele-DFv2数据集上加入前面提到的四种操作的表现](https://img-blog.csdnimg.cn/2020060821005681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p1c3Rfc29ydA==,size_16,color_FFFFFF,t_70)
+
 可以看到FakeSpotter仍然保持较好的检测率。
 
 
