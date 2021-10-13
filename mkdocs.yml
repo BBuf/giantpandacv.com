@@ -310,6 +310,7 @@ nav:
                 - 谈谈我眼中的Label Smooth: academic/算法科普/深度学习基础/谈谈我眼中的Label Smooth.md
                 - CVPR2021-Representative BatchNorm: academic/算法科普/深度学习基础/CVPR2021-Representative BatchNorm.md
                 - ResNet与常见ODE初值问题的数值解法​: academic/算法科普/深度学习基础/ResNet与常见ODE初值问题的数值解法​.md
+                - welford算法小记_zzk: academic/算法科普/深度学习基础/welford算法小记_zzk.md
             - 手工调参Tricks:
                 - 【CNN结构设计】无痛的涨点技巧：ACNet: academic/算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
                 - 【CNN调参】目标检测算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
@@ -353,6 +354,7 @@ nav:
             - 语义分割算法之SegNet论文理解: academic/语义及实例分割/语义分割算法之SegNet论文理解.md
             - 语义分割算法之Unet论文理解: academic/语义及实例分割/语义分割算法之Unet论文理解.md
             - 图像分割的一些理解: academic/语义及实例分割/图像分割的一些理解.md
+            - 用Pytorch实现三个优秀的自然图像分割框架！(4): academic/语义及实例分割/用Pytorch实现三个优秀的自然图像分割框架！(4).md
     - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
