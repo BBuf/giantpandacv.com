@@ -9,19 +9,31 @@
 ## **实验**
 
 这一次的模型主要还是借鉴repvgg重参化的思想，将原有的3×3conv替换成repvgg block，在训练过程中，使用的是一个多分支模型，而在部署和推理的时候，用的是多分支转化为单路的模型。
+
 ![](https://img-blog.csdnimg.cn/6e94d1f14d524c50bbd11bf8df38384d.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcG9nZ18=,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 类比repvgg在论文中阐述的观点，这里的baseline选定的是yolov5s，对yolov5s的3×3conv进行重构，分出一条1×1conv的旁支。
+
 ![](https://img-blog.csdnimg.cn/a9c7ae831b58440087e4b7322526e897.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcG9nZ18=,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 在推理时，将旁支融合到3×3的卷积中，此时的模型和原先的yolov5s模型无二致
+
 ![](https://img-blog.csdnimg.cn/fe06049d435a41b9b6d61de951fede68.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcG9nZ18=,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 在次之前，采用的是最直接的方式对yolov5s进行魔改，也就是直接替换backbone的方式，但发现参数量和FLOPs较高，复现精度最接近yolov5s的是repvgg-A1，如下backbone替换为A1的yolov5s：
+
 ![](https://img-blog.csdnimg.cn/d0d1e37f77b944ef9eca42a29193a818.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcG9nZ18=,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 而后，为了抑制Flops和参数的增加，采取使用repvgg block替换yolov5s的3×3conv的方式。
+
 ![](https://img-blog.csdnimg.cn/25a6e3bf4ca040df991c0af7b47a060c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcG9nZ18=,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 两者之间相差的Flops比和参数比约为2.75和1.85.
 ## 性能
 通过消融实验，得出的yolov5s和融合repvgg block的yolov5s性能差异如下：
+
 ![](https://img-blog.csdnimg.cn/9eed3476ab5944daa30b367d78b0d6c4.png)
+
 这里评估的yolov5s在map指标上和官网有所出入，测试两次后均为55.8和35.8，不过这个测试结果和https://github.com/midasklr/yolov5prune以及Issue #3168 · ultralytics/yolov5(https://github.com/ultralytics/yolov5/issues/3168)大致相同。
 
 使用repvgg block重构yolov5s的3×3卷积，在map@0.5和@.5:.95指标上均能至少提升一个点。
@@ -72,6 +84,7 @@
         return self
 ```
 我们可以通过调用onnx模型对convert前后的模型进行可视化：
+
 ![](https://img-blog.csdnimg.cn/62cdbedd489c4473ac8a0ba435c868ee.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcG9nZ18=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 ## 推理
