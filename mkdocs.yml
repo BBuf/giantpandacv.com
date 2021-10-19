@@ -364,6 +364,7 @@ nav:
             - 图解神秘的NC4HW4: project/Msnhnet/图解神秘的NC4HW4.md
             - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): project/Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
             - 基于Msnhnet实现最优化问题(中)一(无约束优化问题): project/Msnhnet/基于Msnhnet实现最优化问题(中)一(无约束优化问题).md
+            - 基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程: project/Msnhnet/基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程.md
         - OneFlow:
             - 专栏介绍: project/OneFlow/README.md
             - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project/OneFlow/Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
