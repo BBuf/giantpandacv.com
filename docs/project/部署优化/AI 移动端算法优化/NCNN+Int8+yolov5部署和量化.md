@@ -20,11 +20,15 @@ ncnn推理框架
 地址链接：[https://github.com/Tencent/ncnn](https://github.com/Tencent/ncnn)
 
 shufflev2-yolov5的源码和权重
+
 地址链接：[https://github.com/ppogg/shufflev2-yolov5](https://github.com/ppogg/shufflev2-yolov5)
 
 模型性能如下：
+
 ![](https://img-blog.csdnimg.cn/img_convert/f046577328e479a1018835e84a3448e5.png)
+
 ![](https://img-blog.csdnimg.cn/img_convert/afe43f063fcc7047490c925bd5d1d636.png)
+
 关于ncnn的编译和安装，网上的教程很多，但是推荐在linux环境下运行，window也可以，但可能踩的坑比较多。
 
 ## 二、onnx模型提取
@@ -34,20 +38,30 @@ git clone https://github.com/ppogg/shufflev2-yolov5.git
 python models/export.py --weights weights/yolov5ss.pt --img 640 --batch 1
 python -m onnxsim weights/yolov5ss.onnx weights/yolov5ss-sim.onnx
 ```
+
 这过程一般都很顺利~
+
 ![](https://img-blog.csdnimg.cn/img_convert/294cb9229196bdecf60147a7af813514.png)
+
 ## 三、转化为ncnn模型
 
 ```
 ./onnx2ncnn yolov5ss-sim.onnx yolov5ss.param yolov5ss.bin
 ./ncnnoptimize yolov5ss.param yolov5ss.bin yolov5ss-opt.param yolov5ss-opt.bin 65536
 ```
+
 这个过程依旧不会卡点，很顺利就提取完了，此时就有包含fp32，fp16，一共是4个模型：
+
 ![](https://img-blog.csdnimg.cn/img_convert/671dedfde9d65099f229a5f36f971cdb.png)
+
 为了实现动态尺寸图片处理，需要对yolov5ss-opt.param的reshape操作进行修改：
+
 ![](https://img-blog.csdnimg.cn/img_convert/1c074954cdf08877d877cabf53a7323a.png)
+
 把以上三处reshape的尺度统统改成-1：
+
 ![](https://img-blog.csdnimg.cn/img_convert/13c387512332041510d4a4d9cc351d0e.png)
+
 其他地方无需改动。
 
 ## 四、后处理修改
@@ -55,24 +69,38 @@ python -m onnxsim weights/yolov5ss.onnx weights/yolov5ss-sim.onnx
 ncnn官方的yolov5.cpp需要修改两处地方
 
 anchor信息是在 models/yolov5ss-1.0.yaml，需要根据自己的数据集聚类后的anchor进行对应的修改：
+
 ![](https://img-blog.csdnimg.cn/img_convert/8161269cf0a6f81aa397471b8814a052.png)
+
 输出层ID在Permute层里边，也需要进行相应的修改：
+
 ![](https://img-blog.csdnimg.cn/img_convert/fbd99ea69616538091fe6f0b53cccfb6.png)
+
 修改后如下：
+
 ![](https://img-blog.csdnimg.cn/img_convert/4b766e9ed962e1d9a816fcfb07d4d967.png)
+
 此时，修改的地方只有以上几点，Focus层代码也可看个人情况移除，重新make就可以进行检测。
 
 **fp16的模型检测效果如下：**
+
 ![](https://img-blog.csdnimg.cn/img_convert/231e0a41290dd57232aedf75e0aa6535.png)
+
 还有，不要再问为什么三轮车检测不出来了。。你家coco数据集有三轮车是吗。。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/61708eabc6b64333af7feebf90b15625.png)
+
 ## 五、Int8量化
+
 更加详细的教程可以参考本人知乎博客关于yolov4-tiny的教程，很多细节的东西本篇不会累述（下方附链接）。
 
 这里需要补充几点：
 
  - 校验表数据集请使用coco_val那5000张数据集；
- - mean和val的数值需要和原先自己训练模型时候设定的数值保持一致，在yolov5ss.cpp里也需要保持一致；
+ - mean和val的数值需要和原先自己训练模型时候设定的数值保持一致，在yolov5ss.cpp里也
+
+需要保持一致；
+
  - 校验过程比较漫长，请耐心等候
 
 运行代码：
@@ -83,11 +111,15 @@ find images/ -type f > imagelist.txt
 ./ncnn2int8 yolov5ss-opt.param yolov5ss-opt.bin yolov5ss-opt-int8.param yolov5ss-opt-int8.bin yolov5ss.table
 ```
 量化后的模型如下：
+
 ![](https://img-blog.csdnimg.cn/img_convert/b2db624342eb306940ade45ff8c34ff1.png)
+
 量化后的模型大小大概在1.7m左右，应该可以满足你对小模型大小的强迫症；
 
 此时，可以使用量化后的shufflev2-yolov5模型进行检测：
+
 ![](https://img-blog.csdnimg.cn/img_convert/1f666f55c300fde4f43c4bec0aff32ac.png)
+
 **量化后的精度略有损失，但还是在可接受范围内。模型在量化后不可能精度完全不下降，对于大尺度特征明显的目标，shufflev2-yolov5对此类目标的score可以保持不变（其实还是会下降一丢丢），但对于远距离的小尺度目标，score会下降10%-30%不等，没办法的事，所以请理性看待该模型。**
 
 除去前三次预热，树莓派温度温度在45°以上，对模型进行测试，量化后的benchmark如下：
@@ -144,11 +176,15 @@ shufflev2-yolov5-416  min =  154.51  max =  155.59  avg =  155.09
  - 本文提出shufflev2-yolov5的部署和量化教程；
  - 剖析了之前yolov5s之所以量化容易崩坏的原因；
  - ncnn的fp16模型对比原生torch模型精度可保持不变；
+
 ![左为torch原模型，右为fp16模型](https://img-blog.csdnimg.cn/img_convert/0f7e3388ae3ae50026fe134ffd309761.png)
+
 [上图，左为torch原模型，右为fp16模型]
 
  - ncnn的int8模型精度会略微下降，速度在树莓派上仅能提升5-10%，其他板子暂未测试；
+
 ![](https://img-blog.csdnimg.cn/img_convert/9b76accd1db0d8fa43928ecd65da4520.png)
+
 [上图，左为torch原模型，右为int8模型]
 
 **项目地址：**[https://github.com/ppogg/shufflev2-yolov5](https://github.com/ppogg/shufflev2-yolov5)
@@ -162,10 +198,15 @@ shufflev2-yolov5-416  min =  154.51  max =  155.59  avg =  155.09
 本人已经完成了Android版本的适配
 
 这是本人的红米手机,处理器为高通骁龙730G，检测的效果如下:
+
 ![](https://img-blog.csdnimg.cn/img_convert/9a86695b05c19f16f90f52367eea11bc.png)
+
 这是量化后的int8模型检测效果:
+
 ![](https://img-blog.csdnimg.cn/img_convert/b20b7885a46008e7aef6018a5123dfdd.png)
+
 户外场景检测:
+
 <img src="https://user-images.githubusercontent.com/82716366/130357030-c4131b64-55e4-40c9-9f66-c17b42d2409b.jpg" width="400"/><br/>
 
 参考：

@@ -364,6 +364,7 @@ nav:
             - 图解神秘的NC4HW4: project/Msnhnet/图解神秘的NC4HW4.md
             - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): project/Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
             - 基于Msnhnet实现最优化问题(中)一(无约束优化问题): project/Msnhnet/基于Msnhnet实现最优化问题(中)一(无约束优化问题).md
+            - 基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程: project/Msnhnet/基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程.md
         - OneFlow:
             - 专栏介绍: project/OneFlow/README.md
             - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project/OneFlow/Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
@@ -456,6 +457,7 @@ nav:
                 - ARM Neon Intrinsics 学习指北：从入门、进阶到学个通透: project/部署优化/AI 移动端算法优化/ARM Neon Intrinsics 学习指北：从入门、进阶到学个通透.md
                 - NCNN+INT8+YOLOV4量化模型和实时推理: project/部署优化/AI 移动端算法优化/NCNN+INT8+YOLOV4量化模型和实时推理.md
                 - Atlas基础知识: project/部署优化/AI 移动端算法优化/Atlas基础知识.md
+                - NCNN+Int8+yolov5部署和量化: project/部署优化/AI 移动端算法优化/NCNN+Int8+yolov5部署和量化.md
             - 深度学习编译器:
                 - 多面体模型在深度学习编译器的应用: project/部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
                 - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md

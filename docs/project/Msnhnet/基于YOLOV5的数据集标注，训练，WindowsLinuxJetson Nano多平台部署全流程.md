@@ -176,15 +176,15 @@ check代码如下:
     - **thr:** dataset中标注框宽高比最大阈值,参数在超参文件 hyp.scratch.yaml"中"anchor_t"设置。
     - **imgsz:** 图片尺寸
 
-  ```python
+```python
 def check_anchors(dataset, model, thr=4.0, imgsz=640):
     # Check anchor fit to data, recompute if necessary
     print('\nAnalyzing anchors... ', end='')
     m = model.module.model[-1] if hasattr(model, 'module') else model.model[-1]  # Detect()
     shapes = imgsz * dataset.shapes / dataset.shapes.max(1, keepdims=True)
     scale = np.random.uniform(0.9, 1.1, size=(shapes.shape[0], 1))  # augment scale
-    wh = torch.tensor(np.concatenate([l[:, 3:5] * s for s, l in zip(shapes * scale, dataset.labels)])).float()  # wh
-
+    wh = torch.tensor(np.concatenate([l[:, 3:5] * s for s, l in zip(shapes * scale, dataset.labels)])).float()  # wh 
+    
     def metric(k):  # compute metric
         r = wh[:, None] / k[None]
         x = torch.min(r, 1. / r).min(2)[0]  # ratio metric
@@ -209,7 +209,7 @@ def check_anchors(dataset, model, thr=4.0, imgsz=640):
         else:
             print('Original anchors better than new anchors. Proceeding with original anchors.')
     print('')  # newline
-  ```
+```
 
   - 聚类anchor代码:
   - 参数:
@@ -220,10 +220,10 @@ def check_anchors(dataset, model, thr=4.0, imgsz=640):
     - **gen:** kmean算法iter次数
     - **verbose:** 是否打印结果
 
-  ```python
+```python
 def kmean_anchors(path='./data/coco128.yaml', n=9, img_size=640, thr=4.0, gen=1000, verbose=True):
     """ Creates kmeans-evolved anchors from training dataset
-
+    
         Arguments:
             path: path to dataset *.yaml, or a loaded dataset
             n: number of anchors
@@ -237,6 +237,7 @@ def kmean_anchors(path='./data/coco128.yaml', n=9, img_size=640, thr=4.0, gen=10
         Usage:
             from utils.general import *; _ = kmean_anchors()
     """
+    
     thr = 1. / thr
 
     def metric(k, wh):  # compute metrics
@@ -317,9 +318,12 @@ def kmean_anchors(path='./data/coco128.yaml', n=9, img_size=640, thr=4.0, gen=10
             if verbose:
                 print_results(k)
 
-    return print_results(k)
-  ```
+    return print_results(k) 
+```
 
+```python
+
+```
   (3) train文件
 
   复制一个train.py文件命名为train_people.py.修改模型参数
@@ -327,6 +331,7 @@ def kmean_anchors(path='./data/coco128.yaml', n=9, img_size=640, thr=4.0, gen=10
 ![模型可配置的超参数](https://img-blog.csdnimg.cn/756849871ef7488b96003f0eece6d52a.png#pic_center)
 
   修改opt参数
+  
   - **weights:** 加载的权重文件(weights文件夹下yolov5m.pt)
   - **cfg:** 模型配置文件，网络结构(model文件夹下yolov5m_people.yaml)
   - **data:** 数据集配置文件，数据集路径，类名等(datas文件夹下people.yaml)
@@ -433,6 +438,7 @@ tans(model,img,msnhnetPath,msnhbinPath) #模型转换
 ### Windows 篇
 
 **1. 准备工作**
+
 (1) 安装Visual studio
 
 - 网址:https://visualstudio.microsoft.com/zh-hans/
