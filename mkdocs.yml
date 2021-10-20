@@ -457,6 +457,7 @@ nav:
                 - ARM Neon Intrinsics 学习指北：从入门、进阶到学个通透: project/部署优化/AI 移动端算法优化/ARM Neon Intrinsics 学习指北：从入门、进阶到学个通透.md
                 - NCNN+INT8+YOLOV4量化模型和实时推理: project/部署优化/AI 移动端算法优化/NCNN+INT8+YOLOV4量化模型和实时推理.md
                 - Atlas基础知识: project/部署优化/AI 移动端算法优化/Atlas基础知识.md
+                - NCNN+Int8+yolov5部署和量化: project/部署优化/AI 移动端算法优化/NCNN+Int8+yolov5部署和量化.md
             - 深度学习编译器:
                 - 多面体模型在深度学习编译器的应用: project/部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
                 - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md
