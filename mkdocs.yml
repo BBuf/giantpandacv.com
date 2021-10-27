@@ -25,7 +25,7 @@ nav:
             - CVPR21 Oral 图像风格化鲁棒性的再思考和提升 论文解读: academic/超分和GAN/CVPR21 Oral 图像风格化鲁棒性的再思考和提升 论文解读.md
             - Deepfake视频中的时空不一致性学习_zzk: academic/超分和GAN/Deepfake视频中的时空不一致性学习_zzk.md
             - Rethinking and Improving the Robustness of Image Style Transfer: academic/超分和GAN/Rethinking and Improving the Robustness of Image Style Transfer.md
-            - ICCVW2021 SDWNet: academic\超分和GAN\ICCVW2021 SDWNet.md
+            - ICCVW2021 SDWNet: academic/超分和GAN/ICCVW2021 SDWNet.md
         - 传统图像: 
             - 专栏介绍: academic/传统图像/README.md
             - 一些有趣的图像算法: 
@@ -460,6 +460,8 @@ nav:
                 - NCNN+INT8+YOLOV4量化模型和实时推理: project/部署优化/AI 移动端算法优化/NCNN+INT8+YOLOV4量化模型和实时推理.md
                 - Atlas基础知识: project/部署优化/AI 移动端算法优化/Atlas基础知识.md
                 - NCNN+Int8+yolov5部署和量化: project/部署优化/AI 移动端算法优化/NCNN+Int8+yolov5部署和量化.md
+                - PPLcnet和YOLO的碰撞，真的能在cpu上快到起飞？: project/部署优化/AI 移动端算法优化/PPLcnet和YOLO的碰撞，真的能在cpu上快到起飞？.md
+                - 【详细图解】再次理解im2col: project/部署优化/AI 移动端算法优化/【详细图解】再次理解im2col.md
             - 深度学习编译器:
                 - 多面体模型在深度学习编译器的应用: project/部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
                 - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md
