@@ -376,6 +376,7 @@ nav:
             - 基于OneFlow实现量化感知训练: project/OneFlow/基于OneFlow实现量化感知训练.md
             - 深度学习框架OneFlow是如何和ONNX交互的: project/OneFlow/深度学习框架OneFlow是如何和ONNX交互的？.md
             - 深度学习框架量化感知训练的思考及OneFlow的一种解决方案: project/OneFlow/深度学习框架量化感知训练的思考及OneFlow的一种解决方案.md
+            - Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat: project\OneFlow\Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 

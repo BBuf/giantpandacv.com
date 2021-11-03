@@ -70,9 +70,11 @@ input[x, y, z, k] == input_flatten[x * 60 + y * 20 + z * 5 + k * 1]
 ````
 
 `stride` 每一维度的数值表示该维度索引每增加1，对应到内存上应该移动的步长，`stride` 每一维的计算公式如下：
+
 $$
 stride[i] = stride[i+1] \times input\_shape[i+1]
 $$
+
 **示例代码：**
 
 ```python
@@ -221,10 +223,13 @@ oneflow.repeat(input, *sizes)
 则输出张量每一维的大小计算方式如下：
 
 对于非新增的维度：
+
 $$
 output\_shape[i] = input\_shape[i] * repeat\_size[i]
 $$
+
 对于新增的维度：
+
 $$
 output\_shape[i] = repeat\_size[i]
 $$
