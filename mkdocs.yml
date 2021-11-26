@@ -477,6 +477,11 @@ nav:
                 - 【从零开始学深度学习编译器】番外一，Data Flow和Control Flow: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】番外一，Data Flow和Control Flow.md
                 - 【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM.md
                 - 【从零开始学深度学习编译器】十一，初识MLIR: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十一，初识MLIR.md
+                - 【从零开始学深度学习编译器】十二，MLIR Toy Tutorials学习笔记一: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十二，MLIR Toy Tutorials学习笔记一.md
+                - 【从零开始学深度学习编译器】十三，如何在MLIR里面写Pass？: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十三，如何在MLIR里面写Pass？.md
+                - 【从零开始学深度学习编译器】十四，MLIR Toy Tutorials学习笔记之部分Lowering: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十四，MLIR Toy Tutorials学习笔记之部分Lowering.md
+                - 【从零开始学深度学习编译器】十五，MLIR Toy Tutorials学习笔记之Lowering到LLVM IR: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十五，MLIR Toy Tutorials学习笔记之Lowering到LLVM IR.md
+                - 【从零开始学深度学习编译器】十六，MLIR ODS要点总结上篇: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十六，MLIR ODS要点总结上篇.md
                 - Ansor论文阅读笔记&&论文翻译: project/部署优化/深度学习编译器/Ansor论文阅读笔记&&论文翻译.md
                 - TVM源语=Compute篇: project/部署优化/深度学习编译器/TVM源语=Compute篇.md
                 - 可以让深度学习编译器来指导算子优化吗: project/部署优化/深度学习编译器/可以让深度学习编译器来指导算子优化吗.md

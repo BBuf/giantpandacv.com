@@ -332,7 +332,7 @@ def GenericCallOp : Toy_Op<"generic_call",
     ```mlir
      %4 = toy.generic_call @my_func(%1, %3)
            : (tensor<2x3xf64>, tensor<2x3xf64>) -> tensor<*xf64>
-```
+
 
     This is only valid if a function named "my_func" exists and takes two
     arguments.
@@ -361,7 +361,7 @@ def GenericCallOp : Toy_Op<"generic_call",
 
 然后在`mlir/examples/toy/Ch5/mlir/Dialect.cpp`中实现了`GenericCallOp`的功能，代码如下：
 
-​```cpp
+```cpp
 /// Return the callee of the generic call operation, this is required by the
 /// call interface.
 CallInterfaceCallable GenericCallOp::getCallableForCallee() {
