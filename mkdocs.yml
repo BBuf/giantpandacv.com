@@ -233,6 +233,7 @@ nav:
                 - 结合代码看深度学习中的Attention机制-Part2: academic/算法科普/CV中的注意力机制/结合代码看深度学习中的Attention机制-Part2.md
                 - Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显: academic/算法科普/CV中的注意力机制/Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显.md
                 - OutLook Attention：具有局部信息感知能力的ViT: academic/算法科普/CV中的注意力机制/OutLook Attention：具有局部信息感知能力的ViT.md
+                - ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1): academic/算法科普/CV中的注意力机制/ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1).md
             - Transformer: 
                 - 解析Transformer模型: academic/算法科普/Transformer/解析Transformer模型.md
                 - 解析Vision Transformer: academic/算法科普/Transformer/解析Vision Transformer.md
@@ -292,6 +293,7 @@ nav:
                 - 图解MLP: academic/算法科普/尽览卷积神经网络/图解MLP.md
                 - 深度学习中的重参数机制总结与代码实现: academic/算法科普/尽览卷积神经网络/深度学习中的重参数机制总结与代码实现.md
                 - 百度团队新作：Spatial Shift MLP: academic/算法科普/尽览卷积神经网络/百度团队新作：Spatial Shift MLP.md
+                - RMNet图解: academic/算法科普/尽览卷积神经网络/RMNet图解.md
             - 可变形卷积:
                 - DCN V1代码阅读笔记: academic/算法科普/可变形卷积/DCN V1代码阅读笔记.md
                 - MSRA DCN(可变形卷积) 算法笔记: academic/算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md

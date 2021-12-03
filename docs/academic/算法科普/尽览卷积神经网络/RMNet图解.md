@@ -15,6 +15,7 @@
 ## 介绍
 
 我们总结了主要的contribution：
+
 - 我们发现重参数化有其局限性，当非线性操作(如ReLU)放置在residual branch的时候，无法进行重参数化
 - 我们提出了RM方法，能够移除残差连接，通过保留输入特征映射(Reserving)并将其与输出特征映射合并(Merging)，去除非线性层间的残留连接。
 - 通过这种方法我们可以将ResNet转换为一个直筒网络，能够在速度，精度上达到更好的trade off，对剪枝也十分友好
@@ -362,6 +363,7 @@ print("RM output is equal?: ", np.allclose(rmblock_output.detach().numpy(),
                                            atol=1e-4))
 ```
 这两种方案参数量分别为
+
 - 方案1: `Conv1(C*4C*3*3) + PReLU(4C) + Conv2(4C*2C*3*3) = 108C^2 + 4C`
 - 方案2: `Conv1(C*3C*3*3) + Conv2(3C*2C*3*3) = 81C^2`
 
@@ -377,6 +379,7 @@ print("RM output is equal?: ", np.allclose(rmblock_output.detach().numpy(),
 
 ### 剪枝
 当我们移除残差操作后，对剪枝操作也是很友好的，RMNet能以更高的比例去剪枝：
+
 ![](https://files.mdnice.com/user/4601/7f484127-8f47-4d4b-ad60-519b93a13495.png)
 
 ## 实验
