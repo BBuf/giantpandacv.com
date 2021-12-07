@@ -207,6 +207,13 @@ nav:
                 - 【神经网络搜索】NasBench101: academic/算法科普/AutoML/【神经网络搜索】NasBench101.md
                 - 【神经网络搜索】Once for all: academic/算法科普/AutoML/【神经网络搜索】Once for all.md
                 - 【神经网络搜索】Single Path One Shot: academic/算法科普/AutoML/【神经网络搜索】Single Path One Shot.md
+                - AutoML/Attention Transfer_pprp: academic/算法科普/AutoML/Attention Transfer_pprp.md
+                - Bag of Tricks for NAS_pprp: academic/算法科普/AutoML/Bag of Tricks for NAS_pprp.md
+                - Fixing the train-test resolution_pprp: academic/算法科普/AutoML/Fixing the train-test resolution_pprp.md
+                - NetAug 韩松团队新作_pprp: academic/算法科普/AutoML/NetAug 韩松团队新作_pprp.md
+                - Towards Oracle Knowledge Distillation with NAS_pprp: academic/算法科普/AutoML/Towards Oracle Knowledge Distillation with NAS_pprp.md
+                - 【知识蒸馏】Knowledge Review_pprp: academic/算法科普/AutoML/【知识蒸馏】Knowledge Review_pprp.md
+                - 知识蒸馏综述-知识的类型_pprp: academic/算法科普/AutoML/知识蒸馏综述-知识的类型_pprp.md
             - CV中的特征金字塔:
                 - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
                 - 【CV中的特征金字塔】二，Feature Pyramid Network: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】二，Feature Pyramid Network.md
