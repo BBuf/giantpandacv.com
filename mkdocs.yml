@@ -26,6 +26,7 @@ nav:
             - Deepfake视频中的时空不一致性学习_zzk: academic/超分和GAN/Deepfake视频中的时空不一致性学习_zzk.md
             - Rethinking and Improving the Robustness of Image Style Transfer: academic/超分和GAN/Rethinking and Improving the Robustness of Image Style Transfer.md
             - ICCVW2021 SDWNet: academic/超分和GAN/ICCVW2021 SDWNet.md
+            - Model-driven Deep Neural Network for Single Image Rain Removal: academic/超分和GAN/Model-driven Deep Neural Network for Single Image Rain Removal.md
         - 传统图像: 
             - 专栏介绍: academic/传统图像/README.md
             - 一些有趣的图像算法: 
@@ -338,6 +339,7 @@ nav:
                 - 余弦退火重启动学习率机制: academic/算法科普/手工调参Tricks/余弦退火重启动学习率机制.md
                 - 如何让你的分类性能提升之LARS_蒋神: academic/算法科普/手工调参Tricks/如何让你的分类性能提升之LARS_蒋神.md
                 - 提升分类性能之bag of tricks_蒋神: academic/算法科普/手工调参Tricks/提升分类性能之bag of tricks_蒋神.md
+                - 提升分类性能之优化调参: academic/算法科普/手工调参Tricks/提升分类性能之优化调参.md
             - 综述类:
                 - 【综述】Dropout模式和发展: academic/算法科普/综述类/【综述】Dropout模式和发展.md
                 - 【综述】图像去雾的前世今生: academic/算法科普/综述类/【综述】图像去雾的前世今生.md
