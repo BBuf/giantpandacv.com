@@ -10,18 +10,47 @@
 
 # Method
 ## 上下文推理注意力卷积
-![image.png](https://img-blog.csdnimg.cn/img_convert/c8f6c995a602f431eab2825c8484bf62.png)<br />作者在设计自适应修改滤波器的卷积借鉴了Context Guided Conv[37]，在中间添加了对应上下文的注意力关系以及对应的通道交互和空间交互操作，具体如下图：<br />![image.png](https://img-blog.csdnimg.cn/img_convert/3315a286c1a86adf34a16c135c294afb.png)
-### 上下文信息提取
-为了提取上下文信息，作者首先通过使用池层将输入特征$$F_{in}$$的空间$$c_{in}\times h \times w$$大小减小到$$c_{in}\times h' \times w'$$，然后通过一个共享的线性层，其权重为$$W_E \in \mathbb{R}^{h'\times w' \times e}$$将每个通道投影到大小为$$e
-$$的潜在向量。按照之前Context Guided Conv的设计，我们将向量大小$$e$$设为$$\frac{k_1\times k_2}{2}$$，从而获得具有上下文信息的新特征，表示为$$F_C\in \mathbb{R}^{c_{in}\times e}$$。然后作者又将全局上下文信息写成一组向量$$F_C=[\textbf{f}_1,\cdots, \textbf{f}_e] \in \mathbb{R}^{c_{in}\times e}$$。
-### 上下文关系推理描述符
-基于之前的卷积推理工作，作者构建了上下文描述符之间的关系推理模型。具体地说，通过权重参数$$W_{\varphi}, W_{\phi}$$将上下文描述符嵌入到两个嵌入空间中。然后，正对的关系函数可以表达为：<br />$$R(\textbf{f}_i, \textbf{f}_j)=(W_{\varphi}\textbf{f}_i)^T(W_{\phi}\textbf{f}_j)$$<br />它获取每两个学习的上下文描述符$$\textbf{f}_i$$和$$\textbf{f}_j$$之间的关系，从而生成一个图。然后通过一个残差学习将$$F_C$$和原始输入桥接得到最终的全局上下文关系：<br />$$F_C^* = \sigma([(R{F_C}^TW_g)W_r]^T)\odot F_C + F_C$$
-### 上下文推理注意卷积
-作者采用增强的全局上下文信息$$F_C^*$$来更新卷积核，从而得到最终的注意力遮罩$$F_A \in \mathbb{R}^{c_{out}\times c_{in} \times k_1 \times k_2}$$。为了尽可能减少空间复杂度，作者将这个卷积遮罩分解成$$F_{A1}\in \mathbb{R}^{c_{out}\times k_1 \times k_2}$$和$$F_{A2}\in \mathbb{R}^{c_{in}\times k_1 \times k_2}$$<br />。然后分别利用空间交互和通道交互来得到$$F_{A1}$$和$$F_{A2}$$。<br />**通道相互作用：**其中**通道相互作用**采用了深度可分离卷积来减少计算量，通过一个权重为$$W_{ci}\in \mathbb{R}^{\frac{c_{in}}{g}\times \frac{c_{out}}{g}}$$分组线性层进行投影。最后得到通道交互特征$$F_{CI}\in \mathbb{R}^{c_{out}\times e}$$。<br />**空间相互作用：**然后，我们分别对$$F_C^*$$和$$F_{CI}$$分别进行**空间相互作用**，得到相应的张量$$F_{A1}$$和$$F_{A2}$$。具体来说就是利用两个权重共享的线性层将这两个特征$$F_C^*$$和$$F_{CI}$$映射为$$F_{A1}$$和$$F_{A2}$$，记作$$F_{A1} = F_{CI}W_{A1}$$和$$F_{A2} = F^*_{C}W_{A2}$$。<br />**上下文推理注意力卷积：**在进行通道和空间交互之后， 作者直接利用$$F_{A1}$$和$$F_{A2}$$通过扩张通道数为$$c_{out}\times c_{in} \times k_1 \times k_2$$，然后再进行逐元素相加得到$$F_A$$。<br />$$F_A = F_{A1} \oplus F_{A2}$$<br />$$(F_A)_{h,i,j,k} = \sigma((F_{A1})_{h,j,k}+(F_{A2})_{i,j,k})$$<br />​
 
-最后，我们可以应用注意掩码$$F_A$$来调制卷积核权重$$W$$，如下所示：<br />$$W^* = W \odot F_A$$<br />
+![image.png](https://img-blog.csdnimg.cn/img_convert/c8f6c995a602f431eab2825c8484bf62.png)<br />作者在设计自适应修改滤波器的卷积借鉴了Context Guided Conv[37]，在中间添加了对应上下文的注意力关系以及对应的通道交互和空间交互操作，具体如下图：<br />![image.png](https://img-blog.csdnimg.cn/img_convert/3315a286c1a86adf34a16c135c294afb.png)
+
+### 上下文信息提取
+
+为了提取上下文信息，作者首先通过使用池层将输入特征$F_{in}$的空间$c_{in}\times h \times w$大小减小到$c_{in}\times h' \times w'$，然后通过一个共享的线性层，其权重为$W_E \in \mathbb{R}^{h'\times w' \times e}$将每个通道投影到大小为$e$的潜在向量。按照之前Context Guided Conv的设计，我们将向量大小 $e$ 设为$\frac{k_1\times k_2}{2}$，从而获得具有上下文信息的新特征，表示为$F_C\in \mathbb{R}^{c_{in}\times e}$。然后作者又将全局上下文信息写成一组向量$F_C=[\textbf{f}_1,\cdots, \textbf{f}_e] \in \mathbb{R}^{c_{in}\times e}$。
+
+### 上下文关系推理描述符
+
+基于之前的卷积推理工作，作者构建了上下文描述符之间的关系推理模型。具体地说，通过权重参数$W_{\varphi}, W_{\phi}$将上下文描述符嵌入到两个嵌入空间中。然后，正对的关系函数可以表达为
+
+$R(\textbf{f}_i, \textbf{f}_j)=(W_{\varphi}\textbf{f}_i)^T(W_{\phi}\textbf{f}_j)$
+
+它获取每两个学习的上下文描述符$\textbf{f}_i$ 和$ \textbf{f}_j$之间的关系，从而生成一个图。然后通过一个残差学习将$F_C$和原始输入桥接得到最终的全局上下文关系：
+
+$F_C^* = \sigma([(R{F_C}^TW_g)W_r]^T)\odot F_C + F_C$ 
+
+
+
+### 上下文推理注意卷积
+
+作者采用增强的全局上下文信息$F_C^*$来更新卷积核，从而得到最终的注意力遮罩$F_A \in \mathbb{R}^{c_{out}\times c_{in} \times k_1 \times k_2}$。为了尽可能减少空间复杂度，作者将这个卷积遮罩分解成$F_{A1}\in \mathbb{R}^{c_{out}\times k_1 \times k_2}$和$F_{A2}\in \mathbb{R}^{c_{in}\times k_1 \times k_2}$。
+
+然后分别利用空间交互和通道交互来得到$F_{A1}$ 和$F_{A2}$ 。
+
+**通道相互作用：**其中**通道相互作用**采用了深度可分离卷积来减少计算量，通过一个权重为$W_{ci}\in \mathbb{R}^{\frac{c_{in}}{g}\times \frac{c_{out}}{g}}$ 分组线性层进行投影。最后得到通道交互特征$F_{CI}\in \mathbb{R}^{c_{out}\times e}$ 。
+
+**空间相互作用：**然后，我们分别对$F_C^*$ 和$ F_{CI}$ 分别进行**空间相互作用**，得到相应的张量$F_{A1}$ 和$ F_{A2}$。具体来说就是利用两个权重共享的线性层将这两个特征$F_C^*$和$F_{CI}$ 映射为$ F_{A1}$ 和$F_{A2}$，记作$F_{A1} = F_{CI}W_{A1}$ 和$ F_{A2} = F^*_{C}W_{A2}$。
+
+**上下文推理注意力卷积：**在进行通道和空间交互之后， 作者直接利用$ F_{A1}$ 和$ F_{A2}$ 通过扩张通道数为$c_{out}\times c_{in} \times k_1 \times k_2$，然后再进行逐元素相加得到$F_A$。
+
+$F_A = F_{A1} \oplus F_{A2}$
+
+$(F_A)_{h,i,j,k} = \sigma((F_{A1})_{h,j,k}+(F_{A2})_{i,j,k})$
+
+最后，我们可以应用注意掩码$ F_A$ 来调制卷积核权重$ W$ ，如下所示：
+
+$W^* = W \odot F_A$
 
 ### 上下文推理注意力图像超分辨率网络
+
 ![image.png](https://img-blog.csdnimg.cn/img_convert/7693105f5c8e9993e266828bbbc3f118.png)<br />作者采用了RCAN的网络结构，将原有的RCAN中的RCAB模块替换成了CRAB模块，其中CRAB就是利用了作者提出的上下文推理注意力卷积来进行构建的。采用了和RCAN中的参数设置，并且进行了一系列的消融实验证明作者提出的模块的有效性。
 # Experiments
 训练选用了DIV2K和Flickr2K作为训练数据，
@@ -36,8 +65,8 @@ $$的潜在向量。按照之前Context Guided Conv的设计，我们将向量�
 
 ![image.png](https://img-blog.csdnimg.cn/img_convert/f5adad988c276d19078736f816b34948.png)<br />上图对比了不同方法在纹理细节恢复上的效果对比，可以看到：通过作者提出的全局上下文推理注意力卷积可以有效的恢复出正确的纹理细节。
 ### 卷积核的多样性
-![image.png](https://img-blog.csdnimg.cn/img_convert/8880f1d0ecedf32696576d94ede31236.png)<br />作者为了调查卷积核的多样性，作者考虑计算$$F_A$$和全为1的矩阵$$I
-$$的欧氏距离，作者将100张图像随机转发到网络中，并计算每个样本的距离。如上图所示，可以看出：作者提出的卷积是根据图像进行自适应调整的，因此整个图像是波动的。<br />​<br />
+![image.png](https://img-blog.csdnimg.cn/img_convert/8880f1d0ecedf32696576d94ede31236.png)<br />作者为了调查卷积核的多样性，作者考虑计算$ F_A$ 和全为1的矩阵$ I
+$ 的欧氏距离，作者将100张图像随机转发到网络中，并计算每个样本的距离。如上图所示，可以看出：作者提出的卷积是根据图像进行自适应调整的，因此整个图像是波动的。<br />​<br />
 # Conclusion
 
 - 作者借鉴了Context Guided Conv方法提出了一种全局上下文推理注意力卷积CRAC。
