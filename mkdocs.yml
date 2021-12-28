@@ -190,6 +190,7 @@ nav:
                 - 百度 PyramidBox 人脸检测器: academic/目标检测及跟踪/人脸识别/百度 PyramidBox 人脸检测器.md
             - 旋转目标检测:
                 - 旋转目标检测中anchor匹配机制的问题和一些思考: academic/目标检测及跟踪/旋转目标检测/旋转目标检测中anchor匹配机制的问题和一些思考.md
+                - 高分遥感图像解决方案_chaser: academic/目标检测及跟踪/旋转目标检测/高分遥感图像解决方案_chaser.md
             - 文献综述:
                 - 【综述】Pytorch YOLO项目推荐 建议收藏学习: academic/目标检测及跟踪/文献综述/【综述】Pytorch YOLO项目推荐 建议收藏学习.md
                 - 深度学习检测网络论文阅读50篇--第一章: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第一章.md
@@ -214,7 +215,9 @@ nav:
                 - NetAug 韩松团队新作_pprp: academic/算法科普/AutoML/NetAug 韩松团队新作_pprp.md
                 - Towards Oracle Knowledge Distillation with NAS_pprp: academic/算法科普/AutoML/Towards Oracle Knowledge Distillation with NAS_pprp.md
                 - 【知识蒸馏】Knowledge Review_pprp: academic/算法科普/AutoML/【知识蒸馏】Knowledge Review_pprp.md
+                - 【知识蒸馏】Deep Mutual Learning_pprp: academic/算法科普/AutoML/【知识蒸馏】Deep Mutual Learning_pprp.md
                 - 知识蒸馏综述-知识的类型_pprp: academic/算法科普/AutoML/知识蒸馏综述-知识的类型_pprp.md
+                - 知识蒸馏综述_网络结构搜索应用_pprp: academic/算法科普/AutoML/知识蒸馏综述_网络结构搜索应用_pprp.md
             - CV中的特征金字塔:
                 - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
                 - 【CV中的特征金字塔】二，Feature Pyramid Network: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】二，Feature Pyramid Network.md
@@ -474,6 +477,7 @@ nav:
                 - NCNN+Int8+yolov5部署和量化: project/部署优化/AI 移动端算法优化/NCNN+Int8+yolov5部署和量化.md
                 - PPLcnet和YOLO的碰撞，真的能在cpu上快到起飞？: project/部署优化/AI 移动端算法优化/PPLcnet和YOLO的碰撞，真的能在cpu上快到起飞？.md
                 - 【详细图解】再次理解im2col: project/部署优化/AI 移动端算法优化/【详细图解】再次理解im2col.md
+                - 工程部署(一）_ 移动端算子的选择_陈e: project/部署优化/AI 移动端算法优化/工程部署(一）_ 移动端算子的选择_陈e.md
             - 深度学习编译器:
                 - 多面体模型在深度学习编译器的应用: project/部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
                 - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md
