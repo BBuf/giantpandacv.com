@@ -126,11 +126,13 @@ def MyOp : Op<...> {
 属性是编译期就知道的Operation的常量。ODS 在 C++ 属性类上提供属性包装器。 MLIR 的核心 IR 库中定义了一些常见的 C++ 属性类（`https://github.com/llvm/llvm-project/blob/main/mlir/include/mlir/IR/Attributes.h`）。ODS 允许在 TableGen 中使用这些属性来定义Operation，可能具有更细粒度的约束。 比如`StrAttr`直接映射到`StringAttr`； `F32Attr/F64Attr` 要求 `FloatAttr` 额外具有一定的位宽。 ODS属性被定义为具有存储类型（对应于存储属性的`mlir::Attribute`类），返回类型（对应于生成的`getters`帮助函数的C++返回类型）以及在内部存储类型和帮助函数进行互转的方法。
 
 **属性装饰器**。 有一些重要的属性适配器/装饰器/修饰符可以应用于 ODS 属性以指定常见的附加属性，如可选性、默认值等。
+
 - `DefaultValuedAttr`：为一个属性指定默认值。
 - `OptionalAttr`：将一个属性指定为可选的。
 - `Confined`：`Confined`作为一种通用机制被提供，以帮助对值类型带来的属性约束进行进一步建模。可以通过`Confined`将较为原始的约束组合成为复杂约束。举个例子，一个`32bit`的整型最小值为10，可以被表示为`Confined<I32Attr, [IntMinValue<10>]>`。还有一些其它例子，比如`IntMinValue<N>`：指定一个大于等于N的整型属性等等。
 
 **枚举属性** 。某些属性只能从预定义的enum获取值，例如，比较op的比较类型。 为了定义这些属性，ODS 提供了几种机制：`StrEnumAttr`、`IntEnumAttr` 和 `BitEnumAttr`。
+
 - `StrEnumAttr`：每个enum case 都是一个字符串，属性在op中存储为 `StringAttr`。 
 - `IntEnumAttr`：每个enum case 都是一个整数，属性在op中存储为 `IntegerType`。 
 - `BitEnumAttr`：每个 enum case 都是一个位，属性在 op 中存储为 `IntegerAttr`。
