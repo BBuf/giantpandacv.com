@@ -17,6 +17,7 @@
 ![](https://files.mdnice.com/user/4601/80bd8f8f-1c8f-4d3e-afd5-6ff73dc673d8.png)
 
 主要特点是，我们将整一个序列进行切分，分成多个子序列，放置在不同的device上。**每一个device上有完整的模型权重，和不同的子序列。** 为了方便后续讲解，我们定义符号意义如下：
+
 - B batch size
 - L 序列长度
 - H 全连接层维度大小
@@ -35,6 +36,7 @@ dense2 = nn.Linear(4H, H)
 ```
 
 如果是模型并行，那么第一个全连接层的权重将在第1维进行切分，即每个设备上的权重大小为 (H, $\frac{4H}{N}$)，输出结果为 (B, L, $\frac{4H}{N}$。而第二个全连接层的权重将在第0维进行切分，即每个设备上的权重大小为 ($\frac{4H}{N}$，H），然后进行运算，整个过程所需的显存为：
+
 $$
 \frac{4H^2}{N}*2(两个全连接层参数大小)
 $$
@@ -59,6 +61,7 @@ BLH
 $$
 
 加起来就是
+
 $$
 \frac{32H^2}{N} + \frac{4BLH}{N} + BLH
 $$
@@ -84,46 +87,48 @@ $$
 ### 补充材料：Ring Allreduce
 
 在正式介绍自注意力序列并行之前，我们先简单介绍 Ring Allreduce算法。
-> 这里笔者推荐一篇博客：ahttps://andrew.gibiansky.com/blog/machine-learning/baidu-allreduce/
+> 这里笔者推荐一篇博客：[https://andrew.gibiansky.com/blog/machine-learning/baidu-allreduce/](https://andrew.gibiansky.com/blog/machine-learning/baidu-allreduce/)
 
 该算法是为了解决多个GPU通信效率低下的问题而产生的，它将多个GPU连成一个环
-![](https://files.mdnice.com/user/4601/8fbc2543-599d-46a9-a692-bc872ae8ca29.png)
+![](http://files.mdnice.com/user/4601/8fbc2543-599d-46a9-a692-bc872ae8ca29.png)
 
 我们对每张卡上的数据进行分快，初始状态为：
 
-![](https://files.mdnice.com/user/4601/2ad63922-6576-4a97-8274-e2a83eeeedba.png)
+![](http://files.mdnice.com/user/4601/2ad63922-6576-4a97-8274-e2a83eeeedba.png)
 
 第一步做 scatter-reduce，每张卡在每次iter里同时send和recieve一个数据块：
 第一个iter：
 
-![](https://files.mdnice.com/user/4601/33702551-6d95-4f2d-bc11-bd7508c5dc1c.png)
+![](http://files.mdnice.com/user/4601/33702551-6d95-4f2d-bc11-bd7508c5dc1c.png)
 
 第二个iter：
 
-![](https://files.mdnice.com/user/4601/dfaf0417-88f5-45f6-99f9-bdae792e5c6e.png)
+![](http://files.mdnice.com/user/4601/dfaf0417-88f5-45f6-99f9-bdae792e5c6e.png)
 
 这样最终结果是，**每张卡都有一个完整的数据块总和**
 
-![](https://files.mdnice.com/user/4601/4fa33fe2-6583-47d7-8065-7ae27df621c7.png)
+![](http://files.mdnice.com/user/4601/4fa33fe2-6583-47d7-8065-7ae27df621c7.png)
 
 第二步做 all-gather，每张卡在每次iter都send和recieve一个求和过的完整数据块。
 
 第一个iter：
 
-![](https://files.mdnice.com/user/4601/21d0c619-ebe3-4b48-93fc-a13db35125fc.png)
+![](http://files.mdnice.com/user/4601/21d0c619-ebe3-4b48-93fc-a13db35125fc.png)
 
 第二个iter：
 
-![](https://files.mdnice.com/user/4601/3e03dd91-c1a4-4fb0-991b-b1adcbfaa2a5.png)
+![](http://files.mdnice.com/user/4601/3e03dd91-c1a4-4fb0-991b-b1adcbfaa2a5.png)
 
 最后状态就是每张卡都有所有卡的数据总和：
 
-![](https://files.mdnice.com/user/4601/8db8aeeb-9e90-4852-a06d-82783a66e642.png)
+![](http://files.mdnice.com/user/4601/8db8aeeb-9e90-4852-a06d-82783a66e642.png)
 
 那自注意力机制的序列并行也和ring all-reduce有着异曲同工之处，每张卡都只有子序列，而Q,K,V的计算有需要和所有序列进行交互。那么对应做法就是在每个iter的时候，传输各卡的一个子序列数据。
 
-![](https://files.mdnice.com/user/4601/2d9b44c5-0de7-4ba1-b2a3-d9da7dec65c9.png)
+![](http://files.mdnice.com/user/4601/2d9b44c5-0de7-4ba1-b2a3-d9da7dec65c9.png)
+
 我们以计算Q, K为例，在第一个iter中：
+
 - Device1接收了Device4上的Key，计算了Device1，Device4的Q1K
 - Device2接收了Device1上的Key，计算了Device2，Device1的Q2K
 - Device3接收了Device2上的Key，计算了Device3，Device2的Q3K
@@ -131,11 +136,11 @@ $$
 
 在加上后续2个iter，那么所有device都有完整的QK结果了。接下来计算Attention Scores也是类似的逻辑，每个卡都传输各自的value，得到最终的输出：
 
-![](https://files.mdnice.com/user/4601/5758227e-74e0-480e-8c22-89e5d07bdbe7.png)
+![](http://files.mdnice.com/user/4601/5758227e-74e0-480e-8c22-89e5d07bdbe7.png)
 
 与前面类似，我们比较在模型并行下，计算自注意力所需的显存大小（这里就不再推导了）：
 
-![](https://files.mdnice.com/user/4601/5d47364e-12ec-45f0-b1c5-5bb6a6225861.png)
+![](http://files.mdnice.com/user/4601/5d47364e-12ec-45f0-b1c5-5bb6a6225861.png)
 
 通信开销方面，在模型并行下，前向后向各需要一次all-reduce；在序列并行下，前向需要两次 all-reduce（就是前面我们推导的Key，value传递的过程），后向需要四次 all-reduce。虽然在计算自注意力机制是多了一些all-reduce操作，但是在之前的MLP部分，序列并行比模型并行少了2次all-reduce，也算权衡了一些。
 
@@ -145,9 +150,9 @@ $$
 
 实验也是非常的amazing啊，收敛性正常，模型所能使用的最大batchsize和序列长度也比模型并行要大：
 
-![](https://files.mdnice.com/user/4601/a986bfd7-d650-460b-89ce-33d88773c1c0.png)
+![](http://files.mdnice.com/user/4601/a986bfd7-d650-460b-89ce-33d88773c1c0.png)
 
-![](https://files.mdnice.com/user/4601/5ac8c49e-55d2-425d-8fc0-408b5179b7ac.png)
+![](http://files.mdnice.com/user/4601/5ac8c49e-55d2-425d-8fc0-408b5179b7ac.png)
 
 ## 代码简单走读
 
