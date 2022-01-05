@@ -326,6 +326,7 @@ nav:
                 - CVPR2021-Representative BatchNorm: academic/算法科普/深度学习基础/CVPR2021-Representative BatchNorm.md
                 - ResNet与常见ODE初值问题的数值解法​: academic/算法科普/深度学习基础/ResNet与常见ODE初值问题的数值解法​.md
                 - welford算法小记_zzk: academic/算法科普/深度学习基础/welford算法小记_zzk.md
+                - A Battle of Network Structure_pprp: academic/算法科普/深度学习基础/A Battle of Network Structure_pprp.md
             - 手工调参Tricks:
                 - 【CNN结构设计】无痛的涨点技巧：ACNet: academic/算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
                 - 【CNN调参】目标检测算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
@@ -343,6 +344,7 @@ nav:
                 - 如何让你的分类性能提升之LARS_蒋神: academic/算法科普/手工调参Tricks/如何让你的分类性能提升之LARS_蒋神.md
                 - 提升分类性能之bag of tricks_蒋神: academic/算法科普/手工调参Tricks/提升分类性能之bag of tricks_蒋神.md
                 - 提升分类性能之优化调参: academic/算法科普/手工调参Tricks/提升分类性能之优化调参.md
+                - 浅谈LabelSmooth的两种实现以及推导_蒋: academic/算法科普/手工调参Tricks/浅谈LabelSmooth的两种实现以及推导_蒋.md
             - 分布式训练大模型:
                 - 让训练更长序列模型称为可能Sequence Parallelism_zzk: academic/算法科普/分布式训练大模型/让训练更长序列模型称为可能Sequence Parallelism_zzk.md
             - 综述类:
