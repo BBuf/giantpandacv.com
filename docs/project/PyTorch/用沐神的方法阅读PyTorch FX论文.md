@@ -81,7 +81,9 @@ Figure2展示了使用 `torch.fx` 进行变换的示例。 变换是找到一个
  ![Figure2](https://img-blog.csdnimg.cn/be97419f7fd64b648fd6ecce6a06e3bf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_17,color_FFFFFF,t_70,g_se,x_16)
 
 ## 0x6.1 程序捕获
- `torch.fx`的符号跟踪机制使用一个Proxy数据结构来记录给定一个输入之后经过了哪些Op。Proxy是一个duck-typed类型的Python类记录了在它之上的的属性访问和调用方法，是程序中真实Op的上层抽象。duck-typed可以看一下这里的介绍：https://zh.wikipedia.org/wiki/%E9%B8%AD%E5%AD%90%E7%B1%BB%E5%9E%8B 。PyTorch的算子以及Python子集的某些函数都会被这个Proxy包装一次，然后在符号跟踪传入的是一个`nn.Module`时，会对这个`nn.Module`中的子`nn.Module`也进行Proxy包装，当然还包含输入数据。这样程序中的输入和其它Op都是duck-typed类型的Proxy对象，我们就可以执行这个程序了，也就是符号跟踪的过程。符号跟踪的过程通过一个`Tracer`类进行配置，它的方法可以被重写以控制哪些值被作为Proxy对象保留，哪些值被unpack。（Proxy记录下来的Op可以进行unpack，unpack之后可以拿到真实的Tensor, Parameter和运算符等等）。通过Proxy和Tracer类的配合，`torch.fx`就可以完成PyTorch程序的符号跟踪，需要注意的是这里的符号跟踪的意思就是运行一遍这个被代理之后的`nn.Module`的forward。
+ `torch.fx`的符号跟踪机制使用一个Proxy数据结构来记录给定一个输入之后经过了哪些Op。Proxy是一个duck-typed类型的Python类记录了在它之上的的属性访问和调用方法，是程序中真实Op的上层抽象。duck-typed可以看一下这里的介绍：https://zh.wikipedia.org/wiki/%E9%B8%AD%E5%AD%90%E7%B1%BB%E5%9E%8B 。
+ 
+PyTorch的算子以及Python子集的某些函数都会被这个Proxy包装一次，然后在符号跟踪传入的是一个`nn.Module`时，会对这个`nn.Module`中的子`nn.Module`也进行Proxy包装，当然还包含输入数据。这样程序中的输入和其它Op都是duck-typed类型的Proxy对象，我们就可以执行这个程序了，也就是符号跟踪的过程。符号跟踪的过程通过一个`Tracer`类进行配置，它的方法可以被重写以控制哪些值被作为Proxy对象保留，哪些值被unpack。（Proxy记录下来的Op可以进行unpack，unpack之后可以拿到真实的Tensor, Parameter和运算符等等）。通过Proxy和Tracer类的配合，`torch.fx`就可以完成PyTorch程序的符号跟踪，需要注意的是这里的符号跟踪的意思就是运行一遍这个被代理之后的`nn.Module`的forward。
 ## 0x6.2 中间表示
 `torch.fx`的中间表示（IR）由一个Python数据结构`Graph`来做的。这个`Graph`实际上是一个包含一系列`Node`的线性表。节点有一个字符串操作码`opcode`，描述节点代表什么类型的操作（操作码的语义可以在附录 A.1 中找到）。 节点有一个关联的目标，它是调用节点（`call_module`、`call_function` 和 `call_method`）的调用目标。 最后，节点有 `args` 和 `kwargs`，在trace期间它们一起表示 Python 调用约定中的目标参数（每个opcode对应的 `args` 和 `kwargs` 的语义可以在附录 A.2 中找到）。 节点之间的数据依赖关系表示为 `args` 和 `kwargs` 中对其他节点的引用。
 
