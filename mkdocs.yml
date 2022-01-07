@@ -396,6 +396,8 @@ nav:
             - 深度学习框架量化感知训练的思考及OneFlow的一种解决方案: project/OneFlow/深度学习框架量化感知训练的思考及OneFlow的一种解决方案.md
             - Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat: project/OneFlow/Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat.md
             - 使用OneFlow完成基于U型网络的ISBI细胞分割任务: project/OneFlow/使用OneFlow完成基于U型网络的ISBI细胞分割任务.md
+        - PyTorch:
+            - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
