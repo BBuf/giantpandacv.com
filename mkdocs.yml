@@ -245,6 +245,8 @@ nav:
                 - Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显: academic/算法科普/CV中的注意力机制/Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显.md
                 - OutLook Attention：具有局部信息感知能力的ViT: academic/算法科普/CV中的注意力机制/OutLook Attention：具有局部信息感知能力的ViT.md
                 - ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1): academic/算法科普/CV中的注意力机制/ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1).md
+                - Deformable Attention Transformer_pprp: academic/算法科普/CV中的注意力机制/Deformable Attention Transformer_pprp.md
+                - ViTAE_LoBob: academic/算法科普/CV中的注意力机制/ViTAE_LoBob.md
             - Transformer: 
                 - 解析Transformer模型: academic/算法科普/Transformer/解析Transformer模型.md
                 - 解析Vision Transformer: academic/算法科普/Transformer/解析Vision Transformer.md
@@ -396,6 +398,7 @@ nav:
             - 深度学习框架量化感知训练的思考及OneFlow的一种解决方案: project/OneFlow/深度学习框架量化感知训练的思考及OneFlow的一种解决方案.md
             - Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat: project/OneFlow/Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat.md
             - 使用OneFlow完成基于U型网络的ISBI细胞分割任务: project/OneFlow/使用OneFlow完成基于U型网络的ISBI细胞分割任务.md
+            - 深度学习框架如何优雅的做算子对齐任务？: project/OneFlow/深度学习框架如何优雅的做算子对齐任务？.md
         - PyTorch:
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
         - 部署优化: 
