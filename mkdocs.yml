@@ -152,6 +152,7 @@ nav:
                     - YOLT 大尺寸图像目标检测的解决方案: academic/目标检测及跟踪/论文解析/one stage模型/YOLT 大尺寸图像目标检测的解决方案.md
                     - 不需要预训练模型的目标检测算法DSOD: academic/目标检测及跟踪/论文解析/one stage模型/不需要预训练模型的目标检测算法DSOD.md
                     - PPYOLO: academic/目标检测及跟踪/论文解析/one stage模型/PPYOLO.md
+                    - 检测器backbone和neck哪个更重要，达摩院新作有不一样的答案: academic\目标检测及跟踪\论文解析\one stage模型\检测器backbone和neck哪个更重要，达摩院新作有不一样的答案.md
                 - two stage模型:
                     - Group Sample：一个简单有效的目标检测升点Trick: academic/目标检测及跟踪/论文解析/two stage模型/Group Sample：一个简单有效的目标检测升点Trick.md
                     - 目标检测算法之CVPR 2018 Cascade R-CNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之CVPR 2018 Cascade R-CNN.md
