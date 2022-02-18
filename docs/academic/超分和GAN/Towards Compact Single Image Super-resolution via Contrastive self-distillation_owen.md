@@ -46,6 +46,7 @@ $$
 $$
 L_{C L}=\sum_{i}^{N} \sum_{j}^{M} \lambda_{j} \frac{d\left(\phi_{j}\left(O_{S}^{(i)}\right), \phi_{j}\left(O_{T}^{(i)}\right)\right)}{\sum_{k}^{K} d\left(\phi_{j}\left(O_{S}^{(i)}\right), \phi_{j}\left(O_{N e g}^{(k)}\right)\right)}
 $$
+
 其中，$\phi_{j}$是VGG预训练网络的第$j$层，M是总隐藏层的数量，$d(x,y)$是$L_1$损失，我们希望上式的分母越大越好，分子越小越好。这种损失引入了相反的力，将CSSR-Net的输出向其教师的输出特征拉近，向负样本的特征拉远。
 
 感知损失与CL相比，其只有一个优化的上限来限制学生网络的输出，与感知损失不同，Contrastive learning使用了多种负样本来作为一个优化的下限目标减小解空间，并且进一步提高CSSR—Net和教师网络的性能。
@@ -62,8 +63,7 @@ $$
 
 * 如原文图6所示，引入对比学习损失计算的负样本越多，模型性能越好，这很好解释，更多的负样本进一步约束了下限，每个batch的loss来自于更好的数据采样。
 
-* 表2中值得注意的一点：没有负样本约束的 CSD（GT Pos），相比与baseline来说，性能更差，作者推测 这是由于HR图像只是提供了更强的上限，我们的模型容量是有限的，也就是说模型其实是欠拟合的，这种更强的上限反而难以完全释放模型的性能。 （We speculate that HR images provide a stronger upper bound which is more difficult for the limited capacity S to fully exlpoit.
-）
+* 表2中值得注意的一点：没有负样本约束的 CSD（GT Pos），相比与baseline来说，性能更差，作者推测 这是由于HR图像只是提供了更强的上限，我们的模型容量是有限的，也就是说模型其实是欠拟合的，这种更强的上限反而难以完全释放模型的性能。 （We speculate that HR images provide a stronger upper bound which is more difficult for the limited capacity S to fully exlpoit.）
 
 ## 笔者观点
 
