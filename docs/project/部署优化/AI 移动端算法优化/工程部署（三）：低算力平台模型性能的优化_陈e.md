@@ -6,14 +6,19 @@
 ### 1.1 op融合
 
 此处的模型优化指的是我们常说的模型卷积层与bn层的融合或者conection，identity等结构重参化的操作，改想法来源于某天无意参与的一次讨论:
+
 ![](https://img-blog.csdnimg.cn/img_convert/f12487cbf2280d237e09946abb088f78.png)
+
 大佬的想法认为fuse是可以做的，但没那么必要，fuse(conv+bn)＝CB的作用在于其他，而对于提速的作用微乎及微，不过本人更加坚持自己的观点，因为yolov5的对比是基于高算力显卡，低端卡，甚至无GPU，NPU加持的设备是有明显的提速作用。
 
 特别对于复用太多group conv或depthwise conv的模型，举个例子，shufflenetv2被当成是高效的移动端网络而被常常使用于端侧的backbone，我们看到单个shuffle block(stride＝2)的组件就使用了两个深度可分离卷积:
+
 ![](https://img-blog.csdnimg.cn/img_convert/abea9301bd35046340c04252cb191657.png)
+
 光是一整套网络就用了25组depthwise conv(原因在于shufflenet系列为低算力cpu设备设计，无可避免复用大量深度分离卷积）
 
 于是本着这样的初衷，做了一套基于v5lite-s模型的实验，并将测试结果贴出供大家相互交流：
+
 ![](https://img-blog.csdnimg.cn/img_convert/dd1fac692962b703f129a86fe8b7b6af.png)
 
 以上测试结果基于对shuffle block的所有卷积和bn层进行融合的结果，抽取coco val2017中的1000张图片进行测试，可以看到，在i5的核上，fuse后的模型在x86 cpu上单次向前的加速很明显。若是对于arm端cpu，效果会更加明显。
@@ -92,8 +97,11 @@ if __name__ == '__main__':
         self.info()
 ```
 下图未进行fuse的模型参数量，计算量，以及单个shuffle block的结构，可以看到未融合的shuffle block中的单个branch2分支就包含了8个子op.
+
 ![](https://img-blog.csdnimg.cn/img_convert/74ad7477aa1be9c17e562528749916ad.png)
+
 而融合后的模型参数量减少了0.5万，计算量少了0.6万，主要还是来源于bn层，并且可以看到单个branch2分支中的op减少了三个，整套backbone网络算下来共减少了25个bn层
+
 ![](https://img-blog.csdnimg.cn/img_convert/97b0e5dec1e1584f761e7f2dec391b74.png)
 
 ### 1.2 重参化
@@ -223,6 +231,7 @@ number class:
 0.65 0.08 0.62 0.33 0.79 0.7 0.44 0 0.96 0.75 0.92 0.66 0.54 0.23 0.14 0.75 0.94 0.88 0.76 0.81 0.28 0.37 0.34 0.19 0.46 0.93 0.79 0.86 0.64 0.55 0.84 0.91 0.33 0.53 0.71 0.53 0.69 0.63 0.67 0.35 0.24 0.97 0.94 0.91 0.66 0.63 0.14 0.4 0.28 0.24 0.29 0.2 0.58 0.65 0.51 0.79 0.49 0.47 0.94 0.84 0.38 0.84 0.88 0.61 0.99 0.17 0.02 0.02 0.42 0.96 0.48 0.6 0.08 0.33 0.84 0.04 0.8 0.22 0.16 0.57
 sigmoid function cost time:68ms
 ```
+
 修改一下函数，先使用sigmoid的反函数unsigmoid计算prob_threshold，此时就不需要先遍历80个类寻找最高得分的类，也不会遇到切入第三个for循环后一定要进行两次sigmoid操作（计算confidence)的问题，只有当box_score > unsigmoid(prob_threshold)才会进行80类的max score查找，再计算bbox坐标，confidence等信息。
 
 ```cpp
@@ -284,6 +293,7 @@ int unsig()
     return 0;
 }
 ```
+
 结果如下:
 
 ```cpp
@@ -342,9 +352,13 @@ for (int k = 0; k < num_class; k++) {
 经过以上修改后的模型检测效果如下：
 
 **xiaomi 10+CPU（Snapdragon 865）：**
+
 ![](https://img-blog.csdnimg.cn/img_convert/11d593582bcfc9d4bfb3334c2b0be150.png)
+
 **redmi K30+CPU（Snapdragon 730G）：**
+
 ![](https://img-blog.csdnimg.cn/img_convert/16a4554b5d3f0f4b4fa451f99643186f.png)
+
 **代码链接：https://github.com/ppogg/ncnn-android-v5lite**
 
 Welcome star and fork~
