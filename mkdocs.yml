@@ -79,6 +79,7 @@ nav:
             - 基于CenterFace的模型优化记录: academic/科研及竞赛分享/基于CenterFace的模型优化记录.md
             - 人物属性模型移动端实验记录: academic/科研及竞赛分享/人物属性模型移动端实验记录.md
             - 基于深度学习的RGBD深度图补全算法文章鉴赏: academic/科研及竞赛分享/基于深度学习的RGBD深度图补全算法文章鉴赏.md
+            - Kaggle StarFish挑战赛金牌分享_cydiaChen: academic/科研及竞赛分享/Kaggle StarFish挑战赛金牌分享_cydiaChen.md
         - 目标检测及跟踪:
             - 专栏介绍: academic/目标检测及跟踪/README.md
             - Darknet:
@@ -264,6 +265,7 @@ nav:
                 - mogrifierlstm: academic/算法科普/Transformer/mogrifierlstm.md
                 - 如何将Transformer应用在移动端: academic/算法科普/Transformer/如何将Transformer应用在移动端.md
                 - DeiT：使用Attention蒸馏Transformer: academic/算法科普/Transformer/DeiT：使用Attention蒸馏Transformer.md
+                - Token-to-Token Transformer_LoBob: academic/算法科普/Transformer/Token-to-Token Transformer_LoBob.md
             - 半监督&无监督:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
