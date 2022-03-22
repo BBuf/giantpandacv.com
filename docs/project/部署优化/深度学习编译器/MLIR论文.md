@@ -133,6 +133,7 @@ MLIR提供了位置信息的紧凑表示形式，并鼓励在整个系统中处�
 ```
 
 结构拆分解释：
+
 - `%t_tensor`：这个Operation定义的结果的名字，前面的`%`是避免冲突，见https://mlir.llvm.org/docs/LangRef/#identifiers-and-keywords 。一个Operation可以定义0或者多个结果（在Toy语言中，只有单结果的Operation），它们是SSA值。该名称在解析期间使用，但不是持久的（例如，它不会在 SSA 值的内存表示中进行跟踪）。 
 - `"toy.transpose"` ：Operation的名字。它应该是一个唯一的字符串，Dialect 的命名空间前缀为“.”。 这可以理解为Toy Dialect 中的transpose Operation。
 -  `(%tensor)`：零个或多个输入操作数（或参数）的列表，它们是由其它操作定义的SSA值或block参数的引用。 

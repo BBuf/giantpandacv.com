@@ -518,6 +518,7 @@ nav:
                 - Ansor论文阅读笔记&&论文翻译: project/部署优化/深度学习编译器/Ansor论文阅读笔记&&论文翻译.md
                 - TVM源语=Compute篇: project/部署优化/深度学习编译器/TVM源语=Compute篇.md
                 - 可以让深度学习编译器来指导算子优化吗: project/部署优化/深度学习编译器/可以让深度学习编译器来指导算子优化吗.md
+                - MLIR论文: project/部署优化/深度学习编译器/MLIR论文.md
     - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3:
@@ -550,6 +551,7 @@ nav:
         - CASIA标注工具: resources/CASIA标注工具.md
         - darklabel教程: resources/darklabel教程.md
         - 简易关键点标注软件: resources/简易关键点标注软件.md
+        - ffcv让数据加载不再是瓶颈: resources/ffcv让数据加载不再是瓶颈.md
     - VIDEO:
         - video: video/video_1.md
 # Theme

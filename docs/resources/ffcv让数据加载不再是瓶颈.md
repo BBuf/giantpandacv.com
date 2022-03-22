@@ -49,6 +49,7 @@ writer = DatasetWriter(write_path, {
 
 }, num_workers=16)
 ```
+
 - write_path 数据集要写入的路径
 - 字典，其中value项是你数据对应的一个Field对象。对应我们的数据集，每个X是一个ndarray，所以对应的是NDArrayField; 而Y则是一个浮点数，对应FloatField
 
@@ -61,6 +62,7 @@ loader = Loader('/path/to/dataset.beton',
                 order=ORDERING,
                 pipelines=PIPELINES)
 ```
+
 - order 决定数据读取的顺序
 - pipelines 数据预处理的pipeline，我们可以把数据增广操作组合成一个pipeline传进来
 
@@ -81,6 +83,7 @@ image_pipeline: List[Operation] = [
 至此简单介绍到这儿，我们来看下背后涉及到的一些技术
 
 其构造主要分为以下几个大块：
+
 ```
 - libffcv 自己写的一套C扩展
 - ffcv python库主体
@@ -149,6 +152,7 @@ class Loader:
                  ):
 ```
 我们挑几个重要的参数来说
+
 - os_cache 缓存策略
 - order 数据读取顺序
 - pipelines 数据预处理流水线，ffcv将所有的数据预处理集中到一个pipeline，然后借助JIT来加速相关处理操作
@@ -260,6 +264,7 @@ class Compiler:
 
 
 然后我们看下 pipeline 主体代码，这是数据预处理的流水线，主要操作是：
+
 - 解析流水线
 
 传进来的是一系列Operation的组合，需要先调用`declare_state_and_memory`来分配Operation对应的state和所需memory：
@@ -394,18 +399,25 @@ class ImageMixup(Operation):
  ...
 ]
 ```
+
 此时这个查找表是`channel_last`形式，我们用view把他展平：
+
 ```python
 table = self.lookup_table.view(-1)
 ```
+
 基于表是`channel_last`形式，那对应的NCHW输入图片我们也要进行transpose，变成对应的`NHWC`并展平（我猜是为了后续访问连续，从而提升性能）：
+
 ```
 images = images.permute(0, 2, 3, 1).view(-1)
 ```
+
 然后就可以调用cupy的ElementwiseKernel，进行逐元素操作：
+
 ```python
 kernel = cp.ElementwiseKernel(f'uint8 input, raw {tn} table', f'{tn} output', 'output = table[input * 3 + i % 3];')
 ```
+
 其中input是输入像素值，i是index，这里对3取余得到具体是 RGB 3个通道中的哪一个。
 
 ## 总结
