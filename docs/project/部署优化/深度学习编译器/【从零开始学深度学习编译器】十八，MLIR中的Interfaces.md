@@ -321,12 +321,10 @@ ef MyInterface : OpInterface<"MyInterface"> {
       by all operations implementing this interface. This method roughly
       correlates to the following on an operation implementing this interface:
 
-      ```c++
       class ConcreteOp ... {
       public:
         void nonStaticMethod();
       };
-```
     }], "void", "nonStaticMethod"
     >,
     
@@ -337,12 +335,11 @@ ef MyInterface : OpInterface<"MyInterface"> {
       This method roughly correlates to the following on an operation
       implementing this interface:
     
-      ```c++
       class ConcreteOp ... {
       public:
         Value nonStaticMethod(unsigned i);
       };
-      ```
+
     }], "Value", "nonStaticMethodWithParams", (ins "unsigned":$i)
     >,
     
@@ -352,12 +349,11 @@ ef MyInterface : OpInterface<"MyInterface"> {
       operations implementing this interface. This method roughly correlates
       to the following on an operation implementing this interface:
     
-      ```c++
       class ConcreteOp ... {
       public:
         static void staticMethod();
       };
-      ```
+
     }], "void", "staticMethod"
     >,
     
@@ -369,7 +365,7 @@ ef MyInterface : OpInterface<"MyInterface"> {
       already available on the operation, in this case its `build` methods. This
       method roughly correlates to the following on the interface `Model` class:
     
-      ```c++
+
       struct InterfaceTraits {
         /// ... The `Concept` class is elided here ...
     
@@ -380,7 +376,7 @@ ef MyInterface : OpInterface<"MyInterface"> {
           }
         }
       };
-      ```
+
     
       Note above how no modification is required for operations implementing an
       interface with this method.
@@ -398,7 +394,7 @@ ef MyInterface : OpInterface<"MyInterface"> {
       already available on the operation, in this case its `build` methods. This
       method roughly correlates to the following on the interface `Model` class:
     
-      ```c++
+
       struct InterfaceTraits {
         /// ... The `Concept` class is elided here ...
     
@@ -411,7 +407,7 @@ ef MyInterface : OpInterface<"MyInterface"> {
           }
         }
       };
-      ```
+
     
       Note above how no modification is required for operations implementing an
       interface with this method.
@@ -428,7 +424,7 @@ ef MyInterface : OpInterface<"MyInterface"> {
       generated `Concept` and `Model` class. This method roughly correlates to
       the following on the interface `Trait` class:
     
-      ```c++
+
       template <typename ConcreteOp>
       class MyTrait : public OpTrait::TraitBase<ConcreteType, MyTrait> {
       public:
@@ -437,7 +433,7 @@ ef MyInterface : OpInterface<"MyInterface"> {
           return op.getNumInputs() + op.getNumOutputs();
         }
       };
-      ```
+
     
       As detailed in [Traits](Traits.md), given that each operation implementing
       this interface will also add the interface trait, the methods on this
@@ -448,7 +444,7 @@ ef MyInterface : OpInterface<"MyInterface"> {
       needs to implement the method and the derived implementation will be
       picked up transparently by the interface class.
     
-      ```c++
+
       class ConcreteOp ... {
       public:
         bool isSafeToTransform() {
@@ -456,7 +452,7 @@ ef MyInterface : OpInterface<"MyInterface"> {
           // provided by the trait.
         }
       };
-      ```
+
     }],
       "bool", "isSafeToTransform", (ins), /*methodBody=*/[{}],
       /*defaultImplementation=*/[{
@@ -478,6 +474,7 @@ def OpWithInferTypeInterfaceOp : Op<...
 // the generation of a declaration for those methods.
 def OpWithOverrideInferTypeInterfaceOp : Op<...
     [DeclareOpInterfaceMethods<MyInterface, ["getNumWithDefault"]>]> { ... }
+    
 ```
 
 注意：在 ODS 框架中可以通过 `OpInterfaceTrait` 类访问 C++ 中定义的现有Operation接口。 
@@ -491,10 +488,11 @@ MLIR包括提供可能在许多不同Operation中通用的功能的标准Interfa
 标准Interface截图如下：
 
 ![MLIR的标准Interface类型](https://img-blog.csdnimg.cn/235f7b909da04375a1ce51928e62c0dd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 # 0x9. OneFlow的Interface
 接下来我们以OneFlow IR为例，来看一下OneFlow Dialect中定义了哪些Interface。代码在：`oneflow/ir/include/OneFlow/OneFlowInterfaces.td` 这里。OneFlow基于ODS定义了`UserOpCompatibleInterface`，`ControlEdgeCompatibleInterface`，`NoGrad` 等Interface类型。我们以`UserOpCompatibleInterface`为例来看一下它的实现：
 
-​```cpp
+```cpp
 def UserOpCompatibleInterface : OpInterface<"UserOpCompatible"> {
   let description = [{
     Interface to getting the hard-coded bn

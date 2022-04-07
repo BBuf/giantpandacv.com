@@ -36,6 +36,7 @@
 - nn.Dropout 算子：Dropout算子相信大家非常熟悉，不需要多解释，可以参考下方OneFlow算子文档。
 
 ![nn.Dropout文档](https://img-blog.csdnimg.cn/c5cc15ecbe3c470ab020e4219bc77571.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 例子：
 
 ```cpp
@@ -334,5 +335,6 @@ module {
 
 
 # 0x6. 资料
+
 - https://github.com/Oneflow-Inc/oneflow
 - https://mlir.llvm.org/docs/DeclarativeRewrites/
