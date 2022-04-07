@@ -514,10 +514,14 @@ nav:
                 - 【从零开始学深度学习编译器】十五，MLIR Toy Tutorials学习笔记之Lowering到LLVM IR: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十五，MLIR Toy Tutorials学习笔记之Lowering到LLVM IR.md
                 - 【从零开始学深度学习编译器】十六，MLIR ODS要点总结上篇: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十六，MLIR ODS要点总结上篇.md
                 - 【从零开始学深度学习编译器】十七，MLIR ODS要点总结下篇: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十七，MLIR ODS要点总结下篇.md
+                - 【从零开始学深度学习编译器】十八，MLIR中的Interfaces: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十八，MLIR中的Interfaces.md
+                - 【从零开始学深度学习编译器】十九，MLIR的Pass机制实践: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十九，MLIR的Pass机制实践.md
+                - 【从零开始学深度学习编译器】二十，MLIR的Pattern Rewrite机制: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】二十，MLIR的Pattern Rewrite机制.md
                 - 以OneFlow为例探索MLIR的实际开发流程: project/部署优化/深度学习编译器/以OneFlow为例探索MLIR的实际开发流程.md
                 - Ansor论文阅读笔记&&论文翻译: project/部署优化/深度学习编译器/Ansor论文阅读笔记&&论文翻译.md
                 - TVM源语=Compute篇: project/部署优化/深度学习编译器/TVM源语=Compute篇.md
                 - 可以让深度学习编译器来指导算子优化吗: project/部署优化/深度学习编译器/可以让深度学习编译器来指导算子优化吗.md
+                - MLIR论文: project/部署优化/深度学习编译器/MLIR论文.md
     - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3:
@@ -550,6 +554,7 @@ nav:
         - CASIA标注工具: resources/CASIA标注工具.md
         - darklabel教程: resources/darklabel教程.md
         - 简易关键点标注软件: resources/简易关键点标注软件.md
+        - ffcv让数据加载不再是瓶颈: resources/ffcv让数据加载不再是瓶颈.md
     - VIDEO:
         - video: video/video_1.md
 # Theme
