@@ -6,6 +6,7 @@
 ![](https://files.mdnice.com/user/4601/f1fe5f40-b693-4cbf-b9c3-34a5b0e74eb3.png)
 
 我还留意了下其他文章所提及的，这次 FP32 CUDA Core是独立的，而在安培架构，是有复用 INT32 部分。相较A100，这次是在没复用的情况下把 FP32 CUDA Core数量翻倍。
+
 ![](https://files.mdnice.com/user/4601/984d473b-e7c7-42b3-9989-fc0ca7936e72.png)
 
 ### 第四代TensorCore
@@ -25,6 +26,7 @@ NV也发布了一款全新的数据格式 Float8，具体而言分两种模式�
 
 
 前面 TensorCore 在 FP16 已经有3倍提升了，对应的在 FP8 情况则有6倍提升
+
 ![](https://files.mdnice.com/user/4601/e300cbea-6ff2-4b3e-a8f3-3f576008402c.png)
 
 
@@ -41,6 +43,7 @@ Turing NLG为例，需要 2048张 A100 训8周。而自动混合精度训练逐�
 ![](https://files.mdnice.com/user/4601/773dfbac-fbce-4a69-b168-04d241233bed.png)
 
 至此：
+
 - SM相较上一代提升了22%
 - 第四代TensorCore性能有着两倍提升
 - FP8数据类型引入+Transformer Engine又有两倍提升
@@ -53,9 +56,11 @@ Turing NLG为例，需要 2048张 A100 训8周。而自动混合精度训练逐�
 在之前CUDA编程里，我们将多个线程块组织成一个Grid，多个线程组织成一个线程块。一个线程块被单个SM调度，并且块内的线程可以同步，并利用SM上的shared memory来交换数据。线程块这个概念作为CUDA编程模型里唯一一个局部单元，已经无法最大限度拉满执行效率。
 
 这一次在 Block 和 Grid 中间，插入了一个新的线程层次 Thread Block Cluster。一个 Cluster 是由一组线程块构成，并能被并发地被一组 SM 调度。
+
 ![](https://files.mdnice.com/user/4601/95da5c6e-cb45-4510-88ee-6b5af7238f24.png)
 
 在一个 Cluster 内，所有线程可以访问其他SM上的Shared Memory进行数据读取交换：
+
 ![](https://files.mdnice.com/user/4601/1bd56aa5-97fb-4361-9324-cb02a711c708.png)
 
 而在A100只能借助Global Memory实现不同SM上的Shared Memory访问
