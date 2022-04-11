@@ -406,6 +406,8 @@ nav:
             - 使用OneFlow完成基于U型网络的ISBI细胞分割任务: project/OneFlow/使用OneFlow完成基于U型网络的ISBI细胞分割任务.md
             - 深度学习框架如何优雅的做算子对齐任务？: project/OneFlow/深度学习框架如何优雅的做算子对齐任务？.md
             - 一个Tensor在OneFlow的执行流程: project/OneFlow/一个Tensor在OneFlow的执行流程.md
+            - CUDA WarpReduce 学习笔记: project/OneFlow/CUDA WarpReduce 学习笔记.md
+            - 浅谈NVIDIA-H100白皮书: project/OneFlow/浅谈NVIDIA-H100白皮书.md
         - PyTorch:
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
         - 部署优化: 

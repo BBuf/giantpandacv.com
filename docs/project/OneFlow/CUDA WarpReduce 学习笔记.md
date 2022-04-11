@@ -160,6 +160,7 @@ T __shfl_xor_sync(unsigned mask, T var, int laneMask, int width=warpSize);
 当 laneMask = 16 时，其二进制为 0001 0000，然后线程束每个线程与 laneMask 做异或操作
 
 如：
+
 - 0000 0000 xor 0001 0000 = 0001 0000 = 16
 - 0000 0001 xor 0001 0000 = 0001 0001 = 17
 - 0000 0010 xor 0001 0000 = 0001 0010 = 18
@@ -167,6 +168,7 @@ T __shfl_xor_sync(unsigned mask, T var, int laneMask, int width=warpSize);
 以此类推，最终得到一个 Warp 中的 absmax 值。
 
 接下来我们开始写Kernel，模板参数分别为：
+
 - T 数据类型
 - IDX 索引类型
 - pack_size pack数，比如float可以pack成4个，那对应pack_size=4
@@ -300,7 +302,9 @@ constexpr int cols_per_thread = 128 / kWarpSize;
 ReduceScaleWarpKernel<float, int32_t, 4, cols_per_thread><<<55296, block_dim>>>(device_ptr, row_size, col_size);
 ```
 最后我们看一下 ncu 的结果：
+
 ![](https://files.mdnice.com/user/4601/1d21c3be-16c1-4fb6-b262-91ee24b2e294.png)
+
 吞吐量达到了1.3T，时间位333us，相比 BaseLine 快了 73 %。
 
 ### 总结
