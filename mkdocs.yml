@@ -468,6 +468,7 @@ nav:
                 - INT8 量化训练: project/部署优化/AI 部署及其它优化算法/INT8 量化训练.md
                 - EagleEye：一种用模型剪枝的快速衡量子网络性能的方法: project/部署优化/AI 部署及其它优化算法/EagleEye：一种用模型剪枝的快速衡量子网络性能的方法​.md
                 - 追求极致：Repvgg重参化对YOLO工业落地的实验和思考_陈TEL: project/部署优化/AI 部署及其它优化算法/追求极致：Repvgg重参化对YOLO工业落地的实验和思考_陈TEL.md
+                - F8Net只有8比特乘法的神经网络量化: project/部署优化/AI 部署及其它优化算法/F8Net只有8比特乘法的神经网络量化.md
             - AI 移动端算法优化: 
                 - 移动端arm cpu优化学习笔记:
                     - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
@@ -526,6 +527,8 @@ nav:
                 - TVM源语=Compute篇: project/部署优化/深度学习编译器/TVM源语=Compute篇.md
                 - 可以让深度学习编译器来指导算子优化吗: project/部署优化/深度学习编译器/可以让深度学习编译器来指导算子优化吗.md
                 - MLIR论文: project/部署优化/深度学习编译器/MLIR论文.md
+                - MLIR：摩尔定律终结的编译器基础结构 论文解读: project/部署优化/深度学习编译器/MLIR：摩尔定律终结的编译器基础结构 论文解读.md
+                - 【论文解读】基于MLIR生成矩阵乘法的高性能GPU代码，性能持平cuBLAS: project/部署优化/深度学习编译器/【论文解读】基于MLIR生成矩阵乘法的高性能GPU代码，性能持平cuBLAS.md
     - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3:
