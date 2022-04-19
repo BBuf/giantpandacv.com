@@ -14,6 +14,7 @@
 
 
 ![本文标题和作者信息](https://img-blog.csdnimg.cn/ae146175e0984e3ca48b3ce8b4469cc9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 本文题目为基于MLIR的矩阵乘法高性能GPU代码生成：一些早期结果。这说明论文可能还会继续完善，也许是实验或部分还要补充吧。作者团队是来自PolyMage Labs以及印度理工学院的。
 
 # 0x2. 摘要
@@ -32,6 +33,7 @@
 本文的方法使用编译器中间表示（IR）基础设施来做高性能代码库生成。这里使用矩阵乘法Kernel进行实验，以NVIDIA Tensor Core为目标后端。MLIR是我们在这里使用的编译器基础设施，其目标是在很大程度上使整个过程更加模块化，系统化和自动化。我们证明，通过逐级递降IR并应用正确的IR转换和优化，我们实现了和手写库相当的性能，而无需实际手动编写任何代码。虽然之前的工作对CPU单核的高性能实现进行了类似的研究，但我们这里的目标是专用的加速器。
 
 本文贡献：
+
 - 在 MLIR Dialect中引入 Warp Matrix Multiply Accumulate (WMMA) [13] Operation，并将它们递降到 LLVM/NVPTX 后端。
 - 演示如何将 GPU 上的 matmul 系统地和渐进地生成为一系列 MLIR 变换和dialect loweing pass的代码。
 -  构建针对Tensor Core的端到端matmul代码生成管道，初步结果表明，获得的性能与手动优化库的性能相当，在某些情况下加速达到1.60倍。
@@ -62,6 +64,7 @@ GPU是通用的大规模并行计算设备。内存和计算层次结构在优�
 ![Fermi架构SM的结构](https://img-blog.csdnimg.cn/80a149456cbc43c1bc96efbc7c3963a5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_17,color_FFFFFF,t_70,g_se,x_16)
 
 ![warp调度器的简要工作过程，以Fermi架构为例。这里说的的图一就是上面的SM结构图](https://img-blog.csdnimg.cn/4e8406d47b07418da7909ebfb348821b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 根据SM上要处理的block的数量，可能会并行执行多个warp。因此，一般而言，更多的wrap有助于实现：（i）warp级别的并行。(ii) 更好的延迟隐藏  （iii）更好的利用底层资源。现在，这些 warp 被进一步分组到一个线程块中。可以有多个线程块在 GPU 上并行执行。一个线程块会绑定到一个SM。它在执行的生命周期中不能更改SM，必须在同一个SM上完成执行，并在完成时释放分配给它的所有资源。同一个warp中的线程可以使用warp级别的shuffle指令交换数据。同一个线程块中的所有线程都可以使用低延迟的shared memory进行通信，不同线程块中的线程需要使用高延迟的global memoey进行通信。 同步源语存在于线程块和warp级别。根据所使用的同步类型，同步将确保线程块或warp中的任何线程都不会继续执行下一条指令，直到所有线程都到达同步点。在数据首先写入shared memory然后由所有线程读取的情况下，使用同步是必要的。在读取和写入shared memory缓冲区之前，所有线程必须同步，以确保正确性。 
 
 > 这段话是NVIDIA相关博客的缝合，对CUDA编程模型，执行模型以及内存模型进行了简要概述。
@@ -72,6 +75,7 @@ Tensor Cores是NVIDIA GPU上的可编程矩阵乘法累加（MMA）单元。首�
 在可编程性方面，可以通过三种方式利用Tensor cores：(i) 使用像 cuBLAS 这样的高级库，(ii) 在 CUDA 中使用高级 C++ API 如WMMA[1] 进行编程，或者，(iii) 使用汇编级指令对它们进行显式编程。 
 
 ![比较编程Tensor Core不同的方法](https://img-blog.csdnimg.cn/1ae57a5257c44aff98f3d2732ff11c8f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 使用cuBLAS只需要调用一下接口，而使用其它两种方式需要大量的编程工作。WMMA API提供大矩阵操作（$16\times 16\times 16$，$32 \times 8\times 16$），以及用于加载和存储操作矩阵的实用函数。将这些API函数转换为GPU微架构特定的汇编指令的任务也被下派到NVIDIA的专用编译器中。使用 WMMA API 加载的矩阵在加载到寄存器后具有不透明的布局，即不知道哪个线程持有加载矩阵的哪个元素（线程数据映射）。由于这种不透明的性质，在与`bias_add`等操作进行融合时需要一些额外的步骤，这些操作需要了解线程数据映射。使用汇编指令显式编程Tensor cores甚至更具挑战性，因为程序员必须处理如寄存器中的线程数据映射以及共享内存和寄存器之间的数据移动这种复杂性。上面的Table 1总结了这些方法。
 
 LLVM中的NVPTX后端将WMMA API函数公开为`instrinsics`。 这使得通过MLIR对Tensor cores进行编程成为可能。这些`instrinsics`与 WMMA API 函数一一对应，并在编程和使用方面表现出相同的行为。 
@@ -88,17 +92,21 @@ LLVM中的NVPTX后端将WMMA API函数公开为`instrinsics`。 这使得通过M
 Figure 1显示了我们采用的递降路径，它基于Algorithm 1。虽然可以有不同的递降路径来实现相同的目标，但我们认为应该选择通过Affine Dialect的递降路径，因为生成的目标Kernel是仿射的。 这可以在许多方面有所帮助，例如快速内存缓冲区的创建和放置、loop-tiling、unroll-jam、矢量化、并行循环的检测以及同步barriers的放置等。
 
 
-![Figure1](https://img-blog.csdnimg.cn/503de4c277ce4c49b6e3bd0b4724f2f5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)虽然为了简洁而没有在算法 1 中突出显示，但值得注意的是，只有使用一组更多的优化才能实现高性能，其中包括 (i) 在shared memory缓冲区中pad以减少bank conflicts，(ii) 寄存器tiling或warp tiling，（iii）load-store矢量化，以及（iv）global memory加载延迟隐藏。 现在，我们将详细描述我们的递降管道，讨论如何启用主要优化。 
+![Figure1](https://img-blog.csdnimg.cn/503de4c277ce4c49b6e3bd0b4724f2f5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+虽然为了简洁而没有在算法 1 中突出显示，但值得注意的是，只有使用一组更多的优化才能实现高性能，其中包括 (i) 在shared memory缓冲区中pad以减少bank conflicts，(ii) 寄存器tiling或warp tiling，（iii）load-store矢量化，以及（iv）global memory加载延迟隐藏。 现在，我们将详细描述我们的递降管道，讨论如何启用主要优化。 
 
 
 ## 0x6.1 起点
 本文代码生成流程的起点是像`lmho.dot`或者`linnalg.matmul`这样high level的操作，或者是从面向用户的编程模型生成的linalg dialect IR中的`linalg.matmul`。在前一种情况下，我们可以将操作递降为一个三重循环的affine matmul，而在后者中我们可以直接生成三重循环的affine matmul。起点如List 1所示：
 
 ![Listing 1. 朴素的affine matmul](https://img-blog.csdnimg.cn/4c86e36db5eb484d862e4643f7a28f1c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 ## 0x6.2 局部性和并行性的tiling
 众所周知，如果为tiling选择了合适的参数是有助于数据重用并显著提升性能的。两级tiling对于GPU实现最佳性能至关重要。第一级的tiling映射到不同的线程块，每个线程块将矩阵A和B中的tile块从global memoey复制到shared memory，从而防止多次访问高延迟的global memory。由于划分的tile被映射到不同的线程块，它们可以在不同的SM上并行计算。第二级的tiling促进寄存器的重用并有助于warp级的并行。线程块级别的tile在warp之间进行划分，每个warp只在映射到它的tile的部分上起作用。这个步骤为我们提供了2个级别的tiling结构。我们从List2可以看到这两级Tiling的具体结构：
 
 ![红色和黄色部分分别是内存级别和warp级别的tiling](https://img-blog.csdnimg.cn/9f9327c6f50d4f0c8fdfd967137352c3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 > Loop Tiling，是优化循环的一种非常重要的策略。而在深度学习中，计算密集型算子如矩阵乘法，本质上就是由三层循环构成的，因此Loop tiling在这篇论文的优化中发挥了非常关键的作用。简单而言，Loop Tiling就是通过分块来减少Cache Miss，降低因为数据evict导致的性能下降。如果想了解更多可以看看 https://zhuanlan.zhihu.com/p/477023757 这篇文章或者TVM中对Loop Tiling介绍。
 
 ## 0x6.3 创建和放置Shared Memory缓冲区 
@@ -114,7 +122,9 @@ tiling完成之后，下一步是创建shared memory缓冲区并将其放在正�
 现在我们已经拥有了我们需要的所有基本东西，我们可以继续生成 `gpu.subgroup_mma `op。 WMMA 操作有不同的大小，我们在这项工作中使用 $16×16×16$ 版本的操作。 我们这里生成的操作应该替换掉已经存在的标量操作，相应循环的循环步数也要相应调整。
 
 ![tiling和padded shared memory之后的matmul op，使用了WMMA 操作](https://img-blog.csdnimg.cn/3307e1041b0540c685a70a9f9ff42d6f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 现在我们已经生成了 WMMA 操作，我们进行以下 IR 转换： 
+
 - 将最外面的六个循环从 $(i, j, k, ii, jj, kk)$ 顺序重排到 $(i, j, ii, jj, k, kk)$ 顺序。 这稍后将有助于将计算循环映射到GPU计算层次结构。 此外，它还有助于将C上不变的load-store 操作尽可能移动到最外层。
 -  将最里面的三个循环$(i, j, k)$置换为$(k, i, j)$。 正如 Bhaskaracharya 等人所指出的，这将warp级 MMA 操作作为外部product表示并增强了指令的并行策略。[4]。                      
 -  完全unroll最里面的三个循环。 
@@ -126,12 +136,15 @@ tiling完成之后，下一步是创建shared memory缓冲区并将其放在正�
 > 关于unroll-jam可以看一下陈清杨大佬的这篇文章：https://zhuanlan.zhihu.com/p/392892255
 
 ![循环展开和不变load-store提升后的精细Matmul](https://img-blog.csdnimg.cn/df168a8f918743718d6ac7ac2a884375.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 上述优化后的循环结构如Listing 3所示。需要注意循环结构在C矩阵的不变load-store对移动后发生了什么样的变化。第20行的`affie.for`操作代表main k循环，现在修改为将load的C操作数作为循环`iter_args`、这些将用作此循环中发生的乘法的累加器。每次迭代后，这个k循环都会产生累加的结果，并将这些结果作为`iter_args`传给下一次迭代。这些`iter_args`驻留在寄存器中，并在k循环的不同迭代中重复使用。
 
 ## 0x6.5 Global Memory加载延迟隐藏
 随着上一节中 `gpu.subgroup_mma` op 和其他一些优化的引入，我们正在朝着最终 IR 中的结构迈进。我们专注于本身没有任何GPU特定信息的Affine Dialect中做尽可能多的优化。在我们目前的 IR 中，在加载A和B的shared memory之前，我们无法开始计算。就延迟而言，global memory load是最昂贵的操作之一，因此消除操作数的长等待时间非常重要的。我们通过拆分main k-loop或线程块k-loop在第0个迭代中取出A和B的副本并为n-1个迭代通过计算来做到这一点。副本放在 k-loop之前，计算紧随其后。每次迭代时在该循环中执行的计算的索引也需要向前移动移动一次。结果是，计算发生在shared memory中已经可用的数据上，并且已经发出了下一次迭代的load(这个其实就类似PyTorch DataLoader类似的prefetch)。我们在此展示 IR 的结构清单 4 中的IR。 
 
-![使用移位k-loop的matmul](https://img-blog.csdnimg.cn/f015df8bc4ca4469b2418982d3f1defd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)虽然这为延迟隐藏奠定了基础，但要实现这一点，我们需要将存储到shared memory与加载到global memory解耦，方便线程块 k-loop内的copy循环。 这对于优化的正确性和功能都是必需的。 为此，我们unroll copy loop并在k-loop外部将store延迟到尾部。 我们将这种优化延迟到管道中的另一点，因为启用它需要一些特定的GPU信息。 
+![使用移位k-loop的matmul](https://img-blog.csdnimg.cn/f015df8bc4ca4469b2418982d3f1defd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+虽然这为延迟隐藏奠定了基础，但要实现这一点，我们需要将存储到shared memory与加载到global memory解耦，方便线程块 k-loop内的copy循环。 这对于优化的正确性和功能都是必需的。 为此，我们unroll copy loop并在k-loop外部将store延迟到尾部。 我们将这种优化延迟到管道中的另一点，因为启用它需要一些特定的GPU信息。 
 
 
 ## 0x6.6 插入同步barrires
@@ -156,6 +169,7 @@ tiling完成之后，下一步是创建shared memory缓冲区并将其放在正�
 在0x6.5节我们描述了延迟隐藏并得出结论，但需要等到我们将load和store解耦它才可以完成。为了在不引入任何代码复杂性的情况下实现这一点，我们首先在线程块k-loop内完全展开(unroll) copy循环，然后延迟store以便它们在计算完成后发生。我们在Listing 6中展示了IR的一般结构，我们遵循的方法和[4]中提到的很类似。
 
 ![全局类型加载延迟隐藏](https://img-blog.csdnimg.cn/9f815259e73d400fa61babcd4caec9f7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 这是我们优化的终点，也是我们在 SCF Dialect中的最后一步。 
 
 ## 0x6.11 放到一起
@@ -168,6 +182,7 @@ tiling完成之后，下一步是创建shared memory缓冲区并将其放在正�
 
 # 0x7. 评估
 在本节中，我们将展示我们的Kernel的性能并将它们与 CuBLAS 11.2 进行比较。 评估是在基于 NVIDIA Ampere 的 Geforce RTX 3090 上执行的，该 Geforce RTX 3090 安装在 x86-64 系统上，配备 AMD Ryzen Threadripper 3970X CPU，运行 Ubuntu 20.04 LTS系统。 为所有实验设置了以下参数： 
+
 - 所有实验的SM 适中评论设置为白皮书中提到的最高频率，即 1695 MHz。
 - 我们将自己限制为静态分配的shared memory，即 48 KB。
 - 每个线程的最大寄存器数设置为 255。
@@ -186,6 +201,7 @@ tiling完成之后，下一步是创建shared memory缓冲区并将其放在正�
 自动代码生成方法还允许我们通过有选择地启用或禁用优化来研究单个优化的影响。 我们以增量方式在Figure 3中展示了前面讨论的每个优化的影响，从原始版本到完全优化的版本。
 
 ![控制变量进行测试每个优化对性能的影响](https://img-blog.csdnimg.cn/512a487cc9c84e18b3cd2ac7794a272a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAanVzdF9zb3J0,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 ## 0x7.2 半精度的表现
 在本节中，我们展示了自动生成的半精度kernel的性能。 在这个版本的 matmul 中，所有三个矩阵 A、B 和 C 都在 FP16 中。 结果的累加也是在FP16完成的。 此版本通常比 F32 版本快，但由于尾数和指数的表示较窄，可能容易出现精度不够的问题。
 
