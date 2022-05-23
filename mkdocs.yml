@@ -529,6 +529,10 @@ nav:
                 - MLIR论文: project/部署优化/深度学习编译器/MLIR论文.md
                 - MLIR：摩尔定律终结的编译器基础结构 论文解读: project/部署优化/深度学习编译器/MLIR：摩尔定律终结的编译器基础结构 论文解读.md
                 - 【论文解读】基于MLIR生成矩阵乘法的高性能GPU代码，性能持平cuBLAS: project/部署优化/深度学习编译器/【论文解读】基于MLIR生成矩阵乘法的高性能GPU代码，性能持平cuBLAS.md
+                - MLSys 15_884 Course Introduction: project/部署优化/深度学习编译器/MLSys 15_884 Course Introduction.md
+                - 【TVM 三代优化巡礼】在X86上将普通的矩阵乘法算子提速90倍: project/部署优化/深度学习编译器/【TVM 三代优化巡礼】在X86上将普通的矩阵乘法算子提速90倍.md
+                - 【社区实践】为 TVM 新增 OneFlow 前端: project/部署优化/深度学习编译器/【社区实践】为 TVM 新增 OneFlow 前端.md
+                - 踩坑记 如何编译所有版本的TVM: project/部署优化/深度学习编译器/踩坑记 如何编译所有版本的TVM.md
     - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3:
