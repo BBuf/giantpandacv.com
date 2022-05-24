@@ -383,6 +383,9 @@ nav:
             - 语义分割算法之Unet论文理解: academic/语义及实例分割/语义分割算法之Unet论文理解.md
             - 图像分割的一些理解: academic/语义及实例分割/图像分割的一些理解.md
             - 用Pytorch实现三个优秀的自然图像分割框架！(4): academic/语义及实例分割/用Pytorch实现三个优秀的自然图像分割框架！(4).md
+            - TransBTS_ 3D 多模态脑肿瘤分割 Transformer 阅读笔记: academic/语义及实例分割/TransBTS_ 3D 多模态脑肿瘤分割 Transformer 阅读笔记.md
+            - UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记: academic/语义及实例分割/UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记.md
+            - 轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记: academic/语义及实例分割/轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记.md
     - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
