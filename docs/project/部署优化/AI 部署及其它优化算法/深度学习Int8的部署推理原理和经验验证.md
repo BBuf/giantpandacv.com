@@ -15,7 +15,9 @@
 这部分我不一一细说，就总结几点很显而易见的量化的好处：
 
 1、32-bit的乘加变成了8-bit的乘加，同样的硬件单元下可以speed up；   
-2、32-bit的参数变成了8-bit，显然是model size变小了，需要的空间也变少了，ROM和RAM都减少了；   
+
+2、32-bit的参数变成了8-bit，显然是model size变小了，需要的空间也变少了，ROM和RAM都减少了；  
+
 3、因为内存的要求降低了，对cache的利用率等其他内存系统操作等效率也会提高。
 
 Table 1给出了理论位宽对吞吐、带宽等的要求，有用的信息是累加的数据类型，这一点在做量化部署实现的时候非常重要，其他数值只是个理论值，实际用处不大。
@@ -29,9 +31,13 @@ Table 1给出了理论位宽对吞吐、带宽等的要求，有用的信息是�
 #### 2、相关工作
 
 这部分总结得非常好，有必要我也总结一下。
+
 1、《Quantization and training of neural networks for effificient integer-arithmetic-only inference》，也就是做量化必须看的paper，也是tflite的实现，也是目前QAT的做法的主流参考。这篇说的是如何用全整形进行推理，这部分我用c代码全部实现了(下次一定写稿)。   
+
 2、《Quantizing deep convolutional networks for effificient inference: A whitepaper》，白皮书，无需多言，必看paper，也是google出品。
+
 3、《 Discovering low-precision networks close to full-precision networks for effificient embedded inference.》这篇说的是，在imagenet上，量化成int8后只需要1个epoch就会恢复到float-32的精度；一个trick即采用退火学习率调度和最后的学习率需要很小；截断阈值采用的百分比的策略。  
+
 4、《 Pact: Parameterized clipping activation for quantized neural networks.》，PACT讲的是激活函数的值域范围是可学习的。   
 然后很多低于8-bit的量化工作，比如1-bit、2-bit等，一些非均匀分布的量化算法(这种实际应用中对速度有比较大的影响，大部分情况都不使用)。
 
@@ -43,6 +49,7 @@ Table 1给出了理论位宽对吞吐、带宽等的要求，有用的信息是�
 
 均分量化即Uniform quantization分两步：
 1、选择要量化的数值(浮点)的范围并截断，截断即大于数值范围的就让其为数值范围的最大值，反正就变成数值范围的最小值，**min**(range_min, **max**(x,  range_max));  
+
 2、将截断后的数值映射到整数上，这一步有round的操作。
 如图所示：
 
@@ -62,6 +69,7 @@ Table 1给出了理论位宽对吞吐、带宽等的要求，有用的信息是�
 
 
 **Scale Quantization** ： *f*(*x*) = *s* *·* *x*,  即对称量化，对于int8，那么int8的值域范围就是[-127, 127]，不适用128这个数值，原因在IAQ论文说了是为了能用16-bit的累加器来存int8*int8，因为永远不存在-128 × -128，也就是改乘法的结果的绝对值不会超过2^14，可以保证用16-bit的累加器来存这个乘法结果。
+
 $$
 \begin{gathered}
 s=\frac{2^{b-1}-1}{\alpha} \\
@@ -86,28 +94,35 @@ $$
 Affifine Quantization即非对称量化在做矩阵乘法的时候比对称量化多了好几项：
 
 下面是非对称量化的乘法，即y=w × x，这里不考虑bias。
-$
+
+$$
 \begin{aligned}
 y_{i j} & \approx \sum_{k=1}^{p} \frac{1}{s_{x}}\left(x_{q, i k}-z_{x}\right) \frac{1}{s_{w, j}}\left(w_{q, k j}-z_{w, j}\right) \\
 &=\frac{1}{s_{x} s_{w, j}}\left(\sum_{k=1}^{p} x_{q, i k} w_{q, k j}-\sum_{k=1}^{p}\left(w_{q, k j} z_{x}+z_{x} z_{w, j}\right)-\sum_{k=1}^{p} x_{q, i k} z_{w, j}\right)
 \end{aligned}
-$
+$$
+
 而对称量化的乘法：
+
 $$
  \begin{aligned}y_{i j} & \approx \sum_{k=1}^{p} \frac{1}{s_{x}}\left(x_{q, i k}\right) \frac{1}{s_{w, j}}\left(w_{q, k j}\right) \\&=\frac{1}{s_{x} s_{w, j}}\left(\sum_{k=1}^{p} x_{q, i k} w_{q, k j}\right)\end{aligned}
 $$
+
 多的两项为：
 
 这项可以提前算好，因为w和z的数值是事先知道的。
+
 $$
 \begin{aligned}\sum_{k=1}^{p}\left(w_{q, k j} z_{x}+z_{x} z_{w, j}\right)\end{aligned}
 $$
+
 这项只能运行中计算，因为x是神经网络中的激活值。
 
 
 $$
 \begin{aligned}\sum_{k=1}^{p} x_{q, i k} z_{w, j})\end{aligned}
 $$
+
 那么，实际应用为了提高推理速度，更加愿意用对称量化；
 **这样又有新的问题了：非对称量化多了这么些操作，有什么增益吗？**
 

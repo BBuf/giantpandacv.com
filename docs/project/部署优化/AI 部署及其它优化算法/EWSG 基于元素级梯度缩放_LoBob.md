@@ -82,7 +82,6 @@ $$
 
 $$
 g_{x_{n}}\approx g_{x_{q}}\left(1+\frac{g_{x_{q}}^{\prime}}{\left|g_{x_{q}}\right|}\operatorname{sign}\left(g_{x_{q}}\right)\left(x_{n}-x_{q}\right)\right)
-
 g_{x_{q}}^{\prime}=\frac{\partial g_{x_{q}}}{\partial x_{q}}
 $$
 
@@ -99,25 +98,32 @@ $$
 $$
 
 海森矩阵的公式推导基于了一个假设(没怎么看懂，也不想深入探究，摆烂)，得出这么个公式，
+
 $$
 \mathbb{E}\left[\mathbf{v} \mathbf{v}^{T}\right]=I
 $$
+
 代入并且进行变换，   
+
 $$
 \begin{aligned}
 \operatorname{Tr}(H) &=\operatorname{Tr}(H I)=\operatorname{Tr}\left(H \mathbb{E}\left[\mathbf{v}^{T}\right]\right) \\
 &=\mathbb{E}\left[\operatorname{Tr}\left(H \mathbf{v} \mathbf{v}^{T}\right)\right]=\mathbb{E}\left[\mathbf{v}^{T} H \mathbf{v}\right]
 \end{aligned}
 $$
+
 最后*δ*的公式如下：N是海森矩阵中对角线元素的个数，G是由梯度Gx的分布决定的梯度表示。   
 
 但这个变换对于计算的意义我还是没看懂，因为这样还是要计算海森矩阵，估计也是用pyHessian的library算的，是用其他近似的方法求个海森矩阵，具体在HAWQ(v1、v2、v3)（下次一定写这三篇工作）。 
 
 ***个人觉得这个变换很凑数，也可能自己没看看懂那个假设，有看懂的大佬麻烦指正我！。***
+
 $$
 \delta=\frac{\operatorname{Tr}(H) / N}{G} (5)
 $$
+
 实验中发现梯度很多是0，这样梯度的平均值偏向于0，把G设置成偏大的数：   
+
 $$
 3 \sigma\left(\mathcal{G}_{\mathbf{x}_{q}}\right)
 $$
