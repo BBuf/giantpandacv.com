@@ -472,6 +472,8 @@ nav:
                 - EagleEye：一种用模型剪枝的快速衡量子网络性能的方法: project/部署优化/AI 部署及其它优化算法/EagleEye：一种用模型剪枝的快速衡量子网络性能的方法​.md
                 - 追求极致：Repvgg重参化对YOLO工业落地的实验和思考_陈TEL: project/部署优化/AI 部署及其它优化算法/追求极致：Repvgg重参化对YOLO工业落地的实验和思考_陈TEL.md
                 - F8Net只有8比特乘法的神经网络量化: project/部署优化/AI 部署及其它优化算法/F8Net只有8比特乘法的神经网络量化.md
+                - EWSG 基于元素级梯度缩放_LoBob: project/部署优化/AI 部署及其它优化算法/EWSG 基于元素级梯度缩放_LoBob.md
+                - 深度学习Int8的部署推理原理和经验验证: project/部署优化/AI 部署及其它优化算法/深度学习Int8的部署推理原理和经验验证.md
             - AI 移动端算法优化: 
                 - 移动端arm cpu优化学习笔记:
                     - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
