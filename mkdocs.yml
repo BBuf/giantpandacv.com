@@ -157,6 +157,7 @@ nav:
                     - 检测器backbone和neck哪个更重要，达摩院新作有不一样的答案: academic/目标检测及跟踪/论文解析/one stage模型/检测器backbone和neck哪个更重要，达摩院新作有不一样的答案.md
                     - Detectors for the 2020s 目标检测算法最新进展: academic/目标检测及跟踪/论文解析/one stage模型/Detectors for the 2020s 目标检测算法最新进展.md
                     - YOLOE，2022年新版YOLO解读_陈e: academic/目标检测及跟踪/论文解析/one stage模型/YOLOE，2022年新版YOLO解读_陈e.md
+                    - CVPR2022 Oral：StreamYOLO-流感知实时检测器(1): academic/目标检测及跟踪/论文解析/one stage模型/CVPR2022 Oral：StreamYOLO-流感知实时检测器(1).md
                 - two stage模型:
                     - Group Sample：一个简单有效的目标检测升点Trick: academic/目标检测及跟踪/论文解析/two stage模型/Group Sample：一个简单有效的目标检测升点Trick.md
                     - 目标检测算法之CVPR 2018 Cascade R-CNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之CVPR 2018 Cascade R-CNN.md
@@ -169,6 +170,7 @@ nav:
                     - 目标检测算法之RCNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之RCNN.md
                     - 目标检测算法之RetinaNet（引入Focal Loss）: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之RetinaNet（引入Focal Loss）.md
                     - Towards Open World Object Detection -CVPR2021 Oral（开放世界中的目标检测）: academic/目标检测及跟踪/论文解析/two stage模型/Towards Open World Object Detection -CVPR2021 Oral（开放世界中的目标检测）.md
+                    - Towards Open-Set Object Detection and Discovery: academic/目标检测及跟踪/论文解析/two stage模型/Towards Open-Set Object Detection and Discovery.md
                 - 嵌入式端小模型:
                     - Pelee 移动端实时检测骨干网络: academic/目标检测及跟踪/论文解析/嵌入式端小模型/Pelee 移动端实时检测骨干网络.md
             - 目标跟踪:
