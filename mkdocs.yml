@@ -28,6 +28,7 @@ nav:
             - ICCVW2021 SDWNet: academic/超分和GAN/ICCVW2021 SDWNet.md
             - Model-driven Deep Neural Network for Single Image Rain Removal: academic/超分和GAN/Model-driven Deep Neural Network for Single Image Rain Removal.md
             - Towards Compact Single Image Super-resolution via Contrastive self-distillation_owen: academic/超分和GAN/Towards Compact Single Image Super-resolution via Contrastive self-distillation_owen.md
+            - CVPRW22 UWNR: academic/超分和GAN/CVPRW22 UWNR.md
         - 传统图像: 
             - 专栏介绍: academic/传统图像/README.md
             - 一些有趣的图像算法: 
@@ -80,6 +81,7 @@ nav:
             - 人物属性模型移动端实验记录: academic/科研及竞赛分享/人物属性模型移动端实验记录.md
             - 基于深度学习的RGBD深度图补全算法文章鉴赏: academic/科研及竞赛分享/基于深度学习的RGBD深度图补全算法文章鉴赏.md
             - Kaggle StarFish挑战赛金牌分享_cydiaChen: academic/科研及竞赛分享/Kaggle StarFish挑战赛金牌分享_cydiaChen.md
+            - 如何更快的训练Vision Transformer: academic/科研及竞赛分享/如何更快的训练Vision Transformer.md
         - 目标检测及跟踪:
             - 专栏介绍: academic/目标检测及跟踪/README.md
             - Darknet:
@@ -413,6 +415,7 @@ nav:
             - 一个Tensor在OneFlow的执行流程: project/OneFlow/一个Tensor在OneFlow的执行流程.md
             - CUDA WarpReduce 学习笔记: project/OneFlow/CUDA WarpReduce 学习笔记.md
             - 浅谈NVIDIA-H100白皮书: project/OneFlow/浅谈NVIDIA-H100白皮书.md
+            - HugeCTR源码简单走读_zzk: project/OneFlow/HugeCTR源码简单走读_zzk.md
         - PyTorch:
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
         - 部署优化: 
