@@ -187,6 +187,7 @@ model.add(hugectr.DenseLayer(bottom_names = ["fc3","sparse_embedding1"],
 model.add(hugectr.GroupDenseLayer(...))
 model.add(hugectr.DenseLayer(...))
 ```
+
 - `bottom_name_list`和`top_name_list`来表示输入Tensor列表，输出Tensor列表，这样后续层可以根据这个名字来实现网络层相连。
 - `num_outputs`表示的是全连接层输出维度大小
 - `last_act_type`表示最后一层全连接层的激活层类型，这里是ReLU
@@ -317,6 +318,7 @@ HugeCTR设定了一个最大算法个数，通过`cublasLtMatmulAlgoGetHeuristic
 > 笔者不太了解通信方面的知识
 
 ![](https://files.mdnice.com/user/4601/14a7423e-559b-40da-b00a-c594f6d3be22.png)
+
 all2all和allreduce耗时在拓展模型过程中是很重要的一环，对于比较小的message，多节点的all2all吞吐量受限于IB的消息速率的限制，为此将All2All分为节点内All2All，节点间All2All。并将高频Embedding和MLP的AllReduce放在一个AllReduce操作内完成，以减少延迟。
 
 #### 数据读取优化
@@ -326,6 +328,7 @@ all2all和allreduce耗时在拓展模型过程中是很重要的一环，对于�
 
 #### 重叠MLP和Embedding
 在DLRM中，bottom_mlp部分和Embedding之间不存在依赖，因此做了如下的流水线重叠：
+
 - BottomMLP前向过程和Embedding前向进行重叠
 - 高频Embedding在更新local权重时和AllReduce重叠
 - MLP权重更新和节点内All2All重叠
