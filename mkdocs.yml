@@ -576,6 +576,7 @@ nav:
         - darklabel教程: resources/darklabel教程.md
         - 简易关键点标注软件: resources/简易关键点标注软件.md
         - ffcv让数据加载不再是瓶颈: resources/ffcv让数据加载不再是瓶颈.md
+        - ALITA用于自动驾驶的大规模增量数据集: resources/ALITA用于自动驾驶的大规模增量数据集.md
     - VIDEO:
         - video: video/video_1.md
 # Theme
