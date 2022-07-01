@@ -229,6 +229,7 @@ nav:
                 - 【知识蒸馏】Deep Mutual Learning_pprp: academic/算法科普/AutoML/【知识蒸馏】Deep Mutual Learning_pprp.md
                 - 知识蒸馏综述-知识的类型_pprp: academic/算法科普/AutoML/知识蒸馏综述-知识的类型_pprp.md
                 - 知识蒸馏综述_网络结构搜索应用_pprp: academic/算法科普/AutoML/知识蒸馏综述_网络结构搜索应用_pprp.md
+                - PointDistiller面向高效紧凑3D检测的结构化知识蒸馏: academic/算法科普/AutoML/PointDistiller面向高效紧凑3D检测的结构化知识蒸馏.md
             - CV中的特征金字塔:
                 - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
                 - 【CV中的特征金字塔】二，Feature Pyramid Network: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】二，Feature Pyramid Network.md
@@ -361,6 +362,8 @@ nav:
                 - 浅谈LabelSmooth的两种实现以及推导_蒋: academic/算法科普/手工调参Tricks/浅谈LabelSmooth的两种实现以及推导_蒋.md
             - 分布式训练大模型:
                 - 让训练更长序列模型称为可能Sequence Parallelism_zzk: academic/算法科普/分布式训练大模型/让训练更长序列模型称为可能Sequence Parallelism_zzk.md
+            - 3D重建:
+                - 基于学习视觉里程计的动态稠密RGB-D SLAM_泡椒味的口香糖: academic/算法科普/3D重建/基于学习视觉里程计的动态稠密RGB-D SLAM_泡椒味的口香糖.md
             - 综述类:
                 - 【综述】Dropout模式和发展: academic/算法科普/综述类/【综述】Dropout模式和发展.md
                 - 【综述】图像去雾的前世今生: academic/算法科普/综述类/【综述】图像去雾的前世今生.md
