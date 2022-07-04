@@ -259,6 +259,7 @@ nav:
                 - ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1): academic/算法科普/CV中的注意力机制/ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1).md
                 - Deformable Attention Transformer_pprp: academic/算法科普/CV中的注意力机制/Deformable Attention Transformer_pprp.md
                 - ViTAE_LoBob: academic/算法科普/CV中的注意力机制/ViTAE_LoBob.md
+                - Attention SLAM一种从人类注意中学习的视觉单目SLAM: academic/算法科普/CV中的注意力机制/Attention SLAM一种从人类注意中学习的视觉单目SLAM.md
             - Transformer: 
                 - 解析Transformer模型: academic/算法科普/Transformer/解析Transformer模型.md
                 - 解析Vision Transformer: academic/算法科普/Transformer/解析Vision Transformer.md
@@ -275,6 +276,7 @@ nav:
                 - 如何将Transformer应用在移动端: academic/算法科普/Transformer/如何将Transformer应用在移动端.md
                 - DeiT：使用Attention蒸馏Transformer: academic/算法科普/Transformer/DeiT：使用Attention蒸馏Transformer.md
                 - Token-to-Token Transformer_LoBob: academic/算法科普/Transformer/Token-to-Token Transformer_LoBob.md
+                - 用于语言引导视频分割的局部-全局语境感知Transformer: academic/算法科普/Transformer/用于语言引导视频分割的局部-全局语境感知Transformer.md
             - 半监督&无监督:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
