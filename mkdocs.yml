@@ -82,6 +82,7 @@ nav:
             - 基于深度学习的RGBD深度图补全算法文章鉴赏: academic/科研及竞赛分享/基于深度学习的RGBD深度图补全算法文章鉴赏.md
             - Kaggle StarFish挑战赛金牌分享_cydiaChen: academic/科研及竞赛分享/Kaggle StarFish挑战赛金牌分享_cydiaChen.md
             - 如何更快的训练Vision Transformer: academic/科研及竞赛分享/如何更快的训练Vision Transformer.md
+            - 双非硕的毕设复盘：数据库篇（文末附半自动标注工具包）: academic/科研及竞赛分享/双非硕的毕设复盘：数据库篇（文末附半自动标注工具包）.md
         - 目标检测及跟踪:
             - 专栏介绍: academic/目标检测及跟踪/README.md
             - Darknet:
@@ -322,6 +323,7 @@ nav:
                 - 深度学习中的重参数机制总结与代码实现: academic/算法科普/尽览卷积神经网络/深度学习中的重参数机制总结与代码实现.md
                 - 百度团队新作：Spatial Shift MLP: academic/算法科普/尽览卷积神经网络/百度团队新作：Spatial Shift MLP.md
                 - RMNet图解: academic/算法科普/尽览卷积神经网络/RMNet图解.md
+                - RepOptimizer 其实是RepVGG2: academic/算法科普/尽览卷积神经网络/RepOptimizer 其实是RepVGG2.md
             - 可变形卷积:
                 - DCN V1代码阅读笔记: academic/算法科普/可变形卷积/DCN V1代码阅读笔记.md
                 - MSRA DCN(可变形卷积) 算法笔记: academic/算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md
@@ -366,6 +368,8 @@ nav:
                 - 让训练更长序列模型称为可能Sequence Parallelism_zzk: academic/算法科普/分布式训练大模型/让训练更长序列模型称为可能Sequence Parallelism_zzk.md
             - 3D重建:
                 - 基于学习视觉里程计的动态稠密RGB-D SLAM_泡椒味的口香糖: academic/算法科普/3D重建/基于学习视觉里程计的动态稠密RGB-D SLAM_泡椒味的口香糖.md
+            - 多模态:
+                - 复杂动态环境下的多模态语义SLAM: academic/算法科普/多模态/复杂动态环境下的多模态语义SLAM.md
             - 综述类:
                 - 【综述】Dropout模式和发展: academic/算法科普/综述类/【综述】Dropout模式和发展.md
                 - 【综述】图像去雾的前世今生: academic/算法科普/综述类/【综述】图像去雾的前世今生.md
