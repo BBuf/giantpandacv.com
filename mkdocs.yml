@@ -29,6 +29,7 @@ nav:
             - Model-driven Deep Neural Network for Single Image Rain Removal: academic/超分和GAN/Model-driven Deep Neural Network for Single Image Rain Removal.md
             - Towards Compact Single Image Super-resolution via Contrastive self-distillation_owen: academic/超分和GAN/Towards Compact Single Image Super-resolution via Contrastive self-distillation_owen.md
             - CVPRW22 UWNR: academic/超分和GAN/CVPRW22 UWNR.md
+            - 基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖: academic/超分和GAN/基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖.md
         - 传统图像: 
             - 专栏介绍: academic/传统图像/README.md
             - 一些有趣的图像算法: 
@@ -401,6 +402,7 @@ nav:
             - TransBTS_ 3D 多模态脑肿瘤分割 Transformer 阅读笔记: academic/语义及实例分割/TransBTS_ 3D 多模态脑肿瘤分割 Transformer 阅读笔记.md
             - UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记: academic/语义及实例分割/UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记.md
             - 轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记: academic/语义及实例分割/轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记.md
+            - GitNet：基于几何先验变换的鸟瞰图分割: academic/语义及实例分割/GitNet：基于几何先验变换的鸟瞰图分割.md
     - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
