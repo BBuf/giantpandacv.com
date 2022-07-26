@@ -38,6 +38,7 @@ class ReOrg(nn.Module):
 
 ### 三、DownC模块
 在讲这个模块前，需要先了解作者对同种最大池化层的两种定义:
+
 - 对于定义一，将kernel_size和stride设为2的MaxPool2d称为MP；
 - 对于定义二，将kernel_size设为3，stride设为1，并且填充padding的MaxPool2d称为SP
 
@@ -131,6 +132,7 @@ class SPPCSPC(nn.Module):
 
 ### 总结
 此篇续上篇博客《YOLOv7来临：论文解读附代码解析》，对YOLOv7网络结构中的一些重要模块进行学习，但在结尾处附加笔者的几处疑问，例如:
+
 - 论文中提到的SiLU函数在官方仓库中并未见到
 - YOLOv7-Tiny目前仅提供了SiLU版本，未提供论文中的ReLU版本
 - 官方仓库所使用的激活函数统一为LeakyReLU

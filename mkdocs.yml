@@ -162,6 +162,8 @@ nav:
                     - Detectors for the 2020s 目标检测算法最新进展: academic/目标检测及跟踪/论文解析/one stage模型/Detectors for the 2020s 目标检测算法最新进展.md
                     - YOLOE，2022年新版YOLO解读_陈e: academic/目标检测及跟踪/论文解析/one stage模型/YOLOE，2022年新版YOLO解读_陈e.md
                     - CVPR2022 Oral：StreamYOLO-流感知实时检测器(1): academic/目标检测及跟踪/论文解析/one stage模型/CVPR2022 Oral：StreamYOLO-流感知实时检测器(1).md
+                    - YOLOv7来临：图解网络结构模块: academic/目标检测及跟踪/论文解析/one stage模型/YOLOv7来临：图解网络结构模块.md
+                    - YOLOv7来临：论文详读和解析: academic/目标检测及跟踪/论文解析/one stage模型/YOLOv7来临：论文详读和解析.md
                 - two stage模型:
                     - Group Sample：一个简单有效的目标检测升点Trick: academic/目标检测及跟踪/论文解析/two stage模型/Group Sample：一个简单有效的目标检测升点Trick.md
                     - 目标检测算法之CVPR 2018 Cascade R-CNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之CVPR 2018 Cascade R-CNN.md

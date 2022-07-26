@@ -1,9 +1,14 @@
 ### 前言：
 2022年7月，YOLOv7来临，
+
 论文链接：https://arxiv.org/abs/2207.02696
+
 代码链接：https://github.com/WongKinYiu/yolov7
+
 在v7论文挂出不到半天的时间，YOLOv3和YOLOv4的官网上均挂上了YOLOv7的链接和说明，由此看来大佬们都比较认可这款检测器：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d8e8faa47cdd488690dd0bba4dbf7b92.jpeg)
+
 官方版的YOLOv7相同体量下比YOLOv5精度更高，速度快120%（FPS），比 YOLOX 快180%（FPS），比 Dual-Swin-T 快1200%（FPS），比 ConvNext 快550%（FPS），比 SWIN-L快500%（FPS）。
 
 在5FPS到160FPS的范围内，无论是速度或是精度，YOLOv7都超过了目前已知的检测器，并且在GPU V100上进行测试， 精度为56.8% AP的模型可达到30 FPS（batch=1）以上的检测速率，与此同时，这是目前唯一一款在如此高精度下仍能超过30FPS的检测器。
@@ -15,10 +20,15 @@
  - YOLOv7-w6 (54.6% AP, 84 FPS V100 b=1) by +120% FPS faster than YOLOv5-X6-v6.1 (55.0% AP, 38 FPS V100 b=1) 
  - YOLOv7-w6 (54.6% AP, 84 FPS V100 b=1) by +1200% FPS faster than Dual-Swin-RCNN (53.6% AP, 6.5 FPS V100 b=1)
  - **YOLOv7 (51.2% AP, 161 FPS V100 b=1) by +180% FPS faster than YOLOX-X (51.1% AP, 58 FPS V100 b=1)**
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/bd65ed84ed8b41128e1da14b73d85316.png)
+
 ### 一、前言
+
 实时目标检测是计算机视觉中一个重要的课题，而运行实时检测器的计算设备通常是一些移动端CPU或GPU，以及由近几年由制造商研发的
+
 神经处理单元(NPU)。上述提到的一些边缘设备针对不同的卷积结构有不同的加速效果，如普通卷积（npu/gpu)、深度卷积（cpu/npu)或MLP操(gpu/npu)。
+
  - **GPU/NPU边缘架构:** 在本文中，作者提出的实时目标探测器能够更好的支持边缘移动端GPU设备和高算力GPU设备。特别是近几年来，实时探测器处在大力适配边缘设备的潮流中。如MCUNet和NanoDet，专注于适配低功耗移动端，以提高边缘设备CPU的推理速度。对于YOLOX和YOLOR等算法，他们专注于提高检测器在GPU上的推理速度。近年来，实时探测器的发展主要集中在高效的结构设计上。
  - **CPU边缘架构:** 对于可以在CPU上使用的实时探测器，骨干设计主要基于MobileNet、Shufflenet或Ghostnet。
  - **高算力GPU/NPU：**另一些主流的实时检测器是为GPU开发的，它们主要使用ResNet、DarkNet或DLA，然后借鉴CSPNet中的跨级策略来优化架构。
@@ -71,7 +81,9 @@
 
 ### 三、模型设计架构
 #### 3.1 高效的聚合网络
+
 在大多数关于设计高效网络的论文中，主要考虑的因素是参数量、计算量和计算密度。但从内存访存的角度出发出发，还可以分析输入/输出信道比、架构的分支数和元素级操作对网络推理速度的影响（shufflenet论文提出)。在执行模型缩放时还需考虑激活函数，即更多地考虑卷积层输出张量中的元素数量。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/9714d3fc1d9842e1b16ae1e28d72af44.png)
 
  - 图2(b)中CSPVoVNet是VoVNet的一个变体。除了考虑上述几个设计问题外，CSPVoVNet的体系结构还分析了梯度路径，使不同层能够学习更多样化的特征。上面描述的梯度分析方法还能使推理速度更快、模型更准确（看下图！其实和Resnext有点像，但比它复杂一些）。
@@ -85,13 +97,18 @@
 
 #### 3.2 基于连接的模型的模型缩放
 缩放这个就不说了，和YOLOv5、Scale YOLOv4、YOLOX类似。要不就depth and width，要不就module scale，可参考scale yolov4的P4、P5、P5结构。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/e98793a99d1b4ce892ccca01bfba4e7d.png)
 
 ### 四、可训练的赠品礼包（bag-of-freebies）
 #### 4.1 卷积重参化
+
 尽管RepConv在VGG上取得了优异的性能，但将它直接应用于ResNet和DenseNet或其他网络架构时，它的精度会显著降低。作者使用梯度传播路径来分析不同的重参化模块应该和哪些网络搭配使用。通过分析RepConv与不同架构的组合以及产生的性能，作者发现RepConv中的identity破坏了ResNet中的残差结构和DenseNet中的跨层连接，这为不同的特征图提供了梯度的多样性（题外话，之前在YOLOv5 Lite上做过此类实验，结果也是如此，因此v5Lite-g的模型也是砍掉了identity，但分析不出原因，作者也没给出具体的分析方案，此处蹲坑）。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/ee080db5235d46bb860e0f1c6470ce76.png)
+
 基于上述原因，作者使用没有identity连接的RepConv结构。图4显示了作者在PlainNet和ResNet中使用的“计划型重参化卷积”的一个示例。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/239a79b1c556442b862cb0c2f68c81fb.png)
 
 #### 4.2 辅助训练模块
@@ -104,9 +121,11 @@
 在本文中，作者将网络预测结果与ground truth一起考虑后再分配软标签的机制称为“标签分配器”。无论辅助头或引导头，都需要对目标进行深度监督。那么，‘’如何为辅助头和引导头合理分配软标签？”，这是作者需要考虑的问题。目前最常用的方法如图5（c）所示，即将辅助头和引导头分离，然后利用它们各自的预测结果和ground truth执行标签分配。
 
 本文提出的方法是一种新的标签分配方法，通过引导头的预测来引导辅助头以及自身。换句话说，首先使用引导头的prediction作为指导，生成从粗到细的层次标签，分别用于辅助头和引导头的学习，具体可看图5(d)和(e)。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/a52bd35dded5433e82b32058033ba943.png)
- **Lead head guided label assigner：** 引导头引导“标签分配器”预测结果和ground truth进行计算，并通过优化（在utils/loss.py的SigmoidBin(）函数中，传送门：`https://github.com/WongKinYiu/yolov7/blob/main/utils/loss.py` 生成软标签。这组软标签将作为辅助头和引导头的目标来训练模型。（之前写过一篇博客，【浅谈计算机视觉中的知识蒸馏】]`https://zhuanlan.zhihu.com/p/497067556`)详细讲过soft label的好处）这样做的目的是使引导头具有较强的学习能力，由此产生的软标签更能代表源数据与目标之间的分布差异和相关性。此外，作者还可以将这种学习看作是一种广义上的余量学习。通过让较浅的辅助头直接学习引导头已经学习到的信息，引导头能更加专注于尚未学习到的残余信息。
- 
+
+**Lead head guided label assigner：** 引导头引导“标签分配器”预测结果和ground truth进行计算，并通过优化（在utils/loss.py的SigmoidBin(）函数中，传送门：`https://github.com/WongKinYiu/yolov7/blob/main/utils/loss.py` 生成软标签。这组软标签将作为辅助头和引导头的目标来训练模型。（之前写过一篇博客，【浅谈计算机视觉中的知识蒸馏】]`https://zhuanlan.zhihu.com/p/497067556`)详细讲过soft label的好处）这样做的目的是使引导头具有较强的学习能力，由此产生的软标签更能代表源数据与目标之间的分布差异和相关性。此外，作者还可以将这种学习看作是一种广义上的余量学习。通过让较浅的辅助头直接学习引导头已经学习到的信息，引导头能更加专注于尚未学习到的残余信息。
+
 **Coarse-to-fine lead head guided label assigner：** Coarse-to-fine引导头使用到了自身的prediction和ground truth来生成软标签，引导标签进行分配。然而，在这个过程中，作者生成了两组不同的软标签，即粗标签和细标签，其中细标签与引导头在标签分配器上生成的软标签相同，粗标签是通过降低正样本分配的约束，允许更多的网格作为正目标（可以看下FastestDet的label assigner，不单单只把gt中心点所在的网格当成候选目标，还把附近的三个也算进行去，增加正样本候选框的数量）。原因是一个辅助头的学习能力并不需要强大的引导头，为了避免丢失信息，作者将专注于优化样本召回的辅助头。对于引导头的输出，可以从查准率中过滤出高精度值的结果作为最终输出。然而，值得注意的是，如果粗标签的附加权重接近细标签的附加权重，则可能会在最终预测时产生错误的先验结果。
 
 #### 4.3 其他可训练的bag-of-freebies
@@ -120,6 +139,7 @@
 作者为边缘GPU、普通GPU和云GPU设计了三种模型，分别被称为YOLOv7-Tiny、YOLOv7和YOLOv7-W6。同时，还使用基本模型针对不同的服务需求进行缩放，并得到不同大小的模型。对于YOLOv7，可进行颈部缩放（module scale），并使用所提出的复合缩放方法对整个模型的深度和宽度进行缩放（depth and width scale），此方式获得了YOLOv7-X。对于YOLOv7-W6，使用提出的缩放方法得到了YOLOv7-E6和YOLOv7-D6。此外，在YOLOv7-E6使用了提出的E-ELAN，从而完成了YOLOv7-E6E。由于YOLOv7-tincy是一个面向边缘GPU架构的模型，因此它将使用ReLU作为激活函数。作为对于其他模型，使用SiLU作为激活函数。
 
 #### 5.2 baseline
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/af2f2f4164a34d88b0ac5fbeef99834e.png)
 
 选择当前先进的检测器YOLOR作为基线。在相同设置下，表1显示了本文提出的YOLOv7模型和其他模型的对比。从结果中可以看出：
@@ -131,6 +151,7 @@
 
 #### 5.3 与sota算法的比较
 本文将所提出的方法与通用GPU上或边缘GPU上最先进的的目标检测器进行了比较，结果如下表所示。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/1888b36b2009485e87e76aa42b1f1786.png)
 
 从表2可以看出所提出的方法具有最好的速度-精度均衡性：
@@ -147,16 +168,21 @@
 #### 5.4 消融实验
 ##### （一）比例缩放的方式
 表3显示了在使用不同的模型扩展策略进行放大时获得的结果。其中，本文提出的复合尺度方法将计算块的深度加大1.5倍，将过渡块的宽度扩大1.25倍。与只扩大宽度的方法进行比较，本文提出的方法可以在更少的参数和计算量下提高0.5%的AP。如果与只扩大深度的方法进行比较，只需要增加2.9%的参数量，增加1.2%的计算量，就可以提高0.2%的AP 。从表3的结果中可以看出，本文提出的复合缩放策略可以更有效地利用参数量和计算量。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/23a5f8111091431c8e3729f8e380d0d8.png)
 
 ##### （二）模型重参化
 为了验证本文所提出的模型重参数化的通用性，作者将其分别应用于基于concatenation的模型和基于residual的模型上进行验证。基于concatenation的模型和基于residual的模型分别为3个Block的ELAN和CSPDarknet。在基于concatenation的模型实验中，用RepConv替换了3个堆叠的ELAN中的3×3 卷积，详细配置如图6所示。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/f6c0729086b1464f9055237e9be52a9f.png)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/1b90d38737aa4087bc5c1a53e7b6f25a.png)
 
  从表4所示的结果可以看到，所有更高的AP值都出现在参数化的模型中。在处理基于残差模型的实验中，由于原始dark block没有3×3的卷积块，作者另外设计了一种反向dark block，其体系结构如图7所示。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/11234fb25184473ba8e699268d4018c3.png)
+
 因为dark block和反向dark block的CSPDarknet具有完全相同的参数量和concat操作，所以比较起来相当公平。表5所示的实验结果完全证实了所提出的重参化策略对于residual的模型依旧有效。RepCSPResNet的设计也符合本文的设计模式。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/3c907b12168b41f683e1dd6efe3f54ac.png)
 
 ##### （三）辅助损失头
