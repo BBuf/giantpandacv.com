@@ -47,9 +47,11 @@ Google的研究人员发现：
 ![](https://pic2.zhimg.com/80/v2-6e9f3873fdfd465221d954fdfea225e9_720w.jpg)
 
 loss function为：
+
 $$
 \mathcal{L}_{i}^{\operatorname{SimCLR}}=-\log \frac{\exp \left(z_{i} \cdot z_{i}^{+} / \tau\right)}{\sum_{k=1}^{n} \exp \left(z_{i} \cdot z_{k}^{+} / \tau\right)}
 $$
+
 回顾完了两个影响力比较大的对比学习算法，让我们来再了解一下更更更经典的KNN算法：
 
 ![](https://pic4.zhimg.com/80/v2-62c518c1b9c14a58dae9056c0257a1e3_720w.jpg)
@@ -85,10 +87,13 @@ KNN应该是最简单最经典的无监督算法，而对比学习（Contrastive
 为了增加我们latent space的丰富度，论文提出使用最近邻来获得更多样化的正样本对。这需要保持一个代表完整数据分布的embedding。增强 $(z_{i}, z{i}^{+})$ 形成正对。相反，我们建议使用zi在支持集Q中的最近邻来形成正对。在图2中，我们对这个过程进行了图示。与SimCLR类似，我们从小batch中获得负样本对。
 
 基于SimCLR，可以定义NNCLR的损失函数为：
+
 $$
 \mathcal{L}_{i}^{\mathrm{NNCLR}}=-\log \frac{\exp \left(\mathrm{NN}\left(z_{i}, Q\right) \cdot z_{i}^{+} / \tau\right)}{\sum_{k=1}^{n} \exp \left(\mathrm{NN}\left(z_{i}, Q\right) \cdot z_{k}^{+} / \tau\right)}
 $$
+
 NN表示选取最近邻的操作符：
+
 $$
 \mathrm{NN}(z, Q)=\underset{q \in Q}{\arg \min }\|z-q\|_{2}
 $$

@@ -383,6 +383,8 @@ nav:
                 - 卷积核梳理: academic/算法科普/综述类/卷积核梳理.md
                 - 盘点当前最流行的激活函数及选择经验: academic/算法科普/综述类/盘点当前最流行的激活函数及选择经验.md
                 - 思考NLP和CV中的Local和Global建模: academic/算法科普/综述类/思考NLP和CV中的Local和Global建模.md
+            - 对比学习:
+                - Nearest-Neighbor Contrastive Learning of Visual Representations: academic/算法科普/对比学习/Nearest-Neighbor Contrastive Learning of Visual Representations.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
