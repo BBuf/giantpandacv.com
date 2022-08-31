@@ -2,19 +2,29 @@
 目前人体姿态估计总体分为Top-down和Bottom-up两种，与目标检测不同，无论是基于热力图或是基于检测器处理的关键点检测算法，都较为依赖计算资源，推理耗时略长，今年出现了以YOLO为基线的关键点检测器。玩过目标检测的童鞋都知道YOLO以及各种变种目前算是工业落地较多的一类检测器，其简单的设计思想，长期活跃的社区生态，使其始终占据着较高的话题度。
 
 ### 【演变】
+
 在ECCV 2022和CVPRW 2022会议上，YoLo-Pose和KaPao（下称为yolo-like-pose）都基于流行的YOLO目标检测框架提出一种新颖的无热力图的方法，类似于很久以前谷歌使用回归计算关键点的思想，yolo-like-pose一不使用检测器进行二阶处理，二部使用热力图拼接，虽然是一种暴力回归关键点的检测算法，但在处理速度上具有一定优势。
+
 ![](https://img-blog.csdnimg.cn/img_convert/3f70f3ab88c3ce802c96f341e34f05d1.png)
 #### kapao
+
 去年11月，滑铁卢大学率先提出了 KaPao：Rethinking Keypoint Representations: Modeling Keypoints and Poses as Objects for Multi-Person Human Pose Estimation，基于YOLOv5进行关键点检测，该文章目前已被ECCV 2022接收，该算法所取得的性能如下：
+
 ![](https://img-blog.csdnimg.cn/img_convert/c358ec0aaae901eb580d2bd4816ff303.png)
+
 paper：https://arxiv.org/abs/2111.08557
+
 code：https://github.com/wmcnally/kapao
 
 #### yolov5-pose
 今年4月，yolo-pose也挂在了arvix，在论文中，通过调研发现 HeatMap 的方式普遍使用L1 Loss。然而，L1损失并不一定适合获得最佳的OKS。且由于HeatMap是概率图，因此在基于纯HeatMap的方法中不可能使用OKS作为loss，只有当回归到关键点位置时，OKS才能被用作损失函数。
+
 因此，yolo-pose使用oks loss作为关键点的损失
+
 ![](https://img-blog.csdnimg.cn/img_convert/36b2393d3196e9cd9ad557996e62061f.png)
+
 相关代码在https://github.com/TexasInstruments/edgeai-yolov5/blob/yolo-pose/utils/loss.py也可见到：
+
 ```python
 				if self.kpt_label:
                     #Direct kpt prediction
@@ -32,14 +42,21 @@ code：https://github.com/wmcnally/kapao
                     kpt_loss_factor = (torch.sum(kpt_mask != 0) + torch.sum(kpt_mask == 0))/torch.sum(kpt_mask != 0)
                     lkpt += kpt_loss_factor*((1 - torch.exp(-d/(s*(4*sigmas**2)+1e-9)))*kpt_mask).mean()
 ```
+
 相关性能如下：
+
 ![](https://img-blog.csdnimg.cn/img_convert/b63221a3e04e86ee1b93e1133523946a.png)
+
 #### yolov7-pose
+
 上个星期，YOLOv7的作者也放出了关于人体关键点检测的模型，该模型基于YOLOv7-w6，
+
 ![](https://img-blog.csdnimg.cn/img_convert/9647d78bd3aefcc55f56f76d926520c5.png)
+
 目前作者提供了.pt文件和推理测试的脚本，有兴趣的童靴可以去看看，本文的重点更偏向于对yolov7-pose.pt进行onnx文件的抽取和推理。
 
 ### 【yolov7-pose + onnxruntime】
+
 首先下载好官方的预训练模型，使用提供的脚本进行推理：
 
 ```python
@@ -52,12 +69,15 @@ code：https://github.com/wmcnally/kapao
 **一、yolov7-w6 VS yolov7-w6-pose**：
 
 1. 首先看下yolov7-w6使用的检测头
+
 ![](https://img-blog.csdnimg.cn/img_convert/8014261b5a208f88792a05c0dedc4c38.png)
+
  - $f$ 表示一共有四组不同尺度的检测头，分别为15×15,30×30,60×60,120×120，对应输出的节点为114,115,116,117
  -  nc对应coco的80个类别
  -  no表示$class_.num+obj+reg = 80+1+4=85$
 
 2. 再看看yolov7-w6-pose使用的检测头：
+
 ![](https://img-blog.csdnimg.cn/img_convert/b570ca055f44007c34aeeb13f81276b9.png)
 上述重复的地方不累述，讲几个点：
 
