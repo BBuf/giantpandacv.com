@@ -376,6 +376,11 @@ nav:
                 - 让训练更长序列模型称为可能Sequence Parallelism_zzk: academic/算法科普/分布式训练大模型/让训练更长序列模型称为可能Sequence Parallelism_zzk.md
             - 3D重建:
                 - 基于学习视觉里程计的动态稠密RGB-D SLAM_泡椒味的口香糖: academic/算法科普/3D重建/基于学习视觉里程计的动态稠密RGB-D SLAM_泡椒味的口香糖.md
+                - DID-M3D用于单目3D物体检测的解耦实例深度: academic/算法科普/3D重建/DID-M3D用于单目3D物体检测的解耦实例深度.md
+                - SSL-Lanes用于自动驾驶中运动预测的自监督学习: academic/算法科普/3D重建/SSL-Lanes用于自动驾驶中运动预测的自监督学习.md
+                - 分布式概率SLAM图中的增量抽象: academic/算法科普/3D重建/分布式概率SLAM图中的增量抽象.md
+                - 动态稠密SLAM的自监督场景运动分解: academic/算法科普/3D重建/动态稠密SLAM的自监督场景运动分解.md
+                - 结构PLP-SLAM针对单目、RGB-D和双目相机使用点线面的高效稀疏建图及定位: academic/算法科普/3D重建/结构PLP-SLAM针对单目、RGB-D和双目相机使用点线面的高效稀疏建图及定位.md
             - 多模态:
                 - 复杂动态环境下的多模态语义SLAM: academic/算法科普/多模态/复杂动态环境下的多模态语义SLAM.md
             - 综述类:
