@@ -372,6 +372,8 @@ nav:
                 - 提升分类性能之bag of tricks_蒋神: academic/算法科普/手工调参Tricks/提升分类性能之bag of tricks_蒋神.md
                 - 提升分类性能之优化调参: academic/算法科普/手工调参Tricks/提升分类性能之优化调参.md
                 - 浅谈LabelSmooth的两种实现以及推导_蒋: academic/算法科普/手工调参Tricks/浅谈LabelSmooth的两种实现以及推导_蒋.md
+                - Long_Tail Learning_ via_Logit_Adjustment: academic/算法科普/手工调参Tricks/Long_Tail Learning_ via_Logit_Adjustment.md
+                - Mitigating Neural Network Overconfidence with Logit Normalization: academic/算法科普/手工调参Tricks/Mitigating Neural Network Overconfidence with Logit Normalization.md
             - 分布式训练大模型:
                 - 让训练更长序列模型称为可能Sequence Parallelism_zzk: academic/算法科普/分布式训练大模型/让训练更长序列模型称为可能Sequence Parallelism_zzk.md
             - 3D重建:
