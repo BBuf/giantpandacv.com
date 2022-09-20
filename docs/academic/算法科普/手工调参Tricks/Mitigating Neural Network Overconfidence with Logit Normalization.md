@@ -29,9 +29,11 @@
 论文首先分析了，为什么使用常见的softmax交叉熵损失训练的神经网络会倾向于给出over-confidence的预测。论文的分析表明，大规模的神经网络输出可能是罪魁祸首。
 
 首先把softmax的输出 $f$ 写成两部分：
+
 $$
 f=||f|| \cdot \hat{f}
 $$
+
 其中第一项 $||f||$代表输出logit的模长，$\hat{f}$ 则表示和其方向相同的单位向量。
 
 ![](https://img-blog.csdnimg.cn/b27e220251e24f97aa302538a5f9decc.png)
@@ -43,9 +45,11 @@ $$
 ![](https://img-blog.csdnimg.cn/db674099945c48b68e2b53a5953e519d.png)
 
 针对这个问题，接着介绍本文提出的方法，其实也非常简单：
+
 $$
 \mathcal{L}_{\text {LogitNorm }}(f(x ; \theta), y)=-\log \frac{e^{f_{y} /(\tau\|\boldsymbol{f}\|)}}{\sum_{i=1}^{k} e^{f_{i} /(\tau\|\boldsymbol{f}\|)}}
 $$
+
 就是输出的logit除以一个模长，再加上一个温度系数$\tau$. 既然每次模长会累计拉大，那么我们直接根据模长进行归一化就行了。
 
 ![](https://img-blog.csdnimg.cn/2dca9de3ec684a8ba29409dc134a32bb.png)
