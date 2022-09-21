@@ -195,6 +195,7 @@ nav:
                 - DeepSORT算法代码解析(全): academic/目标检测及跟踪/目标跟踪/DeepSORT算法代码解析(全).md
                 - 多目标跟踪快速入门: academic/目标检测及跟踪/目标跟踪/多目标跟踪快速入门.md
                 - MUTR3D通过3D到2D查询的多相机跟踪框架: academic/目标检测及跟踪/目标跟踪/MUTR3D通过3D到2D查询的多相机跟踪框架.md
+                - 基于多传感器的3DMot: academic/目标检测及跟踪/目标跟踪/基于多传感器的3DMot.md
             - 人脸识别:
                 - CPU上的实时人脸检测算法FaceBoxes: academic/目标检测及跟踪/人脸识别/CPU上的实时人脸检测算法FaceBoxes.md
                 - InsightFace力作：RetinaFace单阶段人脸检测器: academic/目标检测及跟踪/人脸识别/InsightFace力作：RetinaFace单阶段人脸检测器.md
@@ -354,6 +355,7 @@ nav:
                 - ResNet与常见ODE初值问题的数值解法​: academic/算法科普/深度学习基础/ResNet与常见ODE初值问题的数值解法​.md
                 - welford算法小记_zzk: academic/算法科普/深度学习基础/welford算法小记_zzk.md
                 - A Battle of Network Structure_pprp: academic/算法科普/深度学习基础/A Battle of Network Structure_pprp.md
+                - CVPR2022：计算机视觉中长尾数据平衡对比学习: academic/算法科普/深度学习基础/CVPR2022：计算机视觉中长尾数据平衡对比学习.md
             - 手工调参Tricks:
                 - 【CNN结构设计】无痛的涨点技巧：ACNet: academic/算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
                 - 【CNN调参】目标检测算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
