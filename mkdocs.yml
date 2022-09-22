@@ -30,6 +30,7 @@ nav:
             - Towards Compact Single Image Super-resolution via Contrastive self-distillation_owen: academic/超分和GAN/Towards Compact Single Image Super-resolution via Contrastive self-distillation_owen.md
             - CVPRW22 UWNR: academic/超分和GAN/CVPRW22 UWNR.md
             - 基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖: academic/超分和GAN/基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖.md
+            - Instance-GAN: academic/超分和GAN/Instance-GAN.md
         - 传统图像: 
             - 专栏介绍: academic/传统图像/README.md
             - 一些有趣的图像算法: 
@@ -542,6 +543,7 @@ nav:
                 - 工程部署(一）_ 移动端算子的选择_陈e: project/部署优化/AI 移动端算法优化/工程部署(一）_ 移动端算子的选择_陈e.md
                 - 工程部署（三）：低算力平台模型性能的优化_陈e: project/部署优化/AI 移动端算法优化/工程部署（三）：低算力平台模型性能的优化_陈e.md
                 - Windows 上基于 TensorRT 的 YOLOV6 部署保姆级教程: project/部署优化/AI 移动端算法优化/Windows 上基于 TensorRT 的 YOLOV6 部署保姆级教程.md
+                - 用于ARM Cortex-M系列的芯片的神经网络推理库CMSIS-NN详解: project/部署优化/AI 移动端算法优化/用于ARM Cortex-M系列的芯片的神经网络推理库CMSIS-NN详解.md
             - 深度学习编译器:
                 - 多面体模型在深度学习编译器的应用: project/部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
                 - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md
