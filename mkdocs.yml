@@ -25,6 +25,12 @@ nav:
             - CVPR21 Oral 图像风格化鲁棒性的再思考和提升 论文解读: academic/超分和GAN/CVPR21 Oral 图像风格化鲁棒性的再思考和提升 论文解读.md
             - Deepfake视频中的时空不一致性学习_zzk: academic/超分和GAN/Deepfake视频中的时空不一致性学习_zzk.md
             - Rethinking and Improving the Robustness of Image Style Transfer: academic/超分和GAN/Rethinking and Improving the Robustness of Image Style Transfer.md
+            - ICCVW2021 SDWNet: academic/超分和GAN/ICCVW2021 SDWNet.md
+            - Model-driven Deep Neural Network for Single Image Rain Removal: academic/超分和GAN/Model-driven Deep Neural Network for Single Image Rain Removal.md
+            - Towards Compact Single Image Super-resolution via Contrastive self-distillation_owen: academic/超分和GAN/Towards Compact Single Image Super-resolution via Contrastive self-distillation_owen.md
+            - CVPRW22 UWNR: academic/超分和GAN/CVPRW22 UWNR.md
+            - 基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖: academic/超分和GAN/基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖.md
+            - Instance-GAN: academic/超分和GAN/Instance-GAN.md
         - 传统图像: 
             - 专栏介绍: academic/传统图像/README.md
             - 一些有趣的图像算法: 
@@ -76,6 +82,9 @@ nav:
             - 基于CenterFace的模型优化记录: academic/科研及竞赛分享/基于CenterFace的模型优化记录.md
             - 人物属性模型移动端实验记录: academic/科研及竞赛分享/人物属性模型移动端实验记录.md
             - 基于深度学习的RGBD深度图补全算法文章鉴赏: academic/科研及竞赛分享/基于深度学习的RGBD深度图补全算法文章鉴赏.md
+            - Kaggle StarFish挑战赛金牌分享_cydiaChen: academic/科研及竞赛分享/Kaggle StarFish挑战赛金牌分享_cydiaChen.md
+            - 如何更快的训练Vision Transformer: academic/科研及竞赛分享/如何更快的训练Vision Transformer.md
+            - 双非硕的毕设复盘：数据库篇（文末附半自动标注工具包）: academic/科研及竞赛分享/双非硕的毕设复盘：数据库篇（文末附半自动标注工具包）.md
         - 目标检测及跟踪:
             - 专栏介绍: academic/目标检测及跟踪/README.md
             - Darknet:
@@ -150,6 +159,14 @@ nav:
                     - YOLT 大尺寸图像目标检测的解决方案: academic/目标检测及跟踪/论文解析/one stage模型/YOLT 大尺寸图像目标检测的解决方案.md
                     - 不需要预训练模型的目标检测算法DSOD: academic/目标检测及跟踪/论文解析/one stage模型/不需要预训练模型的目标检测算法DSOD.md
                     - PPYOLO: academic/目标检测及跟踪/论文解析/one stage模型/PPYOLO.md
+                    - 检测器backbone和neck哪个更重要，达摩院新作有不一样的答案: academic/目标检测及跟踪/论文解析/one stage模型/检测器backbone和neck哪个更重要，达摩院新作有不一样的答案.md
+                    - Detectors for the 2020s 目标检测算法最新进展: academic/目标检测及跟踪/论文解析/one stage模型/Detectors for the 2020s 目标检测算法最新进展.md
+                    - YOLOE，2022年新版YOLO解读_陈e: academic/目标检测及跟踪/论文解析/one stage模型/YOLOE，2022年新版YOLO解读_陈e.md
+                    - CVPR2022 Oral：StreamYOLO-流感知实时检测器(1): academic/目标检测及跟踪/论文解析/one stage模型/CVPR2022 Oral：StreamYOLO-流感知实时检测器(1).md
+                    - YOLOv7来临：图解网络结构模块: academic/目标检测及跟踪/论文解析/one stage模型/YOLOv7来临：图解网络结构模块.md
+                    - YOLOv7来临：论文详读和解析: academic/目标检测及跟踪/论文解析/one stage模型/YOLOv7来临：论文详读和解析.md
+                    - YOLOV1 - V4 第二次阅读: academic/目标检测及跟踪/论文解析/one stage模型/YOLOV1 - V4 第二次阅读.md
+                    - YOLOv7-Pose尝鲜，基于YOLOv7的关键点模型测评: academic/目标检测及跟踪/论文解析/one stage模型/YOLOv7-Pose尝鲜，基于YOLOv7的关键点模型测评.md
                 - two stage模型:
                     - Group Sample：一个简单有效的目标检测升点Trick: academic/目标检测及跟踪/论文解析/two stage模型/Group Sample：一个简单有效的目标检测升点Trick.md
                     - 目标检测算法之CVPR 2018 Cascade R-CNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之CVPR 2018 Cascade R-CNN.md
@@ -162,8 +179,13 @@ nav:
                     - 目标检测算法之RCNN: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之RCNN.md
                     - 目标检测算法之RetinaNet（引入Focal Loss）: academic/目标检测及跟踪/论文解析/two stage模型/目标检测算法之RetinaNet（引入Focal Loss）.md
                     - Towards Open World Object Detection -CVPR2021 Oral（开放世界中的目标检测）: academic/目标检测及跟踪/论文解析/two stage模型/Towards Open World Object Detection -CVPR2021 Oral（开放世界中的目标检测）.md
+                    - Towards Open-Set Object Detection and Discovery: academic/目标检测及跟踪/论文解析/two stage模型/Towards Open-Set Object Detection and Discovery.md
+                    - 基于CNN的区域特定多尺度特征提取的两阶段停车位检测_泡椒味的口香糖: academic/目标检测及跟踪/论文解析/two stage模型/基于CNN的区域特定多尺度特征提取的两阶段停车位检测_泡椒味的口香糖.md
                 - 嵌入式端小模型:
                     - Pelee 移动端实时检测骨干网络: academic/目标检测及跟踪/论文解析/嵌入式端小模型/Pelee 移动端实时检测骨干网络.md
+                - 其它类型:    
+                    - KNN-OOD: academic/目标检测及跟踪/论文解析/其它类型/KNN-OOD.md
+                    - OOD_LogitNorm: academic/目标检测及跟踪/论文解析/其它类型/OOD_LogitNorm.md
             - 目标跟踪:
                 - darklabel教程: academic/目标检测及跟踪/目标跟踪/darklabel教程.md
                 - deepsort框架梳理: academic/目标检测及跟踪/目标跟踪/deepsort框架梳理.md
@@ -173,6 +195,8 @@ nav:
                 - Deep Sort多目标跟踪算法解析(下): academic/目标检测及跟踪/目标跟踪/Deep Sort多目标跟踪算法解析(下).md
                 - DeepSORT算法代码解析(全): academic/目标检测及跟踪/目标跟踪/DeepSORT算法代码解析(全).md
                 - 多目标跟踪快速入门: academic/目标检测及跟踪/目标跟踪/多目标跟踪快速入门.md
+                - MUTR3D通过3D到2D查询的多相机跟踪框架: academic/目标检测及跟踪/目标跟踪/MUTR3D通过3D到2D查询的多相机跟踪框架.md
+                - 基于多传感器的3DMot: academic/目标检测及跟踪/目标跟踪/基于多传感器的3DMot.md
             - 人脸识别:
                 - CPU上的实时人脸检测算法FaceBoxes: academic/目标检测及跟踪/人脸识别/CPU上的实时人脸检测算法FaceBoxes.md
                 - InsightFace力作：RetinaFace单阶段人脸检测器: academic/目标检测及跟踪/人脸识别/InsightFace力作：RetinaFace单阶段人脸检测器.md
@@ -188,6 +212,7 @@ nav:
                 - 百度 PyramidBox 人脸检测器: academic/目标检测及跟踪/人脸识别/百度 PyramidBox 人脸检测器.md
             - 旋转目标检测:
                 - 旋转目标检测中anchor匹配机制的问题和一些思考: academic/目标检测及跟踪/旋转目标检测/旋转目标检测中anchor匹配机制的问题和一些思考.md
+                - 高分遥感图像解决方案_chaser: academic/目标检测及跟踪/旋转目标检测/高分遥感图像解决方案_chaser.md
             - 文献综述:
                 - 【综述】Pytorch YOLO项目推荐 建议收藏学习: academic/目标检测及跟踪/文献综述/【综述】Pytorch YOLO项目推荐 建议收藏学习.md
                 - 深度学习检测网络论文阅读50篇--第一章: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第一章.md
@@ -206,6 +231,16 @@ nav:
                 - 【神经网络搜索】NasBench101: academic/算法科普/AutoML/【神经网络搜索】NasBench101.md
                 - 【神经网络搜索】Once for all: academic/算法科普/AutoML/【神经网络搜索】Once for all.md
                 - 【神经网络搜索】Single Path One Shot: academic/算法科普/AutoML/【神经网络搜索】Single Path One Shot.md
+                - AutoML/Attention Transfer_pprp: academic/算法科普/AutoML/Attention Transfer_pprp.md
+                - Bag of Tricks for NAS_pprp: academic/算法科普/AutoML/Bag of Tricks for NAS_pprp.md
+                - Fixing the train-test resolution_pprp: academic/算法科普/AutoML/Fixing the train-test resolution_pprp.md
+                - NetAug 韩松团队新作_pprp: academic/算法科普/AutoML/NetAug 韩松团队新作_pprp.md
+                - Towards Oracle Knowledge Distillation with NAS_pprp: academic/算法科普/AutoML/Towards Oracle Knowledge Distillation with NAS_pprp.md
+                - 【知识蒸馏】Knowledge Review_pprp: academic/算法科普/AutoML/【知识蒸馏】Knowledge Review_pprp.md
+                - 【知识蒸馏】Deep Mutual Learning_pprp: academic/算法科普/AutoML/【知识蒸馏】Deep Mutual Learning_pprp.md
+                - 知识蒸馏综述-知识的类型_pprp: academic/算法科普/AutoML/知识蒸馏综述-知识的类型_pprp.md
+                - 知识蒸馏综述_网络结构搜索应用_pprp: academic/算法科普/AutoML/知识蒸馏综述_网络结构搜索应用_pprp.md
+                - PointDistiller面向高效紧凑3D检测的结构化知识蒸馏: academic/算法科普/AutoML/PointDistiller面向高效紧凑3D检测的结构化知识蒸馏.md
             - CV中的特征金字塔:
                 - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
                 - 【CV中的特征金字塔】二，Feature Pyramid Network: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】二，Feature Pyramid Network.md
@@ -232,6 +267,10 @@ nav:
                 - 结合代码看深度学习中的Attention机制-Part2: academic/算法科普/CV中的注意力机制/结合代码看深度学习中的Attention机制-Part2.md
                 - Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显: academic/算法科普/CV中的注意力机制/Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显.md
                 - OutLook Attention：具有局部信息感知能力的ViT: academic/算法科普/CV中的注意力机制/OutLook Attention：具有局部信息感知能力的ViT.md
+                - ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1): academic/算法科普/CV中的注意力机制/ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1).md
+                - Deformable Attention Transformer_pprp: academic/算法科普/CV中的注意力机制/Deformable Attention Transformer_pprp.md
+                - ViTAE_LoBob: academic/算法科普/CV中的注意力机制/ViTAE_LoBob.md
+                - Attention SLAM一种从人类注意中学习的视觉单目SLAM: academic/算法科普/CV中的注意力机制/Attention SLAM一种从人类注意中学习的视觉单目SLAM.md
             - Transformer: 
                 - 解析Transformer模型: academic/算法科普/Transformer/解析Transformer模型.md
                 - 解析Vision Transformer: academic/算法科普/Transformer/解析Vision Transformer.md
@@ -246,6 +285,9 @@ nav:
                 - 浅谈CSWin-Transformers: academic/算法科普/Transformer/浅谈CSWin-Transformers.md
                 - mogrifierlstm: academic/算法科普/Transformer/mogrifierlstm.md
                 - 如何将Transformer应用在移动端: academic/算法科普/Transformer/如何将Transformer应用在移动端.md
+                - DeiT：使用Attention蒸馏Transformer: academic/算法科普/Transformer/DeiT：使用Attention蒸馏Transformer.md
+                - Token-to-Token Transformer_LoBob: academic/算法科普/Transformer/Token-to-Token Transformer_LoBob.md
+                - 用于语言引导视频分割的局部-全局语境感知Transformer: academic/算法科普/Transformer/用于语言引导视频分割的局部-全局语境感知Transformer.md
             - 半监督&无监督:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
@@ -290,6 +332,8 @@ nav:
                 - 图解MLP: academic/算法科普/尽览卷积神经网络/图解MLP.md
                 - 深度学习中的重参数机制总结与代码实现: academic/算法科普/尽览卷积神经网络/深度学习中的重参数机制总结与代码实现.md
                 - 百度团队新作：Spatial Shift MLP: academic/算法科普/尽览卷积神经网络/百度团队新作：Spatial Shift MLP.md
+                - RMNet图解: academic/算法科普/尽览卷积神经网络/RMNet图解.md
+                - RepOptimizer 其实是RepVGG2: academic/算法科普/尽览卷积神经网络/RepOptimizer 其实是RepVGG2.md
             - 可变形卷积:
                 - DCN V1代码阅读笔记: academic/算法科普/可变形卷积/DCN V1代码阅读笔记.md
                 - MSRA DCN(可变形卷积) 算法笔记: academic/算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md
@@ -311,6 +355,8 @@ nav:
                 - CVPR2021-Representative BatchNorm: academic/算法科普/深度学习基础/CVPR2021-Representative BatchNorm.md
                 - ResNet与常见ODE初值问题的数值解法​: academic/算法科普/深度学习基础/ResNet与常见ODE初值问题的数值解法​.md
                 - welford算法小记_zzk: academic/算法科普/深度学习基础/welford算法小记_zzk.md
+                - A Battle of Network Structure_pprp: academic/算法科普/深度学习基础/A Battle of Network Structure_pprp.md
+                - CVPR2022：计算机视觉中长尾数据平衡对比学习: academic/算法科普/深度学习基础/CVPR2022：计算机视觉中长尾数据平衡对比学习.md
             - 手工调参Tricks:
                 - 【CNN结构设计】无痛的涨点技巧：ACNet: academic/算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
                 - 【CNN调参】目标检测算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
@@ -327,6 +373,21 @@ nav:
                 - 余弦退火重启动学习率机制: academic/算法科普/手工调参Tricks/余弦退火重启动学习率机制.md
                 - 如何让你的分类性能提升之LARS_蒋神: academic/算法科普/手工调参Tricks/如何让你的分类性能提升之LARS_蒋神.md
                 - 提升分类性能之bag of tricks_蒋神: academic/算法科普/手工调参Tricks/提升分类性能之bag of tricks_蒋神.md
+                - 提升分类性能之优化调参: academic/算法科普/手工调参Tricks/提升分类性能之优化调参.md
+                - 浅谈LabelSmooth的两种实现以及推导_蒋: academic/算法科普/手工调参Tricks/浅谈LabelSmooth的两种实现以及推导_蒋.md
+                - Long_Tail Learning_ via_Logit_Adjustment: academic/算法科普/手工调参Tricks/Long_Tail Learning_ via_Logit_Adjustment.md
+                - Mitigating Neural Network Overconfidence with Logit Normalization: academic/算法科普/手工调参Tricks/Mitigating Neural Network Overconfidence with Logit Normalization.md
+            - 分布式训练大模型:
+                - 让训练更长序列模型称为可能Sequence Parallelism_zzk: academic/算法科普/分布式训练大模型/让训练更长序列模型称为可能Sequence Parallelism_zzk.md
+            - 3D重建:
+                - 基于学习视觉里程计的动态稠密RGB-D SLAM_泡椒味的口香糖: academic/算法科普/3D重建/基于学习视觉里程计的动态稠密RGB-D SLAM_泡椒味的口香糖.md
+                - DID-M3D用于单目3D物体检测的解耦实例深度: academic/算法科普/3D重建/DID-M3D用于单目3D物体检测的解耦实例深度.md
+                - SSL-Lanes用于自动驾驶中运动预测的自监督学习: academic/算法科普/3D重建/SSL-Lanes用于自动驾驶中运动预测的自监督学习.md
+                - 分布式概率SLAM图中的增量抽象: academic/算法科普/3D重建/分布式概率SLAM图中的增量抽象.md
+                - 动态稠密SLAM的自监督场景运动分解: academic/算法科普/3D重建/动态稠密SLAM的自监督场景运动分解.md
+                - 结构PLP-SLAM针对单目、RGB-D和双目相机使用点线面的高效稀疏建图及定位: academic/算法科普/3D重建/结构PLP-SLAM针对单目、RGB-D和双目相机使用点线面的高效稀疏建图及定位.md
+            - 多模态:
+                - 复杂动态环境下的多模态语义SLAM: academic/算法科普/多模态/复杂动态环境下的多模态语义SLAM.md
             - 综述类:
                 - 【综述】Dropout模式和发展: academic/算法科普/综述类/【综述】Dropout模式和发展.md
                 - 【综述】图像去雾的前世今生: academic/算法科普/综述类/【综述】图像去雾的前世今生.md
@@ -337,6 +398,8 @@ nav:
                 - 卷积核梳理: academic/算法科普/综述类/卷积核梳理.md
                 - 盘点当前最流行的激活函数及选择经验: academic/算法科普/综述类/盘点当前最流行的激活函数及选择经验.md
                 - 思考NLP和CV中的Local和Global建模: academic/算法科普/综述类/思考NLP和CV中的Local和Global建模.md
+            - 对比学习:
+                - Nearest-Neighbor Contrastive Learning of Visual Representations: academic/算法科普/对比学习/Nearest-Neighbor Contrastive Learning of Visual Representations.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
@@ -355,6 +418,10 @@ nav:
             - 语义分割算法之Unet论文理解: academic/语义及实例分割/语义分割算法之Unet论文理解.md
             - 图像分割的一些理解: academic/语义及实例分割/图像分割的一些理解.md
             - 用Pytorch实现三个优秀的自然图像分割框架！(4): academic/语义及实例分割/用Pytorch实现三个优秀的自然图像分割框架！(4).md
+            - TransBTS_ 3D 多模态脑肿瘤分割 Transformer 阅读笔记: academic/语义及实例分割/TransBTS_ 3D 多模态脑肿瘤分割 Transformer 阅读笔记.md
+            - UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记: academic/语义及实例分割/UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记.md
+            - 轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记: academic/语义及实例分割/轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记.md
+            - GitNet：基于几何先验变换的鸟瞰图分割: academic/语义及实例分割/GitNet：基于几何先验变换的鸟瞰图分割.md
     - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
@@ -374,6 +441,15 @@ nav:
             - 基于OneFlow实现量化感知训练: project/OneFlow/基于OneFlow实现量化感知训练.md
             - 深度学习框架OneFlow是如何和ONNX交互的: project/OneFlow/深度学习框架OneFlow是如何和ONNX交互的？.md
             - 深度学习框架量化感知训练的思考及OneFlow的一种解决方案: project/OneFlow/深度学习框架量化感知训练的思考及OneFlow的一种解决方案.md
+            - Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat: project/OneFlow/Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat.md
+            - 使用OneFlow完成基于U型网络的ISBI细胞分割任务: project/OneFlow/使用OneFlow完成基于U型网络的ISBI细胞分割任务.md
+            - 深度学习框架如何优雅的做算子对齐任务？: project/OneFlow/深度学习框架如何优雅的做算子对齐任务？.md
+            - 一个Tensor在OneFlow的执行流程: project/OneFlow/一个Tensor在OneFlow的执行流程.md
+            - CUDA WarpReduce 学习笔记: project/OneFlow/CUDA WarpReduce 学习笔记.md
+            - 浅谈NVIDIA-H100白皮书: project/OneFlow/浅谈NVIDIA-H100白皮书.md
+            - HugeCTR源码简单走读_zzk: project/OneFlow/HugeCTR源码简单走读_zzk.md
+        - PyTorch:
+            - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
@@ -432,6 +508,10 @@ nav:
                 - INT8 量化训练: project/部署优化/AI 部署及其它优化算法/INT8 量化训练.md
                 - EagleEye：一种用模型剪枝的快速衡量子网络性能的方法: project/部署优化/AI 部署及其它优化算法/EagleEye：一种用模型剪枝的快速衡量子网络性能的方法​.md
                 - 追求极致：Repvgg重参化对YOLO工业落地的实验和思考_陈TEL: project/部署优化/AI 部署及其它优化算法/追求极致：Repvgg重参化对YOLO工业落地的实验和思考_陈TEL.md
+                - F8Net只有8比特乘法的神经网络量化: project/部署优化/AI 部署及其它优化算法/F8Net只有8比特乘法的神经网络量化.md
+                - EWSG 基于元素级梯度缩放_LoBob: project/部署优化/AI 部署及其它优化算法/EWSG 基于元素级梯度缩放_LoBob.md
+                - 深度学习Int8的部署推理原理和经验验证: project/部署优化/AI 部署及其它优化算法/深度学习Int8的部署推理原理和经验验证.md
+                - Windows上基于TensorRT的YOLOV6部署保姆级教程: project/部署优化/AI 部署及其它优化算法/Windows上基于TensorRT的YOLOV6部署保姆级教程.md
             - AI 移动端算法优化: 
                 - 移动端arm cpu优化学习笔记:
                     - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
@@ -458,6 +538,12 @@ nav:
                 - NCNN+INT8+YOLOV4量化模型和实时推理: project/部署优化/AI 移动端算法优化/NCNN+INT8+YOLOV4量化模型和实时推理.md
                 - Atlas基础知识: project/部署优化/AI 移动端算法优化/Atlas基础知识.md
                 - NCNN+Int8+yolov5部署和量化: project/部署优化/AI 移动端算法优化/NCNN+Int8+yolov5部署和量化.md
+                - PPLcnet和YOLO的碰撞，真的能在cpu上快到起飞？: project/部署优化/AI 移动端算法优化/PPLcnet和YOLO的碰撞，真的能在cpu上快到起飞？.md
+                - 【详细图解】再次理解im2col: project/部署优化/AI 移动端算法优化/【详细图解】再次理解im2col.md
+                - 工程部署(一）_ 移动端算子的选择_陈e: project/部署优化/AI 移动端算法优化/工程部署(一）_ 移动端算子的选择_陈e.md
+                - 工程部署（三）：低算力平台模型性能的优化_陈e: project/部署优化/AI 移动端算法优化/工程部署（三）：低算力平台模型性能的优化_陈e.md
+                - Windows 上基于 TensorRT 的 YOLOV6 部署保姆级教程: project/部署优化/AI 移动端算法优化/Windows 上基于 TensorRT 的 YOLOV6 部署保姆级教程.md
+                - 用于ARM Cortex-M系列的芯片的神经网络推理库CMSIS-NN详解: project/部署优化/AI 移动端算法优化/用于ARM Cortex-M系列的芯片的神经网络推理库CMSIS-NN详解.md
             - 深度学习编译器:
                 - 多面体模型在深度学习编译器的应用: project/部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
                 - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md
@@ -471,7 +557,29 @@ nav:
                 - 【从零开始学深度学习编译器】九，TVM的CodeGen流程: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】九，TVM的CodeGen流程.md
                 - 【从零开始学深度学习编译器】番外一，Data Flow和Control Flow: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】番外一，Data Flow和Control Flow.md
                 - 【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】番外二，在Jetson Nano上玩TVM.md
+                - 【从零开始学深度学习编译器】十一，初识MLIR: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十一，初识MLIR.md
+                - 【从零开始学深度学习编译器】十二，MLIR Toy Tutorials学习笔记一: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十二，MLIR Toy Tutorials学习笔记一.md
+                - 【从零开始学深度学习编译器】十三，如何在MLIR里面写Pass？: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十三，如何在MLIR里面写Pass？.md
+                - 【从零开始学深度学习编译器】十四，MLIR Toy Tutorials学习笔记之部分Lowering: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十四，MLIR Toy Tutorials学习笔记之部分Lowering.md
+                - 【从零开始学深度学习编译器】十五，MLIR Toy Tutorials学习笔记之Lowering到LLVM IR: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十五，MLIR Toy Tutorials学习笔记之Lowering到LLVM IR.md
+                - 【从零开始学深度学习编译器】十六，MLIR ODS要点总结上篇: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十六，MLIR ODS要点总结上篇.md
+                - 【从零开始学深度学习编译器】十七，MLIR ODS要点总结下篇: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十七，MLIR ODS要点总结下篇.md
+                - 【从零开始学深度学习编译器】十八，MLIR中的Interfaces: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十八，MLIR中的Interfaces.md
+                - 【从零开始学深度学习编译器】十九，MLIR的Pass机制实践: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】十九，MLIR的Pass机制实践.md
+                - 【从零开始学深度学习编译器】二十，MLIR的Pattern Rewrite机制: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】二十，MLIR的Pattern Rewrite机制.md
+                - 以OneFlow为例探索MLIR的实际开发流程: project/部署优化/深度学习编译器/以OneFlow为例探索MLIR的实际开发流程.md
                 - Ansor论文阅读笔记&&论文翻译: project/部署优化/深度学习编译器/Ansor论文阅读笔记&&论文翻译.md
+                - TVM源语=Compute篇: project/部署优化/深度学习编译器/TVM源语=Compute篇.md
+                - 可以让深度学习编译器来指导算子优化吗: project/部署优化/深度学习编译器/可以让深度学习编译器来指导算子优化吗.md
+                - MLIR论文: project/部署优化/深度学习编译器/MLIR论文.md
+                - MLIR：摩尔定律终结的编译器基础结构 论文解读: project/部署优化/深度学习编译器/MLIR：摩尔定律终结的编译器基础结构 论文解读.md
+                - 【论文解读】基于MLIR生成矩阵乘法的高性能GPU代码，性能持平cuBLAS: project/部署优化/深度学习编译器/【论文解读】基于MLIR生成矩阵乘法的高性能GPU代码，性能持平cuBLAS.md
+                - MLSys 15_884 Course Introduction: project/部署优化/深度学习编译器/MLSys 15_884 Course Introduction.md
+                - 【TVM 三代优化巡礼】在X86上将普通的矩阵乘法算子提速90倍: project/部署优化/深度学习编译器/【TVM 三代优化巡礼】在X86上将普通的矩阵乘法算子提速90倍.md
+                - 【社区实践】为 TVM 新增 OneFlow 前端: project/部署优化/深度学习编译器/【社区实践】为 TVM 新增 OneFlow 前端.md
+                - 踩坑记 如何编译所有版本的TVM: project/部署优化/深度学习编译器/踩坑记 如何编译所有版本的TVM.md
+                - OSDI 2021 PET 论文解读（代码生成相关工作）: project/部署优化/深度学习编译器/OSDI 2021 PET 论文解读（代码生成相关工作）.md
+                - Roller: project/部署优化/深度学习编译器/Roller.md
     - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3:
@@ -504,6 +612,8 @@ nav:
         - CASIA标注工具: resources/CASIA标注工具.md
         - darklabel教程: resources/darklabel教程.md
         - 简易关键点标注软件: resources/简易关键点标注软件.md
+        - ffcv让数据加载不再是瓶颈: resources/ffcv让数据加载不再是瓶颈.md
+        - ALITA用于自动驾驶的大规模增量数据集: resources/ALITA用于自动驾驶的大规模增量数据集.md
     - VIDEO:
         - video: video/video_1.md
 # Theme

@@ -138,6 +138,7 @@ MLIR 被设计成完全可扩展的基础框架，没有封闭的属性集、操
 ```
 
 结构拆分解释：
+
 - `%t_tensor`：这个Operation定义的结果的名字，前面的`%`是避免冲突，见https://mlir.llvm.org/docs/LangRef/#identifiers-and-keywords 。一个Operation可以定义0或者多个结果（在Toy语言中，只有单结果的Operation），它们是SSA值。该名称在解析期间使用，但不是持久的（例如，它不会在 SSA 值的内存表示中进行跟踪）。 
 - `"toy.transpose"` ：Operation的名字。它应该是一个唯一的字符串，Dialect 的命名空间前缀为“.”。 这可以理解为Toy Dialect 中的transpose Operation。
 -  `(%tensor)`：零个或多个输入操作数（或参数）的列表，它们是由其它操作定义或引用块参数的 SSA 值。 

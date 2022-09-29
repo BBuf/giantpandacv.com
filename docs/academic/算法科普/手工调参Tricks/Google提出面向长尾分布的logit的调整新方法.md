@@ -33,6 +33,7 @@
   ![](https://img-blog.csdnimg.cn/667a4e7d4ba041ed9902e437c4726f19.png)
 
 如上图，这两种方法都有许多较为优秀的工作，但是文中描述了这两种方法的几种限制：
+
 - weight normalization非常依赖于weight的模长会因为class的data数量稀少而变小，然而这种假设非常依赖于优化器的选择
 - 直接修改loss进行重加权，也会影响模型的表征学习，从而导致优化过程不稳定，同时模型可能对尾部类过拟合，伤害了模型表征学习能力。
 
@@ -43,23 +44,29 @@
 ##### 3.1 Problem Settings
 
 论文先从统计学的角度定义了一下这个problem settings，其实就是训练一个映射$f: \mathcal{X} \rightarrow \mathbb{R}^{L}$，让这个scorer的误分类损失最小：
+
 $$
 \operatorname{BER}(f) \doteq \frac{1}{L} \sum_{y \in[L]} \mathbb{P}_{x \mid y}\left(y \notin \operatorname{argmax}_{y^{\prime} \in y} f_{y^{\prime}}(x)\right)
 $$
+
 但是类别不平衡的学习的setting导致P(y)分布是存在高度地skewed，使得许多尾部类别标签出现的概率很低。在这里，错误分类的比例就不是一个合适的metric: 因为模型似乎把所有的尾部类别都分类成头部类别也更够取得比较好的效果。所为了解决这个问题，一个自然的选择是平衡误差，平均每个类的错误率，从而让测试计算出的metric不是有偏的。
 
 论文总结出了一个比较general的loss形式：
+
 $$
 \ell(y, f(x))=\alpha_{y} \cdot \log \left[1+\sum_{y^{\prime} \neq y} e^{\Delta_{y y^{\prime}}} \cdot e^{\left(f_{y^{\prime}}(x)-f_{y}(x)\right)}\right]
 $$
+
 这里 $\alpha_y\alpha_y$ 是类别 yy 的权重；$\Delta_{yy'}\Delta_{yy'} $是另一个超参, 用来控制 margin 的大小。
 
 ##### 3.2 **Post-hoc weight normalization**
 
 由于头部类别多，容易过拟合，自然会对头部类别overconfidence，所以我们需要通过一定的映射来调整logit。具体到调整的策略，自然是让大类置信度低一点，小类置信度高一点。
+
 $$
 \operatorname{argmax}_{y \in[L]} w_{y}^{\top} \Phi(x) / \nu_{y}^{\tau}=\operatorname{argmax}_{y \in[L]} f_{y}(x) / \nu_{y}^{\tau} \text {, }
 $$
+
 for $\tau>0$, where $\nu_{y}=\mathbb{P}(y)$ and $\nu_{y}=\left\|w_{y}\right\|_{2}$ . Intuitively, either choice of $\nu_{y}$ upweights the contribution of rare labels through weight normalisation. The choice $\nu_{y}=\left\|w_{y}\right\|_{2}$ is motivated by the observations that $\left\|w_{y}\right\|_{2}$ tends to correlate with $\mathbb{P}(y)$. Further to the above, one may enforce $\left\|w_{y}\right\|_{2}=1$ during training.
 
 这里引用了一些其他做long-tail learning的论文，可以参考以便更好地对这一块进行理解。
@@ -79,16 +86,20 @@ $$
 ### 4. 方法
 
 首先进行Post-hoc logit adjustment：
+
 $$
 \operatorname{argmax}_{y \in[L]} \exp \left(w_{y}^{\top} \Phi(x)\right) / \pi_{y}^{\tau}=\operatorname{argmax}_{y \in[L]} f_{y}(x)-\tau \cdot \ln \pi_{y}
 $$
+
 其实等号左边就是一个根据类别的样本数进行re-weighting。但是为了在exp的线性变换加上temperature时候不影响排序问题，所以把等号右边变成上式，通过这种方式放缩不会导致原本的排序出现问题。从而使得重加权仍能够给尾部类更高的权重。
 
 ![](https://img-blog.csdnimg.cn/img_convert/d790a6678526ec3c6af4250b51b685ed.png)
 把loss改写成易于理解的方式就如下：
+
 $$
 l(y,f(x))=\alpha_y\cdot\log\left[ 1+\sum_{y'\neq y}e^{\Delta_{yy'}}\cdot e^{f_{y'}(x) - f_y(x)} \right]\\
 $$
+
 下面这个更为直接的loss被成为为pairwise margin loss，它可以把 y 与 y' 之间的margin拉大。
 
 然后就是实现结合：

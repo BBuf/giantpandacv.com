@@ -15,9 +15,11 @@
 ### 赛题评价指标：
 
 比赛的评估指标为在不同IoU阈值（IoU0.3:0.8）下的F2 Score。根据F2分数的定义以及官方Evalutaion介绍：其更关心召回率。这可能和赛题背景有关：希望尽可能少的遗漏海星。
+
 $$
 F_2 = (1 + 2^2 ) * \frac{Precision * Recall}{2^2 * Precision + Recall}
 $$
+
 即评估过程中，大于IoU阈值的框且与Ground Truth匹配的即为正例（True Positive），多余的框都是误报（False Positive），任何漏报的目标框均为假阴性（False Negative）。
 
 同时，评估过程中，一张图像中，所有检测框，根据预测的目标检测框的置信度得分进行降序排列后计算出最终的F2分数。最终的得分也是将各个IoU0.3:0.8阈值下的F2分数进行平均得到。

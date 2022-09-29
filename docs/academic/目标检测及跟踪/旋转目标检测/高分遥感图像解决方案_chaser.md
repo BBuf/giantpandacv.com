@@ -1,12 +1,15 @@
 简单记录一下我们仨参加一个遥感图像比赛的方案。
 ### 赛事简介
 中科星途遥感图像解译大赛今年有六个赛道，涵盖检测、分割、跟踪等任务。其中检测主赛道依托中科院新发布的百万级实例的FAIR1M数据集。具体赛道情况如下：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/f2429a7fab294f4d9952599312296b69.png)
+
 比赛分为初赛和决赛，分别有各自的测试集。所有模型性能都是线下训练，在线评估打分和排序。初赛截止时需要提交技术报告，排名前列的队伍进入决赛。决赛前6为优胜队伍。  
 最后成绩是：初赛4/222，决赛6/220，top3%，拿到优胜团队。
 
 ### 数据分析
 本赛道采用的FAIR1M数据集具有以下特点：
+
 * 百万级实例规模
 * 旋转包围框标注
 * 细粒度目标识别
@@ -16,9 +19,13 @@
 根据官方介绍，该数据集包含37个小类，5个大类，共计15000张图像。覆盖全球50多个机场/港口/城乡等场景。共计37类细粒度类别，包括Boeing737、Boeing747、Boeing777、Boeing787、C919、A220、A321、A330、A350、ARJ21、other-airplane、Passenger Ship、Motorboat、Fishing Boat、Tugboat、Engineering Ship、Liquid Cargo Ship、Dry Cargo Ship、Warship、other-ship、Small Car、Bus、Cargo Truck、Dump Truck、Van、Trailer、Tractor、Excavator、Truck Tractor、other-vehicle、Basketball Court、Tennis Court、Football Field、Baseball Field、Intersection、Roundabout、Bridge。图像尺度1000~10000。统计发现极大尺度的图像比例并不像DOTA那样高，但是裁剪后总的图像数目约40000张。
 
 部分样本示例如图：
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2ea5c8511f104257a8b6cbe8bbfd038a.png)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b59b76a4c7644abe98ee194cb6e9855a.png)
+
 统计发现数据分布极端不均衡：
+
 <img src="https://img-blog.csdnimg.cn/b42bb339e8df43b78a4f82ed8cfad1c3.png" alt="在这里插入图片描述" style="zoom: 67%;" />
 
 
@@ -28,10 +35,12 @@
 代码采用OBBDetection，由于参加较晚时间有限主要基于这个测的。在多尺度训练和测试下，12轮的orcnn有44.8， RoItransformer达到45.6，double head只有41，AOPG只有40。而武大的ReDet能达到47+（缺点是训练太慢，而且不好加swin作backbone）。
 #### 性能评估
 由于高分比赛测试集评估次数有限，但是同时开放的ISPRS benchmark榜单是不限提交的。所以我们都是在ISPRS benchmark上测试，取最好性能的模型测试高分测试集进行提交。据实验观察，benchmark和高分初赛的性能基本保持一致，但是和决赛略有出入。 
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/abef4e08a5fd43b595ca64b45ef08a1b.png)
 
 #### 方案尝试
 之前参加比赛经验不多，尝试了各种策略，默认均采用orcnn在benchmark上进行试验。策略归类如下：
+
 * **类间NMS**：掉点了3%左右。可视化发现细粒度目标的识别冗余框非常多，强行NMS会导致召回降低从而拉低mAP的积分区间。
 * **更低的conf**：能够提升0.4%。会带来有限的提升，但是会导致检测结果文件非常大，影响后面集成的效率。
 * **NMS阈值调整**：基本没影响，设置大了会掉点，测试的最佳是0.1。

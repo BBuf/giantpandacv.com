@@ -11,6 +11,7 @@ ODS是MLIR定义Operation的不二选择，因此我们有必要学习ODS的语�
 
 # 2. TableGen语法
 一个TableGen文件（以`.td`结尾）包含以下一些语法：
+
 - TableGen `class` 类似于C++的class，可以作为模板或者基类去派生子类。
 - TableGen `def` 类似于C++的对象。以用一个TableGen `class`的特化来声明，例如，`def MyDef: MyClass<...>;`，也可以单独使用`def MyDef;`。它不能用作模板，也不能作为基类去派生子类。
 - TableGen `dag` 是一种专门用于有向无环图元素的类型。一个`dag`类型带有一个操作符和零个或者多个参数。语法形如(`operator arg0, arg1, argN`.)，其中`operator`可以是任意的TableGen `def`。参数可以是任何东西，包括`dag`本身。我们可以将名称附加到操作符和参数上，如(`MyOp:$op_name MyArg:$arg_name`)。
@@ -280,6 +281,7 @@ let assemblyFormat = [{
 
 # 8. 类型推断
 格式的一项要求是操作数和结果的类型必须始终存在。在某些情况下，可以通过类型约束或其他可用信息来推断变量的类型。 在这些情况下，可以从格式中省略该变量的类型。 
+
 - **Buildable Types。可构建类型** 。一些类型约束可能只有一种表示，允许它们直接构建； 例如 `I32` 或`Index`类型。 ODS 中的类型可以通过设置 `builderCall` 字段或从 `BuildableType` 类继承来将自己标记为可构建。 
 - **Trait Equality Constraints。特征等价约束**。有许多Operations具有在Operations上注册为已知类型相等特征的约束； 例如，`select` Operation的真、假和结果值通常具有相同的类型。 汇编格式可以检查这些等价的约束以辨别缺失变量的类型。 当前支持的特征有：`AllTypesMatch`、`TypesMatchWith`、`SameTypeOperands` 和 `SameOperandsAndResultType`。 
 - **InferTypeOpInterface** 。实现 `InferTypeOpInterface` 的Operations可以在其汇编格式中省略其结果类型，因为可以从操作数中推断出结果类型。 

@@ -21,23 +21,34 @@ GiantPandaCV成员做的一点小工作~目前已经CVPR 2022 Workshop接收~
 
 文章的主要工作：
 $\bullet$  我们开发了一种自然光场保留模块，借助我们提出的水下暗通道损失和光场一致性损失，将地面图像的特征尽可能接近水下情况。
+
 $\bullet$ 据我们所知，这是第一个在没有物理模型和 GAN 方法的情况下渲染水下图像的工作，可以轻松渲染逼真的风格多样的水下图像。
+
 $\bullet$ 我们进行了广泛的实验来证明我们的方法在客观评价方面实现了最先进的渲染性能。
+
 $\bullet$ 我们我们利用我们方法（UWNR）合成了一个大型的神经渲染水下数据集（LNRUD），其中包含大量由陆地干净图像合成的水下图像。
+
 ## 2. Method
 ### Overall Architecture
 我们的UWNR架构在训练阶段采用Paired的图像进行训练，在渲染（推理）阶段从任意选择一张干净图像和一张水下图像便可以生成逼真的水下图像，总体流程图如下图所示
+
 ![FrameWork](https://img-blog.csdnimg.cn/bc9a7253c15f4231b7651bb32e22c28c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6I-c6I-cQ2hpY2tlbg==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
 ### Natural Light Field Retention ###
 考虑到introduction中的两个问题，根据水下图像的成像公式我们可以发现有三个关键的参数需要估计（ i.e, $d(x)$, $\beta$, $B(x)$ ），水下环境复杂多样，难以准确的cover他们，因此我们设计了一个光场保留模块来获取水下的光信息。
+
 根据Retinex理论，我们将水下图像分解为照明光 $x_{l}$ 和物体信息光 $x_{r}$ ：
+
 **<center>${x}_{u} = {x}_{l} \cdot {x}_{r}.$</center>**
+
 我们运用多尺度高斯低通滤波来获取水下图像光场：
 
 **<center>${x}_{g} = \frac{1}{3}\sum_{\sigma}^{}Gauss_{\sigma}({x}_{u}),\sigma \in \left\{15,60,90 \right\}.$</center>**
+
 同时考虑到高斯滤波器可能仍然包含物体细节，我们将其转换为对数域并对其进行缩放以得到最终的水下光场图： 
+
 **<center>${x}_{l} = \operatorname{Normalization}(\operatorname{log} \; {x}_{g}).$</center>**
+
 水下光场图中的保留特征侧重于不同水下场景的自然风格信息，而尽可能忽略原始水下图像的详细的结构化信息。 理论上，水下光场图包含两个用于水下特征传递的重要信息： $B(x)$ 和 $\beta$ 。 之前的方法忽略了 $\beta$ 对于水下成像的重要性，我们的方法集中在使用纠缠方式对上述两个系数进行隐式估计。效果图如下所示
 
 ![(a) Clean Image (b)第一行为水下图像，第二行为水下图像对应的光场图，第三行为对应的渲染结果。](https://img-blog.csdnimg.cn/850d9a043fae47db913cd22d52983866.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6I-c6I-cQ2hpY2tlbg==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
@@ -52,14 +63,21 @@ $\bullet$ 我们我们利用我们方法（UWNR）合成了一个大型的神经
 ### Training Losses
 #### Underwater Dark Channel Loss
 对于水下图像的合成，其要符合水下的统计特性，UDCP[^2]将暗通道先验原理应用于水下。 我们定义了一个水下暗通道损失，使生成的水下图像与干净图像在暗通道层面一致：
+
 **<center>$U D C\left(x\right)=\min _{y \in N(x)}\left[\min _{c \in\{g, b\}} {x_{i}}^{c}(y)\right].$</center>**
+
 水下暗通道损失表达如下：
+
 **<center>$\mathcal{L}_{udc}=\left\|UDC\left(\mathcal{I}_{u}\right)-UDC\left(x_{u}\right)\right\|_{1}.$</center>**
 ####　Light Field Consistency Loss
 为了有效保持真实水下图像的光场特性，我们引入了基于自然光场图的光场一致性损失，以获得更好的渲染性能。 我们利用多尺度高斯滤波器来捕获光场图：
+
 **<center>$\mathcal{LF}(\mathcal{J})= \frac{1}{3}\sum_{\sigma}^{}Gauss_{\sigma}(\mathcal{J}),\sigma \in \left\{15,60,90 \right\}.$</center>**
+
 光场一致性损失表示如下：
+
 **<center>$L_{lfc} = \left\|\mathcal{LF}(\mathcal{I}_{u})-\mathcal{LF}(x_{l}) \right\|_{1}.$</center>**
+
 除此之外我们使用了感知损失和L1重建损失来进行pixel级别的监督，总的损失表达如下：
 
 **<center>$\mathcal{L} = \lambda_{rec}\mathcal{L}_{rec}+ \lambda_{per}\mathcal{L}_{per}+ \lambda_{udc}\mathcal{L}_{udc}+ \lambda_{lfc}\mathcal{L}_{lfc}.$</center>** 
@@ -68,9 +86,13 @@ $\bullet$ 我们我们利用我们方法（UWNR）合成了一个大型的神经
 在实验部分我们采用 FID[^3] 评估度量来客观地评估我们生成的图像的效果，然后我们采用 PSNR、SSIM 和 UIQM 度量来衡量我们生成的水下图像数据集与其他水下图像生成方法相比对水下增强网络Shallow uwnet[^4]的效果。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/1673ffd4894647e995f7d8231a912a7f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6I-c6I-cQ2hpY2tlbg==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
  除此之外我们还在论文和补充材料中展示了大量的Vsual Comparison:
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/833264534a7041d5aa41b60614a5c5dd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6I-c6I-cQ2hpY2tlbg==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/75924aef691f4fc4b10d186c2c0a7cb6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6I-c6I-cQ2hpY2tlbg==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
 在最后我们利用我们的UWNR方法创建了一个大型水下合成数据集包含由5000张真实水下图像合成的5w张合成水下数据集，具体数据集可以在github中找个链接，以下放几张效果图
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/a5e912bdb9f34cc984c84f2cfd0b8d0b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6I-c6I-cQ2hpY2tlbg==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)

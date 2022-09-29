@@ -34,7 +34,9 @@
 
 #### 更新规则
 针对融合后的权重，其更新规则为：
+
 ![](https://files.mdnice.com/user/4601/e7760a95-c030-44c8-b4eb-0c9e10f7d154.png)
+
 这部分公式可以参考附录A中，里面有详细的推导
 
 一个简单的示例代码为：
@@ -120,6 +122,7 @@ nonlinearity)，也没有非顺序性(non sequential)可训练参数**，CSLA在
 实验效果看上去非常不错，训练中没有多分支，可训练的batchsize也能增大，模型吞吐量也提升不少。
 
 在之前RepVGG中，不少人吐槽量化困难，那么在RepOptVGG下，这种直筒模型对于量化十分友好：
+
 ![](https://files.mdnice.com/user/4601/59ff72d0-f89e-4d92-be62-baf13cab0ee8.png)
 
 ### 代码简单走读
@@ -143,15 +146,21 @@ else:
 ```
 
 然后我们再看下GradientMask生成逻辑，如果只有conv3x3和conv1x1两个分支，根据前面的CSLA等价变换规则，conv3x3的mask对应为：
+
 ```python
 mask = torch.ones_like(para) * (scales[1] ** 2).view(-1, 1, 1, 1)
 ```
+
 而conv1x1的mask，需要乘上对应缩放系数的平方，并加到conv3x3中间：
+
 ```python
 mask[:, :, 1:2, 1:2] += torch.ones(para.shape[0], para.shape[1], 1, 1) * (scales[0] ** 2).view(-1, 1, 1, 1)
 ```
+
 ![](https://files.mdnice.com/user/4601/21dcc2c5-fcde-460f-84c4-d4c5b2fe22e3.png)
+
 如果还有Identity分支，我们则需要在对角线上加上1.0(Identity分支没有可学习缩放系数)
+
 ```python
 mask[ids, ids, 1:2, 1:2] += 1.0
 ```

@@ -48,9 +48,19 @@ n,m,l分别表示矩阵的维度，$n\times l$的A矩阵和$l\times m$的B矩阵
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/3b8d10bd164d4ac7b993ae2ca2e15d15.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAd2VpeGluXzQ5ODQzMzQz,size_14,color_FFFFFF,t_70,g_se,x_16)
 
-来讲讲上面的写法，这是一个非常naive的卷积实现，不涉及到padding的操作，直接拿着$5*5$的kernel在一个$n*n$的单通道图像上进行滤波，通过数学推导，我们可以到针对单一窗口的运算结果： $$Output[d_i,d_j] = \sum_{d_i=0}^{5}\sum_{d_j=0}^{5}Input[d_i, d_j] * Filter[d_i,d_j] $$，当窗口滑动起来后，就得去改变(i, j)的值了，我们只需要在 $input[d_i, d_j]$ 的基础上添加坐标(i, j)就行。
+来讲讲上面的写法，这是一个非常naive的卷积实现，不涉及到padding的操作，直接拿着$5*5$的kernel在一个$n*n$的单通道图像上进行滤波，通过数学推导，我们可以到针对单一窗口的运算结果：
 
-那么表达式就被更新为:$$Output[i,j] = \sum_{i=0}^n\sum_{j=0}^m\sum_{d_i=0}^{5}\sum_{d_j=0}^{5}Input[i + d_i, j + d_j] * Filter[d_i,d_j] $$
+$$
+Output[d_i,d_j] = \sum_{d_i=0}^{5}\sum_{d_j=0}^{5}Input[d_i, d_j] * Filter[d_i,d_j]
+$$
+
+当窗口滑动起来后，就得去改变(i, j)的值了，我们只需要在 $input[d_i, d_j]$ 的基础上添加坐标(i, j)就行。
+
+那么表达式就被更新为:
+
+$$
+Output[i,j] = \sum_{i=0}^n\sum_{j=0}^m\sum_{d_i=0}^{5}\sum_{d_j=0}^{5}Input[i + d_i, j + d_j] * Filter[d_i,d_j] 
+$$
 
 因为最终得到的Output是一个(n-4) * (n-4)的数组，那么我们就可以使用reduce来对$d_i$和$d_j$进行操作。
 

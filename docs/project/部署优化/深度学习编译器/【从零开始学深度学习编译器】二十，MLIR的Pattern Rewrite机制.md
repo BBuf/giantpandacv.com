@@ -116,9 +116,11 @@ public:
 
 ### 限制
 在Pattern的`match`部分中，应用以下约束： 
+
 - 不允许IR突变。
 
 在Pattern的`rewrite`部分中，应用以下约束： 
+
 - 所有 IR 突变，包括创建，都必须由给定的 `PatternRewriter` 执行。 此类提供了用于执行Pattern中可能发生的所有可能突变的钩子。 例如，这意味着不应通过其`erase`方法来删除操作。 要删除操作，应使用适当的 `PatternRewriter` 钩子（在本例中为 `eraseOp`）。 
 - 根操作必须是：inplace更新、替换或删除。
 
@@ -199,10 +201,13 @@ public:
 
 ## Pattern Application
 在定义了一组Pattern后，将它们收集起来并提供给特定的驱动程序以供应用。 一个驱动程序由几个高级部分组成：
+
  - Input `RewritePatternSet`。
 驱动程序的输入Pattern以 `RewritePatternSet` 的形式提供。 此类提供了用于构建Pattern列表的简化 API。 
+
 - Driver-specific `PatternRewriter`。
 为了确保驱动程序状态不会因Pattern Rewriter中的 IR 突变而失效，驱动程序必须提供一个 `PatternRewriter` 实例，其中覆盖了必要的hook。 如果驱动程序不需要挂钩某些突变，则会提供一个默认实现来直接执行突变。 
+
 - Pattern Application and Cost Model
 每个驱动程序负责定义自己的Op访问顺序以及Pattern代价模型，但最终应用程序是通过 `PatternApplicator` 类执行的。 此类将 `RewritePatternSet` 作为输入，并根据提供的代价模型变换Pattern。 该成本模型使用任何必要的驱动程序特定信息计算给定Pattern的最终代价。 在计算成本模型后，驱动程序可以开始使用 `PatternApplicator::matchAndRewrite` 将Pattern与Op匹配。
 
@@ -358,12 +363,14 @@ void MyRewritePass::initialize(MLIRContext *context) {
 
 ## 通用设计
 MLIR 有一个单一的规范化pass，它以贪心的方式迭代地应用规范化变换，直到IR收敛。 这些变换由Op本身定义，允许每个方言一起定义自己的Op和规范化集合。规范化Pattern需要考虑的几点：
+
 - Pattern的重复应用应该收敛。 不稳定或循环重写将导致规范化程序中的无限循环。 
 - 当操作数重复时，朝着值使用较少的Op进行规范化通常会更好，因为某些Pattern仅在值具有单个user时才匹配。 例如，将“x + x”规范化为“x * 2”通常是好的，因为这会将 x 的使用次数减少一。 
 - 在可能的情况下完全消除Op总是好的，例如 通过折叠已知的恒等（如“x + 0 = x”）。 
 
 ## 全局应用规则
 这些变换被应用于所有级别的IR：
+
 -  消除无副作用、无用处的Op。
 -  常量折叠 - 例如 “(addi 1, 2)”到“3”。 常量折叠钩子由Op指定。
 -  将常量操作数移动到右侧的可交换运算符 - 例如 “(addi 4, x)”到“(addi x, 4)”。 

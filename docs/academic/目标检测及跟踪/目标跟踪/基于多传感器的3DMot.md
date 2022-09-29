@@ -156,9 +156,12 @@ $$
 实验部分请关注原文。
 
 # 3. SimpleTrack: Understanding and Rethinking 3D Multi-object Tracking
+
 ## 1.总览：
 论文：https://arxiv.org/abs/2111.09621
+
 代码：https://github.com/TuSimple/SimpleTrack
+
 本文将3dmot算法分解为了四个模块：检测模块、运动模型模块、关联模块、轨迹管理，并且对四个模块现在常见的一些做法进行了分析和改进，是一篇不错的rethinking论文。在分析的基础上，作者提出相应的改进，从而形成一个强大而简单的基线：SimpleTrack。
 
 ##### 2，运动模型模块
@@ -177,7 +180,7 @@ $$
 
 关联方式上，作者也对比了匈牙利算法和贪婪算法。
 
-##### 3，轨迹管理模块
+##### 4，轨迹管理模块
 在MOT中有一个重要的评价指标ID-Switches,这个指标表示预测的ID与真实的ID不匹配的次数。作者将出现这个错误的原因分为了两种，分别是1、错误关联 2、提前结束。
 
 ![轨迹管理](https://img-blog.csdnimg.cn/4368b86fda8f4d74ab1df7f2297b2f4d.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)

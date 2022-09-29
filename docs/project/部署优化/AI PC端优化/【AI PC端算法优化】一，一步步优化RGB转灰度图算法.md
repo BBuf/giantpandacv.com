@@ -392,7 +392,7 @@ __m128i sumaL = _mm_add_epi16(p3aL, _mm_add_epi16(p1aL, p2aL));
 
 就实现了以下过程：
 
-
+如下过程为矩阵运算，其中加粗为对应位求和，为所求的灰度值
 
 (B1  G1  R1  B2  G2  R2  B3  G3)  x (B_WT  G_WT  R_WT  B_WT  G_WT  R_WT  B_WT  G_WT) +
 
@@ -400,11 +400,11 @@ __m128i sumaL = _mm_add_epi16(p3aL, _mm_add_epi16(p1aL, p2aL));
 
 (R1  B2  G2  R2  B3  G3  R3  B4)  x (R_WT  B_WT  G_WT  R_WT  B_WT  G_WT  R_WT  B_WT) = 
 
-**(B1 x B_WT + G1 x G_WT + R1 x R_WT)**    (G1 x G_WT + R1 x R_WT + B2 x B_WT)    (R1 x R_WT + B2 x B_WT + G2 x G_WT) + 
+**(B1 x B_WT + G1 x G_WT + R1 x R_WT)**    ，(G1 x G_WT + R1 x R_WT + B2 x B_WT)   ， (R1 x R_WT + B2 x B_WT + G2 x G_WT)  ，
 
-**(B2 x B_WT + G2 x G_WT + R2 x R_WT)**    (G2 x G_WT + R2 x R_WT + B3 x B_WT)    (R2 x R_WT + B3 x B_WT + G3 x G_WT) + 
+**(B2 x B_WT + G2 x G_WT + R2 x R_WT)**  ，  (G2 x G_WT + R2 x R_WT + B3 x B_WT)  ，  (R2 x R_WT + B3 x B_WT + G3 x G_WT) ，
 
-**(B3 x B_WT + G3 x G_WT + R3 x R_WT)**    (G3 x G_WT + R3 x R_WT + B4 x B_WT) 
+**(B3 x B_WT + G3 x G_WT + R3 x R_WT)**   ， (G3 x G_WT + R3 x R_WT + B4 x B_WT) 
 
 上面得到了一个SSE的包含8个short类型的向量，其中**加粗**部分就是本次我们要的第一个答案（一共处理12个像素，现在处理了3个像素，得到了第一个答案）。注释后面标注的第1到16行都是相同的过程，核心原理即是把字节数据读入并和相应的权重相乘。接下来我们来分析以下一些关键指令：
 

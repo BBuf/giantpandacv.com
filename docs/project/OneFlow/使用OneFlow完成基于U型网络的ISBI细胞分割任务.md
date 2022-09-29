@@ -143,13 +143,13 @@ class UNet(nn.Module):
 
 # 3. 数据和程序准备
 
-原始数据：首先准备数据，参考数据来自于 ISBI 挑战的数据集。数据可以在本仓库(https://github.com/Oneflow-Inc/models/tree/main/Vision/segmentation/U-Net)下载到，含30张训练图、30张对应的标签。30张测试图片。
+原始数据：首先准备数据，参考数据来自于 ISBI 挑战的数据集。数据可以在本仓库( https://github.com/Oneflow-Inc/models/tree/main/Vision/segmentation/U-Net )下载到，含30张训练图、30张对应的标签。30张测试图片。
 
-增强后的数据 ：谷歌云盘(https://drive.google.com/drive/folders/0BzWLLyI3R0pLclMzMzRxUm1qZmc)
+增强后的数据 ：谷歌云盘( https://drive.google.com/drive/folders/0BzWLLyI3R0pLclMzMzRxUm1qZmc )
 
 以上数据二选一。
 
-代码链接: https://github.com/Oneflow-Inc/models/tree/main/Vision/segmentation/U-Net
+代码链接:  https://github.com/Oneflow-Inc/models/tree/main/Vision/segmentation/U-Net
 
 该程序目录如下：
 
@@ -233,14 +233,14 @@ OneFlow 提供了 `oneflow.nn.parallel.DistributedDataParallel` 模块及 `launc
 
 根据该特性，数据并行的训练代码与单机单卡脚本的不同只有2个，将第5节的训练脚本做如下修改：
 
-1. 使用 `DistributedDataParallel` 处理一下 module 对象
+**1.**使用 `DistributedDataParallel` 处理一下 module 对象
 
 ```python
     m=net.to(device=DEVICE)
     net = ddp(m)
 ```
 
-2. 使用`DistributedSampler`在每个进程中实例化`Dataloader`，每个`Dataloader`实例加载完整数据的一部分，自动完成数据的分发。
+**2.**使用`DistributedSampler`在每个进程中实例化`Dataloader`，每个`Dataloader`实例加载完整数据的一部分，自动完成数据的分发。
 
 ```python
     is_distributed=True

@@ -83,9 +83,11 @@
 
 
 With the setup specified above, if $\hat{p}_{\text {out }}\left(\mathbf{z}_{i}\right)=\hat{c}_{0} 1\left\{\hat{p}_{\text {in }}\left(\mathbf{z}_{i} ; k, n\right)<\frac{\beta \varepsilon \hat{c}_{0}}{(1-\beta)(1-\varepsilon)}\right\}$, and $\lambda=$ $-\sqrt[m-1]{\frac{(1-\beta)(1-\varepsilon) k}{\beta \varepsilon c_{b} n \hat{c}_{0}}}$, we have
+
 $$
 \mathbf{1}\left\{-r_{k}\left(\mathbf{z}_{i}\right) \geq \lambda\right\}=\mathbf{1}\left\{\hat{p}\left(g_{i}=1 \mid \mathbf{z}_{i}\right) \geq \beta\right\},
 $$
+
 （其中有很多参考文献，和相应的理论背景。考虑到理论推导的部分向来比较复杂，建议参考原文和相应的参考文献慢慢理解，就不做过多展开。该部分还是非常有意思的，解释了为什么这种非常直觉的方法可以取得这么好的效果。）
 
 ### 5. 结论
