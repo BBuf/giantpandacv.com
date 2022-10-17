@@ -35,19 +35,24 @@ out -distribution (OOD)检测已经成为在开放世界中安全部署机器学
 考虑以上的公式，因为不同类别都想定义出“other”，利用标准的group softmax是不够的，因为它只能区分组内的类，但不能估计ID和OOD之间的uncertainty。在划分成不同的group类别之外，每个group都引入了一个新的类别others，如上图所示。如果输入x不属于这一组，模型可以预测为others。其实就是在把OOD detection的任务划分为若干个进行OOD检测的二分类任务，通过在每个group之中都去明确该group的ID与OOD之间的决策边界。这对于OOD检测是可取的，因为OOD输入可以映射到所有其它groups的others，而分布内的输入将以高置信度映射到某个组中的某个语义类别。
 
 训练阶段中，就是根据ID数据把数据集分为若干个部分，ground-truth标签就是在每个group中进行重新映射。 在组中c 不包括在内，其他类将被定义为真实类。 训练过程中的优化目标，自然就是交叉熵损失的每组的总和：
+
 $$
 \mathcal{L}_{G S}=-\frac{1}{N} \sum_{n=1}^{N} \sum_{k=1}^{K} \sum_{c \in \mathcal{G}_{k}} y_{c}^{k} \log \left(p_{c}^{k}(\mathbf{x})\right),
 $$
 
 
 然后在测试阶段，就是按照各个组的最大值作为类似MSP的输出：
+
 $$
 \hat{p}^{k}=\max _{c \in \mathcal{G}_{k}^{\prime}} p_{c}^{k}(\mathrm{x}), \hat{c}^{k}=\underset{c \in \mathcal{G}_{k}^{\prime}}{\arg \max } p_{c}^{k}(\mathrm{x}) .
 $$
+
 再在多个组内选取最大值，作为最后的OOD score：
+
 $$
 k_{*}=\underset{1 \leq k \leq K}{\arg \max } \hat{p}^{k} .
 $$
+
 其实直接来讲，就是利用一个“others”类别定义除了该group以内的类别，然后比较各个类别others的概率输出绝对值。如果others的最大值相对比较大，则该样本大概率是OOD样本。
 
 其实high-level的idea很简单，就是把大的ID数据集分为若干个小的ID数据集。那想必大家都会有这么一个疑问：

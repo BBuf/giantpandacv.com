@@ -186,6 +186,8 @@ nav:
                 - 其它类型:    
                     - KNN-OOD: academic/目标检测及跟踪/论文解析/其它类型/KNN-OOD.md
                     - OOD_LogitNorm: academic/目标检测及跟踪/论文解析/其它类型/OOD_LogitNorm.md
+                    - CVPR 2022 oral 面向丰富数据集的out-of-distribution检测: academic/目标检测及跟踪/论文解析/其它类型/CVPR 2022 oral 面向丰富数据集的out-of-distribution检测.md
+                    - ICML2022：一种解决overconfidence的简洁方式: academic/目标检测及跟踪/论文解析/其它类型/ICML2022：一种解决overconfidence的简洁方式.md
             - 目标跟踪:
                 - darklabel教程: academic/目标检测及跟踪/目标跟踪/darklabel教程.md
                 - deepsort框架梳理: academic/目标检测及跟踪/目标跟踪/deepsort框架梳理.md
