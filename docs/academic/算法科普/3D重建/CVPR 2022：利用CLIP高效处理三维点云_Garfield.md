@@ -57,6 +57,7 @@ CLIP利用从互联网周收集的4亿(image、text)对的数据集，在预训�
 #### 3.3 训练方法
 
 用一个小网络作为Adapter，结构如上图所示，先把多视角的特征concat成一维，通过两个全连接得到全局特征，然后把每个全局特征乘一个矩阵，再和原始的特征用残差连接放到一起，在训练的时候把其余部分固定住，只训练这个adapter，用few shot 进行学习，就得到了最终的adapted feature，然后和textual embeddings比较相似度：
+
 $$
 f_i^a=f_i+\operatorname{Re} L U\left(f_{\text {global }} W_{i}^t\right)
 $$
