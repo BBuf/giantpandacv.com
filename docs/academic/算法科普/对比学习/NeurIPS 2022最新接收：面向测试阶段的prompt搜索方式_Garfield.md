@@ -38,21 +38,27 @@
 因此，这项工作的目标是利用现有的CLIP知识来促进其泛化到zero-shot的厂家中去。因此，调整prompt就是实现这一目标的理想途径。此外，我们将测试时提示调优视为为模型提供上下文的一种方法为单个测试样本量身定制，有助于精确检索CLIP知识。
 
 论文的目的很简单，就是在测试阶段得不到测试样本ground-truth标注的时候，进行一定的训练，具体表现为
+
 $$
 p^*=\arg \min _p \mathcal{L}\left(\mathcal{F}, \boldsymbol{p}, X_{\text {test }}\right)
 $$
+
 因为标签不能用于测试阶段的优化，所以我们如果想在测试阶段进行优化就必须选择用于能够提供一定hint的无监督损失函数来指导优化。因此，论文设计了TPT目标来促进采用不同数据增强下，模型的一致性。通过对给定测试相同图像的不同增强类型的特征，来依照他们预测的差值来进行训练。具体来说，我们使用一个随机增广cluster生成测试图像的N个随机augumention视图，最小化平均预测概率分布的熵:
+
 $$
 p^*=\arg \min _{\boldsymbol{p}}-\sum_{i=1}^K \tilde{p}_{\boldsymbol{p}}\left(y_i \mid X_{\text {test }}\right) \log \tilde{p}_{\boldsymbol{p}}\left(y_i \mid X_{\text {test }}\right),
 \\
 \text { where } \tilde{p}_{\boldsymbol{p}}\left(y_i \mid X_{\text {test }}\right)=\frac{1}{N} \sum_{i=1}^N p_{\boldsymbol{p}}\left(y_i \mid \mathcal{A}_i\left(X_{\text {test }}\right)\right) \text {. }
 $$
+
 这里 $p_{\boldsymbol{p}}\left(y \mid \mathcal{A}_i\left(X_{\text {test }}\right)\right)$ 是根据物体不同prompt $\boldsymbol{p}$ and the $i$-th augmented view of the test image预测出的概率。
 
 值得一提的是，为了减少随机增强的噪声（也就是说增强之后模型很难再预测出正确的分类信息，如删去了图像非常关键的content），本文还引入了一个新的机制：confidence selection，来选择过滤增强产生的低置信度预测的view。数学表达式体现为：
+
 $$
 \tilde{p}_{\boldsymbol{p}\left(y \mid X_{\text {test }}\right)}=\frac{1}{\rho N} \sum_{i=1}^N \mathbb{1}\left[\mathbf{H}\left(p_i\right) \leq \tau\right] p_{\boldsymbol{p}}\left(y \mid \mathcal{A}_i\left(X_{\text {test }}\right)\right)
 $$
+
 ![](https://img-blog.csdnimg.cn/76223390fabb49318b7599651689fc2a.png)
 
 ## 4. 实验

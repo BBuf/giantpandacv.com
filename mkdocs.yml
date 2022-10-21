@@ -408,6 +408,8 @@ nav:
                 - 思考NLP和CV中的Local和Global建模: academic/算法科普/综述类/思考NLP和CV中的Local和Global建模.md
             - 对比学习:
                 - Nearest-Neighbor Contrastive Learning of Visual Representations: academic/算法科普/对比学习/Nearest-Neighbor Contrastive Learning of Visual Representations.md
+                - CVPR 2021 如何理解对比学习中的温度系数？: academic/算法科普/对比学习/CVPR 2021 如何理解对比学习中的温度系数？.md
+                - NeurIPS 2022最新接收：面向测试阶段的prompt搜索方式_Garfield: academic/算法科普/对比学习/NeurIPS 2022最新接收：面向测试阶段的prompt搜索方式_Garfield.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
