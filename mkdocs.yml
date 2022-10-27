@@ -432,6 +432,10 @@ nav:
             - UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记: academic/语义及实例分割/UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记.md
             - 轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记: academic/语义及实例分割/轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记.md
             - GitNet：基于几何先验变换的鸟瞰图分割: academic/语义及实例分割/GitNet：基于几何先验变换的鸟瞰图分割.md
+            - CVPR 2022：Generalized Few-shot Semantic Segmentation 解读: academic/语义及实例分割/CVPR 2022：Generalized Few-shot Semantic Segmentation 解读.md
+            - CVPR22 迈向无监督的Zeroshot 分割_Garfield: academic/语义及实例分割/CVPR22 迈向无监督的Zeroshot 分割_Garfield.md
+            - MICCAI 2022：基于 MLP 的快速医学图像分割网络—UNeXt: academic/语义及实例分割/MICCAI 2022：基于 MLP 的快速医学图像分割网络—UNeXt.md
+            - 【MICCAI 2022】PHTrans：并行聚合全局和局部表示以进行医学图像分割: academic/语义及实例分割/【MICCAI 2022】PHTrans：并行聚合全局和局部表示以进行医学图像分割.md
     - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
