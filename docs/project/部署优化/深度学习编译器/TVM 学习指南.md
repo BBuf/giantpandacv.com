@@ -7,6 +7,7 @@
 写作不易，这篇文章对你有用的话也请点个赞👍。文章有错误也请指出，我动态修改。之后的计划应该会学习TVM如何和硬件的指令对接。
 
 # 0x1. 前端
+
 TVM为了向上兼容所有的机器学习框架如PyTorch，TensorFlow，ONNX等引入了Relay IR，机器学习模型在进入TVM之后首先会被转换为Relay IR。同时TVM为了向下兼容所有的硬件，引入了Tensor IR简称TIR，模型在被编译为指定硬件的源代码之前都会被Lower为TIR。另外，TVM社区正在开发新一代中间表示Relax（也被称为下一代Relay，目前还没有upstream主分支：https://github.com/tlc-pack/relax/tree/relax/python/tvm/relax），Relax是实现前言里面提到的TVM Unify关键的一环。TVM前端的架构可以粗略的表示为：
 
 
@@ -740,6 +741,7 @@ class MyIRModule:
 注意这里展示的代码片段是Relax wiki提供的，由于没有upstream主分支，它的用法也许会有微小变化。我们从这个代码中可以看到，Relax把Relax Function和TIR Function放到了同一个IRModule（最小的编译单元）也就是说在任意时刻我们都可以同时拿到这两个不同层次的IR进行修改（或者说联合优化）这就摆脱了编译器范式里因为Lower导致丢失高层语义信息无法联合优化的问题。知乎上思远指出了一个很经典的例子，我这里附上他回答链接（`https://www.zhihu.com/question/522101384/answer/2391922144`）并截图来说明一下：
 
 ![来自冯思远的回答，侵删：https://www.zhihu.com/question/522101384/answer/2391922144](https://img-blog.csdnimg.cn/e326ba715de34b7686d7e8e158e1686f.png)
+
 接下来我们翻译一下Relax的设计关键点来进一步体会Relax相比于Relay的变化（中间插了一些个人理解）。
 
 #### D0：数据流块作为第一优先级的构造
@@ -867,11 +869,13 @@ Call(op=Op::Get("relax.call_tir"), shape, lowlevel_func, inputs)
 ```
 
 这也将允许 call_tir 的未来迭代而不改变 IR 本身，这可能在特定时间点需要：
+
 - 在同一个数组上启用多个突变序列（在 concat 相关操作的情况下）
 - 启用将符号化的Shape提示传递给融合操作。
 
 ###### 对整合的影响
 D2 使我们能够将较低级别的抽象直接嵌入到高级抽象（R.function）中。 这释放了很多机会，包括但不限于：
+
 - 使用不同的策略逐步lower程序的不同部分。
 - 我们可以将call_tir节点作为AST的一部分进行优化，然后将一些关键信息比如data layerout信息带回到high level的IR获得更好的优化结果。
 - 将 BYOC 流作为转换的自然部分（通过将图的一部分转换为不透明打包函数的调用）。
@@ -1105,8 +1109,7 @@ def compute(shape, fcompute, name="compute", tag="", attrs=None, varargs_names=N
 TE除了可以构造TIR之外，另外一个重要的点就是它支持Schedule（`tvm.te.Schedule`），我在[【TVM 三代优化巡礼】在X86上将普通的矩阵乘法算子提速90倍](https://mp.weixin.qq.com/s/d8v9Q3EAkv8TknP5Hh7N7A) 文章中对GEMM优化的介绍就是基于TE Schedule来做变换进行优化计算的。
 
 # 0x4. 图优化（Pass机制）
-现在我们把目光转向图优化的Pass。之前我在[【从零开始学深度学习编译器】七，万字长文入门TVM Pass
-](https://mp.weixin.qq.com/s/IMm1nurpoESFRLxHcEYxcQ) 这篇文章中结合TVM的设计文档介绍了TVM Pass机制以及TVM编写Pass时是如何遍历节点和改写节点的，这里我们再整合一下。
+现在我们把目光转向图优化的Pass。之前我在[【从零开始学深度学习编译器】七，万字长文入门TVM Pass](https://mp.weixin.qq.com/s/IMm1nurpoESFRLxHcEYxcQ) 这篇文章中结合TVM的设计文档介绍了TVM Pass机制以及TVM编写Pass时是如何遍历节点和改写节点的，这里我们再整合一下。
 
 首先，我们看一下TVM Pass的基类定义（`https://github.com/apache/tvm/blob/main/include/tvm/ir/transform.h#L329`）：
 
@@ -1444,7 +1447,7 @@ TVM的Pass里面有一个经典的算符融合Pass，之前在[【从零开始�
 # 0x5. Schedule
 我认为TVM的Schedule主要分为三个部分：TE Schedule，TIR Schedule以及Auto Schedule。由于精力有限我还没有探索Schedule在TVM的源码实现，不过最近TVM圈子的这篇来自Kord大佬的《TVM 自底向上（四）：TE/TIR Schedule 的原理》文章为我们理清了TE/TIR Schedule的原理，个人推荐大家去阅读。链接：https://zhuanlan.zhihu.com/p/534062007 。
 
-然后关于TE Schedule的调优以及Auto Schedule可以看一下[【TVM 三代优化巡礼】在X86上将普通的矩阵乘法算子提速90倍](https://mp.weixin.qq.com/s/d8v9Q3EAkv8TknP5Hh7N7A) 以及 【tvm算子优化schedule（二）--GPU篇】(https://zhuanlan.zhihu.com/p/403370698) 这几篇文章。
+然后关于TE Schedule的调优以及Auto Schedule可以看一下[【TVM 三代优化巡礼】在X86上将普通的矩阵乘法算子提速90倍](https://mp.weixin.qq.com/s/d8v9Q3EAkv8TknP5Hh7N7A) 以及 [【tvm算子优化schedule（二）--GPU篇】](https://zhuanlan.zhihu.com/p/403370698) 这几篇文章。
 
 
 
@@ -1773,13 +1776,14 @@ void GraphExecutor::Init(const std::string& graph_json, tvm::runtime::Module mod
 ```
 
 这个函数中主要包含json参数解析。为每一个算子的input/output edge准备对应的memory（对应SetupStorage）
+
 以及为每一个算子准备一个可调用的kernel function用来做实际的计算（对应SetupOpExecs）。
 
 > json就是计算图的表示，表示了node之间的连接关系，输入、输出node、输入shape等信息，上面的代码中Load(Read)会提取json中的信息，存储在graph_executor成员变量中。
 
 
 ### Virtual Machine
- 
+
 目前我基本没有使用过这种运行时，并且了解也比较少，所以这里就留坑不展开了。VM是TVM中更加灵活的一种运行时，它可以支持动态模型（也就是带动态Shape和Control Flow的）的执行。其实，从MLC的课件也可以看到Relax在处理动态Shape程序时也用到了这个运行时。
 
 一位Intel的工程师在《TVM Runtime System 概述》介绍了TVM的Relay Virtual Machine运行时，感兴趣的小伙伴可以去阅读一下：https://zhuanlan.zhihu.com/p/504066888 。
