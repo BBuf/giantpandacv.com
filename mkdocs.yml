@@ -411,6 +411,8 @@ nav:
                 - Nearest-Neighbor Contrastive Learning of Visual Representations: academic/算法科普/对比学习/Nearest-Neighbor Contrastive Learning of Visual Representations.md
                 - CVPR 2021 如何理解对比学习中的温度系数？: academic/算法科普/对比学习/CVPR 2021 如何理解对比学习中的温度系数？.md
                 - NeurIPS 2022最新接收：面向测试阶段的prompt搜索方式_Garfield: academic/算法科普/对比学习/NeurIPS 2022最新接收：面向测试阶段的prompt搜索方式_Garfield.md
+            - 其他方向论文解读:
+                - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
@@ -465,6 +467,7 @@ nav:
             - HugeCTR源码简单走读_zzk: project/OneFlow/HugeCTR源码简单走读_zzk.md
         - PyTorch:
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
+            - 一文理解PyTorch中的SyncBatchNorm: project/PyTorch/一文理解PyTorch中的SyncBatchNorm.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
@@ -595,6 +598,7 @@ nav:
                 - 踩坑记 如何编译所有版本的TVM: project/部署优化/深度学习编译器/踩坑记 如何编译所有版本的TVM.md
                 - OSDI 2021 PET 论文解读（代码生成相关工作）: project/部署优化/深度学习编译器/OSDI 2021 PET 论文解读（代码生成相关工作）.md
                 - Roller: project/部署优化/深度学习编译器/Roller.md
+                - TVM 学习指南: project/部署优化/深度学习编译器/TVM 学习指南.md
     - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3:

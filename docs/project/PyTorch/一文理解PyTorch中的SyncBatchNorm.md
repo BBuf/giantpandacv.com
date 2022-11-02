@@ -3,9 +3,9 @@
 ## 前言
 
   我们知道在分布式数据并行多卡训练的时候，BatchNorm 的计算过程（统计均值和方差）在进程之间是独立的，也就是每个进程只能看到本地 GlobalBatchSize / NumGpu 大小的数据。 
-  
+
   对于一般的视觉任务比如分类，分布式训练的时候，单卡的 batch size 也足够大了，所以不需要在计算过程中同步 batchnorm 的统计量，因为同步也会让训练效率下降。
-  
+
   但是对于一些模型占用显存很大，导致可以上的 batch size 很小这类任务来说，分布式训练的时候就需要用 SyncBatchNorm 来使得统计量更加的准确。
 
 ## SyncBatchNorm 前向实现
@@ -117,9 +117,11 @@ https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Parallel_algor
 **前置公式：**
 
 输出梯度为 `y_grad`
+
 $$
 inv\_std\_c = \frac{1}{\sqrt{var[c] + eps}}
 $$
+
 $$
 sum\_dy = \sum_{b=0}^{B-1}\sum_{h=0}^{H-1}\sum_{w=0}^{W-1}(y\_grad[b][c][h][w])
 $$
@@ -129,29 +131,39 @@ sum\_dy\_xmu = \sum_{b=0}^{B-1}\sum_{h=0}^{H-1}\sum_{w=0}^{W-1}(x[b][c][h][w] - 
 $$
 
 **weight 对应通道 c 的梯度：**
+
 $$
 weight\_grad[c] = sum\_dy\_xmu * inv\_std\_c
 $$
+
 **bias 对应通道 c 的梯度：**
+
 $$
 bias\_grad[c] = sum\_dy
 $$
+
 **输入 x 对应通道 c 上某个位置 b， h， w 的梯度：**
+
 $$
 rc=B*H*W
 $$
+
 $$
 k = \frac{(sum\_dy\_xmu * inv\_std\_c * inv\_std\_c)}{rc}
 $$
+
 $$
 iw = weight[c] * inv\_std\_c
 $$
+
 $$
 g\_mean\_c = \frac{sum\_dy}{rc}
 $$
+
 $$
 x\_grad[b][c][h][w]
 $$
+
 $$
 =(y\_grad[b][c][h][w] - g\_mean\_c - (x[b][c][h][w] - mean[c])*k)*iw
 $$
