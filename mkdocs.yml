@@ -616,6 +616,10 @@ nav:
         - ALITA用于自动驾驶的大规模增量数据集: resources/ALITA用于自动驾驶的大规模增量数据集.md
     - VIDEO:
         - video: video/video_1.md
+    - YOLOv5:
+        - yolov5: resources/YOLOv5.md
+
+
 # Theme
 theme:
   name: 'material'
