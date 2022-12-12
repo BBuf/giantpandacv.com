@@ -113,6 +113,7 @@ if constexpr (is_fp8<OutputType>::value) {
 
 #### DelayedScaling
 从前面的示例代码我们可以看到一个比较重要的API是`DelayedScaling`，我们可以根据官方文档查看各个参数含义：
+
 - margin 计算scale的偏移量
 - interval 控制计算scale factor的频率
 - fp8_format 使用FP8的格式，FP8有E4M3和E5M2，但是现在不支持纯E5M2的格式训练

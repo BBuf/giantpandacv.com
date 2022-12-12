@@ -465,6 +465,8 @@ nav:
             - CUDA WarpReduce 学习笔记: project/OneFlow/CUDA WarpReduce 学习笔记.md
             - 浅谈NVIDIA-H100白皮书: project/OneFlow/浅谈NVIDIA-H100白皮书.md
             - HugeCTR源码简单走读_zzk: project/OneFlow/HugeCTR源码简单走读_zzk.md
+            - 基于 Flowflops 详解深度学习网络的 FLOPs 和 MACs 计算方案: project/OneFlow/基于 Flowflops 详解深度学习网络的 FLOPs 和 MACs 计算方案.md
+            - 详解 NVIDIA H100 TransformerEngine: project/OneFlow/详解 NVIDIA H100 TransformerEngine.md
         - PyTorch:
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
             - 一文理解PyTorch中的SyncBatchNorm: project/PyTorch/一文理解PyTorch中的SyncBatchNorm.md
