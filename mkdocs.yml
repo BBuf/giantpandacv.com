@@ -411,6 +411,10 @@ nav:
                 - Nearest-Neighbor Contrastive Learning of Visual Representations: academic/算法科普/对比学习/Nearest-Neighbor Contrastive Learning of Visual Representations.md
                 - CVPR 2021 如何理解对比学习中的温度系数？: academic/算法科普/对比学习/CVPR 2021 如何理解对比学习中的温度系数？.md
                 - NeurIPS 2022最新接收：面向测试阶段的prompt搜索方式_Garfield: academic/算法科普/对比学习/NeurIPS 2022最新接收：面向测试阶段的prompt搜索方式_Garfield.md
+                - MAK 基于开放世界取样提升不平衡对比学习: academic/算法科普/对比学习/MAK 基于开放世界取样提升不平衡对比学习.md
+                - NeurIPS19 用分类模型完成生成任务: academic/算法科普/对比学习/NeurIPS19 用分类模型完成生成任务.md
+                - 【域自适应】Graph-Relational Domain Adaptation: academic/算法科普/对比学习/【域自适应】Graph-Relational Domain Adaptation.md
+                - 利用语言模型为视觉模型提供提示_Garfield: academic/算法科普/对比学习/利用语言模型为视觉模型提供提示_Garfield.md
             - 其他方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
         - 语义及实例分割:
