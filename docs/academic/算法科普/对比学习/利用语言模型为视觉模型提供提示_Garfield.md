@@ -33,9 +33,11 @@
 ![](https://img-blog.csdnimg.cn/55fdbd0a5d444c26832f015bb4e42301.png)
 
 首先来描述下本文定义识别范式和经典的语言识别模型的区别，如上图，论文提出的方法首先对模型类别的特征进行分解：
+
 $$
 s(c, x)=\frac{1}{|D(c)|} \sum_{d \in D(c)} \phi(d, x)
 $$
+
 where $D(c)$ is the set of descriptors for the category $c$ and $\phi(d, x)$ is the log probability that descriptor $d$ pertains to the image $x$. Our approach will represent the descriptors $d$ also through a natural language sentence.
 
 如何得到这些先验的特征分配呢？当然不是去根据手工标注，我们可以去问GPT-3。当类别D(c)的字典包含许多与观察到的图像x高度匹配的描述符时，该模型s(c, x)将输出一个高分。图2说明了这种分类方法。我们使用加法，以便在图像中可以缺少一些描述符，并通过类的描述符数量进行规范化，以允许不同的类拥有不同数量的描述符。由于描述符是相加的，并且用自然语言表示，因此模型是自然可解释的。要理解为什么模型预测c类，我们可以简单地阅读哪些描述符得分高。

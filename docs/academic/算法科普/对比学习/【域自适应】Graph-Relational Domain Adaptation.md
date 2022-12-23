@@ -57,17 +57,21 @@ ICLR 2022: **Graph-Relational Domain Adaptation**
 #### 3.1 Predictor
 
 定义优化的loss为：
+
 $$
 L_f(E, F) \triangleq \mathbb{E}^s\left[h_p\left(F\left(E\left(\mathbf{x}_l, u_l, \mathbf{A}\right)\right), y\right)\right]
 $$
+
 where the expectation $\mathbb{E}^s$ is taken over the source-domain data distribution $p^s(\mathbf{x}, y, u) \cdot h_p(\cdot, \cdot)$ is a predictor loss function for the task (e.g., $L_2$ loss for regression).
 
 #### 3.2 Encoder and Node Embeddings
 
 给定一个输入元组(x, u, A)，用编码器E首先根据域索引和域的graph计算一个embedding的graph domain，然后将z和x，y输入到神经网络中，得到最终的编码e。 理论上，任何节点的索引的embedding都应该同样有效，只要它们彼此不同，所以为了简单起见，论文通过一个重构损耗预先训练embeddings：
+
 $$
 L_g=\mathbb{E}_{i, j \sim p(u)}\left[-\mathbf{A}_{i j} \log \sigma\left(\mathbf{z}_i^{\top} \mathbf{z}_j\right)-\left(1-\mathbf{A}_{i j}\right) \log \left(1-\sigma\left(\mathbf{z}_i^{\top} \mathbf{z}_j\right)\right)\right]
 $$
+
 where $\sigma(x)=\frac{1}{1+e^{-x}}$ is the sigmoid function. 
 
 #### 3.3 Graph Discriminator
@@ -78,6 +82,7 @@ L_d(D, E) & \triangleq \mathbb{E}_{\left(\mathbf{x}_1, u_1\right),\left(\mathbf{
 h\left(\mathbf{x}_1, u_1, \mathbf{x}_2, u_2\right) &=-\mathbf{A}_{u_1, u_2} \log \sigma\left(\widehat{\mathbf{z}}_1^{\top} \widehat{\mathbf{z}}_2\right)-\left(1-\mathbf{A}_{u_1, u_2}\right) \log \left(1-\sigma\left(\widehat{\mathbf{z}}_1^{\top} \widehat{\mathbf{z}}_2\right),\right.
 \end{aligned}
 $$
+
 where $\widehat{\mathbf{z}}_1=D\left(E\left(\mathbf{x}_1, u_1, \mathbf{A}\right)\right), \widehat{\mathbf{z}}_2=D\left(E\left(\mathbf{x}_2, u_2, \mathbf{A}\right)\right)$ are the discriminator's reconstructions of node embeddings. The expectation $\mathbb{E}$ is taken over a pair of i.i.d. samples $\left(\mathbf{x}_1, u_1\right),\left(\mathbf{x}_2, u_2\right)$ from the joint data distribution $p(\mathbf{x}, u)$.
 
 更具体的模型实现细节可以参考原文的附录。
