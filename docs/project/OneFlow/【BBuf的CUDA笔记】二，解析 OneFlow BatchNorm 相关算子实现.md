@@ -45,6 +45,7 @@ cudnnBatchNormMode_t getCudnnBatchNormMode(const int64_t dim) {
 这里的dim表示输入Tensor的维度，比如形状为$(1, 3, 224, 224)$的输入Tensor，这里的维度就是4。然后这里涉及到三种不同的`cudnnBatchNormMode_t`，我们看一下CUDNN的文档（https://docs.nvidia.com/deeplearning/cudnn/api/index.html#cudnnBatchNormMode_t）：
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/32656d0b8ae8446681987dc7fbae8133.png)
+
 可以看到 CUDNN_BATCHNORM_PER_ACTIVATION 被用于非卷积层，在OneFlow中只有当输入Tensor的维度为2时才选取这种模式。而CUDNN_BATCHNORM_SPATIAL_PERSISTENT这种模式只有当输入Tensor的数据排布为NHWC方式时才会启用。而对于其它的模式，在OneFlow中一律选取CUDNN_BATCHNORM_SPATIAL模式。
 
 接下来阅读一下 InferDimSizeAndDataFormat 函数：
@@ -134,6 +135,7 @@ class CudnnTensorDescHelper final {
 除了这些描述信息之外，我们还可以在cudnn提供的文档中查看BatchNorm相关的算子一般还需要什么特殊的输入信息。我们来看 `cudnnBatchNormalizationForwardTrainingEx()` 这个API ：https://docs.nvidia.com/deeplearning/cudnn/api/index.html#cudnnBatchNormalizationForwardTrainingEx 。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/00f335b6bb174d7ca1ca792e6b98264f.png)
+
 可以看到这个算子是 `cudnnBatchNormalizationForwardTraining()` 这个算子的扩展，扩展的内容就是可以我们可以传入额外的一个Activation的算子比如ReLU以及一个Add算子分别对应我们在前言中介绍的 ResNet 中的 BNReLU 和 BNAddReLU 模式。可以看到在这个算子接口中除了对输入Tensor x，BN后需要add的输入Tensor z以及输出Tensor y的描述信息外，还需要指定workspace和reserveSpace，这个workspace是cudnn的BatchNorm以NHWC模式计算时需要的GPU内存buffer，而reserveSpace则表示当前这个配置的BN算子至少还需要多少可以申请的GPU显存（从文档猜测应该是和BNReLU/BNAddReLU这俩Pattern相关）。
 
 在OneFlow中， https://github.com/Oneflow-Inc/oneflow/blob/master/oneflow/user/kernels/normalization_kernel.cu#L126-L175 以及 https://github.com/Oneflow-Inc/oneflow/blob/master/oneflow/user/kernels/normalization_kernel.cu#L637-L684  就是为了推断BN算子以及BN扩展的算子需要的额外GPU内存大小，然后在OneFlow的内存池中开辟一块显存供调用cudnn的 `cudnnBatchNormalizationForwardTrainingEx()` 和 `cudnnBatchNormalizationBackwardEx()` 接口时使用。
@@ -147,10 +149,13 @@ class CudnnTensorDescHelper final {
 上面提到要使用CUDNN的扩展算子有一系列限制，我们有没有办法打破这限制呢？有的。以ResNet为例，针对BNReLu和BNAddReLU这两种Pattern，我们可以分别针对ReLU和AddReLU实现一个CUDA Kernel，相信入门CUDA的小伙伴写这两个算子都没什么问题。但如何在考虑到Backward的时候把这两个算子优化到位呢？OneFlow给出了一个解决方案。
 
 前向的CUDA实现：https://github.com/Oneflow-Inc/oneflow/blob/master/oneflow/user/kernels/normalization_kernel.cu#L246-L272
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/9f80d4b6632c4e81a7c0b749b01dea06.png)
+
 反向的CUDA实现：https://github.com/Oneflow-Inc/oneflow/blob/master/oneflow/user/kernels/normalization_kernel.cu#L246-L272 
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/dd40e1fc03ea433eb003f4eab9a6f1f5.png)
+
 以 ReLU 算子为例，前向的输入为x，输出为y，后向的输入为dy和y，输出dx。后向计算中的y仅用来判断对应元素是否大于0，因此可以将y替换为由前向生成的bitset（对应上述代码中的mask），理论上可以省掉ReLU的后向算子对冗余的y的访问操作，减少约y大小的读取，也对应约1/3的global memory访问。对于ReLU/ReLUAdd这种ElementWise算子来说，GPU的带宽是极容易成为瓶颈的，通过这种优化可以大大提升ReLU和ReLUAdd算子的带宽。
 
 在 《OneFlow是如何做到世界上最快的深度学习框架》(https://zhuanlan.zhihu.com/p/271740706) 文章中已经介绍到了这种基于bitmask优化后向算子的方案。并且文章中给出了3种方案，但没有给出对应的代码实现，实际上我只读懂了第一种和第三种方案，接下来我们描述一下这两种方案。

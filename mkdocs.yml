@@ -473,6 +473,10 @@ nav:
             - HugeCTR源码简单走读_zzk: project/OneFlow/HugeCTR源码简单走读_zzk.md
             - 基于 Flowflops 详解深度学习网络的 FLOPs 和 MACs 计算方案: project/OneFlow/基于 Flowflops 详解深度学习网络的 FLOPs 和 MACs 计算方案.md
             - 详解 NVIDIA H100 TransformerEngine: project/OneFlow/详解 NVIDIA H100 TransformerEngine.md
+            - 【BBuf的CUDA笔记】一，解析OneFlow Element-Wise 算子实现: project/OneFlow/【BBuf的CUDA笔记】一，解析OneFlow Element-Wise 算子实现.md
+            - 【BBuf的CUDA笔记】二，解析 OneFlow BatchNorm 相关算子实现: project/OneFlow/【BBuf的CUDA笔记】二，解析 OneFlow BatchNorm 相关算子实现.md
+            - 【BBuf的CUDA笔记】三，reduce优化入门学习笔记: project/OneFlow/【BBuf的CUDA笔记】三，reduce优化入门学习笔记.md
+            - 【BBuf的CUDA笔记】四，介绍三个高效实用的CUDA算法实现（OneFlow ElementWise模板，FastAtomicAdd模板，OneFlow UpsampleNearest2d模板）: project/OneFlow/【BBuf的CUDA笔记】四，介绍三个高效实用的CUDA算法实现（OneFlow ElementWise模板，FastAtomicAdd模板，OneFlow UpsampleNearest2d模板）.md
         - PyTorch:
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
             - 一文理解PyTorch中的SyncBatchNorm: project/PyTorch/一文理解PyTorch中的SyncBatchNorm.md
@@ -607,6 +611,11 @@ nav:
                 - OSDI 2021 PET 论文解读（代码生成相关工作）: project/部署优化/深度学习编译器/OSDI 2021 PET 论文解读（代码生成相关工作）.md
                 - Roller: project/部署优化/深度学习编译器/Roller.md
                 - TVM 学习指南: project/部署优化/深度学习编译器/TVM 学习指南.md
+            - 自制深度学习推理框架:
+                - 自制深度学习推理框架-张量类Tensor的实现-第二课: project\部署优化\自制深度学习推理框架\自制深度学习推理框架-张量类Tensor的实现-第二课.md
+                - 自制深度学习推理框架-实现我们的第一个算子Relu-第三课: project\部署优化\自制深度学习推理框架\自制深度学习推理框架-实现我们的第一个算子Relu-第三课.md
+                - 自制深度学习推理框架-第五课-起飞！框架中的算子注册机制: project\部署优化\自制深度学习推理框架\自制深度学习推理框架-第五课-起飞！框架中的算子注册机制.md
+                - 自制深度学习推理框架-第六课-Max Pooling算子的实现: project\部署优化\自制深度学习推理框架\自制深度学习推理框架-第六课-Max Pooling算子的实现.md
     - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3:
