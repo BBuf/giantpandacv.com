@@ -156,7 +156,8 @@ union Pack {
 首先 GetPackType 结构体中使用了 `std::aligned_storage` 先声明了一个内存对齐的数据类型 type ，注意这个 type 的内存长度为 `pack_size * sizeof(T) ` 。然后这里的 T 是我们需要进行 Pack 的数据类型，而 `pack_size` 则表示我们需要 Pack 的元素个数。接下来我们看到 Pack 联合体中声明了 `storage` 和 `elem` 两个数组，它们公用同一段对齐的内存。然后 Pack 联合体的入口有一个检查: `static_assert(sizeof(PackType<T, pack_size>) == sizeof(T) * pack_size, "");` 这是用来判断我们之前声明的 `type` 的内存长度是否符合预期。
 
  接下来我们从 https://github.com/Oneflow-Inc/oneflow/blob/master/oneflow/core/cuda/elementwise.cuh#L155-L194 这里可以看到这个 Pack 联合体主要是用在 Kernel 启动之前判断 Element-Wise 操作的输入输出 Tensor 对应的数据指针地址是否满足内存对齐的条件，如果不满足则这个 Element-Wise 操作无法执行数据 Pack 。对应下图2个画红色框的地方。
- ![在这里插入图片描述](https://img-blog.csdnimg.cn/9cb932b4c4044e838b0d52f190f96b6c.png)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/9cb932b4c4044e838b0d52f190f96b6c.png)
 
 接下来，OneFlow 定义了真正要执行数据 Pack 的数据结构 Packed 并且定义了计算 PackSize 的工具函数。代码位置为：https://github.com/Oneflow-Inc/oneflow/blob/master/oneflow/core/cuda/elementwise.cuh#L72-L95 。
 

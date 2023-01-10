@@ -17,6 +17,7 @@
 图1展示了池化窗口形状为 `2×2` 的最大池化，阴影部分为第一个输出元素及其计算所使用的输入元素。
 
 输出数组的高和宽分别为2，其中的4个元素由取最大值运算 max 得出。 如下公式所示，池化操作的步骤依次为从左到右，从上到下，每次向下移动的步长为`stride height`, 向右移动的步长为`stride width`. 进行池化操作元素的数量由`pooling height`和`pooling width`所组成的`2×2`的窗口所决定。
+
 $$
 max(0,1,3,4)=4\\ max(1,2,4,5)=5\\ max(3,4,6,7)=7\\ max(4,5,7,8)=8\\
 $$
@@ -65,6 +66,7 @@ class MaxPoolingOp : public Operator {
 如下图2是pad(padding值为1)后输入特征图的池化操作(池化核为2):
 
 ![](https://pic1.zhimg.com/80/v2-c8e69f6ee03b8bc266a88f18b0cc4f0e_1440w.png?source=d16d100b)
+
 $$
  max(-\infty,-\infty,-\infty,0) =0\\ max(-\infty,-\infty,0,1) =1\\ max(-\infty,-\infty,1,2) =2\\ max(-\infty,-\infty,2,-\infty) =2\\ max(-\infty,0,-\infty,3) =3\\ max(0,1,3,4) =4\\   
 $$
@@ -141,6 +143,7 @@ void MaxPoolingLayer::Forwards(const std::vector<std::shared_ptr<Tensor<float>>>
 我们重点来看`Forwards`函数, 首先判断输入是否为空并获得池化操作相关的属性值(原本存放在op中).
 
 计算池化后的输出特征图大小, 公式为：
+
 $$
 output\,height = \lfloor \frac{input\,height -kernel\,height }{stride\, height}+1 \rfloor\\
 output\,width = \lfloor \frac{input\,width -kernel\,width }{stride\, width}+1 \rfloor
@@ -187,9 +190,11 @@ for (uint32_t i = 0; i < batch_size; ++i) {
 ```
 
 `for(uint32_t ic =0; ic < input_c;++ic) `表示对输入的特征图进行逐通道的池化操作, 设当前进行操作的输入特征图通道为`input_channel`, 池化后的输出特征图放置于`output_channel`中。池化的过程如下公式所描述：
+
 $$
 output \,value = max([r:r+kernel \,height -1,c:c+kernel\,width -1])\\
 $$
+
 在上述的代码中`region`表示当前输入特征数据需要进行池化的部分，对应于公式中`[r:r+kernel height -1,c:c+kernel width -1]`
 
 中的数据。输入特征的数据是逐个通道进行处理（池化操作）的，从`ic = 0`到`ic = input_channel - 1`, 当前池化的数据保存在`region`中。
