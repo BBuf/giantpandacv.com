@@ -190,6 +190,8 @@ nav:
                     - ICML2022：一种解决overconfidence的简洁方式: academic/目标检测及跟踪/论文解析/其它类型/ICML2022：一种解决overconfidence的简洁方式.md
                     - Deformable DETR 端到端目标检测: academic/目标检测及跟踪/论文解析/其它类型/Deformable DETR 端到端目标检测.md
                     - 扩散模型用于目标检测 DiffusionDet: academic/目标检测及跟踪/论文解析/其它类型/扩散模型用于目标检测 DiffusionDet.md
+                    - Windows 版的3D目标检测框架 smoke PyTorch 实现: academic/目标检测及跟踪/论文解析/其它类型/Windows 版的3D目标检测框架 smoke PyTorch 实现.md
+                    - 车道线检测 Ultra Fast Deep Lane Detection V2 讲解: academic/目标检测及跟踪/论文解析/其它类型/车道线检测 Ultra Fast Deep Lane Detection V2 讲解.md
             - 目标跟踪:
                 - darklabel教程: academic/目标检测及跟踪/目标跟踪/darklabel教程.md
                 - deepsort框架梳理: academic/目标检测及跟踪/目标跟踪/deepsort框架梳理.md
@@ -225,6 +227,7 @@ nav:
                 - 深度学习检测网络论文阅读50篇--第四章: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇--第四章.md
                 - 深度学习检测网络论文阅读50篇汇总: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇汇总.md
                 - 从检测角度理解label assign当前进展: academic/目标检测及跟踪/文献综述/从检测角度理解label assign当前进展.md
+                - 目标检测算法是如何生成正负样本的（一）: academic/目标检测及跟踪/文献综述/目标检测算法是如何生成正负样本的（一）.md
         - 算法科普:
             - 专栏介绍: academic/算法科普/README.md
             - AutoML: 
@@ -612,10 +615,10 @@ nav:
                 - Roller: project/部署优化/深度学习编译器/Roller.md
                 - TVM 学习指南: project/部署优化/深度学习编译器/TVM 学习指南.md
             - 自制深度学习推理框架:
-                - 自制深度学习推理框架-张量类Tensor的实现-第二课: project\部署优化\自制深度学习推理框架\自制深度学习推理框架-张量类Tensor的实现-第二课.md
-                - 自制深度学习推理框架-实现我们的第一个算子Relu-第三课: project\部署优化\自制深度学习推理框架\自制深度学习推理框架-实现我们的第一个算子Relu-第三课.md
-                - 自制深度学习推理框架-第五课-起飞！框架中的算子注册机制: project\部署优化\自制深度学习推理框架\自制深度学习推理框架-第五课-起飞！框架中的算子注册机制.md
-                - 自制深度学习推理框架-第六课-Max Pooling算子的实现: project\部署优化\自制深度学习推理框架\自制深度学习推理框架-第六课-Max Pooling算子的实现.md
+                - 自制深度学习推理框架-张量类Tensor的实现-第二课: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-张量类Tensor的实现-第二课.md
+                - 自制深度学习推理框架-实现我们的第一个算子Relu-第三课: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-实现我们的第一个算子Relu-第三课.md
+                - 自制深度学习推理框架-第五课-起飞！框架中的算子注册机制: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第五课-起飞！框架中的算子注册机制.md
+                - 自制深度学习推理框架-第六课-Max Pooling算子的实现: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第六课-Max Pooling算子的实现.md
     - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3:
