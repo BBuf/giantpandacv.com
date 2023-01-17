@@ -48,6 +48,7 @@ Testing 阶段的思路：
 再来解释下为什么要研究跨域的小样本学习，当目标任务与源任务中数据分布差距过大，在源域上训练得到的模型无法很好的泛化到目标域上（尤其是基于元学习的方法，元学习假设源域和目标域相似），从而无法提升目标任务的效果，即在某一个域训练好的分类模型在其他域上进行分类测试时，效果不理想。如果能用某种方法使得源域和目标域的数据在同一分布，则源任务会为目标任务提供更加有效的先验知识。至此，如何解决跨域时目标任务效果不理想的问题成了跨域的小样本学习。
 
 如下图（来源知乎：https://zhuanlan.zhihu.com/p/392956419），跨域小样本学习对应当源域和目标域在不同子任务（父任务相同）且不同域下时，利用通过源域获得的先验知识帮助目标任务提高其 performance，其中已有的知识叫做源域（source domain），要学习的新知识叫目标域（target domain）。
+
 <img src="https://pic1.zhimg.com/v2-75ebbb1291e17427f8aa4c617e4b08a3_720w.jpg?source=172ae18b" alt="跨域小样本理解" style="zoom:50%;" />
 ## 概述
 
@@ -60,6 +61,7 @@ Testing 阶段的思路：
 ## Proposed benchmark
 
 提出的 CD-FSS 基准由四个数据集组成，其特征在于不同大小的域偏移。包括来自 FSS-1000 、Deepglobe、ISIC2018 和胸部 X-ray 数据集的图像和标签。这些数据集分别涵盖日常物体图像、卫星图像、皮肤损伤的皮肤镜图像和 X 射线图像。所选数据集具有类别多样性，并反映了小样本语义分割任务的真实场景。如下图：
+
 ![请添加图片描述](https://img-blog.csdnimg.cn/5699d07722d049ddbf790bdf2f7d6ad0.png)![请添加图片描述](https://img-blog.csdnimg.cn/b611c1c016194942b5e9211ad89750f8.png)
 
 
@@ -71,13 +73,16 @@ Testing 阶段的思路：
 ## 整体机制 with CD-FSS
 
 CD-FSS 的主要挑战是如何减少领域转移带来的性能下降。以前的工作主要是学习 Support-Query 匹配模型，假设预训练的编码器足够强大，可以将图像嵌入到下游匹配模型的可区分特征中。然而在大领域差距下，只在源域中预训练的 backbone 在目标域中失败了，如日常生活中的物体图像到 X-ray 图像。为了解决这个问题，模型需要学会将特定领域的特征转化为领域无关的特征。这样一来，下游模型就可以通过匹配 Support-Query 的领域无关的特征来进行分割，从而很好地适应新领域。
+
 如下图所示（左边训练，右边测试），整体机制由三个主要部分组成，即特征提取 backbone、domain-adaptive hypercorrelation construction 和 domain-agnostic correlation learning。对于输入的 Support-Query 图像，首先用特征提取器提取所有的中间特征。然后，我们在 domain-adaptive hypercorrelation construction 部分引入一个特别新颖的模块，称为 Pyramid Anchor-based Transformation Module（PATM），将特定领域的特征转换为领域无关的特征。接下来，用所有转换后的特征图计算多层次的相关图，并将其送入 domain-agnostic correlation learning 部分。使用两个现成的模块，分别为 4D 卷积金字塔编码器和 2D 卷积上下文解码器，被用来以粗到细的方式产生预测掩码，并具有高效的 4D 卷积。在测试阶段，论文里还提出了一个任务自适应微调推理（TFI）策略，以鼓励模型通过 Lkl 损失微调 PATM 来快速适应目标领域，Lkl 损失衡量 Support-Query 预测之间的前景原型相似度。
+
 ![请添加图片描述](https://img-blog.csdnimg.cn/92ebd8b066bf40c388f2a04843c72a6a.png)
 
 
 ## PATNet
 
 上一部分提到 PATM 将特定领域的特征转换为领域无关的特征，这一部分我们仔细看一下。Pyramid Anchor-based Transformation Module（PATM）的核心思想是学习 pyramid anchor layers，将特定领域的特征转换为领域无关的特征。直观地说，如果我们能找到一个转化器，将特定领域的特征转化为领域无关的度量空间，它将减少领域迁移带来的不利影响。由于领域无关的度量空间是不变的，所以下游的分割模块在这样一个稳定的空间中进行预测会更容易。
+
 理想情况下，属于同一类别的特征在以同样的方式进行转换时将产生类似的结果。因此，如果将 Support 特征转换为领域空间中的相应锚点，那么通过使用相同的转换，也可以使属于同一类别的 Query 特征转换为接近领域空间中的锚点。采用线性变换矩阵作为变换映射器，因为它引入的可学习参数较少。如上一部分中的图，使用 anchor layers 和 Support 图像的原型集来计算变换矩阵。如果 A 代表 anchor layers 的权重矩阵，P 表示 Support 图像的原型矩阵。既通过寻找一个矩阵来构建转换矩阵 W，使 WP=A。
 
 ## 任务自适应微调推理（TFI）策略

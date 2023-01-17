@@ -400,6 +400,8 @@ nav:
                 - FusionPortable 用于评估不同平台上的定位和建图精度的多传感器校园数据集: academic/算法科普/3D重建/FusionPortable 用于评估不同平台上的定位和建图精度的多传感器校园数据集.md
                 - 具有负平面的相机姿态引导回环: academic/算法科普/3D重建/具有负平面的相机姿态引导回环.md
                 - 通过整合IMU运动动力学实现尺度感知、鲁棒和可推广的无监督单目深度估计: academic/算法科普/3D重建/通过整合IMU运动动力学实现尺度感知、鲁棒和可推广的无监督单目深度估计.md
+                - DeepLSD基于深度图像梯度的线段检测和细化: academic/算法科普/3D重建/DeepLSD基于深度图像梯度的线段检测和细化.md
+                - SceneRF具有辐射场的自监督单目三维场景重建: academic/算法科普/3D重建/SceneRF具有辐射场的自监督单目三维场景重建.md
             - 多模态:
                 - 复杂动态环境下的多模态语义SLAM: academic/算法科普/多模态/复杂动态环境下的多模态语义SLAM.md
             - 综述类:
@@ -448,6 +450,8 @@ nav:
             - CVPR22 迈向无监督的Zeroshot 分割_Garfield: academic/语义及实例分割/CVPR22 迈向无监督的Zeroshot 分割_Garfield.md
             - MICCAI 2022：基于 MLP 的快速医学图像分割网络—UNeXt: academic/语义及实例分割/MICCAI 2022：基于 MLP 的快速医学图像分割网络—UNeXt.md
             - 【MICCAI 2022】PHTrans：并行聚合全局和局部表示以进行医学图像分割: academic/语义及实例分割/【MICCAI 2022】PHTrans：并行聚合全局和局部表示以进行医学图像分割.md
+            - ECCV 2022：跨域小样本语义分割新基准（也提出 PATNet）: academic/语义及实例分割/ECCV 2022：跨域小样本语义分割新基准（也提出 PATNet）.md
+            - MICCAI 2022：使用自适应条形采样和双分支 Transformer 的 DA-Net: academic/语义及实例分割/MICCAI 2022：使用自适应条形采样和双分支 Transformer 的 DA-Net.md
     - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
