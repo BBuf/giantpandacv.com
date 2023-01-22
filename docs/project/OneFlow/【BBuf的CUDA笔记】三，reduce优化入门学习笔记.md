@@ -20,8 +20,8 @@ NVIDIA A100-PCIE-40GB , 峰值带宽在 1555 GB/s , CUDA版本为11.8.
 
 接着 NVIDIA 博客给出了 BaseLine 算法的实现：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/a8a8a33ada644dee8f6263d076282595.png)
 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a8a8a33ada644dee8f6263d076282595.png)
 
 这里的 g_idata 表示的是输入数据的指针，而 g_odata 则表示输出数据的指针。然后首先把 global memory 数据 load 到 shared memory 中，接着在 shared memory 中对数据进行 Reduce Sum 操作，最后将 Reduce Sum 的结果写会 global memory 中。
 
@@ -506,6 +506,207 @@ profile结果：
 
 在把block_num从65536调整到1024之后，无论是性能还是带宽都达到了最强，相比于最初的BaseLine加速了9.4倍。
 
+## PyTorch Block Reduce
+
+接下来我们介绍一下 PyTorch 的 Block Reduce 方案，https://zhuanlan.zhihu.com/p/584936904 这篇文章介绍得比较详细。我在 https://github.com/BBuf/how-to-optim-algorithm-in-cuda/blob/master/reduce/pytorch_block_reduce.cu 这里也整理一些方便理解的注释。
+总的来说就是利用 warp 原语 `__shfl_down_sync` 来对一个warp内的val进行规约求和。可以单独编译的.cu文件实现在：https://github.com/BBuf/how-to-optim-algorithm-in-cuda/blob/master/reduce/reduce_v7_shfl_down_sync.cu 。我们贴一下c++的实现：
+
+```c++
+#define N 32*1024*1024
+#define BLOCK_SIZE 256
+#define WARP_SIZE 32
+
+template <unsigned int blockSize>
+__device__ __forceinline__ float warpReduceSum(float sum) {
+    if (blockSize >= 32)sum += __shfl_down_sync(0xffffffff, sum, 16); // 0-16, 1-17, 2-18, etc.
+    if (blockSize >= 16)sum += __shfl_down_sync(0xffffffff, sum, 8);// 0-8, 1-9, 2-10, etc.
+    if (blockSize >= 8)sum += __shfl_down_sync(0xffffffff, sum, 4);// 0-4, 1-5, 2-6, etc.
+    if (blockSize >= 4)sum += __shfl_down_sync(0xffffffff, sum, 2);// 0-2, 1-3, 4-6, 5-7, etc.
+    if (blockSize >= 2)sum += __shfl_down_sync(0xffffffff, sum, 1);// 0-1, 2-3, 4-5, etc.
+    return sum;
+}
+
+
+template <unsigned int blockSize, int NUM_PER_THREAD>
+__global__ void reduce7(float *g_idata,float *g_odata, unsigned int n){
+    float sum = 0;
+
+    // each thread loads one element from global to shared mem
+    unsigned int tid = threadIdx.x;
+    unsigned int i = blockIdx.x * (blockSize * NUM_PER_THREAD) + threadIdx.x;
+
+    #pragma unroll
+    for(int iter=0; iter<NUM_PER_THREAD; iter++){
+        sum += g_idata[i+iter*blockSize];
+    }
+    
+    // Shared mem for partial sums (one per warp in the block)
+    static __shared__ float warpLevelSums[WARP_SIZE]; 
+    const int laneId = threadIdx.x % WARP_SIZE;
+    const int warpId = threadIdx.x / WARP_SIZE;
+
+    sum = warpReduceSum<blockSize>(sum);
+
+    if(laneId == 0 )warpLevelSums[warpId] = sum;
+    __syncthreads();
+    // read from shared memory only if that warp existed
+    sum = (threadIdx.x < blockDim.x / WARP_SIZE) ? warpLevelSums[laneId] : 0;
+    // Final reduce using first warp
+    if (warpId == 0) sum = warpReduceSum<blockSize/WARP_SIZE>(sum); 
+    // write result for this block to global mem
+    if (tid == 0) g_odata[blockIdx.x] = sum;
+}
+```
+
+profile结果：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a91c13a707b043c1918e63a563716581.png)
+
+性能和带宽的测试情况如下：
+
+|优化手段|耗时(us)|带宽利用率|加速比|
+|--|--|--|--|
+|reduce_baseline|990.66us|39.57%|~|
+|reduce_v1_interleaved_addressing|479.58us|81.74%|2.06|
+|reduce_v2_bank_conflict_free|462.02us|84.81%|2.144|
+|reduce_v3_idle_threads_free|244.16us|83.16%|4.057|
+|reduce_v4_unroll_last_warp|167.10us|54.10%|5.928|
+|reduce_v5_completely_unroll|158.78us|56.94%|6.239|
+|reduce_v6_multi_add|105.47us|85.75%|9.392|
+|reduce_v7_shfl_down_sync|101.7us|87.42%|9.74|
+
+可以看到基于 warp 原语 `__shfl_down_sync` 进行优化之后，带宽利用率可以达到 87.42% ，并且耗时也是最低的。
+
+## PyTorch BlockReduce + Pack + 选择更更合理的 GridSize
+
+最后我们在 reduce_v7_shfl_down_sync 的基础上加上数据 Pack，并且使用 OneFlow 的自动选择 GridSize （Block数量）的函数来计算 GridSize 。代码实现如下：
+
+```c++
+#define PackSize 4
+#define kWarpSize 32
+#define N 32 * 1024 * 1024
+constexpr int BLOCK_SIZE = 256;
+
+constexpr int kBlockSize = 256;
+constexpr int kNumWaves = 1;
+
+int64_t GetNumBlocks(int64_t n) {
+  int dev;
+  {
+    cudaError_t err = cudaGetDevice(&dev);
+    if (err != cudaSuccess) { return err; }
+  }
+  int sm_count;
+  {
+    cudaError_t err = cudaDeviceGetAttribute(&sm_count, cudaDevAttrMultiProcessorCount, dev);
+    if (err != cudaSuccess) { return err; }
+  }
+  int tpm;
+  {
+    cudaError_t err = cudaDeviceGetAttribute(&tpm, cudaDevAttrMaxThreadsPerMultiProcessor, dev);
+    if (err != cudaSuccess) { return err; }
+  }
+  int64_t num_blocks = std::max<int64_t>(1, std::min<int64_t>((n + kBlockSize - 1) / kBlockSize,
+                                                   sm_count * tpm / kBlockSize * kNumWaves));
+  return num_blocks;
+}
+
+template<typename T, int pack_size>
+struct alignas(sizeof(T) * pack_size) Packed {
+  __device__ Packed(T val){
+    #pragma unroll
+    for(int i = 0; i < pack_size; i++){
+        elem[i] = val; 
+    }
+  }
+  __device__ Packed() {
+    // do nothing
+  }
+  union {
+    T elem[pack_size];
+  };
+  __device__ void operator+=(Packed<T, pack_size> packA){
+    #pragma unroll 
+    for(int i = 0; i < pack_size; i++){
+        elem[i] += packA.elem[i]; 
+    }
+  }
+};
+
+template<typename T, int pack_size>
+__device__ T PackReduce(Packed<T, pack_size> pack){
+    T res = 0.0; 
+    #pragma unroll
+    for(int i = 0; i < pack_size; i++){
+        res += pack.elem[i]; 
+    }
+    return res; 
+}
+
+template<typename T>
+__device__ T warpReduceSum(T val){
+    for(int lane_mask = 16; lane_mask > 0; lane_mask /=2){
+        val += __shfl_down_sync(0xffffffff, val, lane_mask); 
+    }
+    return val; 
+}
+
+__global__ void reduce_v8(float *g_idata,float *g_odata, unsigned int n){
+
+    // each thread loads one element from global to shared mem
+
+    unsigned int i = blockDim.x * blockIdx.x + threadIdx.x;
+    Packed<float, PackSize> sum_pack(0.0); 
+    Packed<float, PackSize> load_pack(0.0); 
+    const auto* pack_ptr = reinterpret_cast<const Packed<float, PackSize>*>(g_idata);
+    
+    for(int32_t linear_index = i; linear_index < n / PackSize; linear_index+=blockDim.x * gridDim.x){
+        Packed<float, PackSize> g_idata_load = pack_ptr[linear_index];
+        sum_pack += g_idata_load; 
+    }
+    float PackReduceVal = PackReduce<float, PackSize>(sum_pack);
+    // Shared mem for partial sums (one per warp in the block)
+    static __shared__ float warpLevelSums[kWarpSize]; 
+    const int laneId = threadIdx.x % kWarpSize;
+    const int warpId = threadIdx.x / kWarpSize;
+
+    float sum = warpReduceSum<float>(PackReduceVal);
+    __syncthreads();
+
+    if(laneId == 0 )warpLevelSums[warpId] = sum;
+    __syncthreads();
+    // read from shared memory only if that warp existed
+    sum = (threadIdx.x < blockDim.x / kWarpSize) ? warpLevelSums[laneId] : 0;
+    // Final reduce using first warp
+    if (warpId == 0) sum = warpReduceSum<float>(sum); 
+    // write result for this block to global mem
+    if (threadIdx.x == 0) g_odata[blockIdx.x] = sum;
+}
+```
+
+profile结果：
+
+<img width="1238" alt="图片" src="https://user-images.githubusercontent.com/35585791/213907159-a5ca1991-aa94-4f35-b1d4-9859c7abbc7a.png">
+
+性能和带宽的测试情况如下：
+
+|优化手段|耗时(us)|带宽利用率|加速比|
+|--|--|--|--|
+|reduce_baseline|990.66us|39.57%|~|
+|reduce_v1_interleaved_addressing|479.58us|81.74%|2.06|
+|reduce_v2_bank_conflict_free|462.02us|84.81%|2.144|
+|reduce_v3_idle_threads_free|244.16us|83.16%|4.057|
+|reduce_v4_unroll_last_warp|167.10us|54.10%|5.928|
+|reduce_v5_completely_unroll|158.78us|56.94%|6.239|
+|reduce_v6_multi_add|105.47us|85.75%|9.392|
+|reduce_v7_shfl_down_sync|101.7us|87.42%|9.74|
+|reduce_v8_shfl_down_sync_pack|99.71us|89.76%|9.935|
+
+基于 Pack 以及选择更适合硬件的 Block 数量可以继续提升 Reduce Kernel 的带宽和性能。画了个图更直观一点：
+
+![图片](https://user-images.githubusercontent.com/35585791/213908763-480d0c07-5709-4829-9903-db17a0ecca89.png)
+
+
 ## 总结
 
 我这里的测试结果和nvidia ppt里提供的结果有一些出入，nvidia ppt的34页展示的结果是对于每一种优化相比于前一种无论是性能还是带宽都是稳步提升的。但我这里的测试结果不完全是这样，对于 reduce_v4_unroll_last_warp 和 reduce_v5_completely_unroll 这两个优化，虽然耗时近一步减少但是带宽却降低了，我也还没想清楚原因。欢迎大佬评论区指点。
@@ -522,5 +723,6 @@ profile结果：
 - https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf
 - https://zhuanlan.zhihu.com/p/426978026
 - https://mp.weixin.qq.com/s/1_ao9xM6Qk3JaavptChXew
+- https://zhuanlan.zhihu.com/p/559549740
 
 
