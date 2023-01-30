@@ -15,7 +15,7 @@ nav:
     - ACADEMIC:
         - 超分和GAN:
             - 专栏介绍: academic/超分和GAN/README.md
-            - CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network: academic/超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md
+            - MSFSR:一种通过增强人脸边界精确表示人脸的多级人脸超分辨率算法: academic/超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md
             - DeepFake系列之FakeSpotter: academic/超分和GAN/DeepFake系列之FakeSpotter.md
             - 基于Kaggle DeepFake比赛的代码实战: academic/超分和GAN/基于Kaggle DeepFake比赛的代码实战.md
             - 生成对抗网络中的数据增广：一种可微分的数据增广方法: academic/超分和GAN/生成对抗网络中的数据增广：一种可微分的数据增广方法.md
@@ -23,7 +23,7 @@ nav:
             - Deblurring by Realistic Blurring 图像去模糊论文解读: academic/超分和GAN/Deblurring by Realistic Blurring 图像去模糊论文解读.md
             - 基于GAN来做低光照图像增强，EnlightenGAN论文解读: academic/超分和GAN/基于GAN来做低光照图像增强，EnlightenGAN论文解读.md
             - CVPR21 Oral 图像风格化鲁棒性的再思考和提升 论文解读: academic/超分和GAN/CVPR21 Oral 图像风格化鲁棒性的再思考和提升 论文解读.md
-            - Deepfake视频中的时空不一致性学习_zzk: academic/超分和GAN/Deepfake视频中的时空不一致性学习_zzk.md
+            - Deepfake视频中的时空不一致性学习: academic/超分和GAN/Deepfake视频中的时空不一致性学习_zzk.md
             - Rethinking and Improving the Robustness of Image Style Transfer: academic/超分和GAN/Rethinking and Improving the Robustness of Image Style Transfer.md
             - ICCVW2021 SDWNet: academic/超分和GAN/ICCVW2021 SDWNet.md
             - Model-driven Deep Neural Network for Single Image Rain Removal: academic/超分和GAN/Model-driven Deep Neural Network for Single Image Rain Removal.md
@@ -362,7 +362,7 @@ nav:
                 - 谈谈我眼中的Label Smooth: academic/算法科普/深度学习基础/谈谈我眼中的Label Smooth.md
                 - CVPR2021-Representative BatchNorm: academic/算法科普/深度学习基础/CVPR2021-Representative BatchNorm.md
                 - ResNet与常见ODE初值问题的数值解法​: academic/算法科普/深度学习基础/ResNet与常见ODE初值问题的数值解法​.md
-                - welford算法小记_zzk: academic/算法科普/深度学习基础/welford算法小记_zzk.md
+                - welford算法小记: academic/算法科普/深度学习基础/welford算法小记_zzk.md
                 - A Battle of Network Structure_pprp: academic/算法科普/深度学习基础/A Battle of Network Structure_pprp.md
                 - CVPR2022：计算机视觉中长尾数据平衡对比学习: academic/算法科普/深度学习基础/CVPR2022：计算机视觉中长尾数据平衡对比学习.md
             - 手工调参Tricks:
@@ -477,7 +477,7 @@ nav:
             - 一个Tensor在OneFlow的执行流程: project/OneFlow/一个Tensor在OneFlow的执行流程.md
             - CUDA WarpReduce 学习笔记: project/OneFlow/CUDA WarpReduce 学习笔记.md
             - 浅谈NVIDIA-H100白皮书: project/OneFlow/浅谈NVIDIA-H100白皮书.md
-            - HugeCTR源码简单走读_zzk: project/OneFlow/HugeCTR源码简单走读_zzk.md
+            - HugeCTR源码简单走读: project/OneFlow/HugeCTR源码简单走读_zzk.md
             - 基于 Flowflops 详解深度学习网络的 FLOPs 和 MACs 计算方案: project/OneFlow/基于 Flowflops 详解深度学习网络的 FLOPs 和 MACs 计算方案.md
             - 详解 NVIDIA H100 TransformerEngine: project/OneFlow/详解 NVIDIA H100 TransformerEngine.md
             - 【BBuf的CUDA笔记】一，解析OneFlow Element-Wise 算子实现: project/OneFlow/【BBuf的CUDA笔记】一，解析OneFlow Element-Wise 算子实现.md
