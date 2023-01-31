@@ -422,6 +422,12 @@ nav:
                 - NeurIPS19 用分类模型完成生成任务: academic/算法科普/对比学习/NeurIPS19 用分类模型完成生成任务.md
                 - 【域自适应】Graph-Relational Domain Adaptation: academic/算法科普/对比学习/【域自适应】Graph-Relational Domain Adaptation.md
                 - 利用语言模型为视觉模型提供提示_Garfield: academic/算法科普/对比学习/利用语言模型为视觉模型提供提示_Garfield.md
+            - 扩散模型:
+                - Diffusion Model的演进 NeurIPS 2022最佳论文：Imagen: academic/算法科普/扩散模型/Diffusion Model的演进 NeurIPS 2022最佳论文：Imagen.md
+                - Google Brain提出基于Diffusion的新全景分割算法: academic/算法科普/扩散模型/Google Brain提出基于Diffusion的新全景分割算法.md
+                - 一文弄懂DiffusionModel: academic/算法科普/扩散模型/一文弄懂DiffusionModel.md
+                - 不需要训练来纠正文本生成图像模型的错误匹配: academic/算法科普/扩散模型/不需要训练来纠正文本生成图像模型的错误匹配.md
+                - 如何简单高效地定制自己的文本作画模型？: academic/算法科普/扩散模型/如何简单高效地定制自己的文本作画模型？.md
             - 其他方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
         - 语义及实例分割:

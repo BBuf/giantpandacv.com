@@ -50,9 +50,11 @@ Imagen由将文本映射到一系列embedding的文本编码器和将这些embed
 
 
 Classifier-free guidance 是一种提高样本质量的方法。在采样期间使用来自预训练模型 $p(c|z_t)$ 的梯度来减少条件扩散模型的多样性，具体来说就是希望生成的图像能顺利被分类。而Classifier-free guidance 是一种替代技术，它通过在训练期间随机丢弃相应的信息$c$ 来预测最终的联合条件概率，完成无条件目标的单个扩散模型训练，从而避免来自预训练模型的不稳定性。 使用调整后的 $x$-预测 $(z_t - \sigma \tilde \epsilon_ \theta)/\alpha_t$ 执行采样，其中：
+
 $$
 \tilde{\epsilon}_\theta(z_t, c) = w\epsilon_\theta(z_t, c) + (1-w)\epsilon_{\theta}(z_t)。
 $$
+
 这里，$\epsilon_\theta(z_t, c)$ 和 $\epsilon_{\theta}(z_t)$ 是有条件和无条件的 $\epsilon$ 预测，由 $\epsilon_\theta eq (z_t - \alpha_t\hat{x}_\theta)/\sigma_t$，$w$ 是 guidance的权重。 设置 $w = 1$ 禁用无分类器指导，而增加 $w > 1$ 加强指导的效果。
 
 #### 3.3 级联的diffusion model
