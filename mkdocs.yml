@@ -295,6 +295,7 @@ nav:
                 - DeiT：使用Attention蒸馏Transformer: academic/算法科普/Transformer/DeiT：使用Attention蒸馏Transformer.md
                 - Token-to-Token Transformer_LoBob: academic/算法科普/Transformer/Token-to-Token Transformer_LoBob.md
                 - 用于语言引导视频分割的局部-全局语境感知Transformer: academic/算法科普/Transformer/用于语言引导视频分割的局部-全局语境感知Transformer.md
+                - Token Merging 你的VIT，但是更快: academic/算法科普/Transformer/Token Merging 你的VIT，但是更快.md
             - 半监督&无监督:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
@@ -385,6 +386,7 @@ nav:
                 - 浅谈LabelSmooth的两种实现以及推导_蒋: academic/算法科普/手工调参Tricks/浅谈LabelSmooth的两种实现以及推导_蒋.md
                 - Google提出面向长尾分布的logit的调整新方法: academic/算法科普/手工调参Tricks/Google提出面向长尾分布的logit的调整新方法.md
                 - Mitigating Neural Network Overconfidence with Logit Normalization: academic/算法科普/手工调参Tricks/Mitigating Neural Network Overconfidence with Logit Normalization.md
+                - ICLR 2022 基于不确定性的域外泛化: academic/算法科普/手工调参Tricks/ICLR 2022 基于不确定性的域外泛化.md
             - 分布式训练大模型:
                 - 让训练更长序列模型称为可能Sequence Parallelism_zzk: academic/算法科普/分布式训练大模型/让训练更长序列模型称为可能Sequence Parallelism_zzk.md
             - 3D重建:
@@ -404,6 +406,7 @@ nav:
                 - SceneRF具有辐射场的自监督单目三维场景重建: academic/算法科普/3D重建/SceneRF具有辐射场的自监督单目三维场景重建.md
             - 多模态:
                 - 复杂动态环境下的多模态语义SLAM: academic/算法科普/多模态/复杂动态环境下的多模态语义SLAM.md
+                - 恺明团队新作：更快的CLIP训练模式: academic/算法科普/多模态/恺明团队新作：更快的CLIP训练模式.md
             - 综述类:
                 - 【综述】Dropout模式和发展: academic/算法科普/综述类/【综述】Dropout模式和发展.md
                 - 【综述】图像去雾的前世今生: academic/算法科普/综述类/【综述】图像去雾的前世今生.md
@@ -422,6 +425,7 @@ nav:
                 - NeurIPS19 用分类模型完成生成任务: academic/算法科普/对比学习/NeurIPS19 用分类模型完成生成任务.md
                 - 【域自适应】Graph-Relational Domain Adaptation: academic/算法科普/对比学习/【域自适应】Graph-Relational Domain Adaptation.md
                 - 利用语言模型为视觉模型提供提示_Garfield: academic/算法科普/对比学习/利用语言模型为视觉模型提供提示_Garfield.md
+                - 如何把视觉语言模型应用到视频里: academic/算法科普/对比学习/如何把视觉语言模型应用到视频里.md
             - 扩散模型:
                 - Diffusion Model的演进 NeurIPS 2022最佳论文：Imagen: academic/算法科普/扩散模型/Diffusion Model的演进 NeurIPS 2022最佳论文：Imagen.md
                 - Google Brain提出基于Diffusion的新全景分割算法: academic/算法科普/扩散模型/Google Brain提出基于Diffusion的新全景分割算法.md
