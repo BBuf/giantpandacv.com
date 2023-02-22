@@ -439,6 +439,7 @@ nav:
             - 其他方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
                 - AAAI'22 Panini-Net 基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22 | Panini-Net | 基于GAN先验的退化感知特征插值人脸修复网络.md
+                - ECCV'22 Oral|VQFR|基于矢量量化字典与双解码器的人脸盲修复网络: academic/算法科普/其他方向论文解读/ECCV'22 Oral|VQFR|基于矢量量化字典与双解码器的人脸盲修复网络.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
