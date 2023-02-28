@@ -438,8 +438,8 @@ nav:
                 - 当 TransFormer 遇到 Diffusion: academic/算法科普/扩散模型/当 TransFormer 遇到 Diffusion.md
             - 其他方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
-                - AAAI'22 Panini-Net 基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22 | Panini-Net | 基于GAN先验的退化感知特征插值人脸修复网络.md
-                - ECCV'22 Oral|VQFR|基于矢量量化字典与双解码器的人脸盲修复网络: academic/算法科普/其他方向论文解读/ECCV'22 Oral|VQFR|基于矢量量化字典与双解码器的人脸盲修复网络.md
+                #- AAAI 22 Panini-Net 基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22 | Panini-Net | 基于GAN先验的退化感知特征插值人脸修复网络.md
+                #- ECCV 22 Oral|VQFR|基于矢量量化字典与双解码器的人脸盲修复网络: academic/算法科普/其他方向论文解读/ECCV'22 Oral|VQFR|基于矢量量化字典与双解码器的人脸盲修复网络.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
@@ -502,7 +502,7 @@ nav:
             - 【BBuf的CUDA笔记】四，介绍三个高效实用的CUDA算法实现（OneFlow ElementWise模板，FastAtomicAdd模板，OneFlow UpsampleNearest2d模板）: project/OneFlow/【BBuf的CUDA笔记】四，介绍三个高效实用的CUDA算法实现（OneFlow ElementWise模板，FastAtomicAdd模板，OneFlow UpsampleNearest2d模板）.md
             - 【BBuf的CUDA笔记】五，解读 PyTorch index_add 操作涉及的优化技术: project/OneFlow/【BBuf的CUDA笔记】五，解读 PyTorch index_add 操作涉及的优化技术.md
             - 【BBuf的CUDA笔记】六，总结 FasterTransformer Encoder(BERT) 的cuda相关优化技巧: project/OneFlow/【BBuf的CUDA笔记】六，总结 FasterTransformer Encoder(BERT) 的cuda相关优化技巧.md
-            - 【BBuf的CUDA笔记】七，总结 FasterTransformer Decoder(GPT) 的cuda相关优化技巧: project/OneFlow/【BBuf的CUDA笔记】七，总结 FasterTransformer Decoder(GPT) 的cuda相关优化技巧.md
+            - 【BBuf的CUDA笔记】七，总结 FasterTransformer Decoder(GPT) 的cuda相关优化技巧: project/部署优化/【BBuf的CUDA笔记】七，总结 FasterTransformer Decoder(GPT) 的cuda相关优化技巧.md
             - 【BBuf的CUDA笔记】八，对比学习OneFlow 和 FasterTransformer 的 Softmax Cuda实现: project/OneFlow/【BBuf的CUDA笔记】八，对比学习OneFlow 和 FasterTransformer 的 Softmax Cuda实现.md
         - PyTorch:
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md

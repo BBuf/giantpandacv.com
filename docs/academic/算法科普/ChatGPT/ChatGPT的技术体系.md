@@ -2,13 +2,13 @@
 
 ### 0.参考资料
 
- RLHF论文：Training language models to follow instructions with human feedback（[https://arxiv.org/pdf/2203.02155.pdf](https%3A//arxiv.org/pdf/2203.02155.pdf)）
+ RLHF论文：Training language models to follow instructions with human feedback（[https://arxiv.org/pdf/2203.02155.pdf](https://arxiv.org/pdf/2203.02155.pdf)）
 
-摘要上下文中的 RLHF：Learning to summarize from Human Feedback （[https://arxiv.org/pdf/2009.01325.pdf](https%3A//arxiv.org/pdf/2009.01325.pdf)）
+摘要上下文中的 RLHF：Learning to summarize from Human Feedback （[https://arxiv.org/pdf/2009.01325.pdf](https://arxiv.org/pdf/2009.01325.pdf)）
 
 PPO论文：Proximal Policy Optimization Algorithms（[https://arxiv.org/pdf/1707.06347.pdf](https://arxiv.org/pdf/1707.06347.pdf)）
 
-Deep reinforcement learning from human preferences （[https://arxiv.org/abs/1706.03741](https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1706.03741)）
+Deep reinforcement learning from human preferences （[https://arxiv.org/abs/1706.03741](https://link.zhihu.com/?target=https://arxiv.org/abs/1706.03741)）
 
 ### 1. 引言
 
