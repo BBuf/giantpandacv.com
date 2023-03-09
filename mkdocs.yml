@@ -469,6 +469,7 @@ nav:
             - 【MICCAI 2022】PHTrans：并行聚合全局和局部表示以进行医学图像分割: academic/语义及实例分割/【MICCAI 2022】PHTrans：并行聚合全局和局部表示以进行医学图像分割.md
             - ECCV 2022：跨域小样本语义分割新基准（也提出 PATNet）: academic/语义及实例分割/ECCV 2022：跨域小样本语义分割新基准（也提出 PATNet）.md
             - MICCAI 2022：使用自适应条形采样和双分支 Transformer 的 DA-Net: academic/语义及实例分割/MICCAI 2022：使用自适应条形采样和双分支 Transformer 的 DA-Net.md
+            - 医学图像的 AI 框架 MONAI 详细教程（一）: academic/语义及实例分割/医学图像的 AI 框架 MONAI 详细教程（一）.md
     - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
