@@ -299,7 +299,7 @@ nav:
                 - Token Merging 你的VIT，但是更快: academic/算法科普/Transformer/Token Merging 你的VIT，但是更快.md
             - ChatGPT:
                 - ChatGPT技术体系: academic/算法科普/ChatGPT/ChatGPT的技术体系.md
-                - InstructGPT 介绍：academic/算法科普/ChatGPT/InstructGPT介绍.md
+                - InstructGPT 介绍: academic/算法科普/ChatGPT/InstructGPT介绍.md
             - 半监督&无监督:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
@@ -439,8 +439,8 @@ nav:
                 - 当 TransFormer 遇到 Diffusion: academic/算法科普/扩散模型/当 TransFormer 遇到 Diffusion.md
             - 其他方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
-                #- AAAI 22 Panini-Net 基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22 | Panini-Net | 基于GAN先验的退化感知特征插值人脸修复网络.md
-                #- ECCV 22 Oral|VQFR|基于矢量量化字典与双解码器的人脸盲修复网络: academic/算法科普/其他方向论文解读/ECCV'22 Oral|VQFR|基于矢量量化字典与双解码器的人脸盲修复网络.md
+                - AAAI22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络.md
+                - ECCV22 Oral VQFR 基于矢量量化字典与双解码器的人脸盲修复网络: academic/算法科普/其他方向论文解读/ECCV'22 Oral VQFR 基于矢量量化字典与双解码器的人脸盲修复网络.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
