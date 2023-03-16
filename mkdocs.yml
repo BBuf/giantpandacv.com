@@ -438,6 +438,7 @@ nav:
                 - 如何简单高效地定制自己的文本作画模型？: academic/算法科普/扩散模型/如何简单高效地定制自己的文本作画模型？.md
                 - 当 TransFormer 遇到 Diffusion: academic/算法科普/扩散模型/当 TransFormer 遇到 Diffusion.md
                 - 斯坦福大学最新扩散模型工作DID用于低光照文字识别的扩散模型: academic/算法科普/扩散模型/斯坦福大学最新扩散模型工作DID用于低光照文字识别的扩散模型.md
+                - 扩散模型大杀器 ControlNet 解析: academic/算法科普/扩散模型/扩散模型大杀器 ControlNet 解析.md
             - 其他方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
                 - AAAI22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络.md
