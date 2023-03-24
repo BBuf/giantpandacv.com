@@ -724,6 +724,8 @@ extra_javascript:
     - 'https://cdnjs.loli.net/ajax/libs/pangu/3.3.0/pangu.min.js'
     - '_static/js/extra.js'
     - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
+    - 'js/baidu-tongji.js'
+    - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
 
 extra_css:
     - '_static/css/extra.css'
