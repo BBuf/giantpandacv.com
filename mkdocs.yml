@@ -297,6 +297,7 @@ nav:
                 - Token-to-Token Transformer_LoBob: academic/算法科普/Transformer/Token-to-Token Transformer_LoBob.md
                 - 用于语言引导视频分割的局部-全局语境感知Transformer: academic/算法科普/Transformer/用于语言引导视频分割的局部-全局语境感知Transformer.md
                 - Token Merging 你的VIT，但是更快: academic/算法科普/Transformer/Token Merging 你的VIT，但是更快.md
+                - CVPR23-无需光流引导的视频联合去模糊和插帧transformer：针对真实世界运动模糊的插帧网络: academic/算法科普/Transformer/CVPR23-无需光流引导的视频联合去模糊和插帧transformer：针对真实世界运动模糊的插帧网络.md
             - ChatGPT:
                 - ChatGPT技术体系: academic/算法科普/ChatGPT/ChatGPT的技术体系.md
                 - InstructGPT 介绍: academic/算法科普/ChatGPT/InstructGPT介绍.md
@@ -437,10 +438,15 @@ nav:
                 - 不需要训练来纠正文本生成图像模型的错误匹配: academic/算法科普/扩散模型/不需要训练来纠正文本生成图像模型的错误匹配.md
                 - 如何简单高效地定制自己的文本作画模型？: academic/算法科普/扩散模型/如何简单高效地定制自己的文本作画模型？.md
                 - 当 TransFormer 遇到 Diffusion: academic/算法科普/扩散模型/当 TransFormer 遇到 Diffusion.md
+                - 斯坦福大学最新扩散模型工作DID用于低光照文字识别的扩散模型: academic/算法科普/扩散模型/斯坦福大学最新扩散模型工作DID用于低光照文字识别的扩散模型.md
+                - 扩散模型大杀器 ControlNet 解析: academic/算法科普/扩散模型/扩散模型大杀器 ControlNet 解析.md
             - 其他方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
                 - AAAI22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络.md
                 - ECCV22 Oral VQFR 基于矢量量化字典与双解码器的人脸盲修复网络: academic/算法科普/其他方向论文解读/ECCV'22 Oral VQFR 基于矢量量化字典与双解码器的人脸盲修复网络.md
+                - ICLR 2023 oral论文：一种除了卷积和ViT以外的新视觉框架-Image as Set of Points: academic/算法科普/其他方向论文解读/ICLR 2023 oral论文：一种除了卷积和ViT以外的新视觉框架-Image as Set of Points.md
+                - 微软亚洲研究院最新工作DeepMIM-MIM中引入深度监督方法: academic/算法科普/其他方向论文解读/微软亚洲研究院最新工作DeepMIM-MIM中引入深度监督方法.md
+                - 计算机视觉中的主动学习介绍: academic/算法科普/其他方向论文解读/计算机视觉中的主动学习介绍.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
@@ -506,6 +512,7 @@ nav:
             - 【BBuf的CUDA笔记】六，总结 FasterTransformer Encoder(BERT) 的cuda相关优化技巧: project/OneFlow/【BBuf的CUDA笔记】六，总结 FasterTransformer Encoder(BERT) 的cuda相关优化技巧.md
             - 【BBuf的CUDA笔记】七，总结 FasterTransformer Decoder(GPT) 的cuda相关优化技巧: project/部署优化/【BBuf的CUDA笔记】七，总结 FasterTransformer Decoder(GPT) 的cuda相关优化技巧.md
             - 【BBuf的CUDA笔记】八，对比学习OneFlow 和 FasterTransformer 的 Softmax Cuda实现: project/OneFlow/【BBuf的CUDA笔记】八，对比学习OneFlow 和 FasterTransformer 的 Softmax Cuda实现.md
+            - 【BBuf的CUDA笔记】九，使用newbing（chatgpt）解析oneflow softmax相关的fuse优化: project/OneFlow/【BBuf的CUDA笔记】九，使用newbing（chatgpt）解析oneflow softmax相关的fuse优化.md
         - PyTorch:
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
             - 一文理解PyTorch中的SyncBatchNorm: project/PyTorch/一文理解PyTorch中的SyncBatchNorm.md
@@ -648,6 +655,7 @@ nav:
                 - 自制深度学习推理框架-第五课-Max Pooling算子的实现: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第五课-Max Pooling算子的实现.md
                 - 自制深度学习推理框架-第六课-构建自己的计算图: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第六课-构建自己的计算图.md
                 - 自制深度学习推理框架-第七节-计算图中的表达式: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第七节-计算图中的表达式.md
+                - csapp-第九章-虚拟内存-读书笔记: project/部署优化/自制深度学习推理框架/csapp-第九章-虚拟内存-读书笔记.md
     - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3:
