@@ -1,6 +1,9 @@
 import os
 from bs4 import BeautifulSoup
 
+#已弃用
+#给site目录及子目录下的所有HTML文件添加<meta name="referrer" content="no-referrer" />头
+
 # 遍历目录树，找到所有HTML文件
 def find_html_files(root_dir):
     html_files = []
