@@ -31,6 +31,7 @@ nav:
             - CVPRW22 UWNR: academic/超分和GAN/CVPRW22 UWNR.md
             - 基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖: academic/超分和GAN/基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖.md
             - Instance-GAN: academic/超分和GAN/Instance-GAN.md
+            -  CVPR 2023 无需借助文本训练来定制自己的生成模型:  academic/超分和GAN/CVPR 2023 无需借助文本训练来定制自己的生成模型.md
         - 传统图像: 
             - 专栏介绍: academic/传统图像/README.md
             - 一些有趣的图像算法: 
