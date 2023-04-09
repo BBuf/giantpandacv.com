@@ -350,6 +350,7 @@ nav:
                 - RMNet图解: academic/算法科普/尽览卷积神经网络/RMNet图解.md
                 - RepOptimizer 其实是RepVGG2: academic/算法科普/尽览卷积神经网络/RepOptimizer 其实是RepVGG2.md
                 - 开集识别 A Good Closed-Set Classifier is All You Need: academic/算法科普/尽览卷积神经网络/开集识别 A Good Closed-Set Classifier is All You Need.md
+                - CVPR 2023 LargeKernel3D 在3D稀疏CNN中使用大卷积核: academic/算法科普/尽览卷积神经网络/CVPR 2023 LargeKernel3D 在3D稀疏CNN中使用大卷积核.md
             - 可变形卷积:
                 - DCN V1代码阅读笔记: academic/算法科普/可变形卷积/DCN V1代码阅读笔记.md
                 - MSRA DCN(可变形卷积) 算法笔记: academic/算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md
