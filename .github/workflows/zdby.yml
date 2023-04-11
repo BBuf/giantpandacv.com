@@ -1,0 +1,20 @@
+name: mkdocs update
+on:
+  push:
+    branches: [ main ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Connect to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ 123.57.73.246 }}
+          username: ${{ root }}
+          key: ${{ secrets.FTQ }}
+          port: ${{ 22 }}
+      - name: Run script
+        run: |
+          ./root/zdby.sh #
