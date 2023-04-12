@@ -13,10 +13,10 @@ jobs:
       - name: Connect to server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ 123.57.73.246 }}
-          username: ${{ root }}
+          host: 123.57.73.246
+          username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ 22 }}
+          port: 22
       - name: Run script
         run: |
-          ./root/zdby.sh #
+          ./root/zdby.sh 
