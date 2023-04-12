@@ -43,31 +43,43 @@ DDPM 已成功应用于许多低级计算机视觉任务，例如超分辨率、
 ## DDPM
 
 前向扩散的过程，可以理解为一个马尔可夫链，即通过逐步对一张真实图片添加高斯噪声直到最终变成纯高斯噪声图片：
+
 $$
 q\left(\boldsymbol{x}_t \mid \boldsymbol{x}_{t-1}\right)=\mathcal{N}\left(\boldsymbol{x}_t ; \sqrt{1-\beta_t} \boldsymbol{x}_{t-1}, \beta_t \boldsymbol{I}\right)
 $$
+
 其中，`βt` 是指固定方差(0~1)。在采样得到 `xt` 的时候并不是直接通过高斯分布 `q(xt|xt-1)` 采样，而是用了一个重参数化的技巧。
 
 前向扩散过程还有个属性，可以直接从 `x0` 采样得到中间任意一个时间步的噪声图片 `xt`，所以可以写成：
+
 $$
 q\left(x_t \mid x_0\right)=\mathcal{N}\left(x_t ; \sqrt{\alpha_t} x_0,\left(1-\alpha_t\right) I\right)
 $$
+
 其中，
+
 $$
 \alpha_t=\Pi_{s=1}^t\left(1-\beta_s\right)
 $$
+
 逆过程如下：
+
 $$
 p_\theta\left(\boldsymbol{x}_{t-1} \mid \boldsymbol{x}_t\right)=\mathcal{N}\left(\boldsymbol{x}_{t-1} ; \boldsymbol{\mu}_\theta\left(\boldsymbol{x}_t, t\right), \sigma_t^2 \boldsymbol{I}\right)
 $$
+
 上面的公式中，方差是固定的，均值是噪声向量 ϵθ 的，是可以训练的参数。
+
 $$
 \boldsymbol{\mu}_\theta\left(\boldsymbol{x}_t, t\right)=\frac{1}{\sqrt{1-\beta_t}}\left(\boldsymbol{x}_t-\frac{\beta_t}{\sqrt{1-\alpha_t}} \boldsymbol{\epsilon}_\theta\left(\boldsymbol{x}_t, t\right)\right)
 $$
+
 最后，采样过程通过迭代可以生成任意一个时间步的噪声图片，z 是标准的高斯分布：
+
 $$
 \boldsymbol{x}_{t-1}=\boldsymbol{\mu}_\theta\left(\boldsymbol{x}_t, t\right)+\sigma_t \boldsymbol{z}
 $$
+
 关于 DDPM 的其他内容，这里就不详细展开了。
 
 ## switchable SPADE
@@ -83,20 +95,26 @@ $$
 可以看到，在（B）路径中存在 Cycle path，即把通过扩散模块和对抗网络生成的假图像和伪掩码，再次输入（A）路径训练，完成自监督的过程。
 
 关于里面涉及到的损失函数，整理如下：
+
 $$
 \min _{\boldsymbol{\theta}, G} \mathcal{L}^G\left(\boldsymbol{\epsilon}_{\boldsymbol{\theta}}, G, D_s, D_a\right), \quad \min _{D_s, D_a} \mathcal{L}^D\left(\boldsymbol{\epsilon}_{\boldsymbol{\theta}}, G, D_s, D_a\right),
 $$
+
 这两个分别表示 diffusion/生成器和判别器的损失函数:
+
 $$
 \begin{aligned}
 & \mathcal{L}^G\left(\boldsymbol{\epsilon}_{\boldsymbol{\theta}}, G, D_s, D_a\right)=\mathcal{L}_{d i f f}\left(\boldsymbol{\epsilon}_{\boldsymbol{\theta}}\right)+\alpha \mathcal{L}_{a d v}^G\left(\boldsymbol{\epsilon}_{\boldsymbol{\theta}}, G, D_s, D_a\right)+\beta \mathcal{L}_{c y c}\left(\boldsymbol{\epsilon}_{\boldsymbol{\theta}}, G\right), \\
 & \mathcal{L}^D\left(\boldsymbol{\epsilon}_{\boldsymbol{\theta}}, G, D_s, D_a\right)=\mathcal{L}_{a d v}^{D_s}\left(\boldsymbol{\epsilon}_{\boldsymbol{\theta}}, G, D_s\right)+\mathcal{L}_{a d v}^{D_a}\left(\boldsymbol{\epsilon}_{\boldsymbol{\theta}}, G, D_a\right),
 \end{aligned}
 $$
+
 其中的三个小 loss，Diffusion loss:
+
 $$
 \mathcal{L}_{\text {diff }}\left(\boldsymbol{\epsilon}_{\boldsymbol{\theta}}\right):=\mathbb{E}_{t, \boldsymbol{x}_0, \boldsymbol{\epsilon}}\left[\left\|\boldsymbol{\epsilon}-\boldsymbol{\epsilon}_\theta\left(\sqrt{\alpha_t} \boldsymbol{x}_0+\sqrt{1-\alpha_t} \boldsymbol{\epsilon}, t\right)\right\|^2\right] .
 $$
+
 Adversarial loss:
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/98823ccc3fa945ff946bea4f1f1aaa18.png)
 Cyclic reconstruction loss 很简单，在图中就可以看出来，可以理解为是伪掩码和网络利用合成的血管图预测出的掩码之间的 MSE。
