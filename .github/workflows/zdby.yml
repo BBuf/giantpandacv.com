@@ -15,7 +15,7 @@ jobs:
         with:
           host: 123.57.73.246
           username: root
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.FTQ }}
           port: 22
       - name: Run script
         run: |
