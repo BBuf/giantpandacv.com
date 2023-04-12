@@ -2,6 +2,8 @@ name: mkdocs update
 on:
   push:
     branches: [ main ]
+  pull_request:
+    types: [closed]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -13,7 +15,7 @@ jobs:
         with:
           host: ${{ 123.57.73.246 }}
           username: ${{ root }}
-          key: ${{ secrets.FTQ }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ 22 }}
       - name: Run script
         run: |
