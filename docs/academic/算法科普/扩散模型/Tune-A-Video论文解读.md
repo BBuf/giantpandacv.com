@@ -42,10 +42,13 @@
 ##### 3.1 DDPMs的回顾
 
 DDPMs（去噪扩散概率模型）是一种深度生成模型，最近因其令人印象深刻的性能而受关注。DDPMs通过迭代去噪过程，从标准高斯分布的样本生成经验分布的样本。借助于对生成结果的渐进细化，它们在许多图像生成基准上都取得了最先进的样本质量。
+
 $$
 q\left(x_t \mid x_{t-1}\right)=\mathcal{N}\left(x_t ; \sqrt{1-\beta_t} x_{t-1}, \beta_t \mathbb{I}\right), \quad t=1, \ldots, T
 $$
+
 根据贝叶斯定律 $q\left(x_t \mid x_0\right)$ and $q\left(x_{t-1} \mid x_t, x_0\right)$ 可以表达为：
+
 $$
 \begin{array}{r}
 q\left(x_t \mid x_0\right)=\mathcal{N}\left(x_t ; \sqrt{\bar{\alpha}_t} x_0,\left(1-\bar{\alpha}_t\right) \mathbb{I}\right), \quad t=1, \ldots, T, \\
@@ -62,25 +65,31 @@ DDPMs的主要思想是：给定一组图像数据，我们逐步添加一点噪
 ##### 3.2 Network Inflation
 
 T2I 扩散模型（例如，LDM）通常采用 U-Net ，这是一种基于空间下采样通道然后是带有跳跃连接的上采样通道的神经网络架构。 它由堆叠的二维卷积残差块和Transformer块组成。 每个Transformer块包括空间自注意层、交叉注意层和前馈网络 (FFN)。 空间自注意力利用特征图中的像素位置来实现相似的相关性，而交叉注意力则考虑像素与条件输入（例如文本）之间的对应关系。 形式上，给定视频帧 vi 的latent表征 $z_{v_i}$，很自然的可以想到要用self-attention机制来完成：
+
 $$
 Q=W^Q z_{v_i}, K=W^K z_{v_i}, V=W^V z_{v_i},
 $$
+
 然后论文借助卷积来强化temporal coherence，并采用spatial self-attention来加强注意力机制，来捕捉不同视频帧的变化。
 
 ![](https://img-blog.csdnimg.cn/e2ba58fcb8b24ae4a91baf7aa66b8fba.png)
 
 为了减少计算复杂度，Q采用相同的而K和V都是通过共享的矩阵来获取：
+
 $$
 Q=W^Q z_{v_i}, K=W^K\left[z_{v_1}, z_{v_{i-1}}\right], V=W^V\left[z_{v_1}, z_{v_{i-1}}\right],
 $$
+
 这样计算复杂度就降低到了$\mathcal{O}\left(2 m(N)^2\right)$，相对比较可以接受。
 
 ##### 3.3 Fine-Tuning and Inference
 
 Fine-Tuning是使预训练的模型适应新任务或数据集的过程。在提出的方法Tune-A-Video中，文本到图像（T2I）扩散模型是在海量图像数据上预先训练的。然后，在少量的文本视频对上对模型进行微调，以从文本生成视频。Fine-Tuning过程包括使用反向传播使用新数据更新预训练模型的权重。 推理是使用经过训练的模型对新数据进行预测的过程。在提出的方法中，使用经过Fine-Tuning的T2I模型进行推断，从文本生成视频。
+
 $$
 \mathcal{V}^*=\mathcal{D}\left(\text { DDIM-samp }\left(\text { DDIM-inv }(\mathcal{E}(\mathcal{V})), \mathcal{T}^*\right)\right)
 $$
+
 Inference过程包括向模型输入文本，模型生成一系列静止图像。然后将静止图像组合成视频。本发明提出的方法利用高效的注意力调整和结构反演来提高所生成视频的时间一致性。
 
 ### 4. 实验
