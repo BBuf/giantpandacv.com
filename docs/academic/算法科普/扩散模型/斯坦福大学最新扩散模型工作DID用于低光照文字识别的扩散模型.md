@@ -41,6 +41,7 @@ DID作者设置了四种不同的scale：${32,64,128,256}$,每次随机从中选
 * $c_{y2}$：来自第一个尺度阶段的光照充足但低分辨率的预测结果。这张图片提供了全局统一的曝光水平来进行条件限制，进一步约束恢复的曝光水平。
 
 当处于第一个尺度$s_{0}$时，没有之前阶段的信息$c_{y1}$或$c_{y2}$作为额外的conditional输入，因此用成对的训练数据$x_{i},y_{i}$来组建conditioning input $(x_{patch_{i}}, y_{patch_{i}} )$:
+
 $$
 \begin{aligned}
 & \left(x_{\operatorname{patch}_i}, y_{\operatorname{patch}_i}\right) \\
