@@ -1,7 +1,7 @@
 name: mkdocs update
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
     types: [closed]
 jobs:
@@ -15,8 +15,6 @@ jobs:
         with:
           host: 123.57.73.246
           username: root
-          key: ${{ secrets.FTQ }}
+          key: ${{ secrets.FTQ2 }}
           port: 22
-      - name: Run script
-        run: |
-          ./root/zdby.sh 
+          script: bash /root/zdby.sh
