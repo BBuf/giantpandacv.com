@@ -302,6 +302,7 @@ nav:
                 - Token Merging 你的VIT，但是更快: academic/算法科普/Transformer/Token Merging 你的VIT，但是更快.md
                 - CVPR23-无需光流引导的视频联合去模糊和插帧transformer：针对真实世界运动模糊的插帧网络: academic/算法科普/Transformer/CVPR23-无需光流引导的视频联合去模糊和插帧transformer：针对真实世界运动模糊的插帧网络.md
                 - CVPR2023 用于图像到视频转换的双路径Transformer: academic/算法科普/Transformer/CVPR2023 用于图像到视频转换的双路径Transformer.md
+                - 简单聊聊目标检测新范式RT-DETR的骨干：HGNetv2: academic/算法科普/Transformer/简单聊聊目标检测新范式RT-DETR的骨干：HGNetv2.md
             - ChatGPT:
                 - ChatGPT技术体系: academic/算法科普/ChatGPT/ChatGPT的技术体系.md
                 - InstructGPT 介绍: academic/算法科普/ChatGPT/InstructGPT介绍.md
