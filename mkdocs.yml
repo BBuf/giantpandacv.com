@@ -491,6 +491,7 @@ nav:
             - 医学图像的 AI 框架 MONAI 详细教程（一）: academic/语义及实例分割/医学图像的 AI 框架 MONAI 详细教程（一）.md
             - TMI 2023：对比半监督学习的领域适应（跨相似解剖结构）分割: academic/语义及实例分割/TMI 2023：对比半监督学习的领域适应（跨相似解剖结构）分割.md
             - MedSegDiff：基于 Diffusion Probabilistic Model 的医学图像分割: academic/语义及实例分割/MedSegDiff：基于 Diffusion Probabilistic Model 的医学图像分割.md
+            - 将Segment Anything扩展到医学图像领域: academic/语义及实例分割/将Segment Anything扩展到医学图像领域.md
     - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
