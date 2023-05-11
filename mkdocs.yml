@@ -460,6 +460,7 @@ nav:
                 - ICLR 2023 oral论文：一种除了卷积和ViT以外的新视觉框架-Image as Set of Points: academic/算法科普/其他方向论文解读/ICLR 2023 oral论文：一种除了卷积和ViT以外的新视觉框架-Image as Set of Points.md
                 - 微软亚洲研究院最新工作DeepMIM-MIM中引入深度监督方法: academic/算法科普/其他方向论文解读/微软亚洲研究院最新工作DeepMIM-MIM中引入深度监督方法.md
                 - 计算机视觉中的主动学习介绍: academic/算法科普/其他方向论文解读/计算机视觉中的主动学习介绍.md
+                - CVPR 2023 Stare at What You See讲解: academic/算法科普/其他方向论文解读/CVPR 2023 Stare at What You See讲解.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
