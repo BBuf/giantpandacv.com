@@ -542,6 +542,7 @@ nav:
             - 一文理解PyTorch中的SyncBatchNorm: project/PyTorch/一文理解PyTorch中的SyncBatchNorm.md
             - 【DeepSpeed 教程翻译】开始，安装细节和CIFAR-10 Tutorial: project/PyTorch/【DeepSpeed 教程翻译】开始，安装细节和CIFAR-10 Tutorial.md
             - 大语言模型中的常用评估指标: project/PyTorch/大语言模型中的常用评估指标.md
+            - 【DeepSpeed 教程翻译】二，Megatron-LM GPT2，Zero 和 ZeRO-Offload: project/PyTorch/【DeepSpeed 教程翻译】二，Megatron-LM GPT2，Zero 和 ZeRO-Offload.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
