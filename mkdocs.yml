@@ -455,6 +455,7 @@ nav:
                 - ICLR 2023：基于 diffusion adversarial representation learning 的血管分割: academic/算法科普/扩散模型/ICLR 2023：基于 diffusion adversarial representation learning 的血管分割.md
                 - 论文解读 Open-Set Grounded Text-to-Image Generation: academic/算法科普/扩散模型/论文解读 Open-Set Grounded Text-to-Image Generation.md
                 - CVPR 2023 把人放在他们的位置，把人自然地插到图像里: academic/算法科普/扩散模型/CVPR 2023 把人放在他们的位置，把人自然地插到图像里.md
+                - ControlVideo: 可控的Training-free的文本生成视频: academic/算法科普/扩散模型/ControlVideo: 可控的Training-free的文本生成视频.md
             - 其它方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
                 - AAAI22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络.md
