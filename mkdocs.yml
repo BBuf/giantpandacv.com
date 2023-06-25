@@ -465,6 +465,7 @@ nav:
                 - 计算机视觉中的主动学习介绍: academic/算法科普/其他方向论文解读/计算机视觉中的主动学习介绍.md
                 - CVPR 2023 Stare at What You See讲解: academic/算法科普/其他方向论文解读/CVPR 2023 Stare at What You See讲解.md
                 - thinktwice：用于端到端自动驾驶的可扩展解码器: academic/算法科普/其他方向论文解读/thinktwice：用于端到端自动驾驶的可扩展解码器.md
+                - Continual Test-Time 的领域适应: academic/算法科普/其他方向论文解读/Continual Test-Time 的领域适应.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
