@@ -58,7 +58,6 @@ $$
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/ecd9de710931414597cff03c7e90feaa.png)
 
 在部署之前，我们首先使用任何预训练方法获取一个预训练模型。然后，我们将预训练模型的编码器分成 K 个部分，如上图（a）所示。一个元网络组由一个批归一化层和一个卷积块（ConvBN-Relu）组成，将轻量级元网络附加到原始网络的每个部分上，如上图（b）所示。我们在源数据集上对元网络进行预训练，同时冻结原始网络。这个预热过程完成后，我们可以进行模型部署。强调一点，在测试时不需要源数据集 Ds，所以本质上还是 TTA 的范式。更详细的元网络组成如下：
-
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d5b5886053904ae38bc7b80197d6aa76.png)
 
 此外，我们需要预训练模型的几个分区。先前解决域偏移的 TTA 研究表明，相对于更新深层，更新浅层对于改善适应性能更为关键。受到这样的发现启发，假设预训练模型的编码器被划分为模型分区因子 K（例如 4 或 5），我们将编码器的浅层部分（即 Dense）相对于深层部分进行更多的划分，表现如下表所示。
@@ -68,8 +67,12 @@ $$
 
 在部署期间，我们只对目标域适应元网络，而冻结原始网络。适应过程中，我们使用熵最小化方法对熵小于预定义阈值的样本进行适应，计算方法如下面的公式所示，并使用自提出的正则化损失来防止灾难性遗忘和错误累积。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/8cf7049fc3f449aca28abf484984dc0a.png)
-
+$$
+\begin{aligned}
+& \mathcal{L}^{e n t}=\mathbb{I}_{\left\{H(\hat{y})<H_0\right\}} \cdot H(\hat{y}) \\
+& \mathcal{L}_\theta^{\text {total }}=\mathcal{L}_\theta^{e n t}+\lambda \sum_k^K \mathcal{R}_{\theta_k}^k
+\end{aligned}
+$$
 在第二个公式中，左右两项分别表示适应损失（主要任务是适应目标域）和正则化损失。整体而言，EcoTTA 在内存使用方面比之前的工作更加高效，平均使用的内存比 CoTTA 和 TENT/EATA 少 82% 和 60%。
 
 ### Self-distilled Regularization
@@ -83,16 +86,11 @@ $$
 ## 实验
 ### 分类实验
 下表是在 CIFAR-C 数据集上的错误率比较结果。包括连续 TTA 上处理了 15 种不同的损坏样本后的平均错误率，并考虑了模型参数和激活大小所需的内存。其中，还使用了 AugMix 数据处理方法来增强模型的鲁棒性。Source 表示未经过适应的预训练模型。single domain的 TENT 是在适应到新的目标域时重置模型（因为这篇论文和 CoTTA 都是在 domian flow 的 setting 下考虑的，而不是 single domain），因此需要使用域标签来指定目标域。
-
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/db4eeb7df8a74a21af94e4405e861326.png)
-
 下表是 ImageNet 到 ImageNet-C 的结果：
-
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/022e45ddba1a49dea68b561de5c8e89f.png)
-
 ### 分割实验
 下表是分割实验的对比结果，可以发现没有和 CoTTA 比较，因为 EcoTTA 没有用和 CoTTA 一样的 backbone: Segformer，而是 ResNet family。这里我的考虑是，在 Segformer 上性能提高可以可能不明显，并且 Segformer 的内存占用更大。
-
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/0cbe1044c5404913b0224af2b02fedfb.png)
 
 ## 总结
