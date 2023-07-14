@@ -552,6 +552,7 @@ nav:
             - DeepSpeed结合Megatron-LM训练GPT2模型笔记上: project/PyTorch/DeepSpeed结合Megatron-LM训练GPT2模型笔记上.md
             - DeepSpeed-Chat 打造类ChatGPT全流程 笔记一: project/PyTorch/DeepSpeed-Chat 打造类ChatGPT全流程 笔记一.md
             - DeepSpeed-Chat 打造类ChatGPT全流程 笔记二之监督指令微调: project/PyTorch/DeepSpeed-Chat 打造类ChatGPT全流程 笔记二之监督指令微调.md
+            - 【DeepSpeed 教程】四，DeepSpeed ZeRO++博客和代码解析: project/PyTorch/【DeepSpeed 教程】四，DeepSpeed ZeRO++博客和代码解析.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
