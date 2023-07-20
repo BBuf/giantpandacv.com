@@ -619,6 +619,7 @@ nav:
                 - 深度学习Int8的部署推理原理和经验验证: project/部署优化/AI 部署及其它优化算法/深度学习Int8的部署推理原理和经验验证.md
                 - Windows上基于TensorRT的YOLOV6部署保姆级教程: project/部署优化/AI 部署及其它优化算法/Windows上基于TensorRT的YOLOV6部署保姆级教程.md
                 - CVPR 2023 基于可恢复性度量的少样本剪枝方法: project/部署优化/AI 部署及其它优化算法/CVPR 2023 基于可恢复性度量的少样本剪枝方法.md
+                - 大模型部署框架 FastLLM 简要解析: project/部署优化/AI 部署及其它优化算法/大模型部署框架 FastLLM 简要解析.md
             - AI 移动端算法优化: 
                 - 移动端arm cpu优化学习笔记:
                     - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
