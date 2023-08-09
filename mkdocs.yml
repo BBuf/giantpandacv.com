@@ -309,6 +309,7 @@ nav:
                 - 简单聊聊目标检测新范式RT-DETR的骨干：HGNetv2: academic/算法科普/Transformer/简单聊聊目标检测新范式RT-DETR的骨干：HGNetv2.md
                 - 无需nms，onnxruntime20行代码玩转RT-DETR: academic/算法科普/Transformer/无需nms，onnxruntime20行代码玩转RT-DETR.md
                 - ICML 2023  LoSparse 低秩近似和结构化剪枝的有机组合: academic/算法科普/Transformer/ICML 2023  LoSparse 低秩近似和结构化剪枝的有机组合.md
+                - ICCV2023-一个模型助你实现图像分类和文本生成+论文解读+代码详细解读: academic/算法科普/Transformer/ICCV2023-一个模型助你实现图像分类和文本生成+论文解读+代码详细解读.md
             - ChatGPT:
                 - ChatGPT技术体系: academic/算法科普/ChatGPT/ChatGPT的技术体系.md
                 - InstructGPT 介绍: academic/算法科普/ChatGPT/InstructGPT介绍.md
