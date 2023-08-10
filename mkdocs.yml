@@ -467,6 +467,7 @@ nav:
                 - CVPR 2023 把人放在他们的位置，把人自然地插到图像里: academic/算法科普/扩散模型/CVPR 2023 把人放在他们的位置，把人自然地插到图像里.md
                 - ControlVideo：可控的Training-free的文本生成视频: academic/算法科普/扩散模型/ControlVideo: 可控的Training-free的文本生成视频.md
                 - 无需训练的框约束Diffusion：ICCV 2023揭秘BoxDiff文本到图像的合成技术: academic/算法科普/扩散模型/无需训练的框约束Diffusion：ICCV 2023揭秘BoxDiff文本到图像的合成技术.md
+                - ICCV 2023 探索基于生成模型的 Backbone 预训练: academic/算法科普/扩散模型/ICCV 2023 探索基于生成模型的 Backbone 预训练.md
             - 其它方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
                 - AAAI22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络.md
