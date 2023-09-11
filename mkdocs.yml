@@ -521,6 +521,7 @@ nav:
             - ImgX-DiffSeg 基于 DDPMs 的 3D 医学图像分割: academic/语义及实例分割/ImgX-DiffSeg 基于 DDPMs 的 3D 医学图像分割.md
             - 用于语义分割的解码器 diffusion 预训练方法: academic/语义及实例分割/用于语义分割的解码器 diffusion 预训练方法.md
             - CVPR 2023 中的领域适应-用于切片方向连续的无监督跨模态医学图像分割: academic/语义及实例分割/CVPR 2023 中的领域适应-用于切片方向连续的无监督跨模态医学图像分割.md
+            - IPMI 2023：Test Time Adaptation 的医学图像分割解决: academic/语义及实例分割/IPMI 2023：Test Time Adaptation 的医学图像分割解决.md
     - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
