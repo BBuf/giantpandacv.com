@@ -639,6 +639,7 @@ nav:
                 - 大模型部署框架 FastLLM 简要解析: project/部署优化/AI 部署及其它优化算法/大模型部署框架 FastLLM 简要解析.md
                 - 大模型部署框架 FastLLM 实现细节解析: project/部署优化/AI 部署及其它优化算法/大模型部署框架 FastLLM 实现细节解析.md
                 - AiDB 一个集合了6大推理框架的AI工具箱 加速你的模型部署: project/部署优化/AI 部署及其它优化算法/AiDB 一个集合了6大推理框架的AI工具箱 加速你的模型部署.md
+                - nndeploy：一款最新上线的支持多平台、简单易用、高性能的机器学习部署框架: project/部署优化/AI 部署及其它优化算法/nndeploy：一款最新上线的支持多平台、简单易用、高性能的机器学习部署框架.md
             - AI 移动端算法优化: 
                 - 移动端arm cpu优化学习笔记:
                     - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
