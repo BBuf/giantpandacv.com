@@ -719,6 +719,7 @@ nav:
                 - OpenAITriton MLIR 第二章 Batch GEMM benchmark: project/部署优化/深度学习编译器/OpenAITriton MLIR 第二章 Batch GEMM benchmark.md
                 - 深度学习编译器之公共子表达式消除和死代码消除实现: project/部署优化/深度学习编译器/深度学习编译器之公共子表达式消除和死代码消除实现.md
                 - MLC-LLM 部署RWKV World系列模型实战（3B模型Mac M2解码可达26tokens每s）: project/部署优化/深度学习编译器/MLC-LLM 部署RWKV World系列模型实战（3B模型Mac M2解码可达26tokens每s）.md
+                - mlc-llm 推理优化和大语言模型搭建解析: project/部署优化/深度学习编译器/mlc-llm 推理优化和大语言模型搭建解析.md
             - 自制深度学习推理框架:
                 - 自制深度学习推理框架-第一课-什么是推理框架: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第一课-什么是推理框架.md
                 - 自制深度学习推理框架-第二课-张量类Tensor的实现: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第二课-张量类Tensor的实现.md
