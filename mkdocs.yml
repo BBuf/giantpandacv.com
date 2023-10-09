@@ -526,6 +526,7 @@ nav:
             - CVPR 2023 中的领域适应-用于切片方向连续的无监督跨模态医学图像分割: academic/语义及实例分割/CVPR 2023 中的领域适应-用于切片方向连续的无监督跨模态医学图像分割.md
             - IPMI 2023：Test Time Adaptation 的医学图像分割解决: academic/语义及实例分割/IPMI 2023：Test Time Adaptation 的医学图像分割解决.md
             - ICCV 2023：CLIP 驱动的器官分割和肿瘤检测通用模型: academic/语义及实例分割/ICCV 2023：CLIP 驱动的器官分割和肿瘤检测通用模型.md
+            - MICCAI 2023 Continual Learning 的腹部多器官和肿瘤分割: academic/语义及实例分割/MICCAI 2023 Continual Learning 的腹部多器官和肿瘤分割.md
     - PROJECT:
         - MsnhNet:
             - 专栏介绍: project/Msnhnet/README.md
