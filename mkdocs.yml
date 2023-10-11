@@ -439,6 +439,7 @@ nav:
             - 多模态:
                 - 复杂动态环境下的多模态语义SLAM: academic/算法科普/多模态/复杂动态环境下的多模态语义SLAM.md
                 - 恺明团队新作：更快的CLIP训练模式: academic/算法科普/多模态/恺明团队新作：更快的CLIP训练模式.md
+                - ICCV 2023 TinyCLIP解读: academic/算法科普/多模态/ICCV 2023 TinyCLIP解读.md
             - 综述类:
                 - 【综述】Dropout模式和发展: academic/算法科普/综述类/【综述】Dropout模式和发展.md
                 - 【综述】图像去雾的前世今生: academic/算法科普/综述类/【综述】图像去雾的前世今生.md
