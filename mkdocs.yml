@@ -474,10 +474,10 @@ nav:
                 - ICLR 2023：基于 diffusion adversarial representation learning 的血管分割: academic/算法科普/扩散模型/ICLR 2023：基于 diffusion adversarial representation learning 的血管分割.md
                 - 论文解读 Open-Set Grounded Text-to-Image Generation: academic/算法科普/扩散模型/论文解读 Open-Set Grounded Text-to-Image Generation.md
                 - CVPR 2023 把人放在他们的位置，把人自然地插到图像里: academic/算法科普/扩散模型/CVPR 2023 把人放在他们的位置，把人自然地插到图像里.md
-                #- ControlVideo：可控的Training-free的文本生成视频: academic/算法科普/扩散模型/ControlVideo：可控的Training-free的文本生成视频.md
+                - ControlVideo：可控的Training-free的文本生成视频: academic/算法科普/扩散模型/ControlVideo：可控的Training-free的文本生成视频.md
                 - 无需训练的框约束Diffusion：ICCV 2023揭秘BoxDiff文本到图像的合成技术: academic/算法科普/扩散模型/无需训练的框约束Diffusion：ICCV 2023揭秘BoxDiff文本到图像的合成技术.md
                 - ICCV 2023 探索基于生成模型的 Backbone 预训练: academic/算法科普/扩散模型/ICCV 2023 探索基于生成模型的 Backbone 预训练.md
-                #- ICCV 2023 StyleInV论文解读: academic/算法科普/扩散模型/ICCV 2023: StyleInV论文解读.md
+                - ICCV 2023 StyleInV论文解读 : academic/算法科普/扩散模型/ICCV 2023 StyleInV论文解读.md
                 - Diffusion Models 10 篇必读论文（0）: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（0）.md
                 - Diffusion Models 10 篇必读论文（1）DDPM: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（1）DDPM.md
             - 其它方向论文解读:
