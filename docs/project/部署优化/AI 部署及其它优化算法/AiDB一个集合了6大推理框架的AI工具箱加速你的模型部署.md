@@ -25,7 +25,7 @@
 
 
   AiDB具备以下特点：
-  
+
 - 集成了市面上主流的推理框架，并抽象成统一的接口；
 - 支持Linux、Windows、MacOS、Android、Webassembly等各种平台部署；
 - 支持C/C++、Python、Lua接口；
@@ -33,7 +33,6 @@
 - 丰富的部署实例，包括Android(kotlin)、PC(Qt5)、Server(Go Zeros | Python FastApi)、Web(Webassembly)；
 - 提供C++/Python/Go/Lua的Colab demo；
 - 内置丰富的模型，涵盖检测、关键点、分类、分割、生成等十几种开源算法，300余个模型;
-
 
 ## 整体架构
 
@@ -153,11 +152,10 @@ switch(engineType(model_node["backend"].as<std::string>())){
         }
 ```
 
-
 ### 预处理
 
   每个模型的inference代码区别不大，差异主要集中在预处理和后处理阶段。后处理部分根据各个任务的不同(分类、检测等)，很难抽象出统一的接口。但预处理可以很简单的实现统一。这里AiDB实现了一个简单的预处理类：
-  
+
 ```
 class ImageInput: public AIDBInput{
     public:
@@ -208,138 +206,6 @@ BISENET: &bisenet_detail
 
 ```
 
-### 接口
-
-  考虑Ai模型的主要部署场景，AiDB实现了两套接口，分别起名H-mode和S-mode，即静态模式和动态模式。以下两图展示了两种模式的不同(上-H-mode;下:S-mode):
-  
-
-  
-<![H1](https://files.mdnice.com/user/48619/0e0e8dbd-311d-4cf4-b4d5-7f0382e880ed.jpg), ![H2](https://files.mdnice.com/user/48619/0d8143d9-e8d6-4b21-8d97-046d2d9ad964.jpg), ![H3](https://files.mdnice.com/user/48619/8c696343-1f81-46c7-a2e1-3acdaabd2ddf.jpg), ![H4](https://files.mdnice.com/user/48619/f4d51f90-e635-4e91-8b50-ce8bcd26b82c.jpg)>
-
-
-<![S1](https://files.mdnice.com/user/48619/f38530d0-6733-41e3-920d-abe5f1d3416c.png), ![S2](https://files.mdnice.com/user/48619/0dae9a0a-1fc1-4371-99fe-b0f988ccbdfc.png), ![S3](https://files.mdnice.com/user/48619/973c0cc1-9400-4063-8812-3e8e7fa0df5b.png), ![S4](https://files.mdnice.com/user/48619/573f09f8-85e0-45ab-bf42-3514ed168c22.png)>
-
-
-  动态模式适合用在服务端，可以方便的实现热插拔，而静态模式更注重效率和性能，适合在边缘上设备使用。
-  
-
-### 内置模型
-
-  目前，AiDB内置了十余种开源算法，约300个不同的模型。未来，AiDB会持续更新，加入更多不同的模型。
-  
-
-![当前模型列表](https://files.mdnice.com/user/48619/de81d03e-8f58-43b4-b41a-e2fbc54d43f4.jpg)
-
-
-## 部署实例
-
-  AiDB的最大目的就是加速AI模型的部署。所以以下内容展示了不同场景的部署实例。
-  
-### Python
-
-
-  Python的语法相对简单明了，具有更高的可读性。在Ai领域, Python使用是比较广泛的。因此AiDB支持Python接口，简化调用难度。
-  AiDB使用pybind11实现python绑定。目前只支持从源码安装pyAiDB:
-  ```
-  python setup.py build_ext --inplace
-  ```
-  
-  详细过程可以可以参考Colab中的python编译调用全过程(https://colab.research.google.com/drive/1gVKxkeIvgrnC56dVQOImyqQqVns-NtkR)。当完成编译安装，我们可以按如下方式调用对应的模型算法:
-  
-  ```
-  from pyAiDB import AiDB, AIDB_ModelID
-  import cv2
-  import numpy as np
-  from PIL import Image, ImageDraw, ImageFont
-
-  ImagePath = "./doc/test/face.jpg" 
-  Model = "scrfd_500m_kps" # @param {"type": "string"}
-  Backend = "mnn" # @param {"type": "string"}
-  bgr = cv2.imread(ImagePath)
-  h, w, c = bgr.shape
-  aidb = AiDB()
-  models = [Model]
-  backend = [Backend]
-  aidb.init(AIDB_ModelID.SCRFD, models, backend, "./config")
-  result = aidb.forward(bgr.data, w, h)
-  ```
-  当然，python 绑定/调用C++的方式有很多，为了满足不同需求，这里也提供了ctypes调用so的例子(https://link.zhihu.com/?target=https%3A//github.com/TalkUHulk/aidb_python_demo/tree/master)（fastapi搭建的AI服务）
-
-
-### Go
-
-  公司实际业务中，我们常会使用Go/Java，为了更贴近实际业务，AiDB提供了基于Go Zeros的服务实例(https://github.com/TalkUHulk/aidb_go_demo)。
-  
-![Go Server](https://files.mdnice.com/user/48619/b5deab81-427b-4059-837c-62ae56acd7ae.jpg)
-
-  
-  Go调用AiDB通过CGO的方式，如果你对此感兴趣，可以参考Colab(https://colab.research.google.com/drive/15DTMnueAv2Y3UMk7lhXMMN_VVUCBA0qh?usp=drive_link)：
-  
-### Android
-
-  MNN、NCNN等推理框架主要针对移动端设计优化，AiDB也因此继承式地支持手机端的部署。
-这里给出一个Android部署实例。重点就是实现JNI部分，开发语言使用Kotlin。【测试机器:Google Pixel 4, Android:13]
-
-<![3ddfa-dense](https://files.mdnice.com/user/48619/20db74df-454c-4770-965c-73606da52c6e.png),![3ddfa-base](https://files.mdnice.com/user/48619/f6362bd0-6260-4ebe-905a-ce8c575068fe.png),![yolox](https://files.mdnice.com/user/48619/d3cb5452-edba-4de8-9c36-e2af9bb71341.png),![ocr](https://files.mdnice.com/user/48619/bc3a0375-151d-401a-b8b7-40c9cd74ee16.png)>
-
-
-
-### PC(Qt5)
-
-  实际业务或是开发过程中，我们需要将自己的模型show出来，或是演示，或是作为一个里程碑，亦或是一个demo产品。鉴于此，AiDB提供一个桌面级部署实例,考虑跨平台需求，选用Qt5开发。
-
-<![mobile-sam1](https://files.mdnice.com/user/48619/8e86306e-7fc3-4cd2-9cf7-da7224da4aac.png),![mobile-sam2](https://files.mdnice.com/user/48619/e4b6005f-0468-4ad3-9d04-4b527cbd9075.png),![face](https://files.mdnice.com/user/48619/1aa5a224-68dc-47e8-84b8-be4b4c6397c6.png),![ocr](https://files.mdnice.com/user/48619/76d231e7-a589-4445-b8f5-11efe9d75e30.png)>
-
-
-### Web(Webassembly)
-
-  WebAssembly即WASM， WebAssembly是一种新的编码格式并且可以在浏览器中运行,它让我们能够使用JavaScript以外的语言（例如C，C++）编写程序，然后将其编译成WebAssembly，进而生成一个加载和执行速度非常快的Web应用程序。
-  目前NCNN和OpenVINO都支持wasm，AiDB已经支持了NCNN wasm版本，openvino列入计划。同时，AiDB也提供了一个wasm的demo,同时支持在线体验(http://www.hulk.show/aidb-webassembly-demo/):
-
-<![wasm](https://files.mdnice.com/user/48619/50761866-cfdd-4af0-bdcc-3f47c4b94892.png), ![yolox2](https://files.mdnice.com/user/48619/9c05cc6f-fb51-4ea6-b504-46f809016916.png), ![yolox3](https://files.mdnice.com/user/48619/e4ad17d9-b77f-4e4f-a246-bd678433398a.png), ![face](https://files.mdnice.com/user/48619/924411fd-0998-4384-bf05-096a0102408e.png)>
-
-
-
-
-### 彩蛋
-
-  在Rasberry Pi4部署AiDB:
-  
-
-<![face1](https://files.mdnice.com/user/48619/9bce93ac-ca8d-4082-a736-e2ce918d8a4d.png), ![yolox2](https://files.mdnice.com/user/48619/b25decfd-d2e5-4c0d-97de-7f4c683d2fb5.png)>
-
-
-
-## 拾遗
-
-  AiDB开发过程中遇到了很多问题，主要集中在移动端，相关趟坑已经记录在github中。问题比较多的是paddle-lite和openvino的移动端部署。paddle-lite更多的是转模型过程中版本对应的问题。openvino则全网几乎没有移动端部署教程。官方给的也是java接口的调用。openvino的调用和mnn、ncnn这些对比，调用方式还是有很大不同的。
-  总结下android端c++中调用openvino的方法：
-
-1. 编译对应平台的库（以下为AiDB使用的）
-
-```
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=android-ndk-r25c/build/cmake/android.toolchain.cmake -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=30 -DANDROID_STL=c++_shared  -DENABLE_SAMPLES=OFF  -DENABLE_OPENCV=OFF -DENABLE_CLDNN=OFF -DENABLE_VPU=OFF  -DENABLE_GNA=OFF -DENABLE_MYRIAD=OFF -DENABLE_TESTS=OFF  -DENABLE_GAPI_TESTS=OFF  -DENABLE_BEH_TESTS=OFF ..
-```
-
-2. 把需要的.so扔到assets下（如果是ir模型，只需要基础的so和ir plugin）
-
-3. 如果你的设备没root，libc++.so 和 libc++_shared.so 也一起扔进 assets
-
-4. 在c++ cmakelist中做好相关配置
-
-```
-add_library(openvino SHARED IMPORTED)
-
-set_target_properties(
-                openvino
-                PROPERTIES IMPORTED_LOCATION
-                ${CMAKE_CURRENT_LIST_DIR}/../libs/android/openvino/libopenvino.so)
-```
-以及kotlin中
-
-```
-System.loadLibrary("openvino");
-```
 
 ## 如何增加模型
 
@@ -414,8 +280,3 @@ scrfd_2.5g_kps: *scrfd_2_5g_kps
 
 > 更多详情，敬请登陆github，欢迎Star。
 
-
-
-
-
-  
