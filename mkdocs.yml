@@ -480,6 +480,7 @@ nav:
                 - ICCV 2023 StyleInV论文解读 : academic/算法科普/扩散模型/ICCV 2023 StyleInV论文解读.md
                 - Diffusion Models 10 篇必读论文（0）: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（0）.md
                 - Diffusion Models 10 篇必读论文（1）DDPM: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（1）DDPM.md
+                - Diffusion Models 10 篇必读论文（2）DDIM: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（2）DDIM.md
             - 其它方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
                 - AAAI22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络.md
