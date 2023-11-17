@@ -585,6 +585,7 @@ nav:
             - DeepSpeed-Chat 打造类ChatGPT全流程 笔记二之监督指令微调: project/PyTorch/DeepSpeed-Chat 打造类ChatGPT全流程 笔记二之监督指令微调.md
             - 【DeepSpeed 教程】四，DeepSpeed ZeRO++博客和代码解析: project/PyTorch/【DeepSpeed 教程】四，DeepSpeed ZeRO++博客和代码解析.md
             - 【BBuf的cuda学习笔记十】Megatron-LM的gradient_accumulation_fusion优化: project/PyTorch/【BBuf的cuda学习笔记十】Megatron-LM的gradient_accumulation_fusion优化.md
+            - XLA和PyTorch的桥接: project/PyTorch/XLA和PyTorch的桥接.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
