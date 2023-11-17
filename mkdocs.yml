@@ -598,6 +598,7 @@ nav:
                 - 【AI PC端算法优化】六，优化一个简单的肤色检测算法: project/部署优化/AI PC端优化/【AI PC端算法优化】六，优化一个简单的肤色检测算法.md
                 - 【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化: project/部署优化/AI PC端优化/【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化.md
                 - 【AI PC端算法优化】八，小半径中值滤波的SSE极速优化: project/部署优化/AI PC端优化/【AI PC端算法优化】八，小半径中值滤波的SSE极速优化.md
+                - Yolo系列模型的部署、精度对齐与int8量化加速: project/部署优化/AI PC端优化/Yolo系列模型的部署、精度对齐与int8量化加速.md
             - AI 部署及其它优化算法: 
                 - NCNN:
                     - Keras2NCNN？Yes: project/部署优化/AI 部署及其它优化算法/NCNN/Keras2NCNN？Yes.md
