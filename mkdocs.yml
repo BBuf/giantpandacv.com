@@ -315,6 +315,7 @@ nav:
                 - ICCV2023论文精选 顶会大佬带你深入理解self-attention机制的底层逻辑: academic/算法科普/Transformer/ICCV2023论文精选 顶会大佬带你深入理解self-attention机制的底层逻辑.md
                 - 【RWKV】如何新增一个自定义的Tokenizer和模型到HuggingFace: academic/算法科普/Transformer/【RWKV】如何新增一个自定义的Tokenizer和模型到HuggingFace.md
                 - 使用MLC-LLM将RWKV 3B模型跑在Android手机上: academic/算法科普/Transformer/使用MLC-LLM将RWKV 3B模型跑在Android手机上.md
+                - ICCV2023 SOTA 长短距离循环更新网络--LRRU介绍: academic/算法科普/Transformer/ICCV2023 SOTA 长短距离循环更新网络--LRRU介绍.md
             - ChatGPT:
                 - ChatGPT技术体系: academic/算法科普/ChatGPT/ChatGPT的技术体系.md
                 - InstructGPT 介绍: academic/算法科普/ChatGPT/InstructGPT介绍.md
