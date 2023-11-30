@@ -443,6 +443,7 @@ nav:
                 - ICCV2023开源 DistillBEV 巧妙利用跨模态知识蒸馏方法，斩获目标检测SOTA: academic/算法科普/3D重建/ICCV2023开源 DistillBEV 巧妙利用跨模态知识蒸馏方法，斩获目标检测SOTA.md
                 - ICCV2023 室内场景自监督单目深度估计: academic/算法科普/3D重建/ICCV2023 室内场景自监督单目深度估计.md
                 - ICCV2023 SOTA U-BEV：基于高度感知的鸟瞰图分割和神经地图的重定位: academic/算法科普/3D重建/ICCV2023 SOTA U-BEV：基于高度感知的鸟瞰图分割和神经地图的重定位.md
+                - CVPR2023开源SOTA！用于实时激光雷达全景分割的中心聚焦网络: academic/算法科普/3D重建/CVPR2023开源SOTA！用于实时激光雷达全景分割的中心聚焦网络.md
             - 多模态:
                 - 复杂动态环境下的多模态语义SLAM: academic/算法科普/多模态/复杂动态环境下的多模态语义SLAM.md
                 - 恺明团队新作：更快的CLIP训练模式: academic/算法科普/多模态/恺明团队新作：更快的CLIP训练模式.md
