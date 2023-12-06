@@ -399,6 +399,7 @@ nav:
                 - welford算法小记: academic/算法科普/深度学习基础/welford算法小记_zzk.md
                 - A Battle of Network Structure_pprp: academic/算法科普/深度学习基础/A Battle of Network Structure_pprp.md
                 - CVPR2022：计算机视觉中长尾数据平衡对比学习: academic/算法科普/深度学习基础/CVPR2022：计算机视觉中长尾数据平衡对比学习.md
+                - ICCV2023 基准测试：MS-COCO数据集的可靠吗？: academic/算法科普/深度学习基础/ICCV2023 基准测试：MS-COCO数据集的可靠吗？.md
             - 手工调参Tricks:
                 - 【CNN结构设计】无痛的涨点技巧：ACNet: academic/算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
                 - 【CNN调参】目标检测算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
