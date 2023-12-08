@@ -593,6 +593,7 @@ nav:
             - 【DeepSpeed 教程】四，DeepSpeed ZeRO++博客和代码解析: project/PyTorch/【DeepSpeed 教程】四，DeepSpeed ZeRO++博客和代码解析.md
             - 【BBuf的cuda学习笔记十】Megatron-LM的gradient_accumulation_fusion优化: project/PyTorch/【BBuf的cuda学习笔记十】Megatron-LM的gradient_accumulation_fusion优化.md
             - XLA和PyTorch的桥接: project/PyTorch/XLA和PyTorch的桥接.md
+            - 《PytorchConference2023 翻译系列》1-Pytorch2.0与社区现状介绍: project/PyTorch/《PytorchConference2023 翻译系列》1-Pytorch2.0与社区现状介绍.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
