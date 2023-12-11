@@ -598,6 +598,7 @@ nav:
             - 《PytorchConference2023 翻译系列》1-Pytorch2.0与社区现状介绍: project/PyTorch/《PytorchConference2023 翻译系列》1-Pytorch2.0与社区现状介绍.md
             - 《PytorchConference2023 翻译系列》2-PyTorch开发者基础设施: project/PyTorch/《PytorchConference2023 翻译系列》2-PyTorch开发者基础设施.md
             - 《PytorchConference2023 翻译系列》3- TorchFix: project/PyTorch/《PytorchConference2023 翻译系列》3- TorchFix.md
+            - 《PytorchConference2023 翻译系列》4-探索PyTorch在MPS后端的最新增强功能：提升应用程序性能: project/PyTorch/《PytorchConference2023 翻译系列》4-探索PyTorch在MPS后端的最新增强功能：提升应用程序性能.md
             - 《PytorchConference2023 翻译系列》6-Triton编译器: project/PyTorch/《PytorchConference2023 翻译系列》6-Triton编译器.md
             - 《PytorchConference2023 翻译系列》7-深入探索CUTLASS：如何充分利用Tensor Cores​​: project/PyTorch/《PytorchConference2023 翻译系列》7-深入探索CUTLASS：如何充分利用Tensor Cores​​.md
         - 部署优化: 
