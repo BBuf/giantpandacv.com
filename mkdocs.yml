@@ -583,6 +583,7 @@ nav:
             - 【BBuf的CUDA笔记】九，使用newbing（chatgpt）解析oneflow softmax相关的fuse优化: project/OneFlow/【BBuf的CUDA笔记】九，使用newbing（chatgpt）解析oneflow softmax相关的fuse优化.md
             - CodeGeeX 130亿参数大模型的调优笔记：比FasterTransformer更快的解决方案: project/OneFlow/CodeGeeX 130亿参数大模型的调优笔记：比FasterTransformer更快的解决方案.md
             - ChatGPT和Claude 对比测试以Review MLIR Codegen代码为例: project/OneFlow/ChatGPT和Claude 对比测试以Review MLIR Codegen代码为例.md
+            - 【BBuf的CUDA笔记】十，Linear Attention的cuda kernel实现解析: project/OneFlow/【BBuf的CUDA笔记】十，Linear Attention的cuda kernel实现解析.md
         - PyTorch:
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
             - 一文理解PyTorch中的SyncBatchNorm: project/PyTorch/一文理解PyTorch中的SyncBatchNorm.md
