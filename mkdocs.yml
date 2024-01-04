@@ -587,6 +587,7 @@ nav:
             - 【BBuf的CUDA笔记】十，Linear Attention的cuda kernel实现解析: project/OneFlow/【BBuf的CUDA笔记】十，Linear Attention的cuda kernel实现解析.md
             - 【BBuf的CUDA笔记】十一，Linear Attention的cuda kernel实现补档: project/OneFlow/【BBuf的CUDA笔记】十一，Linear Attention的cuda kernel实现补档.md
             - 乱谈CUTLASS GTC2020 SLIDES: project/OneFlow/乱谈CUTLASS GTC2020 SLIDES.md
+            - 可能是讲得最清楚的WeightOnlyGEMM: project/OneFlow/可能是讲得最清楚的WeightOnlyGEMM.md
         - PyTorch:
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
             - 一文理解PyTorch中的SyncBatchNorm: project/PyTorch/一文理解PyTorch中的SyncBatchNorm.md
