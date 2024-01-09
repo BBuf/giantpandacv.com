@@ -607,6 +607,7 @@ nav:
             - 《PytorchConference2023 翻译系列》6-Triton编译器: project/PyTorch/《PytorchConference2023 翻译系列》6-Triton编译器.md
             - 《PytorchConference2023 翻译系列》7-深入探索CUTLASS：如何充分利用Tensor Cores​​: project/PyTorch/《PytorchConference2023 翻译系列》7-深入探索CUTLASS：如何充分利用Tensor Cores​​.md
             - 《PytorchConference2023 翻译系列》9，在PyTorch 2.X中使用TensorRT加速推理: project/PyTorch/《PytorchConference2023 翻译系列》9，在PyTorch 2.X中使用TensorRT加速推理.md
+            - 《PytorchConference2023 翻译系列》11-使用新的ONNX导出器简化模型导出: project/PyTorch/《PytorchConference2023 翻译系列》11-使用新的ONNX导出器简化模型导出.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
