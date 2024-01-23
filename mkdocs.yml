@@ -448,6 +448,7 @@ nav:
                 - CVPR2023开源SOTA！用于实时激光雷达全景分割的中心聚焦网络: academic/算法科普/3D重建/CVPR2023开源SOTA！用于实时激光雷达全景分割的中心聚焦网络.md
                 - 最新SOTA 隐式学习场景几何信息进行全局定位: academic/算法科普/3D重建/最新SOTA 隐式学习场景几何信息进行全局定位.md
                 - FlashOcc 无需微调，即插即用的占据预测模型: academic/算法科普/3D重建/FlashOcc 无需微调，即插即用的占据预测模型.md
+                - NID-SLAM：动态环境中基于神经隐式表示的RGB-D SLAM: academic/算法科普/3D重建/NID-SLAM：动态环境中基于神经隐式表示的RGB-D SLAM.md
             - 多模态:
                 - 复杂动态环境下的多模态语义SLAM: academic/算法科普/多模态/复杂动态环境下的多模态语义SLAM.md
                 - 恺明团队新作：更快的CLIP训练模式: academic/算法科普/多模态/恺明团队新作：更快的CLIP训练模式.md
