@@ -618,6 +618,7 @@ nav:
             - 《PytorchConference2023 翻译系列》18-如何在TorchServe上提供LLMs的分布式推理: project/PyTorch/《PytorchConference2023 翻译系列》18-如何在TorchServe上提供LLMs的分布式推理.md
             - 《PytorchConference2023翻译系列》19-使用TorchBench for PyTorch标准化CPU基准测试: project/PyTorch/《PytorchConference2023翻译系列》19-使用TorchBench for PyTorch标准化CPU基准测试.md
             - AI Infra论文阅读之通过打表得到训练大模型的最佳并行配置: project/PyTorch/AI Infra论文阅读之通过打表得到训练大模型的最佳并行配置.md
+            - AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）: project/PyTorch/AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
