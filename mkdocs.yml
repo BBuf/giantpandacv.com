@@ -765,7 +765,8 @@ nav:
                 - OpenAI Triton MLIR 第一章 Triton DSL: project/部署优化/深度学习编译器/OpenAI Triton MLIR 第一章 Triton DSL.md
                 - 深度学习编译器之Layerout Transform优化: project/部署优化/深度学习编译器/深度学习编译器之Layerout Transform优化.md
                 - OpenAITriton MLIR 第二章 Batch GEMM benchmark: project/部署优化/深度学习编译器/OpenAITriton MLIR 第二章 Batch GEMM benchmark.md
-                - OpenAI-Triton MLIR 第三章 Triton-shared开箱: OpenAI-Triton MLIR 第三章 Triton-shared开箱.md
+                - OpenAI-Triton MLIR 第三章 Triton-shared开箱: project/部署优化/深度学习编译器/OpenAI-Triton MLIR 第三章 Triton-shared开箱.md
+                - OpenAI Triton MLIR 第四章 ROCm-triton配置: project/部署优化/深度学习编译器/OpenAI Triton MLIR 第四章: ROCm-triton配置.md
                 - 深度学习编译器之公共子表达式消除和死代码消除实现: project/部署优化/深度学习编译器/深度学习编译器之公共子表达式消除和死代码消除实现.md
                 - MLC-LLM 部署RWKV World系列模型实战（3B模型Mac M2解码可达26tokens每s）: project/部署优化/深度学习编译器/MLC-LLM 部署RWKV World系列模型实战（3B模型Mac M2解码可达26tokens每s）.md
                 - mlc-llm 推理优化和大语言模型搭建解析: project/部署优化/深度学习编译器/mlc-llm 推理优化和大语言模型搭建解析.md
