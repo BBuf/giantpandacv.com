@@ -620,6 +620,7 @@ nav:
             - 《PytorchConference2023 翻译系列》16.PyTorch 边缘部署之编译器和后端的供应商集成之旅: project/PyTorch/《PytorchConference2023 翻译系列》16.PyTorch 边缘部署之编译器和后端的供应商集成之旅.md
             - 《PytorchConference2023 翻译系列》18-如何在TorchServe上提供LLMs的分布式推理: project/PyTorch/《PytorchConference2023 翻译系列》18-如何在TorchServe上提供LLMs的分布式推理.md
             - 《PytorchConference2023翻译系列》19-使用TorchBench for PyTorch标准化CPU基准测试: project/PyTorch/《PytorchConference2023翻译系列》19-使用TorchBench for PyTorch标准化CPU基准测试.md
+            - 《PytorchConference2023翻译系列》22. PT2 Export - 用于PyTorch的全图捕获机制: project/PyTorch/《PytorchConference2023翻译系列》22. PT2 Export - 用于PyTorch的全图捕获机制.md
             - AI Infra论文阅读之通过打表得到训练大模型的最佳并行配置: project/PyTorch/AI Infra论文阅读之通过打表得到训练大模型的最佳并行配置.md
             - AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）: project/PyTorch/AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）.md
             - AI Infra论文阅读之LIGHTSEQ（LLM长文本训练的Infra工作）: project/PyTorch/AI Infra论文阅读之LIGHTSEQ（LLM长文本训练的Infra工作）.md
