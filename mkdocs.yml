@@ -510,7 +510,8 @@ nav:
                 - thinktwice：用于端到端自动驾驶的可扩展解码器: academic/算法科普/其他方向论文解读/thinktwice：用于端到端自动驾驶的可扩展解码器.md
                 - Continual Test-Time 的领域适应: academic/算法科普/其他方向论文解读/Continual Test-Time 的领域适应.md
                 - CVPR 2023 中的领域适应 一种免反向传播的 TTA 语义分割方法: academic/算法科普/其他方向论文解读/CVPR 2023 中的领域适应 一种免反向传播的 TTA 语义分割方法.md
-                - CVPR 2023 中的领域适应 通过自蒸馏正则化实现内存高效的 CoTTA: academic/算法科普/其他方向论文解读/CVPR 2023 中的领域适应 通过自蒸馏正则化实现内存高效的 CoTTA.md 
+                - CVPR 2023 中的领域适应 通过自蒸馏正则化实现内存高效的 CoTTA: academic/算法科普/其他方向论文解读/CVPR 2023 中的领域适应 通过自蒸馏正则化实现内存高效的 CoTTA.md
+                - 自动驾驶建图道路边界生成方案: academic/算法科普/其他方向论文解读/自动驾驶建图道路边界生成方案.md
         - 语义及实例分割:
             - 专栏介绍: academic/语义及实例分割/README.md
             - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
