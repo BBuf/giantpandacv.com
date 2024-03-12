@@ -327,6 +327,7 @@ nav:
                 - ChatGPT和Claude 对比测试（以Review MLIR Codegen代码为例）更新官方ChatGPT的结果: academic/算法科普/ChatGPT/ChatGPT和Claude 对比测试（以Review MLIR Codegen代码为例）更新官方ChatGPT的结果.md
                 - GPT4 VS Claude In MLIR: academic/算法科普/ChatGPT/GPT4 VS Claude In MLIR.md
                 - 使用GPT4做Leetcode第 102 场双周赛: academic/算法科普/ChatGPT/使用GPT4做Leetcode第 102 场双周赛.md
+                - OpenAI Superalignment的一种途径——Weak-to-Strong Generalization: academic/算法科普/ChatGPT/OpenAI Superalignment的一种途径——Weak-to-Strong Generalization.md
             - 半监督&无监督:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
