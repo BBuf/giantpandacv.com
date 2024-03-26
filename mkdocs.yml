@@ -630,6 +630,7 @@ nav:
             - AI Infra论文阅读之通过打表得到训练大模型的最佳并行配置: project/PyTorch/AI Infra论文阅读之通过打表得到训练大模型的最佳并行配置.md
             - AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）: project/PyTorch/AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）.md
             - AI Infra论文阅读之LIGHTSEQ（LLM长文本训练的Infra工作）: project/PyTorch/AI Infra论文阅读之LIGHTSEQ（LLM长文本训练的Infra工作）.md
+            - AI Infra论文阅读之《在LLM训练中减少激活值内存》: project/PyTorch/AI Infra论文阅读之《在LLM训练中减少激活值内存》.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
             - AI PC端优化: 
