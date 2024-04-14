@@ -503,6 +503,7 @@ nav:
                 - 基于 Discrete Diffusion 的模型不可知分割细化: academic/算法科普/扩散模型/基于 Discrete Diffusion 的模型不可知分割细化.md
                 - 最新SOTA 利用扩散模型精准识别UDC环境下的面部表情: academic/算法科普/扩散模型/最新SOTA 利用扩散模型精准识别UDC环境下的面部表情.md
                 - Sora生成具有惊人几何一致性的视频，评估指标来了: academic/算法科普/扩散模型/Sora生成具有惊人几何一致性的视频，评估指标来了.md
+                - ICLR 2024 spotlight WURSTCHEN - 一个高效的大规模文本到图像扩散模型的架构: academic/算法科普/扩散模型/ICLR 2024 spotlight WURSTCHEN - 一个高效的大规模文本到图像扩散模型的架构.md
             - 其它方向论文解读:
                 - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
                 - AAAI22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络.md
