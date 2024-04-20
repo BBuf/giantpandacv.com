@@ -18,7 +18,7 @@ nav:
             - MSFSR:一种通过增强人脸边界精确表示人脸的多级人脸超分辨率算法: academic/超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md
             - DeepFake系列之FakeSpotter: academic/超分和GAN/DeepFake系列之FakeSpotter.md
             - 基于Kaggle DeepFake比赛的代码实战: academic/超分和GAN/基于Kaggle DeepFake比赛的代码实战.md
-            - 生成对抗网络中的数据增广：一种可微分的数据增广方法: academic/超分和GAN/生成对抗网络中的数据增广：一种可微分的数据增广方法.md
+            - 生成对抗网络中的数据增广 一种可微分的数据增广方法: academic/超分和GAN/生成对抗网络中的数据增广 一种可微分的数据增广方法.md
             - 仅使用少量数据训练生成对抗网络: academic/超分和GAN/仅使用少量数据训练生成对抗网络.md
             - Deblurring by Realistic Blurring 图像去模糊论文解读: academic/超分和GAN/Deblurring by Realistic Blurring 图像去模糊论文解读.md
             - 基于GAN来做低光照图像增强，EnlightenGAN论文解读: academic/超分和GAN/基于GAN来做低光照图像增强，EnlightenGAN论文解读.md
@@ -777,7 +777,7 @@ nav:
                 - 深度学习编译器之Layerout Transform优化: project/部署优化/深度学习编译器/深度学习编译器之Layerout Transform优化.md
                 - OpenAITriton MLIR 第二章 Batch GEMM benchmark: project/部署优化/深度学习编译器/OpenAITriton MLIR 第二章 Batch GEMM benchmark.md
                 - OpenAI-Triton MLIR 第三章 Triton-shared开箱: project/部署优化/深度学习编译器/OpenAI-Triton MLIR 第三章 Triton-shared开箱.md
-                - OpenAI Triton MLIR 第四章 ROCm-triton配置: project/部署优化/深度学习编译器/OpenAI Triton MLIR 第四章: ROCm-triton配置.md
+                - OpenAI Triton MLIR 第四章 ROCm-triton配置: project/部署优化/深度学习编译器/OpenAI Triton MLIR 第四章 ROCm-triton配置.md
                 - 深度学习编译器之公共子表达式消除和死代码消除实现: project/部署优化/深度学习编译器/深度学习编译器之公共子表达式消除和死代码消除实现.md
                 - MLC-LLM 部署RWKV World系列模型实战（3B模型Mac M2解码可达26tokens每s）: project/部署优化/深度学习编译器/MLC-LLM 部署RWKV World系列模型实战（3B模型Mac M2解码可达26tokens每s）.md
                 - mlc-llm 推理优化和大语言模型搭建解析: project/部署优化/深度学习编译器/mlc-llm 推理优化和大语言模型搭建解析.md
