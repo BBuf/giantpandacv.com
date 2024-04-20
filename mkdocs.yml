@@ -567,7 +567,7 @@ nav:
             - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): project/Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
             - 基于Msnhnet实现最优化问题(中)一(无约束优化问题): project/Msnhnet/基于Msnhnet实现最优化问题(中)一(无约束优化问题).md
             - 基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程: project/Msnhnet/基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程.md
-        - OneFlow:
+        - OneFlow或者CUDA相关的文章分享:
             - 专栏介绍: project/OneFlow/README.md
             - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project/OneFlow/Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
             - 以OneFlow为例梳理深度学习框架的那些插值方法: project/OneFlow/以OneFlow为例梳理深度学习框架的那些插值方法.md
@@ -827,9 +827,10 @@ nav:
         - ALITA用于自动驾驶的大规模增量数据集: resources/ALITA用于自动驾驶的大规模增量数据集.md
     - VIDEO:
         - video: video/video_1.md
-    - YOLOv5:
-        - yolov5: resources/YOLOv5.md
-
+    - 公众号文章按时间顺序的索引:
+        - 公众号文章按时间顺序的索引: resources/公众号文章按时间顺序的索引.md
+    - 大模型，CUDA，深度学习框架，AI Infra，AI 编译器学习资料汇总:
+        - 大模型，CUDA，深度学习框架，AI Infra，AI 编译器学习资料汇总: resources/llm_infra.md
 
 # Theme
 theme:

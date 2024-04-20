@@ -1,3 +1,4 @@
-# OneFlow
+# OneFlow或者CUDA相关的文章分享
 
-这个专栏记录一些OneFlow的开发者在开发OneFlow框架中的笔记。
+这个专栏记录一些OneFlow框架的开发笔记以及一些CUDA相关的开发和使用经验。
+
