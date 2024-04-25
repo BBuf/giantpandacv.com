@@ -323,6 +323,7 @@ nav:
                 - ICLR2024 oral：小尺度Transformer如何Scale Up: academic/算法科普/Transformer/ICLR2024 oral：小尺度Transformer如何Scale Up.md
                 - 新进展！Larimar-让大型语言模型像人一样记忆与遗忘: academic/算法科普/Transformer/新进展！Larimar-让大型语言模型像人一样记忆与遗忘.md
                 - 梳理RWKV 4，5(Eagle)，6(Finch)架构的区别以及个人理解和建议: academic/算法科普/Transformer/梳理RWKV 4，5(Eagle)，6(Finch)架构的区别以及个人理解和建议.md
+                - 如何用Infini-attention实现无限上下文Transformer: academic/算法科普/Transformer/如何用Infini-attention实现无限上下文Transformer.md
             - ChatGPT:
                 - ChatGPT技术体系: academic/算法科普/ChatGPT/ChatGPT的技术体系.md
                 - InstructGPT 介绍: academic/算法科普/ChatGPT/InstructGPT介绍.md
