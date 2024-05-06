@@ -325,6 +325,7 @@ nav:
                 - 梳理RWKV 4，5(Eagle)，6(Finch)架构的区别以及个人理解和建议: academic/算法科普/Transformer/梳理RWKV 4，5(Eagle)，6(Finch)架构的区别以及个人理解和建议.md
                 - 如何用Infini-attention实现无限上下文Transformer: academic/算法科普/Transformer/如何用Infini-attention实现无限上下文Transformer.md
                 - 在GPU上加速RWKV6模型的Linear Attention计算: academic/算法科普/Transformer/在GPU上加速RWKV6模型的Linear Attention计算.md
+                - 性能提升，星辰AI大模型TeleChat-12B评测: academic/算法科普/Transformer/性能提升，星辰AI大模型TeleChat-12B评测.md
             - ChatGPT:
                 - ChatGPT技术体系: academic/算法科普/ChatGPT/ChatGPT的技术体系.md
                 - InstructGPT 介绍: academic/算法科普/ChatGPT/InstructGPT介绍.md
@@ -634,7 +635,7 @@ nav:
             - 《PytorchConference2023翻译系列》22. PT2 Export - 用于PyTorch的全图捕获机制: project/PyTorch/《PytorchConference2023翻译系列》22. PT2 Export - 用于PyTorch的全图捕获机制.md
             - 《PytorchConference2023翻译系列》25 数据及加载技术的演进: project/PyTorch/《PytorchConference2023翻译系列》25 数据及加载技术的演进.md
             - AI Infra论文阅读之通过打表得到训练大模型的最佳并行配置: project/PyTorch/AI Infra论文阅读之通过打表得到训练大模型的最佳并行配置.md
-            - AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）: project/PyTorch/AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）.md
+            - AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）: project/P性能提升，星辰AI大模型TeleChat-12B评测.mdyTorch/AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）.md
             - AI Infra论文阅读之LIGHTSEQ（LLM长文本训练的Infra工作）: project/PyTorch/AI Infra论文阅读之LIGHTSEQ（LLM长文本训练的Infra工作）.md
             - AI Infra论文阅读之《在LLM训练中减少激活值内存》: project/PyTorch/AI Infra论文阅读之《在LLM训练中减少激活值内存》.md
         - 部署优化: 
