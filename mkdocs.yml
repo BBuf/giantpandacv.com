@@ -13,7 +13,328 @@ nav:
     - HOME:
         - Getting Started: index.md
     - ACADEMIC:
-        - 超分和GAN:
+        - 算法科普:
+            - 专栏介绍: academic/算法科普/README.md
+            - CV中的特征金字塔（质量较高）:
+                - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
+                - 【CV中的特征金字塔】二，Feature Pyramid Network: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】二，Feature Pyramid Network.md
+                - 【CV中的特征金字塔】三，两阶段实时监测网络ThunderNet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】三，两阶段实时监测网络ThunderNet.md
+                - 【CV中的特征金字塔】四，CVPR 2018 PANet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】四，CVPR 2018 PANet.md
+                - 【CV中的特征金字塔】五，Google Brain EfficientDet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】五，Google Brain EfficientDet.md
+                - 【CV中的特征金字塔】六，ECCV 2018 PFPNet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】六，ECCV 2018 PFPNet.md
+                - 【CV中的特征金字塔】七，SSD算法的改进版Rainbow SSD: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】七，SSD算法的改进版Rainbow SSD.md
+                - 【CV中的特征金字塔】八，SSD的改进版之DSSD: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】八，SSD的改进版之DSSD.md
+            - CV中的注意力机制（质量较高）:
+                - 【CV中的Attention机制】BiSeNet中的FFM模块与ARM模块: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】BiSeNet中的FFM模块与ARM模块.md
+                - 【CV中的Attention机制】CBAM的姊妹篇-BAM模块:  academic/算法科普/CV中的注意力机制/【CV中的Attention机制】CBAM的姊妹篇-BAM模块.md
+                - 【CV中的Attention机制】Non-Local-neural-networks的理解与实现:  academic/算法科普/CV中的注意力机制/【CV中的Attention机制】Non-Local-neural-networks的理解与实现.md
+                - 【CV中的Attention机制】Non-Local改进CCNet:  academic/算法科普/CV中的注意力机制/【CV中的Attention机制】Non-Local改进CCNet.md
+                - 【CV中的Attention机制】Selective-Kernel-Networks-SE进化版: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】Selective-Kernel-Networks-SE进化版.md
+                - 【CV中的Attention机制】融合Non-Local和SENet的GCNet: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】融合Non-Local和SENet的GCNet.md
+                - 【CV中的Attention机制】易于集成的Convolutional-Block-Attention-Module-CBAM模块: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】易于集成的Convolutional-Block-Attention-Module-CBAM模块.md
+                - 【CV中的attention机制】语义分割中的scSE模块: academic/算法科普/CV中的注意力机制/【CV中的attention机制】语义分割中的scSE模块.md
+                - 【CV中的Attention机制】最简单最易实现的SE模块:  academic/算法科普/CV中的注意力机制/【cv中的Attention机制】最简单最易实现的SE模块.md
+                - 【CV中的Attention机制】DCANet解读: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】DCANet解读.md
+                - 【CV中的Attention机制】ShuffleAttention: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】ShuffleAttention.md
+                - 深度学习中的Attention机制: academic/算法科普/CV中的注意力机制/深度学习中的Attention机制.md
+                - 深度学习中的Attention机制-Part2: academic/算法科普/CV中的注意力机制/深度学习中的Attention机制-Part2.md
+                - 结合代码看深度学习中的Attention机制: academic/算法科普/CV中的注意力机制/结合代码看深度学习中的Attention机制-Part2.md
+                - Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显: academic/算法科普/CV中的注意力机制/Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显.md
+                - OutLook Attention：具有局部信息感知能力的ViT: academic/算法科普/CV中的注意力机制/OutLook Attention：具有局部信息感知能力的ViT.md
+                - ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1): academic/算法科普/CV中的注意力机制/ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1).md
+                - Deformable Attention Transformer: academic/算法科普/CV中的注意力机制/Deformable Attention Transformer_pprp.md
+                - ViTAE: academic/算法科普/CV中的注意力机制/ViTAE_LoBob.md
+            - Transformer和Linear Attention结构大模型（质量较高）: 
+                - 解析Transformer模型: academic/算法科普/Transformer/解析Transformer模型.md
+                - 解析Vision Transformer: academic/算法科普/Transformer/解析Vision Transformer.md
+                - 解析 Token to Token Vision Transformer: academic/算法科普/Transformer/解析 Token to Token Vision Transformer.md
+                - 图解swin transformer: academic/算法科普/Transformer/图解swin transformer.md
+                - Transformer综述: academic/算法科普/Transformer/Transformer综述.md
+                - 《互协方差注意力Transformer：XCiT》: academic/算法科普/Transformer/《互协方差注意力Transformer：XCiT》.md
+                - OutLook Attention：具有局部信息感知能力的ViT: academic/算法科普/Transformer/OutLook Attention：具有局部信息感知能力的ViT.md
+                - Vision Transformer新秀：VOLO: academic/算法科普/Transformer/Vision Transformer新秀：VOLO.md
+                - LightSeq Transformer高性能加速库: academic/算法科普/Transformer/LightSeq Transformer高性能加速库.md
+                - 浅谈CMT以及复现: academic/算法科普/Transformer/浅谈CMT以及复现.md
+                - 浅谈CSWin-Transformers: academic/算法科普/Transformer/浅谈CSWin-Transformers.md
+                - mogrifierlstm: academic/算法科普/Transformer/mogrifierlstm.md
+                - 如何将Transformer应用在移动端: academic/算法科普/Transformer/如何将Transformer应用在移动端.md
+                - DeiT：使用Attention蒸馏Transformer: academic/算法科普/Transformer/DeiT：使用Attention蒸馏Transformer.md
+                - Token-to-Token Transformer_LoBob: academic/算法科普/Transformer/Token-to-Token Transformer_LoBob.md
+                - 用于语言引导视频分割的局部-全局语境感知Transformer: academic/算法科普/Transformer/用于语言引导视频分割的局部-全局语境感知Transformer.md
+                - Token Merging 你的VIT，但是更快: academic/算法科普/Transformer/Token Merging 你的VIT，但是更快.md
+                - CVPR23-无需光流引导的视频联合去模糊和插帧transformer：针对真实世界运动模糊的插帧网络: academic/算法科普/Transformer/CVPR23-无需光流引导的视频联合去模糊和插帧transformer：针对真实世界运动模糊的插帧网络.md
+                - CVPR2023 用于图像到视频转换的双路径Transformer: academic/算法科普/Transformer/CVPR2023 用于图像到视频转换的双路径Transformer.md
+                - 简单聊聊目标检测新范式RT-DETR的骨干：HGNetv2: academic/算法科普/Transformer/简单聊聊目标检测新范式RT-DETR的骨干：HGNetv2.md
+                - 无需nms，onnxruntime20行代码玩转RT-DETR: academic/算法科普/Transformer/无需nms，onnxruntime20行代码玩转RT-DETR.md
+                - ICML 2023  LoSparse 低秩近似和结构化剪枝的有机组合: academic/算法科普/Transformer/ICML 2023  LoSparse 低秩近似和结构化剪枝的有机组合.md
+                - ICCV2023-一个模型助你实现图像分类和文本生成+论文解读+代码详细解读: academic/算法科普/Transformer/ICCV2023-一个模型助你实现图像分类和文本生成+论文解读+代码详细解读.md
+                - ICCV 2023 ViECap论文解读: academic/算法科普/Transformer/ICCV 2023 ViECap论文解读.md
+                - ChatRWKV 学习笔记和使用指南: academic/算法科普/Transformer/ChatRWKV 学习笔记和使用指南.md
+                - ICCV2023论文精选 顶会大佬带你深入理解self-attention机制的底层逻辑: academic/算法科普/Transformer/ICCV2023论文精选 顶会大佬带你深入理解self-attention机制的底层逻辑.md
+                - 【RWKV】如何新增一个自定义的Tokenizer和模型到HuggingFace: academic/算法科普/Transformer/【RWKV】如何新增一个自定义的Tokenizer和模型到HuggingFace.md
+                - 使用MLC-LLM将RWKV 3B模型跑在Android手机上: academic/算法科普/Transformer/使用MLC-LLM将RWKV 3B模型跑在Android手机上.md
+                - ICCV2023 SOTA 长短距离循环更新网络--LRRU介绍: academic/算法科普/Transformer/ICCV2023 SOTA 长短距离循环更新网络--LRRU介绍.md
+                - 使用OpenCompass评测rwkv模型教程: academic/算法科普/Transformer/使用OpenCompass评测rwkv模型教程.md
+                - Simplifying Transformer Blocks 论文解读: academic/算法科普/Transformer/Simplifying Transformer Blocks 论文解读.md
+                - 星辰AI大模型TeleChat-7B评测: academic/算法科普/Transformer/星辰AI大模型TeleChat-7B评测.md
+                - ICLR2024 oral：小尺度Transformer如何Scale Up: academic/算法科普/Transformer/ICLR2024 oral：小尺度Transformer如何Scale Up.md
+                - 新进展！Larimar-让大型语言模型像人一样记忆与遗忘: academic/算法科普/Transformer/新进展！Larimar-让大型语言模型像人一样记忆与遗忘.md
+                - 梳理RWKV 4，5(Eagle)，6(Finch)架构的区别以及个人理解和建议: academic/算法科普/Transformer/梳理RWKV 4，5(Eagle)，6(Finch)架构的区别以及个人理解和建议.md
+                - 如何用Infini-attention实现无限上下文Transformer: academic/算法科普/Transformer/如何用Infini-attention实现无限上下文Transformer.md
+                - 在GPU上加速RWKV6模型的Linear Attention计算: academic/算法科普/Transformer/在GPU上加速RWKV6模型的Linear Attention计算.md
+                - 性能提升，星辰AI大模型TeleChat-12B评测: academic/算法科普/Transformer/性能提升，星辰AI大模型TeleChat-12B评测.md
+                - ChatGPT技术体系: academic/算法科普/ChatGPT/ChatGPT的技术体系.md
+                - InstructGPT 介绍: academic/算法科普/ChatGPT/InstructGPT介绍.md
+                - SegGPT论文解读: academic/算法科普/ChatGPT/SegGPT论文解读.md
+                - ChatGPT和Claude 对比测试（以Review MLIR Codegen代码为例）更新官方ChatGPT的结果: academic/算法科普/ChatGPT/ChatGPT和Claude 对比测试（以Review MLIR Codegen代码为例）更新官方ChatGPT的结果.md
+                - GPT4 VS Claude In MLIR: academic/算法科普/ChatGPT/GPT4 VS Claude In MLIR.md
+                - 使用GPT4做Leetcode第 102 场双周赛: academic/算法科普/ChatGPT/使用GPT4做Leetcode第 102 场双周赛.md
+                - OpenAI Superalignment的一种途径——Weak-to-Strong Generalization: academic/算法科普/ChatGPT/OpenAI Superalignment的一种途径——Weak-to-Strong Generalization.md
+            - 半监督&无监督（质量较低）:
+                - WSCL: academic/算法科普/半监督&无监督/WSCL.md
+                - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
+                - CVPR 2023 中的半监督学习 FixMatch 的升级版 UniMatch: academic/算法科普/半监督&无监督/CVPR 2023 中的半监督学习 FixMatch 的升级版 UniMatch.md
+                - ICCV2023-AlignDet 在各种检测器的所有模块实现无监督预训练: academic/算法科普/半监督&无监督/ICCV2023-AlignDet 在各种检测器的所有模块实现无监督预训练.md
+                - “北大-鹏城-腾讯”新视角：从势能的角度探讨模型的可迁移性-ICCV2023开源: academic/算法科普/半监督&无监督/“北大-鹏城-腾讯”新视角：从势能的角度探讨模型的可迁移性-ICCV2023开源.md
+            - 尽览卷积神经网络（质量一般）:
+                - 卷积神经网络学习路线（一） 卷积神经网络的组件以及卷积层是如何在图像中起作用的？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（一） 卷积神经网络的组件以及卷积层是如何在图像中起作用的？.md
+                - 卷积神经网络学习路线（二） 卷积层有哪些参数及常用卷积核类型盘点？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二） 卷积层有哪些参数及常用卷积核类型盘点？.md
+                - 卷积神经网络学习路线（三） 盘点不同类型的池化层、11卷积的作用和卷积核是否一定越大越好？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（三） 盘点不同类型的池化层、11卷积的作用和卷积核是否一定越大越好？.md
+                - 卷积神经网络学习路线（四） 如何减少卷积层计算量，使用宽卷积的好处及转置卷积中的棋盘效应？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（四） 如何减少卷积层计算量，使用宽卷积的好处及转置卷积中的棋盘效应？.md
+                - 卷积神经网络学习路线（五） 卷积神经网络参数设置，提高泛化能力？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（五） 卷积神经网络参数设置，提高泛化能力？.md
+                - 卷积神经网络学习路线（六） 经典网络回顾之LeNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（六） 经典网络回顾之LeNet.md
+                - 卷积神经网络学习路线（七） 经典网络回顾之AlexNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（七） 经典网络回顾之AlexNet.md
+                - 卷积神经网络学习路线（八） 经典网络回顾之ZFNet和VGGNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（八） 经典网络回顾之ZFNet和VGGNet.md
+                - 卷积神经网络学习路线（九） 经典网络回顾之GoogLeNet系列: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（九） 经典网络回顾之GoogLeNet系列.md
+                - 卷积神经网络学习路线（十） 里程碑式创新的ResNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十） 里程碑式创新的ResNet.md
+                - 卷积神经网络学习路线（十一） Stochastic Depth（随机深度网络）: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十一） Stochastic Depth（随机深度网络）.md
+                - 卷积神经网络学习路线（十二） 继往开来的DenseNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十二） 继往开来的DenseNet.md
+                - 卷积神经网络学习路线（十三） CVPR2017 Deep Pyramidal Residual Networks: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十三） CVPR2017 Deep Pyramidal Residual Networks.md
+                - 卷积神经网络学习路线（十四）  CVPR 2017 ResNeXt（ResNet进化版）: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线十四  CVPR 2017 ResNeXt（ResNet进化版）.md
+                - 卷积神经网络学习路线（十五）  NIPS 2017 Dual Path Network（ResNeXt+DensetNet结合版）: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十五）  NIPS 2017 Dual Path Network（ResNeXt+DensetNet结合版）.md
+                - 卷积神经网络学习路线（十六）  ICLR 2017 SqueezeNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十六）  ICLR 2017 SqueezeNet.md
+                - 卷积神经网络学习路线（十七）  Google CVPR 2017 MobileNet V1: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十七）  Google CVPR 2017 MobileNet V1.md
+                - 卷积神经网络学习路线（十八）  Google CVPR 2018 MobileNet V2: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十八）  Google CVPR 2018 MobileNet V2.md
+                - 卷积神经网络学习路线（十九）  旷世科技 2017 ShuffleNetV1: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十九）  旷世科技 2017 ShuffleNetV1.md
+                - 卷积神经网络学习路线（二十）  Google ICCV 2019 MobileNet V3: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十）  Google ICCV 2019 MobileNet V3.md
+                - 卷积神经网络学习路线（二十二） Google Brain EfficientNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十二） Google Brain EfficientNet.md
+                - 卷积神经网络学习路线（二十三） 经典网络回顾之XceptionNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十三） 经典网络回顾之XceptionNet.md
+                - 卷积神经网络学习路线（二十一）  旷世科技 ECCV 2018  ShuffleNet V2: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十一）  旷世科技 ECCV 2018  ShuffleNet V2.md
+                - 【CNN结构设计】深入理解深度可分离卷积: academic/算法科普/尽览卷积神经网络/【CNN结构设计】深入理解深度可分离卷积.md
+                - CNN骨干网络新选择HS-ResNet: academic/算法科普/尽览卷积神经网络/CNN骨干网络新选择HS-ResNet.md
+                - CSPNet: academic/算法科普/尽览卷积神经网络/CSPNet.md
+                - EffNet: academic/算法科普/尽览卷积神经网络/EffNet.md
+                - HRNet: academic/算法科普/尽览卷积神经网络/HRNet.md
+                - ghostnet: academic/算法科普/尽览卷积神经网络/ghostnet.md
+                - ThunderNet: academic/算法科普/尽览卷积神经网络/ThunderNet.md
+                - IBN-Net 提升模型的域自适应性: academic/算法科普/尽览卷积神经网络/IBN-Net 提升模型的域自适应性.md
+                - NAS OR 手工设计网络，RegNet这样说: academic/算法科普/尽览卷积神经网络/NAS OR 手工设计网络，RegNet这样说.md
+                - 轻量级CNN架构设计: academic/算法科普/尽览卷积神经网络/轻量级CNN架构设计.md
+                - (图解)一步一步使用CPP实现深度学习中的卷积: academic/算法科普/尽览卷积神经网络/(图解)一步一步使用CPP实现深度学习中的卷积.md
+                - 图解RepVG: academic/算法科普/尽览卷积神经网络/图解RepVGG.md
+                - 我卷我自己——cvpr2021：Involution: academic/算法科普/尽览卷积神经网络/我卷我自己——cvpr2021：Involution.md
+                - 白给的性能不要？cvpr2021-Diverse branch block: academic/算法科普/尽览卷积神经网络/白给的性能不要？cvpr2021-Diverse branch block.md
+                - 图解MLP: academic/算法科普/尽览卷积神经网络/图解MLP.md
+                - 深度学习中的重参数机制总结与代码实现: academic/算法科普/尽览卷积神经网络/深度学习中的重参数机制总结与代码实现.md
+                - 百度团队新作：Spatial Shift MLP: academic/算法科普/尽览卷积神经网络/百度团队新作：Spatial Shift MLP.md
+                - RMNet图解: academic/算法科普/尽览卷积神经网络/RMNet图解.md
+                - RepOptimizer 其实是RepVGG2: academic/算法科普/尽览卷积神经网络/RepOptimizer 其实是RepVGG2.md
+                - 开集识别 A Good Closed-Set Classifier is All You Need: academic/算法科普/尽览卷积神经网络/开集识别 A Good Closed-Set Classifier is All You Need.md
+                - CVPR 2023 LargeKernel3D 在3D稀疏CNN中使用大卷积核: academic/算法科普/尽览卷积神经网络/CVPR 2023 LargeKernel3D 在3D稀疏CNN中使用大卷积核.md
+            - 可变形卷积（质量较低）:
+                - DCN V1代码阅读笔记: academic/算法科普/可变形卷积/DCN V1代码阅读笔记.md
+                - MSRA DCN(可变形卷积) 算法笔记: academic/算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md
+                - 再思考可变形卷积: academic/算法科普/可变形卷积/再思考可变形卷积.md
+            - 频域中的CNN（质量较低）:
+                - CVPR 2020 在频域中学习的DCTNet: academic/算法科普/频域中的CNN/CVPR 2020 在频域中学习的DCTNet.md
+                - ECCV2020 F3-Net 商汤Deepfake检测模型: academic/算法科普/频域中的CNN/ECCV2020 F3-Net 商汤Deepfake检测模型.md
+            - 深度学习基础（质量较高）:
+                - CNN一定需要池化层吗？: academic/算法科普/深度学习基础/CNN一定需要池化层吗？.md
+                - Rethinking ImageNet Pre-training: academic/算法科普/深度学习基础/Rethinking ImageNet Pre-training.md
+                - SVM Loss以及梯度推导: academic/算法科普/深度学习基础/SVM Loss以及梯度推导.md
+                - 回炉重造：计算图: academic/算法科普/深度学习基础/回炉重造：计算图.md
+                - 深度学习中的优化算法与实现: academic/算法科普/深度学习基础/深度学习中的优化算法与实现.md
+                - 优化器文章: academic/算法科普/深度学习基础/优化器文章.md
+                - Kaiming He初始化详解: academic/算法科普/深度学习基础/Kaiming He初始化详解.md
+                - InstanceNorm梯度公式推导: academic/算法科普/深度学习基础/InstanceNorm梯度公式推导.md
+                - Pytorch中的四种经典Loss源码解析: academic/算法科普/深度学习基础/Pytorch中的四种经典Loss源码解析.md
+                - 谈谈我眼中的Label Smooth: academic/算法科普/深度学习基础/谈谈我眼中的Label Smooth.md
+                - CVPR2021-Representative BatchNorm: academic/算法科普/深度学习基础/CVPR2021-Representative BatchNorm.md
+                - ResNet与常见ODE初值问题的数值解法​: academic/算法科普/深度学习基础/ResNet与常见ODE初值问题的数值解法​.md
+                - welford算法小记: academic/算法科普/深度学习基础/welford算法小记_zzk.md
+                - A Battle of Network Structure_pprp: academic/算法科普/深度学习基础/A Battle of Network Structure_pprp.md
+                - CVPR2022：计算机视觉中长尾数据平衡对比学习: academic/算法科普/深度学习基础/CVPR2022：计算机视觉中长尾数据平衡对比学习.md
+                - ICCV2023 基准测试：MS-COCO数据集的可靠吗？: academic/算法科普/深度学习基础/ICCV2023 基准测试：MS-COCO数据集的可靠吗？.md
+            - 手工调参Tricks（质量较高）:
+                - 【CNN结构设计】无痛的涨点技巧：ACNet: academic/算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
+                - 【CNN调参】目标检测算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
+                - 【CNN调参】图像分类算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】图像分类算法优化技巧.md
+                - 【损失函数合集】ECCV2016 Center Loss: academic/算法科普/手工调参Tricks/【损失函数合集】ECCV2016 Center Loss.md
+                - 【损失函数合集】Yann Lecun的Contrastive Loss 和 Google的Triplet Loss: academic/算法科普/手工调参Tricks/【损失函数合集】Yann Lecun的Contrastive Loss 和 Google的Triplet Loss.md
+                - 【损失函数合集】超详细的语义分割中的Loss大盘点: academic/算法科普/手工调参Tricks/【损失函数合集】超详细的语义分割中的Loss大盘点.md
+                - CNN结构设计技巧-兼顾速度精度与工程实现: academic/算法科普/手工调参Tricks/CNN结构设计技巧-兼顾速度精度与工程实现.md
+                - 快2020年了，你还在为深度学习调参而烦恼吗？: academic/算法科普/手工调参Tricks/快2020年了，你还在为深度学习调参而烦恼吗？.md
+                - 深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？: academic/算法科普/手工调参Tricks/深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？.md
+                - 激活还是不激活？CVPR2021-Activate Or Not: academic/算法科普/手工调参Tricks/激活还是不激活？CVPR2021-Activate Or Not.md
+                - 浅谈混合精度训练ImageNet: academic/算法科普/手工调参Tricks/浅谈混合精度训练ImageNet.md
+                - Piecewise Linear Unit：分段线性激活函数: academic/算法科普/手工调参Tricks/Piecewise Linear Unit：分段线性激活函数.md
+                - 余弦退火重启动学习率机制: academic/算法科普/手工调参Tricks/余弦退火重启动学习率机制.md
+                - 如何让你的分类性能提升之LARS_蒋神: academic/算法科普/手工调参Tricks/如何让你的分类性能提升之LARS_蒋神.md
+                - 提升分类性能之bag of tricks_蒋神: academic/算法科普/手工调参Tricks/提升分类性能之bag of tricks_蒋神.md
+                - 提升分类性能之优化调参: academic/算法科普/手工调参Tricks/提升分类性能之优化调参.md
+                - 浅谈LabelSmooth的两种实现以及推导_蒋: academic/算法科普/手工调参Tricks/浅谈LabelSmooth的两种实现以及推导_蒋.md
+                - Google提出面向长尾分布的logit的调整新方法: academic/算法科普/手工调参Tricks/Google提出面向长尾分布的logit的调整新方法.md
+                - Mitigating Neural Network Overconfidence with Logit Normalization: academic/算法科普/手工调参Tricks/Mitigating Neural Network Overconfidence with Logit Normalization.md
+                - ICLR 2022 基于不确定性的域外泛化: academic/算法科普/手工调参Tricks/ICLR 2022 基于不确定性的域外泛化.md
+            - AutoML（质量一般）: 
+                - 你所需要知道的关于AutoML和NAS的知识点: academic/算法科普/AutoML/你所需要知道的关于AutoML和NAS的知识点.md
+                - 【神经网络搜索】1. NAS-RL（ICLR 2017）: academic/算法科普/AutoML/【神经网络搜索】1. NAS-RL（ICLR 2017）.md
+                - 【神经网络搜索】DARTS: academic/算法科普/AutoML/【神经网络搜索】DARTS.md
+                - 【神经网络搜索】ENAS: academic/算法科普/AutoML/【神经网络搜索】ENAS.md
+                - 【神经网络搜索】NasBench101: academic/算法科普/AutoML/【神经网络搜索】NasBench101.md
+                - 【神经网络搜索】Once for all: academic/算法科普/AutoML/【神经网络搜索】Once for all.md
+                - 【神经网络搜索】Single Path One Shot: academic/算法科普/AutoML/【神经网络搜索】Single Path One Shot.md
+                - AutoML/Attention Transfer: academic/算法科普/AutoML/Attention Transfer_pprp.md
+                - Bag of Tricks for NAS: academic/算法科普/AutoML/Bag of Tricks for NAS_pprp.md
+                - Fixing the train-test resolution: academic/算法科普/AutoML/Fixing the train-test resolution_pprp.md
+                - NetAug 韩松团队新作: academic/算法科普/AutoML/NetAug 韩松团队新作_pprp.md
+                - Towards Oracle Knowledge Distillation with NAS_pprp: academic/算法科普/AutoML/Towards Oracle Knowledge Distillation with NAS_pprp.md
+                - 【知识蒸馏】Knowledge Review: academic/算法科普/AutoML/【知识蒸馏】Knowledge Review_pprp.md
+                - 【知识蒸馏】Deep Mutual Learning: academic/算法科普/AutoML/【知识蒸馏】Deep Mutual Learning_pprp.md
+                - 知识蒸馏综述-知识的类型: academic/算法科普/AutoML/知识蒸馏综述-知识的类型_pprp.md
+                - 知识蒸馏综述_网络结构搜索应用: academic/算法科普/AutoML/知识蒸馏综述_网络结构搜索应用_pprp.md
+                - PointDistiller面向高效紧凑3D检测的结构化知识蒸馏: academic/算法科普/AutoML/PointDistiller面向高效紧凑3D检测的结构化知识蒸馏.md
+            - SLAM和3D重建（质量较低）:
+                - 基于学习视觉里程计的动态稠密RGB-D SLAM: academic/算法科普/3D重建/基于学习视觉里程计的动态稠密RGB-D SLAM_泡椒味的口香糖.md
+                - DID-M3D用于单目3D物体检测的解耦实例深度: academic/算法科普/3D重建/DID-M3D用于单目3D物体检测的解耦实例深度.md
+                - SSL-Lanes用于自动驾驶中运动预测的自监督学习: academic/算法科普/3D重建/SSL-Lanes用于自动驾驶中运动预测的自监督学习.md
+                - 分布式概率SLAM图中的增量抽象: academic/算法科普/3D重建/分布式概率SLAM图中的增量抽象.md
+                - 动态稠密SLAM的自监督场景运动分解: academic/算法科普/3D重建/动态稠密SLAM的自监督场景运动分解.md
+                - 结构PLP-SLAM针对单目、RGB-D和双目相机使用点线面的高效稀疏建图及定位: academic/算法科普/3D重建/结构PLP-SLAM针对单目、RGB-D和双目相机使用点线面的高效稀疏建图及定位.md
+                - CVPR 2022：利用CLIP高效处理三维点云_Garfield: academic/算法科普/3D重建/CVPR 2022：利用CLIP高效处理三维点云_Garfield.md
+                - DynaVINS用于动态环境的视觉惯性SLAM: academic/算法科普/3D重建/DynaVINS用于动态环境的视觉惯性SLAM.md
+                - DytanVO动态环境中视觉里程计和运动分割的联合优化_泡椒味的口香糖: academic/算法科普/3D重建/DytanVO动态环境中视觉里程计和运动分割的联合优化_泡椒味的口香糖.md
+                - FusionPortable 用于评估不同平台上的定位和建图精度的多传感器校园数据集: academic/算法科普/3D重建/FusionPortable 用于评估不同平台上的定位和建图精度的多传感器校园数据集.md
+                - 具有负平面的相机姿态引导回环: academic/算法科普/3D重建/具有负平面的相机姿态引导回环.md
+                - 通过整合IMU运动动力学实现尺度感知、鲁棒和可推广的无监督单目深度估计: academic/算法科普/3D重建/通过整合IMU运动动力学实现尺度感知、鲁棒和可推广的无监督单目深度估计.md
+                - DeepLSD基于深度图像梯度的线段检测和细化: academic/算法科普/3D重建/DeepLSD基于深度图像梯度的线段检测和细化.md
+                - SceneRF具有辐射场的自监督单目三维场景重建: academic/算法科普/3D重建/SceneRF具有辐射场的自监督单目三维场景重建.md
+                - Wayve 从源头讲起，如何实现以对象为中心的自监督感知方法: academic/算法科普/3D重建/Wayve 从源头讲起，如何实现以对象为中心的自监督感知方法.md
+                - ICCV2023论文精读：用于三维分析的基于聚类的点云表示学习: academic/算法科普/3D重建/ICCV2023论文精读：用于三维分析的基于聚类的点云表示学习.md
+                - P2C-自监督点云补全, 只需用单一部分点云: academic/算法科普/3D重建/P2C-自监督点云补全, 只需用单一部分点云.md
+                - 多项SOTA！SVDFormer-自增强自结构双生点云补全算法-ICCV2023论文详解: academic/算法科普/3D重建/多项SOTA！SVDFormer-自增强自结构双生点云补全算法-ICCV2023论文详解.md
+                - ICCV2023开源 DistillBEV 巧妙利用跨模态知识蒸馏方法，斩获目标检测SOTA: academic/算法科普/3D重建/ICCV2023开源 DistillBEV 巧妙利用跨模态知识蒸馏方法，斩获目标检测SOTA.md
+                - ICCV2023 室内场景自监督单目深度估计: academic/算法科普/3D重建/ICCV2023 室内场景自监督单目深度估计.md
+                - ICCV2023 SOTA U-BEV：基于高度感知的鸟瞰图分割和神经地图的重定位: academic/算法科普/3D重建/ICCV2023 SOTA U-BEV：基于高度感知的鸟瞰图分割和神经地图的重定位.md
+                - CVPR2023开源SOTA！用于实时激光雷达全景分割的中心聚焦网络: academic/算法科普/3D重建/CVPR2023开源SOTA！用于实时激光雷达全景分割的中心聚焦网络.md
+                - 最新SOTA 隐式学习场景几何信息进行全局定位: academic/算法科普/3D重建/最新SOTA 隐式学习场景几何信息进行全局定位.md
+                - FlashOcc 无需微调，即插即用的占据预测模型: academic/算法科普/3D重建/FlashOcc 无需微调，即插即用的占据预测模型.md
+                - NID-SLAM：动态环境中基于神经隐式表示的RGB-D SLAM: academic/算法科普/3D重建/NID-SLAM：动态环境中基于神经隐式表示的RGB-D SLAM.md
+                - Attention SLAM一种从人类注意中学习的视觉单目SLAM: academic/算法科普/3D重建/Attention SLAM一种从人类注意中学习的视觉单目SLAM.md
+                - 复杂动态环境下的多模态语义SLAM: academic/算法科普/3D重建/复杂动态环境下的多模态语义SLAM.md
+            - 多模态（质量一般）:
+                - 恺明团队新作：更快的CLIP训练模式: academic/算法科普/多模态/恺明团队新作：更快的CLIP训练模式.md
+                - ICCV 2023 TinyCLIP解读: academic/算法科普/多模态/ICCV 2023 TinyCLIP解读.md
+            - 对比学习（质量一般）:
+                - Nearest-Neighbor Contrastive Learning of Visual Representations: academic/算法科普/对比学习/Nearest-Neighbor Contrastive Learning of Visual Representations.md
+                - CVPR 2021 如何理解对比学习中的温度系数？: academic/算法科普/对比学习/CVPR 2021 如何理解对比学习中的温度系数？.md
+                - NeurIPS 2022最新接收：面向测试阶段的prompt搜索方式: academic/算法科普/对比学习/NeurIPS 2022最新接收：面向测试阶段的prompt搜索方式_Garfield.md
+                - MAK 基于开放世界取样提升不平衡对比学习: academic/算法科普/对比学习/MAK 基于开放世界取样提升不平衡对比学习.md
+                - NeurIPS19 用分类模型完成生成任务: academic/算法科普/对比学习/NeurIPS19 用分类模型完成生成任务.md
+                - 【域自适应】Graph-Relational Domain Adaptation: academic/算法科普/对比学习/【域自适应】Graph-Relational Domain Adaptation.md
+                - 利用语言模型为视觉模型提供提示: academic/算法科普/对比学习/利用语言模型为视觉模型提供提示_Garfield.md
+                - 如何把视觉语言模型应用到视频里: academic/算法科普/对比学习/如何把视觉语言模型应用到视频里.md
+            - 扩散模型（质量一般）:
+                - Diffusion Model的演进 NeurIPS 2022最佳论文：Imagen: academic/算法科普/扩散模型/Diffusion Model的演进 NeurIPS 2022最佳论文：Imagen.md
+                - Google Brain提出基于Diffusion的新全景分割算法: academic/算法科普/扩散模型/Google Brain提出基于Diffusion的新全景分割算法.md
+                - 一文弄懂DiffusionModel: academic/算法科普/扩散模型/一文弄懂DiffusionModel.md
+                - 不需要训练来纠正文本生成图像模型的错误匹配: academic/算法科普/扩散模型/不需要训练来纠正文本生成图像模型的错误匹配.md
+                - 如何简单高效地定制自己的文本作画模型？: academic/算法科普/扩散模型/如何简单高效地定制自己的文本作画模型？.md
+                - 当 TransFormer 遇到 Diffusion: academic/算法科普/扩散模型/当 TransFormer 遇到 Diffusion.md
+                - 斯坦福大学最新扩散模型工作DID用于低光照文字识别的扩散模型: academic/算法科普/扩散模型/斯坦福大学最新扩散模型工作DID用于低光照文字识别的扩散模型.md
+                - 扩散模型大杀器 ControlNet 解析: academic/算法科普/扩散模型/扩散模型大杀器 ControlNet 解析.md
+                - Tune-A-Video论文解读: academic/算法科普/扩散模型/Tune-A-Video论文解读.md
+                - ICLR 2023：基于 diffusion adversarial representation learning 的血管分割: academic/算法科普/扩散模型/ICLR 2023：基于 diffusion adversarial representation learning 的血管分割.md
+                - 论文解读 Open-Set Grounded Text-to-Image Generation: academic/算法科普/扩散模型/论文解读 Open-Set Grounded Text-to-Image Generation.md
+                - CVPR 2023 把人放在他们的位置，把人自然地插到图像里: academic/算法科普/扩散模型/CVPR 2023 把人放在他们的位置，把人自然地插到图像里.md
+                - ControlVideo：可控的Training-free的文本生成视频: academic/算法科普/扩散模型/ControlVideo：可控的Training-free的文本生成视频.md
+                - 无需训练的框约束Diffusion：ICCV 2023揭秘BoxDiff文本到图像的合成技术: academic/算法科普/扩散模型/无需训练的框约束Diffusion：ICCV 2023揭秘BoxDiff文本到图像的合成技术.md
+                - ICCV 2023 探索基于生成模型的 Backbone 预训练: academic/算法科普/扩散模型/ICCV 2023 探索基于生成模型的 Backbone 预训练.md
+                - ICCV 2023 StyleInV论文解读 : academic/算法科普/扩散模型/ICCV 2023 StyleInV论文解读.md
+                - Diffusion Models 10 篇必读论文（0）: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（0）.md
+                - Diffusion Models 10 篇必读论文（1）DDPM: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（1）DDPM.md
+                - Diffusion Models 10 篇必读论文（2）DDIM: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（2）DDIM.md
+                - Diffusion Models 10 篇必读论文（3）Classifier-guided Diffusion Model: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（3）Classifier-guided Diffusion Model.md
+                - ICCV 2023 SVDiff论文解读: academic/算法科普/扩散模型/ICCV 2023 SVDiff论文解读.md
+                - Diffusion Models 10 篇必读论文（4）Classifier-Free Diffusion Guidance: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（4）Classifier-Free Diffusion Guidance.md
+                - 基于 Discrete Diffusion 的模型不可知分割细化: academic/算法科普/扩散模型/基于 Discrete Diffusion 的模型不可知分割细化.md
+                - 最新SOTA 利用扩散模型精准识别UDC环境下的面部表情: academic/算法科普/扩散模型/最新SOTA 利用扩散模型精准识别UDC环境下的面部表情.md
+                - Sora生成具有惊人几何一致性的视频，评估指标来了: academic/算法科普/扩散模型/Sora生成具有惊人几何一致性的视频，评估指标来了.md
+                - ICLR 2024 spotlight WURSTCHEN - 一个高效的大规模文本到图像扩散模型的架构: academic/算法科普/扩散模型/ICLR 2024 spotlight WURSTCHEN - 一个高效的大规模文本到图像扩散模型的架构.md
+            - 综述类（质量较高）:
+                - 【综述】Dropout模式和发展: academic/算法科普/综述类/【综述】Dropout模式和发展.md
+                - 【综述】图像去雾的前世今生: academic/算法科普/综述类/【综述】图像去雾的前世今生.md
+                - precision和recall重新理解: academic/算法科普/综述类/precision和recall重新理解.md
+                - pytorch中的模型可复现性: academic/算法科普/综述类/pytorch中的模型可复现性.md
+                - 池化: academic/算法科普/综述类/池化.md
+                - 关于目标检测和感受野的一点总结和想法: academic/算法科普/综述类/关于目标检测和感受野的一点总结和想法.md
+                - 卷积核梳理: academic/算法科普/综述类/卷积核梳理.md
+                - 盘点当前最流行的激活函数及选择经验: academic/算法科普/综述类/盘点当前最流行的激活函数及选择经验.md
+                - 思考NLP和CV中的Local和Global建模: academic/算法科普/综述类/思考NLP和CV中的Local和Global建模.md
+            - 其它方向论文解读（质量一般）:
+                - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
+                - AAAI22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络.md
+                - ECCV22 Oral VQFR 基于矢量量化字典与双解码器的人脸盲修复网络: academic/算法科普/其他方向论文解读/ECCV'22 Oral VQFR 基于矢量量化字典与双解码器的人脸盲修复网络.md
+                - ICLR 2023 oral论文：一种除了卷积和ViT以外的新视觉框架-Image as Set of Points: academic/算法科普/其他方向论文解读/ICLR 2023 oral论文：一种除了卷积和ViT以外的新视觉框架-Image as Set of Points.md
+                - 微软亚洲研究院最新工作DeepMIM-MIM中引入深度监督方法: academic/算法科普/其他方向论文解读/微软亚洲研究院最新工作DeepMIM-MIM中引入深度监督方法.md
+                - 计算机视觉中的主动学习介绍: academic/算法科普/其他方向论文解读/计算机视觉中的主动学习介绍.md
+                - CVPR 2023 Stare at What You See讲解: academic/算法科普/其他方向论文解读/CVPR 2023 Stare at What You See讲解.md
+                - thinktwice：用于端到端自动驾驶的可扩展解码器: academic/算法科普/其他方向论文解读/thinktwice：用于端到端自动驾驶的可扩展解码器.md
+                - Continual Test-Time 的领域适应: academic/算法科普/其他方向论文解读/Continual Test-Time 的领域适应.md
+                - CVPR 2023 中的领域适应 一种免反向传播的 TTA 语义分割方法: academic/算法科普/其他方向论文解读/CVPR 2023 中的领域适应 一种免反向传播的 TTA 语义分割方法.md
+                - CVPR 2023 中的领域适应 通过自蒸馏正则化实现内存高效的 CoTTA: academic/算法科普/其他方向论文解读/CVPR 2023 中的领域适应 通过自蒸馏正则化实现内存高效的 CoTTA.md
+                - 自动驾驶建图道路边界生成方案: academic/算法科普/其他方向论文解读/自动驾驶建图道路边界生成方案.md
+        - 语义及实例分割（质量一般）:
+            - 专栏介绍: academic/语义及实例分割/README.md
+            - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
+            - 当UNet遇见ResNet会发生什么？: academic/语义及实例分割/当UNet遇见ResNet会发生什么？.md
+            - 实例分割算法之Mask R-CNN论文解读.md: academic/语义及实例分割/实例分割算法之Mask R-CNN论文解读.md
+            - 语义分割算法之CVPR 2017 RefineNet（精度高且对稠密物体分割效果好，已开源）.md: academic/语义及实例分割/语义分割算法之CVPR 2017 RefineNet（精度高且对稠密物体分割效果好，已开源）.md
+            - 语义分割算法之Deeplab V1论文理解: academic/语义及实例分割/语义分割算法之Deeplab V1论文理解.md
+            - 语义分割算法之DeepLab V2论文理解: academic/语义及实例分割/语义分割算法之DeepLab V2论文理解.md
+            - 语义分割算法之DeepLab V3论文理解: academic/语义及实例分割/语义分割算法之DeepLabV3论文理解.md
+            - 语义分割算法之DeepLab V3+论文理解及代码分析: academic/语义及实例分割/语义分割算法之DeepLabV3+论文理解及代码分析.md
+            - 语义分割算法之ENet论文理解: academic/语义及实例分割/语义分割算法之ENet论文理解.md
+            - 语义分割算法之FCN论文理解: academic/语义及实例分割/语义分割算法之FCN论文理解.md
+            - 语义分割算法之ICNet论文理解: academic/语义及实例分割/语义分割算法之ICNet论文理解.md
+            - 语义分割算法之PSPNet论文理解: academic/语义及实例分割/语义分割算法之PSPNet论文理解.md
+            - 语义分割算法之SegNet论文理解: academic/语义及实例分割/语义分割算法之SegNet论文理解.md
+            - 语义分割算法之Unet论文理解: academic/语义及实例分割/语义分割算法之Unet论文理解.md
+            - 图像分割的一些理解: academic/语义及实例分割/图像分割的一些理解.md
+            - 用Pytorch实现三个优秀的自然图像分割框架！(4): academic/语义及实例分割/用Pytorch实现三个优秀的自然图像分割框架！(4).md
+            - TransBTS_ 3D 多模态脑肿瘤分割 Transformer 阅读笔记: academic/语义及实例分割/TransBTS_ 3D 多模态脑肿瘤分割 Transformer 阅读笔记.md
+            - UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记: academic/语义及实例分割/UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记.md
+            - 轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记: academic/语义及实例分割/轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记.md
+            - GitNet：基于几何先验变换的鸟瞰图分割: academic/语义及实例分割/GitNet：基于几何先验变换的鸟瞰图分割.md
+            - CVPR 2022：Generalized Few-shot Semantic Segmentation 解读: academic/语义及实例分割/CVPR 2022：Generalized Few-shot Semantic Segmentation 解读.md
+            - CVPR22 迈向无监督的Zeroshot 分割_Garfield: academic/语义及实例分割/CVPR22 迈向无监督的Zeroshot 分割_Garfield.md
+            - MICCAI 2022：基于 MLP 的快速医学图像分割网络—UNeXt: academic/语义及实例分割/MICCAI 2022：基于 MLP 的快速医学图像分割网络—UNeXt.md
+            - 【MICCAI 2022】PHTrans：并行聚合全局和局部表示以进行医学图像分割: academic/语义及实例分割/【MICCAI 2022】PHTrans：并行聚合全局和局部表示以进行医学图像分割.md
+            - ECCV 2022：跨域小样本语义分割新基准（也提出 PATNet）: academic/语义及实例分割/ECCV 2022：跨域小样本语义分割新基准（也提出 PATNet）.md
+            - MICCAI 2022：使用自适应条形采样和双分支 Transformer 的 DA-Net: academic/语义及实例分割/MICCAI 2022：使用自适应条形采样和双分支 Transformer 的 DA-Net.md
+            - 医学图像的 AI 框架 MONAI 详细教程（一）: academic/语义及实例分割/医学图像的 AI 框架 MONAI 详细教程（一）.md
+            - TMI 2023：对比半监督学习的领域适应（跨相似解剖结构）分割: academic/语义及实例分割/TMI 2023：对比半监督学习的领域适应（跨相似解剖结构）分割.md
+            - MedSegDiff：基于 Diffusion Probabilistic Model 的医学图像分割: academic/语义及实例分割/MedSegDiff：基于 Diffusion Probabilistic Model 的医学图像分割.md
+            - 将Segment Anything扩展到医学图像领域: academic/语义及实例分割/将Segment Anything扩展到医学图像领域.md
+            - Segment Anything模型部分结构和代码解析: academic/语义及实例分割/Segment Anything模型部分结构和代码解析.md
+            - ImgX-DiffSeg 基于 DDPMs 的 3D 医学图像分割: academic/语义及实例分割/ImgX-DiffSeg 基于 DDPMs 的 3D 医学图像分割.md
+            - 用于语义分割的解码器 diffusion 预训练方法: academic/语义及实例分割/用于语义分割的解码器 diffusion 预训练方法.md
+            - CVPR 2023 中的领域适应-用于切片方向连续的无监督跨模态医学图像分割: academic/语义及实例分割/CVPR 2023 中的领域适应-用于切片方向连续的无监督跨模态医学图像分割.md
+            - IPMI 2023：Test Time Adaptation 的医学图像分割解决: academic/语义及实例分割/IPMI 2023：Test Time Adaptation 的医学图像分割解决.md
+            - ICCV 2023：CLIP 驱动的器官分割和肿瘤检测通用模型: academic/语义及实例分割/ICCV 2023：CLIP 驱动的器官分割和肿瘤检测通用模型.md
+            - MICCAI 2023 Continual Learning 的腹部多器官和肿瘤分割: academic/语义及实例分割/MICCAI 2023 Continual Learning 的腹部多器官和肿瘤分割.md
+            - 三维场景零样本分割新突破：SAMPro3D技术解读: academic/语义及实例分割/三维场景零样本分割新突破：SAMPro3D技术解读.md
+        - 超分和GAN（质量一般）:
             - 专栏介绍: academic/超分和GAN/README.md
             - MSFSR:一种通过增强人脸边界精确表示人脸的多级人脸超分辨率算法: academic/超分和GAN/CVPR2020-NTIRE MSFSR A Multi-Stage Face Super-Resolution Network.md
             - DeepFake系列之FakeSpotter: academic/超分和GAN/DeepFake系列之FakeSpotter.md
@@ -29,70 +350,12 @@ nav:
             - Model-driven Deep Neural Network for Single Image Rain Removal: academic/超分和GAN/Model-driven Deep Neural Network for Single Image Rain Removal.md
             - Towards Compact Single Image Super-resolution via Contrastive self-distillation_owen: academic/超分和GAN/Towards Compact Single Image Super-resolution via Contrastive self-distillation_owen.md
             - CVPRW22 UWNR: academic/超分和GAN/CVPRW22 UWNR.md
-            - 基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖: academic/超分和GAN/基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖.md
+            - 基于卷积神经网络的雾天智能停车位检测一种新方法: academic/超分和GAN/基于卷积神经网络的雾天智能停车位检测一种新方法_泡椒味的口香糖.md
             - Instance-GAN: academic/超分和GAN/Instance-GAN.md
             -  CVPR 2023 无需借助文本训练来定制自己的生成模型:  academic/超分和GAN/CVPR 2023 无需借助文本训练来定制自己的生成模型.md
             - 【综述】无监督学习在盲超分任务中的应用论文串烧: academic/超分和GAN/【综述】无监督学习在盲超分任务中的应用论文串烧.md
             - Arxiv2023 TriA-GAN 任意人物,任何地方,任何姿势的合成: academic/超分和GAN/Arxiv2023 TriA-GAN 任意人物,任何地方,任何姿势的合成.md
-        - 传统图像: 
-            - 专栏介绍: academic/传统图像/README.md
-            - 一些有趣的图像算法: 
-                - OpenCV图像处理专栏一  盘点常见颜色空间互转: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏一  盘点常见颜色空间互转.md
-                - OpenCV图像处理专栏二 《Local Color Correction 》论文阅读及C++复现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏二 《Local Color Correction 》论文阅读及C++复现.md
-                - OpenCV图像处理专栏三  灰度世界算法原理和实现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏三  灰度世界算法原理和实现.md
-                - OpenCV图像处理专栏四  自动白平衡之完美反射算法原理及C++实现:  academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏四  自动白平衡之完美反射算法原理及C++实现.md
-                - OpenCV图像处理专栏五  《Real-time adaptive contrast enhancement for imaging sensors》论文解读及实现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏五  《Real-time adaptive contrast enhancement for imaging sensors》论文解读及实现.md
-                - OpenCV图像处理专栏六  来自何凯明博士的暗通道去雾算法(CVPR 2009最佳论文): academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏六  来自何凯明博士的暗通道去雾算法(CVPR 2009最佳论文).md
-                - OpenCV图像处理专栏七  直方图均衡化算法及代码实现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏七  直方图均衡化算法及代码实现.md
-                - OpenCV图像处理专栏八   《Contrast image correction method》 论文阅读及代码实现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏八   《Contrast image correction method》 论文阅读及代码实现.md
-                - OpenCV图像处理专栏九  基于直方图的快速中值滤波算法: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏九  基于直方图的快速中值滤波算法.md
-                - OpenCV图像处理专栏十  利用中值滤波进行去雾: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十  利用中值滤波进行去雾.md
-                - OpenCV图像处理专栏十一  IEEE Xplore 2015的图像白平衡处理之动态阈值法: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十一  IEEE Xplore 2015的图像白平衡处理之动态阈值法.md
-                - OpenCV图像处理专栏十二 《基于二维伽马函数的光照不均匀图像自适应校正算法》: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十二 《基于二维伽马函数的光照不均匀图像自适应校正算法》.md
-                - OpenCV图像处理专栏十三  利用多尺度融合提升图像细节: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十三  利用多尺度融合提升图像细节.md
-                - OpenCV图像处理专栏十四  基于Retinex成像原理的自动色彩均衡算法(ACE): academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十四  基于Retinex成像原理的自动色彩均衡算法(ACE).md
-                - OpenCV图像处理专栏十五 《一种基于亮度均衡的图像阈值分割技术》: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十五 《一种基于亮度均衡的图像阈值分割技术》.md
-                - OpenCV图像处理专栏十六  合理选用Side Window Filter辅助矩形框检测: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十六  合理选用Side Window Filter辅助矩形框检测.md
-                - OpenCV图像处理专栏十七  清华大学《基于单幅图像的快速去雾》C++复现（有一定工程意义）: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十七  清华大学《基于单幅图像的快速去雾》C++复现（有一定工程意义）.md
-                - OpenCV图像处理专栏十八  手动构造Sobel算子完成边缘检测: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十八  手动构造Sobel算子完成边缘检测.md
-                - OpenCV图像处理专栏十九  手动实现基于Canny算子的边缘检测: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十九  手动实现基于Canny算子的边缘检测.md
-                - OpenCV图像处理专栏二十 《Adaptive Logarithmic Mapping For Displaying High Contrast Scenes》复现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏二十 《Adaptive Logarithmic Mapping For Displaying High Contrast Scenes》复现.md
-                - 《Optimized contrast enhancement for real-time image and video dehazin》论文C++复现: academic/传统图像/一些有趣的图像算法/《Optimized contrast enhancement for real-time image and video dehazin》论文C++复现.md
-                - 《Single Image Haze Removal Using Dark Channel Prior》论文阅读及复现番外: academic/传统图像/一些有趣的图像算法/《Single Image Haze Removal Using Dark Channel Prior》论文阅读及复现番外(使用导向滤波估计更加精细的透射率).md
-                - 《改进非线性亮度提升模型的逆光图像恢复》论文复现: academic/传统图像/一些有趣的图像算法/《改进非线性亮度提升模型的逆光图像恢复》论文复现.md
-                - CVPR论文《100+ Times Faster Weighted Median Filter (WMF)》的实现和解析: academic/传统图像/一些有趣的图像算法/CVPR论文《100+ Times Faster Weighted Median Filter (WMF)》的实现和解析.md
-            - 一些基础的图像算法:
-                - 《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》C++实现: academic/传统图像/一些基础的图像算法/《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》C++实现.md
-                - RGB和CIELAB颜色空间转换及偏色检测: academic/传统图像/一些基础的图像算法/RGB和CIELAB颜色空间转换及偏色检测.md
-                - 肤色检测算法 - 基于不同颜色空间简单区域划分的皮肤检测算法: academic/传统图像/一些基础的图像算法/肤色检测算法 - 基于不同颜色空间简单区域划分的皮肤检测算法.md
-                - 高斯滤波的C++实现与优化: academic/传统图像/一些基础的图像算法/高斯滤波的C++实现与优化.md
-                - 基于二次多项式混合模型肤色检测算法: academic/传统图像/一些基础的图像算法/基于二次多项式混合模型肤色检测算法.md
-                - 色彩均衡化算法: academic/传统图像/一些基础的图像算法/色彩均衡化算法.md
-                - 双边滤波原理及Opencv调用: academic/传统图像/一些基础的图像算法/双边滤波原理及Opencv调用.md
-                - 同态滤波 原理及实现: academic/传统图像/一些基础的图像算法/同态滤波 原理及实现.md
-                - 图像处理中的分水岭算法: academic/传统图像/一些基础的图像算法/图像处理中的分水岭算法.md
-                - 图像处理中的模糊算法: academic/传统图像/一些基础的图像算法/图像处理中的模糊算法.md
-                - 图像处理中的锐化算: academic/传统图像/一些基础的图像算法/图像处理中的锐化算法.md
-                - 引导滤波 原理及实现: academic/传统图像/一些基础的图像算法/引导滤波 原理及实现.md
-        - 科研及竞赛分享:
-            - 专栏介绍: academic/科研及竞赛分享/README.md
-            - 红外目标检测实验结果收集: academic/科研及竞赛分享/红外目标检测实验结果收集.md
-            - 如何改进yolov3: academic/科研及竞赛分享/如何改进yolov3.md
-            - 验证码识别竞赛解决方案: academic/科研及竞赛分享/验证码识别竞赛解决方案.md
-            - 关键点定位红外小目标: academic/科研及竞赛分享/关键点定位红外小目标.md
-            - 2019 天池县域农业大脑AI挑战赛冠军方案分享: academic/科研及竞赛分享/2019 天池县域农业大脑AI挑战赛冠军方案分享.md
-            - ACCV国际细粒度识别比赛复盘: academic/科研及竞赛分享/ACCV国际细粒度识别比赛复盘.md
-            - 基于CenterFace的模型优化记录: academic/科研及竞赛分享/基于CenterFace的模型优化记录.md
-            - 人物属性模型移动端实验记录: academic/科研及竞赛分享/人物属性模型移动端实验记录.md
-            - 基于深度学习的RGBD深度图补全算法文章鉴赏: academic/科研及竞赛分享/基于深度学习的RGBD深度图补全算法文章鉴赏.md
-            - Kaggle StarFish挑战赛金牌分享_cydiaChen: academic/科研及竞赛分享/Kaggle StarFish挑战赛金牌分享_cydiaChen.md
-            - 如何更快的训练Vision Transformer: academic/科研及竞赛分享/如何更快的训练Vision Transformer.md
-            - 双非硕的毕设复盘：数据库篇（文末附半自动标注工具包）: academic/科研及竞赛分享/双非硕的毕设复盘：数据库篇（文末附半自动标注工具包）.md
-            - CVPR 2023年AQTC挑战赛第一名解决方案：以功能-交互为中心的时空视觉语言对齐方法: academic/科研及竞赛分享/CVPR 2023年AQTC挑战赛第一名解决方案：以功能-交互为中心的时空视觉语言对齐方法.md
-            - CVPR VISION 23挑战赛第1赛道亚军解决方案 - 数据高效缺陷检测: academic/科研及竞赛分享/CVPR VISION 23挑战赛第1赛道亚军解决方案 - 数据高效缺陷检测.md
-            - 单目深度估计挑战赛冠军方案-ICCV2023: academic/科研及竞赛分享/单目深度估计挑战赛冠军方案-ICCV2023.md
-            - 视觉类表面缺陷检测项目相关技术总结: academic/科研及竞赛分享/视觉类表面缺陷检测项目相关技术总结.md
-        - 目标检测及跟踪:
+        - 目标检测及跟踪（已过时）:
             - 专栏介绍: academic/目标检测及跟踪/README.md
             - Darknet:
                 - Darknet源码阅读综合版: academic/目标检测及跟踪/Darknet/Darknet源码阅读综合版.md
@@ -237,341 +500,66 @@ nav:
                 - 深度学习检测网络论文阅读50篇汇总: academic/目标检测及跟踪/文献综述/深度学习检测网络论文阅读50篇汇总.md
                 - 从检测角度理解label assign当前进展: academic/目标检测及跟踪/文献综述/从检测角度理解label assign当前进展.md
                 - 目标检测算法是如何生成正负样本的（一）: academic/目标检测及跟踪/文献综述/目标检测算法是如何生成正负样本的（一）.md
-        - 算法科普:
-            - 专栏介绍: academic/算法科普/README.md
-            - AutoML: 
-                - 你所需要知道的关于AutoML和NAS的知识点: academic/算法科普/AutoML/你所需要知道的关于AutoML和NAS的知识点.md
-                - 【神经网络搜索】1. NAS-RL（ICLR 2017）: academic/算法科普/AutoML/【神经网络搜索】1. NAS-RL（ICLR 2017）.md
-                - 【神经网络搜索】DARTS: academic/算法科普/AutoML/【神经网络搜索】DARTS.md
-                - 【神经网络搜索】ENAS: academic/算法科普/AutoML/【神经网络搜索】ENAS.md
-                - 【神经网络搜索】NasBench101: academic/算法科普/AutoML/【神经网络搜索】NasBench101.md
-                - 【神经网络搜索】Once for all: academic/算法科普/AutoML/【神经网络搜索】Once for all.md
-                - 【神经网络搜索】Single Path One Shot: academic/算法科普/AutoML/【神经网络搜索】Single Path One Shot.md
-                - AutoML/Attention Transfer_pprp: academic/算法科普/AutoML/Attention Transfer_pprp.md
-                - Bag of Tricks for NAS_pprp: academic/算法科普/AutoML/Bag of Tricks for NAS_pprp.md
-                - Fixing the train-test resolution_pprp: academic/算法科普/AutoML/Fixing the train-test resolution_pprp.md
-                - NetAug 韩松团队新作_pprp: academic/算法科普/AutoML/NetAug 韩松团队新作_pprp.md
-                - Towards Oracle Knowledge Distillation with NAS_pprp: academic/算法科普/AutoML/Towards Oracle Knowledge Distillation with NAS_pprp.md
-                - 【知识蒸馏】Knowledge Review_pprp: academic/算法科普/AutoML/【知识蒸馏】Knowledge Review_pprp.md
-                - 【知识蒸馏】Deep Mutual Learning_pprp: academic/算法科普/AutoML/【知识蒸馏】Deep Mutual Learning_pprp.md
-                - 知识蒸馏综述-知识的类型_pprp: academic/算法科普/AutoML/知识蒸馏综述-知识的类型_pprp.md
-                - 知识蒸馏综述_网络结构搜索应用_pprp: academic/算法科普/AutoML/知识蒸馏综述_网络结构搜索应用_pprp.md
-                - PointDistiller面向高效紧凑3D检测的结构化知识蒸馏: academic/算法科普/AutoML/PointDistiller面向高效紧凑3D检测的结构化知识蒸馏.md
-            - CV中的特征金字塔:
-                - 【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】一，工程价值极大的YOLOv3-ASFF.md
-                - 【CV中的特征金字塔】二，Feature Pyramid Network: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】二，Feature Pyramid Network.md
-                - 【CV中的特征金字塔】三，两阶段实时监测网络ThunderNet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】三，两阶段实时监测网络ThunderNet.md
-                - 【CV中的特征金字塔】四，CVPR 2018 PANet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】四，CVPR 2018 PANet.md
-                - 【CV中的特征金字塔】五，Google Brain EfficientDet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】五，Google Brain EfficientDet.md
-                - 【CV中的特征金字塔】六，ECCV 2018 PFPNet: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】六，ECCV 2018 PFPNet.md
-                - 【CV中的特征金字塔】七，SSD算法的改进版Rainbow SSD: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】七，SSD算法的改进版Rainbow SSD.md
-                - 【CV中的特征金字塔】八，SSD的改进版之DSSD: academic/算法科普/CV中的特征金字塔/【CV中的特征金字塔】八，SSD的改进版之DSSD.md
-            - CV中的注意力机制:
-                - 【CV中的Attention机制】BiSeNet中的FFM模块与ARM模块: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】BiSeNet中的FFM模块与ARM模块.md
-                - 【CV中的Attention机制】CBAM的姊妹篇-BAM模块:  academic/算法科普/CV中的注意力机制/【CV中的Attention机制】CBAM的姊妹篇-BAM模块.md
-                - 【CV中的Attention机制】Non-Local-neural-networks的理解与实现:  academic/算法科普/CV中的注意力机制/【CV中的Attention机制】Non-Local-neural-networks的理解与实现.md
-                - 【CV中的Attention机制】Non-Local改进CCNet:  academic/算法科普/CV中的注意力机制/【CV中的Attention机制】Non-Local改进CCNet.md
-                - 【CV中的Attention机制】Selective-Kernel-Networks-SE进化版: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】Selective-Kernel-Networks-SE进化版.md
-                - 【CV中的Attention机制】融合Non-Local和SENet的GCNet: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】融合Non-Local和SENet的GCNet.md
-                - 【CV中的Attention机制】易于集成的Convolutional-Block-Attention-Module-CBAM模块: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】易于集成的Convolutional-Block-Attention-Module-CBAM模块.md
-                - 【CV中的attention机制】语义分割中的scSE模块: academic/算法科普/CV中的注意力机制/【CV中的attention机制】语义分割中的scSE模块.md
-                - 【CV中的Attention机制】最简单最易实现的SE模块:  academic/算法科普/CV中的注意力机制/【cv中的Attention机制】最简单最易实现的SE模块.md
-                - 【CV中的Attention机制】DCANet解读: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】DCANet解读.md
-                - 【CV中的Attention机制】ShuffleAttention: academic/算法科普/CV中的注意力机制/【CV中的Attention机制】ShuffleAttention.md
-                - 深度学习中的Attention机制: academic/算法科普/CV中的注意力机制/深度学习中的Attention机制.md
-                - 深度学习中的Attention机制-Part2: academic/算法科普/CV中的注意力机制/深度学习中的Attention机制-Part2.md
-                - 结合代码看深度学习中的Attention机制-Part2: academic/算法科普/CV中的注意力机制/结合代码看深度学习中的Attention机制-Part2.md
-                - Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显: academic/算法科普/CV中的注意力机制/Involution（附对Involution的思考）：港科大、字节跳动、北大提出“内卷”神经网络算子，在CV三大任务上提点明显.md
-                - OutLook Attention：具有局部信息感知能力的ViT: academic/算法科普/CV中的注意力机制/OutLook Attention：具有局部信息感知能力的ViT.md
-                - ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1): academic/算法科普/CV中的注意力机制/ICCV2021 注意力卷积新思路CRAN_ 上下文推理注意力图像超分辨率网络(1)(1).md
-                - Deformable Attention Transformer_pprp: academic/算法科普/CV中的注意力机制/Deformable Attention Transformer_pprp.md
-                - ViTAE_LoBob: academic/算法科普/CV中的注意力机制/ViTAE_LoBob.md
-                - Attention SLAM一种从人类注意中学习的视觉单目SLAM: academic/算法科普/CV中的注意力机制/Attention SLAM一种从人类注意中学习的视觉单目SLAM.md
-            - Transformer: 
-                - 解析Transformer模型: academic/算法科普/Transformer/解析Transformer模型.md
-                - 解析Vision Transformer: academic/算法科普/Transformer/解析Vision Transformer.md
-                - 解析 Token to Token Vision Transformer: academic/算法科普/Transformer/解析 Token to Token Vision Transformer.md
-                - 图解swin transformer: academic/算法科普/Transformer/图解swin transformer.md
-                - Transformer综述: academic/算法科普/Transformer/Transformer综述.md
-                - 《互协方差注意力Transformer：XCiT》: academic/算法科普/Transformer/《互协方差注意力Transformer：XCiT》.md
-                - OutLook Attention：具有局部信息感知能力的ViT: academic/算法科普/Transformer/OutLook Attention：具有局部信息感知能力的ViT.md
-                - Vision Transformer新秀：VOLO: academic/算法科普/Transformer/Vision Transformer新秀：VOLO.md
-                - LightSeq Transformer高性能加速库: academic/算法科普/Transformer/LightSeq Transformer高性能加速库.md
-                - 浅谈CMT以及复现: academic/算法科普/Transformer/浅谈CMT以及复现.md
-                - 浅谈CSWin-Transformers: academic/算法科普/Transformer/浅谈CSWin-Transformers.md
-                - mogrifierlstm: academic/算法科普/Transformer/mogrifierlstm.md
-                - 如何将Transformer应用在移动端: academic/算法科普/Transformer/如何将Transformer应用在移动端.md
-                - DeiT：使用Attention蒸馏Transformer: academic/算法科普/Transformer/DeiT：使用Attention蒸馏Transformer.md
-                - Token-to-Token Transformer_LoBob: academic/算法科普/Transformer/Token-to-Token Transformer_LoBob.md
-                - 用于语言引导视频分割的局部-全局语境感知Transformer: academic/算法科普/Transformer/用于语言引导视频分割的局部-全局语境感知Transformer.md
-                - Token Merging 你的VIT，但是更快: academic/算法科普/Transformer/Token Merging 你的VIT，但是更快.md
-                - CVPR23-无需光流引导的视频联合去模糊和插帧transformer：针对真实世界运动模糊的插帧网络: academic/算法科普/Transformer/CVPR23-无需光流引导的视频联合去模糊和插帧transformer：针对真实世界运动模糊的插帧网络.md
-                - CVPR2023 用于图像到视频转换的双路径Transformer: academic/算法科普/Transformer/CVPR2023 用于图像到视频转换的双路径Transformer.md
-                - 简单聊聊目标检测新范式RT-DETR的骨干：HGNetv2: academic/算法科普/Transformer/简单聊聊目标检测新范式RT-DETR的骨干：HGNetv2.md
-                - 无需nms，onnxruntime20行代码玩转RT-DETR: academic/算法科普/Transformer/无需nms，onnxruntime20行代码玩转RT-DETR.md
-                - ICML 2023  LoSparse 低秩近似和结构化剪枝的有机组合: academic/算法科普/Transformer/ICML 2023  LoSparse 低秩近似和结构化剪枝的有机组合.md
-                - ICCV2023-一个模型助你实现图像分类和文本生成+论文解读+代码详细解读: academic/算法科普/Transformer/ICCV2023-一个模型助你实现图像分类和文本生成+论文解读+代码详细解读.md
-                - ICCV 2023 ViECap论文解读: academic/算法科普/Transformer/ICCV 2023 ViECap论文解读.md
-                - ChatRWKV 学习笔记和使用指南: academic/算法科普/Transformer/ChatRWKV 学习笔记和使用指南.md
-                - ICCV2023论文精选 顶会大佬带你深入理解self-attention机制的底层逻辑: academic/算法科普/Transformer/ICCV2023论文精选 顶会大佬带你深入理解self-attention机制的底层逻辑.md
-                - 【RWKV】如何新增一个自定义的Tokenizer和模型到HuggingFace: academic/算法科普/Transformer/【RWKV】如何新增一个自定义的Tokenizer和模型到HuggingFace.md
-                - 使用MLC-LLM将RWKV 3B模型跑在Android手机上: academic/算法科普/Transformer/使用MLC-LLM将RWKV 3B模型跑在Android手机上.md
-                - ICCV2023 SOTA 长短距离循环更新网络--LRRU介绍: academic/算法科普/Transformer/ICCV2023 SOTA 长短距离循环更新网络--LRRU介绍.md
-                - 使用OpenCompass评测rwkv模型教程: academic/算法科普/Transformer/使用OpenCompass评测rwkv模型教程.md
-                - Simplifying Transformer Blocks 论文解读: academic/算法科普/Transformer/Simplifying Transformer Blocks 论文解读.md
-                - 星辰AI大模型TeleChat-7B评测: academic/算法科普/Transformer/星辰AI大模型TeleChat-7B评测.md
-                - ICLR2024 oral：小尺度Transformer如何Scale Up: academic/算法科普/Transformer/ICLR2024 oral：小尺度Transformer如何Scale Up.md
-                - 新进展！Larimar-让大型语言模型像人一样记忆与遗忘: academic/算法科普/Transformer/新进展！Larimar-让大型语言模型像人一样记忆与遗忘.md
-                - 梳理RWKV 4，5(Eagle)，6(Finch)架构的区别以及个人理解和建议: academic/算法科普/Transformer/梳理RWKV 4，5(Eagle)，6(Finch)架构的区别以及个人理解和建议.md
-                - 如何用Infini-attention实现无限上下文Transformer: academic/算法科普/Transformer/如何用Infini-attention实现无限上下文Transformer.md
-                - 在GPU上加速RWKV6模型的Linear Attention计算: academic/算法科普/Transformer/在GPU上加速RWKV6模型的Linear Attention计算.md
-                - 性能提升，星辰AI大模型TeleChat-12B评测: academic/算法科普/Transformer/性能提升，星辰AI大模型TeleChat-12B评测.md
-            - ChatGPT:
-                - ChatGPT技术体系: academic/算法科普/ChatGPT/ChatGPT的技术体系.md
-                - InstructGPT 介绍: academic/算法科普/ChatGPT/InstructGPT介绍.md
-                - SegGPT论文解读: academic/算法科普/ChatGPT/SegGPT论文解读.md
-                - ChatGPT和Claude 对比测试（以Review MLIR Codegen代码为例）更新官方ChatGPT的结果: academic/算法科普/ChatGPT/ChatGPT和Claude 对比测试（以Review MLIR Codegen代码为例）更新官方ChatGPT的结果.md
-                - GPT4 VS Claude In MLIR: academic/算法科普/ChatGPT/GPT4 VS Claude In MLIR.md
-                - 使用GPT4做Leetcode第 102 场双周赛: academic/算法科普/ChatGPT/使用GPT4做Leetcode第 102 场双周赛.md
-                - OpenAI Superalignment的一种途径——Weak-to-Strong Generalization: academic/算法科普/ChatGPT/OpenAI Superalignment的一种途径——Weak-to-Strong Generalization.md
-            - 半监督&无监督:
-                - WSCL: academic/算法科普/半监督&无监督/WSCL.md
-                - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
-                - CVPR 2023 中的半监督学习 FixMatch 的升级版 UniMatch: academic/算法科普/半监督&无监督/CVPR 2023 中的半监督学习 FixMatch 的升级版 UniMatch.md
-                - ICCV2023-AlignDet 在各种检测器的所有模块实现无监督预训练: academic/算法科普/半监督&无监督/ICCV2023-AlignDet 在各种检测器的所有模块实现无监督预训练.md
-                - “北大-鹏城-腾讯”新视角：从势能的角度探讨模型的可迁移性-ICCV2023开源: academic/算法科普/半监督&无监督/“北大-鹏城-腾讯”新视角：从势能的角度探讨模型的可迁移性-ICCV2023开源.md
-            - 尽览卷积神经网络:
-                - 卷积神经网络学习路线（一） 卷积神经网络的组件以及卷积层是如何在图像中起作用的？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（一） 卷积神经网络的组件以及卷积层是如何在图像中起作用的？.md
-                - 卷积神经网络学习路线（二） 卷积层有哪些参数及常用卷积核类型盘点？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二） 卷积层有哪些参数及常用卷积核类型盘点？.md
-                - 卷积神经网络学习路线（三） 盘点不同类型的池化层、11卷积的作用和卷积核是否一定越大越好？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（三） 盘点不同类型的池化层、11卷积的作用和卷积核是否一定越大越好？.md
-                - 卷积神经网络学习路线（四） 如何减少卷积层计算量，使用宽卷积的好处及转置卷积中的棋盘效应？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（四） 如何减少卷积层计算量，使用宽卷积的好处及转置卷积中的棋盘效应？.md
-                - 卷积神经网络学习路线（五） 卷积神经网络参数设置，提高泛化能力？: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（五） 卷积神经网络参数设置，提高泛化能力？.md
-                - 卷积神经网络学习路线（六） 经典网络回顾之LeNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（六） 经典网络回顾之LeNet.md
-                - 卷积神经网络学习路线（七） 经典网络回顾之AlexNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（七） 经典网络回顾之AlexNet.md
-                - 卷积神经网络学习路线（八） 经典网络回顾之ZFNet和VGGNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（八） 经典网络回顾之ZFNet和VGGNet.md
-                - 卷积神经网络学习路线（九） 经典网络回顾之GoogLeNet系列: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（九） 经典网络回顾之GoogLeNet系列.md
-                - 卷积神经网络学习路线（十） 里程碑式创新的ResNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十） 里程碑式创新的ResNet.md
-                - 卷积神经网络学习路线（十一） Stochastic Depth（随机深度网络）: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十一） Stochastic Depth（随机深度网络）.md
-                - 卷积神经网络学习路线（十二） 继往开来的DenseNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十二） 继往开来的DenseNet.md
-                - 卷积神经网络学习路线（十三） CVPR2017 Deep Pyramidal Residual Networks: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十三） CVPR2017 Deep Pyramidal Residual Networks.md
-                - 卷积神经网络学习路线（十四）  CVPR 2017 ResNeXt（ResNet进化版）: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线十四  CVPR 2017 ResNeXt（ResNet进化版）.md
-                - 卷积神经网络学习路线（十五）  NIPS 2017 Dual Path Network（ResNeXt+DensetNet结合版）: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十五）  NIPS 2017 Dual Path Network（ResNeXt+DensetNet结合版）.md
-                - 卷积神经网络学习路线（十六）  ICLR 2017 SqueezeNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十六）  ICLR 2017 SqueezeNet.md
-                - 卷积神经网络学习路线（十七）  Google CVPR 2017 MobileNet V1: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十七）  Google CVPR 2017 MobileNet V1.md
-                - 卷积神经网络学习路线（十八）  Google CVPR 2018 MobileNet V2: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十八）  Google CVPR 2018 MobileNet V2.md
-                - 卷积神经网络学习路线（十九）  旷世科技 2017 ShuffleNetV1: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（十九）  旷世科技 2017 ShuffleNetV1.md
-                - 卷积神经网络学习路线（二十）  Google ICCV 2019 MobileNet V3: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十）  Google ICCV 2019 MobileNet V3.md
-                - 卷积神经网络学习路线（二十二） Google Brain EfficientNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十二） Google Brain EfficientNet.md
-                - 卷积神经网络学习路线（二十三） 经典网络回顾之XceptionNet: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十三） 经典网络回顾之XceptionNet.md
-                - 卷积神经网络学习路线（二十一）  旷世科技 ECCV 2018  ShuffleNet V2: academic/算法科普/尽览卷积神经网络/卷积神经网络学习路线（二十一）  旷世科技 ECCV 2018  ShuffleNet V2.md
-                - 【CNN结构设计】深入理解深度可分离卷积: academic/算法科普/尽览卷积神经网络/【CNN结构设计】深入理解深度可分离卷积.md
-                - CNN骨干网络新选择HS-ResNet: academic/算法科普/尽览卷积神经网络/CNN骨干网络新选择HS-ResNet.md
-                - CSPNet: academic/算法科普/尽览卷积神经网络/CSPNet.md
-                - EffNet: academic/算法科普/尽览卷积神经网络/EffNet.md
-                - HRNet: academic/算法科普/尽览卷积神经网络/HRNet.md
-                - ghostnet: academic/算法科普/尽览卷积神经网络/ghostnet.md
-                - ThunderNet: academic/算法科普/尽览卷积神经网络/ThunderNet.md
-                - IBN-Net 提升模型的域自适应性: academic/算法科普/尽览卷积神经网络/IBN-Net 提升模型的域自适应性.md
-                - NAS OR 手工设计网络，RegNet这样说: academic/算法科普/尽览卷积神经网络/NAS OR 手工设计网络，RegNet这样说.md
-                - 轻量级CNN架构设计: academic/算法科普/尽览卷积神经网络/轻量级CNN架构设计.md
-                - (图解)一步一步使用CPP实现深度学习中的卷积: academic/算法科普/尽览卷积神经网络/(图解)一步一步使用CPP实现深度学习中的卷积.md
-                - 图解RepVG: academic/算法科普/尽览卷积神经网络/图解RepVGG.md
-                - 我卷我自己——cvpr2021：Involution: academic/算法科普/尽览卷积神经网络/我卷我自己——cvpr2021：Involution.md
-                - 白给的性能不要？cvpr2021-Diverse branch block: academic/算法科普/尽览卷积神经网络/白给的性能不要？cvpr2021-Diverse branch block.md
-                - 图解MLP: academic/算法科普/尽览卷积神经网络/图解MLP.md
-                - 深度学习中的重参数机制总结与代码实现: academic/算法科普/尽览卷积神经网络/深度学习中的重参数机制总结与代码实现.md
-                - 百度团队新作：Spatial Shift MLP: academic/算法科普/尽览卷积神经网络/百度团队新作：Spatial Shift MLP.md
-                - RMNet图解: academic/算法科普/尽览卷积神经网络/RMNet图解.md
-                - RepOptimizer 其实是RepVGG2: academic/算法科普/尽览卷积神经网络/RepOptimizer 其实是RepVGG2.md
-                - 开集识别 A Good Closed-Set Classifier is All You Need: academic/算法科普/尽览卷积神经网络/开集识别 A Good Closed-Set Classifier is All You Need.md
-                - CVPR 2023 LargeKernel3D 在3D稀疏CNN中使用大卷积核: academic/算法科普/尽览卷积神经网络/CVPR 2023 LargeKernel3D 在3D稀疏CNN中使用大卷积核.md
-            - 可变形卷积:
-                - DCN V1代码阅读笔记: academic/算法科普/可变形卷积/DCN V1代码阅读笔记.md
-                - MSRA DCN(可变形卷积) 算法笔记: academic/算法科普/可变形卷积/MSRA DCN(可变形卷积) 算法笔记.md
-                - 再思考可变形卷积: academic/算法科普/可变形卷积/再思考可变形卷积.md
-            - 频域中的CNN:
-                - CVPR 2020 在频域中学习的DCTNet: academic/算法科普/频域中的CNN/CVPR 2020 在频域中学习的DCTNet.md
-                - ECCV2020 F3-Net 商汤Deepfake检测模型: academic/算法科普/频域中的CNN/ECCV2020 F3-Net 商汤Deepfake检测模型.md
-            - 深度学习基础:
-                - CNN一定需要池化层吗？: academic/算法科普/深度学习基础/CNN一定需要池化层吗？.md
-                - Rethinking ImageNet Pre-training: academic/算法科普/深度学习基础/Rethinking ImageNet Pre-training.md
-                - SVM Loss以及梯度推导: academic/算法科普/深度学习基础/SVM Loss以及梯度推导.md
-                - 回炉重造：计算图: academic/算法科普/深度学习基础/回炉重造：计算图.md
-                - 深度学习中的优化算法与实现: academic/算法科普/深度学习基础/深度学习中的优化算法与实现.md
-                - 优化器文章: academic/算法科普/深度学习基础/优化器文章.md
-                - Kaiming He初始化详解: academic/算法科普/深度学习基础/Kaiming He初始化详解.md
-                - InstanceNorm梯度公式推导: academic/算法科普/深度学习基础/InstanceNorm梯度公式推导.md
-                - Pytorch中的四种经典Loss源码解析: academic/算法科普/深度学习基础/Pytorch中的四种经典Loss源码解析.md
-                - 谈谈我眼中的Label Smooth: academic/算法科普/深度学习基础/谈谈我眼中的Label Smooth.md
-                - CVPR2021-Representative BatchNorm: academic/算法科普/深度学习基础/CVPR2021-Representative BatchNorm.md
-                - ResNet与常见ODE初值问题的数值解法​: academic/算法科普/深度学习基础/ResNet与常见ODE初值问题的数值解法​.md
-                - welford算法小记: academic/算法科普/深度学习基础/welford算法小记_zzk.md
-                - A Battle of Network Structure_pprp: academic/算法科普/深度学习基础/A Battle of Network Structure_pprp.md
-                - CVPR2022：计算机视觉中长尾数据平衡对比学习: academic/算法科普/深度学习基础/CVPR2022：计算机视觉中长尾数据平衡对比学习.md
-                - ICCV2023 基准测试：MS-COCO数据集的可靠吗？: academic/算法科普/深度学习基础/ICCV2023 基准测试：MS-COCO数据集的可靠吗？.md
-            - 手工调参Tricks:
-                - 【CNN结构设计】无痛的涨点技巧：ACNet: academic/算法科普/手工调参Tricks/【CNN结构设计】无痛的涨点技巧：ACNet.md
-                - 【CNN调参】目标检测算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】目标检测算法优化技巧.md
-                - 【CNN调参】图像分类算法优化技巧: academic/算法科普/手工调参Tricks/【CNN调参】图像分类算法优化技巧.md
-                - 【损失函数合集】ECCV2016 Center Loss: academic/算法科普/手工调参Tricks/【损失函数合集】ECCV2016 Center Loss.md
-                - 【损失函数合集】Yann Lecun的Contrastive Loss 和 Google的Triplet Loss: academic/算法科普/手工调参Tricks/【损失函数合集】Yann Lecun的Contrastive Loss 和 Google的Triplet Loss.md
-                - 【损失函数合集】超详细的语义分割中的Loss大盘点: academic/算法科普/手工调参Tricks/【损失函数合集】超详细的语义分割中的Loss大盘点.md
-                - CNN结构设计技巧-兼顾速度精度与工程实现: academic/算法科普/手工调参Tricks/CNN结构设计技巧-兼顾速度精度与工程实现.md
-                - 快2020年了，你还在为深度学习调参而烦恼吗？: academic/算法科普/手工调参Tricks/快2020年了，你还在为深度学习调参而烦恼吗？.md
-                - 深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？: academic/算法科普/手工调参Tricks/深度学习的多个loss如何平衡 & 有哪些「魔改」损失函数，曾经拯救了你的深度学习模型？.md
-                - 激活还是不激活？CVPR2021-Activate Or Not: academic/算法科普/手工调参Tricks/激活还是不激活？CVPR2021-Activate Or Not.md
-                - 浅谈混合精度训练ImageNet: academic/算法科普/手工调参Tricks/浅谈混合精度训练ImageNet.md
-                - Piecewise Linear Unit：分段线性激活函数: academic/算法科普/手工调参Tricks/Piecewise Linear Unit：分段线性激活函数.md
-                - 余弦退火重启动学习率机制: academic/算法科普/手工调参Tricks/余弦退火重启动学习率机制.md
-                - 如何让你的分类性能提升之LARS_蒋神: academic/算法科普/手工调参Tricks/如何让你的分类性能提升之LARS_蒋神.md
-                - 提升分类性能之bag of tricks_蒋神: academic/算法科普/手工调参Tricks/提升分类性能之bag of tricks_蒋神.md
-                - 提升分类性能之优化调参: academic/算法科普/手工调参Tricks/提升分类性能之优化调参.md
-                - 浅谈LabelSmooth的两种实现以及推导_蒋: academic/算法科普/手工调参Tricks/浅谈LabelSmooth的两种实现以及推导_蒋.md
-                - Google提出面向长尾分布的logit的调整新方法: academic/算法科普/手工调参Tricks/Google提出面向长尾分布的logit的调整新方法.md
-                - Mitigating Neural Network Overconfidence with Logit Normalization: academic/算法科普/手工调参Tricks/Mitigating Neural Network Overconfidence with Logit Normalization.md
-                - ICLR 2022 基于不确定性的域外泛化: academic/算法科普/手工调参Tricks/ICLR 2022 基于不确定性的域外泛化.md
-            - 分布式训练大模型:
-                - 让训练更长序列模型称为可能Sequence Parallelism_zzk: academic/算法科普/分布式训练大模型/让训练更长序列模型称为可能Sequence Parallelism_zzk.md
-            - 3D重建:
-                - 基于学习视觉里程计的动态稠密RGB-D SLAM: academic/算法科普/3D重建/基于学习视觉里程计的动态稠密RGB-D SLAM_泡椒味的口香糖.md
-                - DID-M3D用于单目3D物体检测的解耦实例深度: academic/算法科普/3D重建/DID-M3D用于单目3D物体检测的解耦实例深度.md
-                - SSL-Lanes用于自动驾驶中运动预测的自监督学习: academic/算法科普/3D重建/SSL-Lanes用于自动驾驶中运动预测的自监督学习.md
-                - 分布式概率SLAM图中的增量抽象: academic/算法科普/3D重建/分布式概率SLAM图中的增量抽象.md
-                - 动态稠密SLAM的自监督场景运动分解: academic/算法科普/3D重建/动态稠密SLAM的自监督场景运动分解.md
-                - 结构PLP-SLAM针对单目、RGB-D和双目相机使用点线面的高效稀疏建图及定位: academic/算法科普/3D重建/结构PLP-SLAM针对单目、RGB-D和双目相机使用点线面的高效稀疏建图及定位.md
-                - CVPR 2022：利用CLIP高效处理三维点云_Garfield: academic/算法科普/3D重建/CVPR 2022：利用CLIP高效处理三维点云_Garfield.md
-                - DynaVINS用于动态环境的视觉惯性SLAM: academic/算法科普/3D重建/DynaVINS用于动态环境的视觉惯性SLAM.md
-                - DytanVO动态环境中视觉里程计和运动分割的联合优化_泡椒味的口香糖: academic/算法科普/3D重建/DytanVO动态环境中视觉里程计和运动分割的联合优化_泡椒味的口香糖.md
-                - FusionPortable 用于评估不同平台上的定位和建图精度的多传感器校园数据集: academic/算法科普/3D重建/FusionPortable 用于评估不同平台上的定位和建图精度的多传感器校园数据集.md
-                - 具有负平面的相机姿态引导回环: academic/算法科普/3D重建/具有负平面的相机姿态引导回环.md
-                - 通过整合IMU运动动力学实现尺度感知、鲁棒和可推广的无监督单目深度估计: academic/算法科普/3D重建/通过整合IMU运动动力学实现尺度感知、鲁棒和可推广的无监督单目深度估计.md
-                - DeepLSD基于深度图像梯度的线段检测和细化: academic/算法科普/3D重建/DeepLSD基于深度图像梯度的线段检测和细化.md
-                - SceneRF具有辐射场的自监督单目三维场景重建: academic/算法科普/3D重建/SceneRF具有辐射场的自监督单目三维场景重建.md
-                - Wayve 从源头讲起，如何实现以对象为中心的自监督感知方法: academic/算法科普/3D重建/Wayve 从源头讲起，如何实现以对象为中心的自监督感知方法.md
-                - ICCV2023论文精读：用于三维分析的基于聚类的点云表示学习: academic/算法科普/3D重建/ICCV2023论文精读：用于三维分析的基于聚类的点云表示学习.md
-                - P2C-自监督点云补全, 只需用单一部分点云: academic/算法科普/3D重建/P2C-自监督点云补全, 只需用单一部分点云.md
-                - 多项SOTA！SVDFormer-自增强自结构双生点云补全算法-ICCV2023论文详解: academic/算法科普/3D重建/多项SOTA！SVDFormer-自增强自结构双生点云补全算法-ICCV2023论文详解.md
-                - ICCV2023开源 DistillBEV 巧妙利用跨模态知识蒸馏方法，斩获目标检测SOTA: academic/算法科普/3D重建/ICCV2023开源 DistillBEV 巧妙利用跨模态知识蒸馏方法，斩获目标检测SOTA.md
-                - ICCV2023 室内场景自监督单目深度估计: academic/算法科普/3D重建/ICCV2023 室内场景自监督单目深度估计.md
-                - ICCV2023 SOTA U-BEV：基于高度感知的鸟瞰图分割和神经地图的重定位: academic/算法科普/3D重建/ICCV2023 SOTA U-BEV：基于高度感知的鸟瞰图分割和神经地图的重定位.md
-                - CVPR2023开源SOTA！用于实时激光雷达全景分割的中心聚焦网络: academic/算法科普/3D重建/CVPR2023开源SOTA！用于实时激光雷达全景分割的中心聚焦网络.md
-                - 最新SOTA 隐式学习场景几何信息进行全局定位: academic/算法科普/3D重建/最新SOTA 隐式学习场景几何信息进行全局定位.md
-                - FlashOcc 无需微调，即插即用的占据预测模型: academic/算法科普/3D重建/FlashOcc 无需微调，即插即用的占据预测模型.md
-                - NID-SLAM：动态环境中基于神经隐式表示的RGB-D SLAM: academic/算法科普/3D重建/NID-SLAM：动态环境中基于神经隐式表示的RGB-D SLAM.md
-            - 多模态:
-                - 复杂动态环境下的多模态语义SLAM: academic/算法科普/多模态/复杂动态环境下的多模态语义SLAM.md
-                - 恺明团队新作：更快的CLIP训练模式: academic/算法科普/多模态/恺明团队新作：更快的CLIP训练模式.md
-                - ICCV 2023 TinyCLIP解读: academic/算法科普/多模态/ICCV 2023 TinyCLIP解读.md
-            - 综述类:
-                - 【综述】Dropout模式和发展: academic/算法科普/综述类/【综述】Dropout模式和发展.md
-                - 【综述】图像去雾的前世今生: academic/算法科普/综述类/【综述】图像去雾的前世今生.md
-                - precision和recall重新理解: academic/算法科普/综述类/precision和recall重新理解.md
-                - pytorch中的模型可复现性: academic/算法科普/综述类/pytorch中的模型可复现性.md
-                - 池化: academic/算法科普/综述类/池化.md
-                - 关于目标检测和感受野的一点总结和想法: academic/算法科普/综述类/关于目标检测和感受野的一点总结和想法.md
-                - 卷积核梳理: academic/算法科普/综述类/卷积核梳理.md
-                - 盘点当前最流行的激活函数及选择经验: academic/算法科普/综述类/盘点当前最流行的激活函数及选择经验.md
-                - 思考NLP和CV中的Local和Global建模: academic/算法科普/综述类/思考NLP和CV中的Local和Global建模.md
-            - 对比学习:
-                - Nearest-Neighbor Contrastive Learning of Visual Representations: academic/算法科普/对比学习/Nearest-Neighbor Contrastive Learning of Visual Representations.md
-                - CVPR 2021 如何理解对比学习中的温度系数？: academic/算法科普/对比学习/CVPR 2021 如何理解对比学习中的温度系数？.md
-                - NeurIPS 2022最新接收：面向测试阶段的prompt搜索方式_Garfield: academic/算法科普/对比学习/NeurIPS 2022最新接收：面向测试阶段的prompt搜索方式_Garfield.md
-                - MAK 基于开放世界取样提升不平衡对比学习: academic/算法科普/对比学习/MAK 基于开放世界取样提升不平衡对比学习.md
-                - NeurIPS19 用分类模型完成生成任务: academic/算法科普/对比学习/NeurIPS19 用分类模型完成生成任务.md
-                - 【域自适应】Graph-Relational Domain Adaptation: academic/算法科普/对比学习/【域自适应】Graph-Relational Domain Adaptation.md
-                - 利用语言模型为视觉模型提供提示_Garfield: academic/算法科普/对比学习/利用语言模型为视觉模型提供提示_Garfield.md
-                - 如何把视觉语言模型应用到视频里: academic/算法科普/对比学习/如何把视觉语言模型应用到视频里.md
-            - 扩散模型:
-                - Diffusion Model的演进 NeurIPS 2022最佳论文：Imagen: academic/算法科普/扩散模型/Diffusion Model的演进 NeurIPS 2022最佳论文：Imagen.md
-                - Google Brain提出基于Diffusion的新全景分割算法: academic/算法科普/扩散模型/Google Brain提出基于Diffusion的新全景分割算法.md
-                - 一文弄懂DiffusionModel: academic/算法科普/扩散模型/一文弄懂DiffusionModel.md
-                - 不需要训练来纠正文本生成图像模型的错误匹配: academic/算法科普/扩散模型/不需要训练来纠正文本生成图像模型的错误匹配.md
-                - 如何简单高效地定制自己的文本作画模型？: academic/算法科普/扩散模型/如何简单高效地定制自己的文本作画模型？.md
-                - 当 TransFormer 遇到 Diffusion: academic/算法科普/扩散模型/当 TransFormer 遇到 Diffusion.md
-                - 斯坦福大学最新扩散模型工作DID用于低光照文字识别的扩散模型: academic/算法科普/扩散模型/斯坦福大学最新扩散模型工作DID用于低光照文字识别的扩散模型.md
-                - 扩散模型大杀器 ControlNet 解析: academic/算法科普/扩散模型/扩散模型大杀器 ControlNet 解析.md
-                - Tune-A-Video论文解读: academic/算法科普/扩散模型/Tune-A-Video论文解读.md
-                - ICLR 2023：基于 diffusion adversarial representation learning 的血管分割: academic/算法科普/扩散模型/ICLR 2023：基于 diffusion adversarial representation learning 的血管分割.md
-                - 论文解读 Open-Set Grounded Text-to-Image Generation: academic/算法科普/扩散模型/论文解读 Open-Set Grounded Text-to-Image Generation.md
-                - CVPR 2023 把人放在他们的位置，把人自然地插到图像里: academic/算法科普/扩散模型/CVPR 2023 把人放在他们的位置，把人自然地插到图像里.md
-                - ControlVideo：可控的Training-free的文本生成视频: academic/算法科普/扩散模型/ControlVideo：可控的Training-free的文本生成视频.md
-                - 无需训练的框约束Diffusion：ICCV 2023揭秘BoxDiff文本到图像的合成技术: academic/算法科普/扩散模型/无需训练的框约束Diffusion：ICCV 2023揭秘BoxDiff文本到图像的合成技术.md
-                - ICCV 2023 探索基于生成模型的 Backbone 预训练: academic/算法科普/扩散模型/ICCV 2023 探索基于生成模型的 Backbone 预训练.md
-                - ICCV 2023 StyleInV论文解读 : academic/算法科普/扩散模型/ICCV 2023 StyleInV论文解读.md
-                - Diffusion Models 10 篇必读论文（0）: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（0）.md
-                - Diffusion Models 10 篇必读论文（1）DDPM: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（1）DDPM.md
-                - Diffusion Models 10 篇必读论文（2）DDIM: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（2）DDIM.md
-                - Diffusion Models 10 篇必读论文（3）Classifier-guided Diffusion Model: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（3）Classifier-guided Diffusion Model.md
-                - ICCV 2023 SVDiff论文解读: academic/算法科普/扩散模型/ICCV 2023 SVDiff论文解读.md
-                - Diffusion Models 10 篇必读论文（4）Classifier-Free Diffusion Guidance: academic/算法科普/扩散模型/Diffusion Models 10 篇必读论文（4）Classifier-Free Diffusion Guidance.md
-                - 基于 Discrete Diffusion 的模型不可知分割细化: academic/算法科普/扩散模型/基于 Discrete Diffusion 的模型不可知分割细化.md
-                - 最新SOTA 利用扩散模型精准识别UDC环境下的面部表情: academic/算法科普/扩散模型/最新SOTA 利用扩散模型精准识别UDC环境下的面部表情.md
-                - Sora生成具有惊人几何一致性的视频，评估指标来了: academic/算法科普/扩散模型/Sora生成具有惊人几何一致性的视频，评估指标来了.md
-                - ICLR 2024 spotlight WURSTCHEN - 一个高效的大规模文本到图像扩散模型的架构: academic/算法科普/扩散模型/ICLR 2024 spotlight WURSTCHEN - 一个高效的大规模文本到图像扩散模型的架构.md
-            - 其它方向论文解读:
-                - 一文读懂AlphaTensor论文: academic/算法科普/其他方向论文解读/一文读懂AlphaTensor论文.md
-                - AAAI22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络: academic/算法科普/其他方向论文解读/AAAI'22  Panini-Net  基于GAN先验的退化感知特征插值人脸修复网络.md
-                - ECCV22 Oral VQFR 基于矢量量化字典与双解码器的人脸盲修复网络: academic/算法科普/其他方向论文解读/ECCV'22 Oral VQFR 基于矢量量化字典与双解码器的人脸盲修复网络.md
-                - ICLR 2023 oral论文：一种除了卷积和ViT以外的新视觉框架-Image as Set of Points: academic/算法科普/其他方向论文解读/ICLR 2023 oral论文：一种除了卷积和ViT以外的新视觉框架-Image as Set of Points.md
-                - 微软亚洲研究院最新工作DeepMIM-MIM中引入深度监督方法: academic/算法科普/其他方向论文解读/微软亚洲研究院最新工作DeepMIM-MIM中引入深度监督方法.md
-                - 计算机视觉中的主动学习介绍: academic/算法科普/其他方向论文解读/计算机视觉中的主动学习介绍.md
-                - CVPR 2023 Stare at What You See讲解: academic/算法科普/其他方向论文解读/CVPR 2023 Stare at What You See讲解.md
-                - thinktwice：用于端到端自动驾驶的可扩展解码器: academic/算法科普/其他方向论文解读/thinktwice：用于端到端自动驾驶的可扩展解码器.md
-                - Continual Test-Time 的领域适应: academic/算法科普/其他方向论文解读/Continual Test-Time 的领域适应.md
-                - CVPR 2023 中的领域适应 一种免反向传播的 TTA 语义分割方法: academic/算法科普/其他方向论文解读/CVPR 2023 中的领域适应 一种免反向传播的 TTA 语义分割方法.md
-                - CVPR 2023 中的领域适应 通过自蒸馏正则化实现内存高效的 CoTTA: academic/算法科普/其他方向论文解读/CVPR 2023 中的领域适应 通过自蒸馏正则化实现内存高效的 CoTTA.md
-                - 自动驾驶建图道路边界生成方案: academic/算法科普/其他方向论文解读/自动驾驶建图道路边界生成方案.md
-        - 语义及实例分割:
-            - 专栏介绍: academic/语义及实例分割/README.md
-            - DeepLab语义分割算法源码解析: academic/语义及实例分割/DeepLab语义分割算法源码解析.md
-            - 当UNet遇见ResNet会发生什么？: academic/语义及实例分割/当UNet遇见ResNet会发生什么？.md
-            - 实例分割算法之Mask R-CNN论文解读.md: academic/语义及实例分割/实例分割算法之Mask R-CNN论文解读.md
-            - 语义分割算法之CVPR 2017 RefineNet（精度高且对稠密物体分割效果好，已开源）.md: academic/语义及实例分割/语义分割算法之CVPR 2017 RefineNet（精度高且对稠密物体分割效果好，已开源）.md
-            - 语义分割算法之Deeplab V1论文理解: academic/语义及实例分割/语义分割算法之Deeplab V1论文理解.md
-            - 语义分割算法之DeepLab V2论文理解: academic/语义及实例分割/语义分割算法之DeepLab V2论文理解.md
-            - 语义分割算法之DeepLab V3论文理解: academic/语义及实例分割/语义分割算法之DeepLabV3论文理解.md
-            - 语义分割算法之DeepLab V3+论文理解及代码分析: academic/语义及实例分割/语义分割算法之DeepLabV3+论文理解及代码分析.md
-            - 语义分割算法之ENet论文理解: academic/语义及实例分割/语义分割算法之ENet论文理解.md
-            - 语义分割算法之FCN论文理解: academic/语义及实例分割/语义分割算法之FCN论文理解.md
-            - 语义分割算法之ICNet论文理解: academic/语义及实例分割/语义分割算法之ICNet论文理解.md
-            - 语义分割算法之PSPNet论文理解: academic/语义及实例分割/语义分割算法之PSPNet论文理解.md
-            - 语义分割算法之SegNet论文理解: academic/语义及实例分割/语义分割算法之SegNet论文理解.md
-            - 语义分割算法之Unet论文理解: academic/语义及实例分割/语义分割算法之Unet论文理解.md
-            - 图像分割的一些理解: academic/语义及实例分割/图像分割的一些理解.md
-            - 用Pytorch实现三个优秀的自然图像分割框架！(4): academic/语义及实例分割/用Pytorch实现三个优秀的自然图像分割框架！(4).md
-            - TransBTS_ 3D 多模态脑肿瘤分割 Transformer 阅读笔记: academic/语义及实例分割/TransBTS_ 3D 多模态脑肿瘤分割 Transformer 阅读笔记.md
-            - UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记: academic/语义及实例分割/UTNet：用于医学图像分割的混合 Transformer 网络阅读笔记.md
-            - 轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记: academic/语义及实例分割/轻量级的肝脏与肝肿瘤 2.5D 分割网络阅读笔记.md
-            - GitNet：基于几何先验变换的鸟瞰图分割: academic/语义及实例分割/GitNet：基于几何先验变换的鸟瞰图分割.md
-            - CVPR 2022：Generalized Few-shot Semantic Segmentation 解读: academic/语义及实例分割/CVPR 2022：Generalized Few-shot Semantic Segmentation 解读.md
-            - CVPR22 迈向无监督的Zeroshot 分割_Garfield: academic/语义及实例分割/CVPR22 迈向无监督的Zeroshot 分割_Garfield.md
-            - MICCAI 2022：基于 MLP 的快速医学图像分割网络—UNeXt: academic/语义及实例分割/MICCAI 2022：基于 MLP 的快速医学图像分割网络—UNeXt.md
-            - 【MICCAI 2022】PHTrans：并行聚合全局和局部表示以进行医学图像分割: academic/语义及实例分割/【MICCAI 2022】PHTrans：并行聚合全局和局部表示以进行医学图像分割.md
-            - ECCV 2022：跨域小样本语义分割新基准（也提出 PATNet）: academic/语义及实例分割/ECCV 2022：跨域小样本语义分割新基准（也提出 PATNet）.md
-            - MICCAI 2022：使用自适应条形采样和双分支 Transformer 的 DA-Net: academic/语义及实例分割/MICCAI 2022：使用自适应条形采样和双分支 Transformer 的 DA-Net.md
-            - 医学图像的 AI 框架 MONAI 详细教程（一）: academic/语义及实例分割/医学图像的 AI 框架 MONAI 详细教程（一）.md
-            - TMI 2023：对比半监督学习的领域适应（跨相似解剖结构）分割: academic/语义及实例分割/TMI 2023：对比半监督学习的领域适应（跨相似解剖结构）分割.md
-            - MedSegDiff：基于 Diffusion Probabilistic Model 的医学图像分割: academic/语义及实例分割/MedSegDiff：基于 Diffusion Probabilistic Model 的医学图像分割.md
-            - 将Segment Anything扩展到医学图像领域: academic/语义及实例分割/将Segment Anything扩展到医学图像领域.md
-            - Segment Anything模型部分结构和代码解析: academic/语义及实例分割/Segment Anything模型部分结构和代码解析.md
-            - ImgX-DiffSeg 基于 DDPMs 的 3D 医学图像分割: academic/语义及实例分割/ImgX-DiffSeg 基于 DDPMs 的 3D 医学图像分割.md
-            - 用于语义分割的解码器 diffusion 预训练方法: academic/语义及实例分割/用于语义分割的解码器 diffusion 预训练方法.md
-            - CVPR 2023 中的领域适应-用于切片方向连续的无监督跨模态医学图像分割: academic/语义及实例分割/CVPR 2023 中的领域适应-用于切片方向连续的无监督跨模态医学图像分割.md
-            - IPMI 2023：Test Time Adaptation 的医学图像分割解决: academic/语义及实例分割/IPMI 2023：Test Time Adaptation 的医学图像分割解决.md
-            - ICCV 2023：CLIP 驱动的器官分割和肿瘤检测通用模型: academic/语义及实例分割/ICCV 2023：CLIP 驱动的器官分割和肿瘤检测通用模型.md
-            - MICCAI 2023 Continual Learning 的腹部多器官和肿瘤分割: academic/语义及实例分割/MICCAI 2023 Continual Learning 的腹部多器官和肿瘤分割.md
-            - 三维场景零样本分割新突破：SAMPro3D技术解读: academic/语义及实例分割/三维场景零样本分割新突破：SAMPro3D技术解读.md
+        - 科研及竞赛分享（质量较高）:
+            - 专栏介绍: academic/科研及竞赛分享/README.md
+            - 红外目标检测实验结果收集: academic/科研及竞赛分享/红外目标检测实验结果收集.md
+            - 如何改进yolov3: academic/科研及竞赛分享/如何改进yolov3.md
+            - 验证码识别竞赛解决方案: academic/科研及竞赛分享/验证码识别竞赛解决方案.md
+            - 关键点定位红外小目标: academic/科研及竞赛分享/关键点定位红外小目标.md
+            - 2019 天池县域农业大脑AI挑战赛冠军方案分享: academic/科研及竞赛分享/2019 天池县域农业大脑AI挑战赛冠军方案分享.md
+            - ACCV国际细粒度识别比赛复盘: academic/科研及竞赛分享/ACCV国际细粒度识别比赛复盘.md
+            - 基于CenterFace的模型优化记录: academic/科研及竞赛分享/基于CenterFace的模型优化记录.md
+            - 人物属性模型移动端实验记录: academic/科研及竞赛分享/人物属性模型移动端实验记录.md
+            - 基于深度学习的RGBD深度图补全算法文章鉴赏: academic/科研及竞赛分享/基于深度学习的RGBD深度图补全算法文章鉴赏.md
+            - Kaggle StarFish挑战赛金牌分享_cydiaChen: academic/科研及竞赛分享/Kaggle StarFish挑战赛金牌分享_cydiaChen.md
+            - 如何更快的训练Vision Transformer: academic/科研及竞赛分享/如何更快的训练Vision Transformer.md
+            - 双非硕的毕设复盘：数据库篇（文末附半自动标注工具包）: academic/科研及竞赛分享/双非硕的毕设复盘：数据库篇（文末附半自动标注工具包）.md
+            - CVPR 2023年AQTC挑战赛第一名解决方案：以功能-交互为中心的时空视觉语言对齐方法: academic/科研及竞赛分享/CVPR 2023年AQTC挑战赛第一名解决方案：以功能-交互为中心的时空视觉语言对齐方法.md
+            - CVPR VISION 23挑战赛第1赛道亚军解决方案 - 数据高效缺陷检测: academic/科研及竞赛分享/CVPR VISION 23挑战赛第1赛道亚军解决方案 - 数据高效缺陷检测.md
+            - 单目深度估计挑战赛冠军方案-ICCV2023: academic/科研及竞赛分享/单目深度估计挑战赛冠军方案-ICCV2023.md
+            - 视觉类表面缺陷检测项目相关技术总结: academic/科研及竞赛分享/视觉类表面缺陷检测项目相关技术总结.md
+        - 传统图像（已过时）: 
+            - 专栏介绍: academic/传统图像/README.md
+            - 一些有趣的图像算法（已过时）: 
+                - OpenCV图像处理专栏一  盘点常见颜色空间互转: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏一  盘点常见颜色空间互转.md
+                - OpenCV图像处理专栏二 《Local Color Correction 》论文阅读及C++复现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏二 《Local Color Correction 》论文阅读及C++复现.md
+                - OpenCV图像处理专栏三  灰度世界算法原理和实现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏三  灰度世界算法原理和实现.md
+                - OpenCV图像处理专栏四  自动白平衡之完美反射算法原理及C++实现:  academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏四  自动白平衡之完美反射算法原理及C++实现.md
+                - OpenCV图像处理专栏五  《Real-time adaptive contrast enhancement for imaging sensors》论文解读及实现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏五  《Real-time adaptive contrast enhancement for imaging sensors》论文解读及实现.md
+                - OpenCV图像处理专栏六  来自何凯明博士的暗通道去雾算法(CVPR 2009最佳论文): academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏六  来自何凯明博士的暗通道去雾算法(CVPR 2009最佳论文).md
+                - OpenCV图像处理专栏七  直方图均衡化算法及代码实现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏七  直方图均衡化算法及代码实现.md
+                - OpenCV图像处理专栏八   《Contrast image correction method》 论文阅读及代码实现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏八   《Contrast image correction method》 论文阅读及代码实现.md
+                - OpenCV图像处理专栏九  基于直方图的快速中值滤波算法: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏九  基于直方图的快速中值滤波算法.md
+                - OpenCV图像处理专栏十  利用中值滤波进行去雾: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十  利用中值滤波进行去雾.md
+                - OpenCV图像处理专栏十一  IEEE Xplore 2015的图像白平衡处理之动态阈值法: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十一  IEEE Xplore 2015的图像白平衡处理之动态阈值法.md
+                - OpenCV图像处理专栏十二 《基于二维伽马函数的光照不均匀图像自适应校正算法》: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十二 《基于二维伽马函数的光照不均匀图像自适应校正算法》.md
+                - OpenCV图像处理专栏十三  利用多尺度融合提升图像细节: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十三  利用多尺度融合提升图像细节.md
+                - OpenCV图像处理专栏十四  基于Retinex成像原理的自动色彩均衡算法(ACE): academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十四  基于Retinex成像原理的自动色彩均衡算法(ACE).md
+                - OpenCV图像处理专栏十五 《一种基于亮度均衡的图像阈值分割技术》: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十五 《一种基于亮度均衡的图像阈值分割技术》.md
+                - OpenCV图像处理专栏十六  合理选用Side Window Filter辅助矩形框检测: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十六  合理选用Side Window Filter辅助矩形框检测.md
+                - OpenCV图像处理专栏十七  清华大学《基于单幅图像的快速去雾》C++复现（有一定工程意义）: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十七  清华大学《基于单幅图像的快速去雾》C++复现（有一定工程意义）.md
+                - OpenCV图像处理专栏十八  手动构造Sobel算子完成边缘检测: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十八  手动构造Sobel算子完成边缘检测.md
+                - OpenCV图像处理专栏十九  手动实现基于Canny算子的边缘检测: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏十九  手动实现基于Canny算子的边缘检测.md
+                - OpenCV图像处理专栏二十 《Adaptive Logarithmic Mapping For Displaying High Contrast Scenes》复现: academic/传统图像/一些有趣的图像算法/OpenCV图像处理专栏二十 《Adaptive Logarithmic Mapping For Displaying High Contrast Scenes》复现.md
+                - 《Optimized contrast enhancement for real-time image and video dehazin》论文C++复现: academic/传统图像/一些有趣的图像算法/《Optimized contrast enhancement for real-time image and video dehazin》论文C++复现.md
+                - 《Single Image Haze Removal Using Dark Channel Prior》论文阅读及复现番外: academic/传统图像/一些有趣的图像算法/《Single Image Haze Removal Using Dark Channel Prior》论文阅读及复现番外(使用导向滤波估计更加精细的透射率).md
+                - 《改进非线性亮度提升模型的逆光图像恢复》论文复现: academic/传统图像/一些有趣的图像算法/《改进非线性亮度提升模型的逆光图像恢复》论文复现.md
+                - CVPR论文《100+ Times Faster Weighted Median Filter (WMF)》的实现和解析: academic/传统图像/一些有趣的图像算法/CVPR论文《100+ Times Faster Weighted Median Filter (WMF)》的实现和解析.md
+            - 一些基础的图像算法（已过时）:
+                - 《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》C++实现: academic/传统图像/一些基础的图像算法/《Adaptive Local Tone Mapping Based on Retinex for High Dynamic Range Images》C++实现.md
+                - RGB和CIELAB颜色空间转换及偏色检测: academic/传统图像/一些基础的图像算法/RGB和CIELAB颜色空间转换及偏色检测.md
+                - 肤色检测算法 - 基于不同颜色空间简单区域划分的皮肤检测算法: academic/传统图像/一些基础的图像算法/肤色检测算法 - 基于不同颜色空间简单区域划分的皮肤检测算法.md
+                - 高斯滤波的C++实现与优化: academic/传统图像/一些基础的图像算法/高斯滤波的C++实现与优化.md
+                - 基于二次多项式混合模型肤色检测算法: academic/传统图像/一些基础的图像算法/基于二次多项式混合模型肤色检测算法.md
+                - 色彩均衡化算法: academic/传统图像/一些基础的图像算法/色彩均衡化算法.md
+                - 双边滤波原理及Opencv调用: academic/传统图像/一些基础的图像算法/双边滤波原理及Opencv调用.md
+                - 同态滤波 原理及实现: academic/传统图像/一些基础的图像算法/同态滤波 原理及实现.md
+                - 图像处理中的分水岭算法: academic/传统图像/一些基础的图像算法/图像处理中的分水岭算法.md
+                - 图像处理中的模糊算法: academic/传统图像/一些基础的图像算法/图像处理中的模糊算法.md
+                - 图像处理中的锐化算: academic/传统图像/一些基础的图像算法/图像处理中的锐化算法.md
+                - 引导滤波 原理及实现: academic/传统图像/一些基础的图像算法/引导滤波 原理及实现.md
     - PROJECT:
-        - MsnhNet:
-            - 专栏介绍: project/Msnhnet/README.md
-            - 多平台轻量级PyTorch模型推理框架MsnhNet: project/Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
-            - Pytorch直转Msnhnet思路分享: project/Msnhnet/Pytorch直转Msnhnet思路分享.md
-            - 人脸106点Caffe模型如何部署到MsnhNet: project/Msnhnet/人脸106点Caffe模型如何部署到MsnhNet.md
-            - 图解神秘的NC4HW4: project/Msnhnet/图解神秘的NC4HW4.md
-            - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): project/Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
-            - 基于Msnhnet实现最优化问题(中)一(无约束优化问题): project/Msnhnet/基于Msnhnet实现最优化问题(中)一(无约束优化问题).md
-            - 基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程: project/Msnhnet/基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程.md
-        - CUDA相关的文章分享:
+        - CUDA相关的文章分享（质量较高）:
             - 专栏介绍: project/CUDA/README.md
             - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project/CUDA/Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
             - 以OneFlow为例梳理深度学习框架的那些插值方法: project/CUDA/以OneFlow为例梳理深度学习框架的那些插值方法.md
@@ -609,7 +597,7 @@ nav:
             - 【BBuf的CUDA笔记】十三，OpenAI Triton 入门笔记一: project/CUDA/【BBuf的CUDA笔记】十三，OpenAI Triton 入门笔记一.md
             - 【BBuf的CUDA笔记】十四，OpenAI Triton入门笔记二: project/CUDA/【BBuf的CUDA笔记】十四，OpenAI Triton入门笔记二.md
             - 【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention: project/CUDA/【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention.md
-        - PyTorch:
+        - PyTorch（质量较高）:
             - 专栏介绍: project/PyTorch/README.md
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
             - 一文理解PyTorch中的SyncBatchNorm: project/PyTorch/一文理解PyTorch中的SyncBatchNorm.md
@@ -639,9 +627,18 @@ nav:
             - AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）: project/P性能提升，星辰AI大模型TeleChat-12B评测.mdyTorch/AI Infra论文阅读之将流水线并行气泡几乎降到零（附基于Meagtron-LM的ZB-H1开源代码解读）.md
             - AI Infra论文阅读之LIGHTSEQ（LLM长文本训练的Infra工作）: project/PyTorch/AI Infra论文阅读之LIGHTSEQ（LLM长文本训练的Infra工作）.md
             - AI Infra论文阅读之《在LLM训练中减少激活值内存》: project/PyTorch/AI Infra论文阅读之《在LLM训练中减少激活值内存》.md
+        - MsnhNet（已过时）:
+            - 专栏介绍: project/Msnhnet/README.md
+            - 多平台轻量级PyTorch模型推理框架MsnhNet: project/Msnhnet/多平台轻量级PyTorch模型推理框架MsnhNet.md
+            - Pytorch直转Msnhnet思路分享: project/Msnhnet/Pytorch直转Msnhnet思路分享.md
+            - 人脸106点Caffe模型如何部署到MsnhNet: project/Msnhnet/人脸106点Caffe模型如何部署到MsnhNet.md
+            - 图解神秘的NC4HW4: project/Msnhnet/图解神秘的NC4HW4.md
+            - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): project/Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
+            - 基于Msnhnet实现最优化问题(中)一(无约束优化问题): project/Msnhnet/基于Msnhnet实现最优化问题(中)一(无约束优化问题).md
+            - 基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程: project/Msnhnet/基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程.md
         - 部署优化: 
             - 专栏介绍: project/部署优化/README.md
-            - AI PC端优化: 
+            - AI PC端优化（已过时）: 
                 - 【AI PC端算法优化】一，一步步优化RGB转灰度图算法: project/部署优化/AI PC端优化/【AI PC端算法优化】一，一步步优化RGB转灰度图算法.md
                 - 【AI PC端算法优化】二，一步步优化自然饱和度算法: project/部署优化/AI PC端优化/【AI PC端算法优化】二，一步步优化自然饱和度算法.md
                 - 【AI PC端算法优化】三，深入优化RGB转灰度图算法: project/部署优化/AI PC端优化/【AI PC端算法优化】三，深入优化RGB转灰度图算法.md
@@ -651,63 +648,7 @@ nav:
                 - 【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化: project/部署优化/AI PC端优化/【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化.md
                 - 【AI PC端算法优化】八，小半径中值滤波的SSE极速优化: project/部署优化/AI PC端优化/【AI PC端算法优化】八，小半径中值滤波的SSE极速优化.md
                 - Yolo系列模型的部署、精度对齐与int8量化加速: project/部署优化/AI PC端优化/Yolo系列模型的部署、精度对齐与int8量化加速.md
-            - AI 部署及其它优化算法: 
-                - NCNN:
-                    - Keras2NCNN？Yes: project/部署优化/AI 部署及其它优化算法/NCNN/Keras2NCNN？Yes.md
-                - OpenVINO:
-                    - vs2015 movidius 神经计算棒一代 ncsdk windows c++调用: project/部署优化/AI 部署及其它优化算法/OpenVINO/vs2015 movidius 神经计算棒一代 ncsdk windows c++调用.md
-                    - YOLOv3-tiny在VS2015上使用Openvino部署: project/部署优化/AI 部署及其它优化算法/OpenVINO/YOLOv3-tiny在VS2015上使用Openvino部署.md
-                    - 如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？: project/部署优化/AI 部署及其它优化算法/OpenVINO/如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？.md
-                    - c++实现yolov5的OpenVINO部署: project/部署优化/AI 部署及其它优化算法/OpenVINO/c++实现yolov5的OpenVINO部署.md
-                    - 手把手教你使用OpenVINO部署NanoDet模型: project/部署优化/AI 部署及其它优化算法/OpenVINO/手把手教你使用OpenVINO部署NanoDet模型.md
-                    - 基于Pytorch对YOLOV5 进行简易实现: project/部署优化/AI 部署及其它优化算法/OpenVINO/基于Pytorch对YOLOV5 进行简易实现.md
-                - TensorRT:
-                    - 一，TensorRT介绍，安装及如何使用？: project/部署优化/AI 部署及其它优化算法/TensorRT/一，TensorRT介绍，安装及如何使用？.md
-                    - 二，TensorRT Mnist数字识别使用示例: project/部署优化/AI 部署及其它优化算法/TensorRT/二，TensorRT Mnist数字识别使用示例.md
-                    - 三，如何使用tensorRT C++ API搭建网络: project/部署优化/AI 部署及其它优化算法/TensorRT/三，如何使用tensorRT C++ API搭建网络.md
-                    - 四，TensorRT 如何进行细粒度的Profiling: project/部署优化/AI 部署及其它优化算法/TensorRT/四，TensorRT 如何进行细粒度的Profiling.md
-                    - 五，在VS2015上利用TensorRT部署YOLOV3-Tiny模型: project/部署优化/AI 部署及其它优化算法/TensorRT/五，在VS2015上利用TensorRT部署YOLOV3-Tiny模型.md
-                    - 六，利用TensorRT部署YOLOV3-Tiny INT8量化模型: project/部署优化/AI 部署及其它优化算法/TensorRT/六，利用TensorRT部署YOLOV3-Tiny INT8量化模型.md
-                    - 基于TensorRT量化部署RepVGG模型: project/部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署RepVGG模型.md
-                    - 基于TensorRT量化部署YOLOV5s 4.0模型: project/部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署YOLOV5s 4.0模型.md
-                    - 基于TensorRT完成NanoDet模型部署: project/部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT完成NanoDet模型部署.md
-                - 如何让你的YOLOV3模型更小更快？: project/部署优化/AI 部署及其它优化算法/如何让你的YOLOV3模型更小更快？.md
-                - 基于Pytorch构建一个可训练的BNN: project/部署优化/AI 部署及其它优化算法/基于Pytorch构建一个可训练的BNN.md
-                - 基于Pytorch构建三值化网络TWN: project/部署优化/AI 部署及其它优化算法/基于Pytorch构建三值化网络TWN.md
-                - 低比特量化之XNOR-Net: project/部署优化/AI 部署及其它优化算法/低比特量化之XNOR-Net.md
-                - 低比特量化之DoreFa-Net理论与实践: project/部署优化/AI 部署及其它优化算法/低比特量化之DoreFa-Net理论与实践.md
-                - YOLOV3剪枝方法汇总: project/部署优化/AI 部署及其它优化算法/YOLOV3剪枝方法汇总.md
-                - Pytorch实现卷积神经网络训练量化（QAT）: project/部署优化/AI 部署及其它优化算法/Pytorch实现卷积神经网络训练量化（QAT）.md
-                - ICCV 2017 Learning Efficient Convolutional Networks through Network Slimming（模型剪枝）: project/部署优化/AI 部署及其它优化算法/ICCV 2017 Learning Efficient Convolutional Networks through Network Slimming（模型剪枝）.md
-                - VGG，ResNet，DenseNe模型剪枝代码实战: project/部署优化/AI 部署及其它优化算法/VGG，ResNet，DenseNe模型剪枝代码实战.md
-                - 快速exp算法: project/部署优化/AI 部署及其它优化算法/快速exp算法.md
-                - 折叠BN层: project/部署优化/AI 部署及其它优化算法/折叠BN层.md
-                - 并发编程: project/部署优化/AI 部署及其它优化算法/并发编程.md
-                - Pytorch量化感知训练详解: project/部署优化/AI 部署及其它优化算法/Pytorch量化感知训练详解.md
-                - 一文带你了解NeurlPS2020的模型剪枝研究: project/部署优化/AI 部署及其它优化算法/一文带你了解NeurlPS2020的模型剪枝研究.md
-                - 如何阅读一个前向推理框架？以NCNN为例: project/部署优化/AI 部署及其它优化算法/如何阅读一个前向推理框架？以NCNN为例。.md
-                - ONNX学习笔记: project/部署优化/AI 部署及其它优化算法/ONNX学习笔记.md
-                - ThiNet：模型通道结构化剪枝: project/部署优化/AI 部署及其它优化算法/ThiNet：模型通道结构化剪枝.md
-                - 基于一阶泰勒展开式的结构化剪枝: project/部署优化/AI 部署及其它优化算法/基于一阶泰勒展开式的结构化剪枝.md
-                - ONNX再探: project/部署优化/AI 部署及其它优化算法/ONNX再探.md
-                - 浅谈深度学习模型量化: project/部署优化/AI 部署及其它优化算法/浅谈深度学习模型量化.md
-                - onnx simplifier和onnx optimizer: project/部署优化/AI 部署及其它优化算法/onnx simplifier和onnx optimizer.md
-                - onnx2pytorch和onnx-simplifier新版介绍: project/部署优化/AI 部署及其它优化算法/onnx2pytorch和onnx-simplifier新版介绍.md
-                - 基于Caffe部署YOLOV5模型: project/部署优化/AI 部署及其它优化算法/基于Caffe部署YOLOV5模型.md
-                - Int 4量化用于目标检测: project/部署优化/AI 部署及其它优化算法/Int 4量化用于目标检测.md
-                - INT8 量化训练: project/部署优化/AI 部署及其它优化算法/INT8 量化训练.md
-                - EagleEye：一种用模型剪枝的快速衡量子网络性能的方法: project/部署优化/AI 部署及其它优化算法/EagleEye：一种用模型剪枝的快速衡量子网络性能的方法​.md
-                - 追求极致：Repvgg重参化对YOLO工业落地的实验和思考_陈TEL: project/部署优化/AI 部署及其它优化算法/追求极致：Repvgg重参化对YOLO工业落地的实验和思考_陈TEL.md
-                - F8Net只有8比特乘法的神经网络量化: project/部署优化/AI 部署及其它优化算法/F8Net只有8比特乘法的神经网络量化.md
-                - EWSG 基于元素级梯度缩放_LoBob: project/部署优化/AI 部署及其它优化算法/EWSG 基于元素级梯度缩放_LoBob.md
-                - 深度学习Int8的部署推理原理和经验验证: project/部署优化/AI 部署及其它优化算法/深度学习Int8的部署推理原理和经验验证.md
-                - Windows上基于TensorRT的YOLOV6部署保姆级教程: project/部署优化/AI 部署及其它优化算法/Windows上基于TensorRT的YOLOV6部署保姆级教程.md
-                - CVPR 2023 基于可恢复性度量的少样本剪枝方法: project/部署优化/AI 部署及其它优化算法/CVPR 2023 基于可恢复性度量的少样本剪枝方法.md
-                - 大模型部署框架 FastLLM 简要解析: project/部署优化/AI 部署及其它优化算法/大模型部署框架 FastLLM 简要解析.md
-                - 大模型部署框架 FastLLM 实现细节解析: project/部署优化/AI 部署及其它优化算法/大模型部署框架 FastLLM 实现细节解析.md
-                - AiDB一个集合了6大推理框架的AI工具箱加速你的模型部署: project/部署优化/AI 部署及其它优化算法/AiDB一个集合了6大推理框架的AI工具箱加速你的模型部署.md
-                - nndeploy：一款最新上线的支持多平台、简单易用、高性能的机器学习部署框架: project/部署优化/AI 部署及其它优化算法/nndeploy：一款最新上线的支持多平台、简单易用、高性能的机器学习部署框架.md
-            - AI 移动端算法优化: 
+            - AI 移动端算法优化（质量较高，但已过时）: 
                 - 移动端arm cpu优化学习笔记:
                     - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
                     - 移动端arm cpu优化学习笔记第2弹--常量阶时间复杂度中值滤波: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第2弹--常量阶时间复杂度中值滤波.md
@@ -739,7 +680,7 @@ nav:
                 - 工程部署（三）：低算力平台模型性能的优化_陈e: project/部署优化/AI 移动端算法优化/工程部署（三）：低算力平台模型性能的优化_陈e.md
                 - Windows 上基于 TensorRT 的 YOLOV6 部署保姆级教程: project/部署优化/AI 移动端算法优化/Windows 上基于 TensorRT 的 YOLOV6 部署保姆级教程.md
                 - 用于ARM Cortex-M系列的芯片的神经网络推理库CMSIS-NN详解: project/部署优化/AI 移动端算法优化/用于ARM Cortex-M系列的芯片的神经网络推理库CMSIS-NN详解.md
-            - 深度学习编译器:
+            - 深度学习编译器（质量较高）:
                 - 多面体模型在深度学习编译器的应用: project/部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
                 - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md
                 - 【从零开始学深度学习编译器】二，TVM中的scheduler: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】二，TVM中的scheduler.md
@@ -786,24 +727,72 @@ nav:
                 - 深度学习编译器之公共子表达式消除和死代码消除实现: project/部署优化/深度学习编译器/深度学习编译器之公共子表达式消除和死代码消除实现.md
                 - MLC-LLM 部署RWKV World系列模型实战（3B模型Mac M2解码可达26tokens每s）: project/部署优化/深度学习编译器/MLC-LLM 部署RWKV World系列模型实战（3B模型Mac M2解码可达26tokens每s）.md
                 - mlc-llm 推理优化和大语言模型搭建解析: project/部署优化/深度学习编译器/mlc-llm 推理优化和大语言模型搭建解析.md
-            - 自制深度学习推理框架:
-                - 自制深度学习推理框架-第一课-什么是推理框架: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第一课-什么是推理框架.md
-                - 自制深度学习推理框架-第二课-张量类Tensor的实现: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第二课-张量类Tensor的实现.md
-                - 自制深度学习推理框架-第三课-实现我们的第一个算子Relu: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第三课-实现我们的第一个算子Relu.md
-                - 自制深度学习推理框架-第四课-起飞！框架中的算子注册机制: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第四课-起飞！框架中的算子注册机制.md
-                - 自制深度学习推理框架-第五课-Max Pooling算子的实现: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第五课-Max Pooling算子的实现.md
-                - 自制深度学习推理框架-第六课-构建自己的计算图: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第六课-构建自己的计算图.md
-                - 自制深度学习推理框架-第七节-计算图中的表达式: project/部署优化/自制深度学习推理框架/自制深度学习推理框架-第七节-计算图中的表达式.md
-                - csapp-第九章-虚拟内存-读书笔记: project/部署优化/自制深度学习推理框架/csapp-第九章-虚拟内存-读书笔记.md
-                - csapp 第八章 异常控制流 读书笔记: project/部署优化/自制深度学习推理框架/csapp 第八章 异常控制流 读书笔记.md
-    - RESOURCES:
+            - AI 部署及其它优化算法（质量一般）: 
+                - NCNN:
+                    - Keras2NCNN？Yes: project/部署优化/AI 部署及其它优化算法/NCNN/Keras2NCNN？Yes.md
+                - OpenVINO（质量一般）:
+                    - vs2015 movidius 神经计算棒一代 ncsdk windows c++调用: project/部署优化/AI 部署及其它优化算法/OpenVINO/vs2015 movidius 神经计算棒一代 ncsdk windows c++调用.md
+                    - YOLOv3-tiny在VS2015上使用Openvino部署: project/部署优化/AI 部署及其它优化算法/OpenVINO/YOLOv3-tiny在VS2015上使用Openvino部署.md
+                    - 如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？: project/部署优化/AI 部署及其它优化算法/OpenVINO/如何使用OpenVINO部署以Mobilenet做Backbone的YOLOv3模型？.md
+                    - c++实现yolov5的OpenVINO部署: project/部署优化/AI 部署及其它优化算法/OpenVINO/c++实现yolov5的OpenVINO部署.md
+                    - 手把手教你使用OpenVINO部署NanoDet模型: project/部署优化/AI 部署及其它优化算法/OpenVINO/手把手教你使用OpenVINO部署NanoDet模型.md
+                    - 基于Pytorch对YOLOV5 进行简易实现: project/部署优化/AI 部署及其它优化算法/OpenVINO/基于Pytorch对YOLOV5 进行简易实现.md
+                - TensorRT（质量一般）:
+                    - 一，TensorRT介绍，安装及如何使用？: project/部署优化/AI 部署及其它优化算法/TensorRT/一，TensorRT介绍，安装及如何使用？.md
+                    - 二，TensorRT Mnist数字识别使用示例: project/部署优化/AI 部署及其它优化算法/TensorRT/二，TensorRT Mnist数字识别使用示例.md
+                    - 三，如何使用tensorRT C++ API搭建网络: project/部署优化/AI 部署及其它优化算法/TensorRT/三，如何使用tensorRT C++ API搭建网络.md
+                    - 四，TensorRT 如何进行细粒度的Profiling: project/部署优化/AI 部署及其它优化算法/TensorRT/四，TensorRT 如何进行细粒度的Profiling.md
+                    - 五，在VS2015上利用TensorRT部署YOLOV3-Tiny模型: project/部署优化/AI 部署及其它优化算法/TensorRT/五，在VS2015上利用TensorRT部署YOLOV3-Tiny模型.md
+                    - 六，利用TensorRT部署YOLOV3-Tiny INT8量化模型: project/部署优化/AI 部署及其它优化算法/TensorRT/六，利用TensorRT部署YOLOV3-Tiny INT8量化模型.md
+                    - 基于TensorRT量化部署RepVGG模型: project/部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署RepVGG模型.md
+                    - 基于TensorRT量化部署YOLOV5s 4.0模型: project/部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT量化部署YOLOV5s 4.0模型.md
+                    - 基于TensorRT完成NanoDet模型部署: project/部署优化/AI 部署及其它优化算法/TensorRT/基于TensorRT完成NanoDet模型部署.md
+                - 如何让你的YOLOV3模型更小更快？: project/部署优化/AI 部署及其它优化算法/如何让你的YOLOV3模型更小更快？.md
+                - 基于Pytorch构建一个可训练的BNN: project/部署优化/AI 部署及其它优化算法/基于Pytorch构建一个可训练的BNN.md
+                - 基于Pytorch构建三值化网络TWN: project/部署优化/AI 部署及其它优化算法/基于Pytorch构建三值化网络TWN.md
+                - 低比特量化之XNOR-Net: project/部署优化/AI 部署及其它优化算法/低比特量化之XNOR-Net.md
+                - 低比特量化之DoreFa-Net理论与实践: project/部署优化/AI 部署及其它优化算法/低比特量化之DoreFa-Net理论与实践.md
+                - YOLOV3剪枝方法汇总: project/部署优化/AI 部署及其它优化算法/YOLOV3剪枝方法汇总.md
+                - Pytorch实现卷积神经网络训练量化（QAT）: project/部署优化/AI 部署及其它优化算法/Pytorch实现卷积神经网络训练量化（QAT）.md
+                - ICCV 2017 Learning Efficient Convolutional Networks through Network Slimming（模型剪枝）: project/部署优化/AI 部署及其它优化算法/ICCV 2017 Learning Efficient Convolutional Networks through Network Slimming（模型剪枝）.md
+                - VGG，ResNet，DenseNe模型剪枝代码实战: project/部署优化/AI 部署及其它优化算法/VGG，ResNet，DenseNe模型剪枝代码实战.md
+                - 快速exp算法: project/部署优化/AI 部署及其它优化算法/快速exp算法.md
+                - 折叠BN层: project/部署优化/AI 部署及其它优化算法/折叠BN层.md
+                - 并发编程: project/部署优化/AI 部署及其它优化算法/并发编程.md
+                - Pytorch量化感知训练详解: project/部署优化/AI 部署及其它优化算法/Pytorch量化感知训练详解.md
+                - 一文带你了解NeurlPS2020的模型剪枝研究: project/部署优化/AI 部署及其它优化算法/一文带你了解NeurlPS2020的模型剪枝研究.md
+                - 如何阅读一个前向推理框架？以NCNN为例: project/部署优化/AI 部署及其它优化算法/如何阅读一个前向推理框架？以NCNN为例。.md
+                - ONNX学习笔记: project/部署优化/AI 部署及其它优化算法/ONNX学习笔记.md
+                - ThiNet：模型通道结构化剪枝: project/部署优化/AI 部署及其它优化算法/ThiNet：模型通道结构化剪枝.md
+                - 基于一阶泰勒展开式的结构化剪枝: project/部署优化/AI 部署及其它优化算法/基于一阶泰勒展开式的结构化剪枝.md
+                - ONNX再探: project/部署优化/AI 部署及其它优化算法/ONNX再探.md
+                - 浅谈深度学习模型量化: project/部署优化/AI 部署及其它优化算法/浅谈深度学习模型量化.md
+                - onnx simplifier和onnx optimizer: project/部署优化/AI 部署及其它优化算法/onnx simplifier和onnx optimizer.md
+                - onnx2pytorch和onnx-simplifier新版介绍: project/部署优化/AI 部署及其它优化算法/onnx2pytorch和onnx-simplifier新版介绍.md
+                - 基于Caffe部署YOLOV5模型: project/部署优化/AI 部署及其它优化算法/基于Caffe部署YOLOV5模型.md
+                - Int 4量化用于目标检测: project/部署优化/AI 部署及其它优化算法/Int 4量化用于目标检测.md
+                - INT8 量化训练: project/部署优化/AI 部署及其它优化算法/INT8 量化训练.md
+                - EagleEye：一种用模型剪枝的快速衡量子网络性能的方法: project/部署优化/AI 部署及其它优化算法/EagleEye：一种用模型剪枝的快速衡量子网络性能的方法​.md
+                - 追求极致：Repvgg重参化对YOLO工业落地的实验和思考_陈TEL: project/部署优化/AI 部署及其它优化算法/追求极致：Repvgg重参化对YOLO工业落地的实验和思考_陈TEL.md
+                - F8Net只有8比特乘法的神经网络量化: project/部署优化/AI 部署及其它优化算法/F8Net只有8比特乘法的神经网络量化.md
+                - EWSG 基于元素级梯度缩放_LoBob: project/部署优化/AI 部署及其它优化算法/EWSG 基于元素级梯度缩放_LoBob.md
+                - 深度学习Int8的部署推理原理和经验验证: project/部署优化/AI 部署及其它优化算法/深度学习Int8的部署推理原理和经验验证.md
+                - Windows上基于TensorRT的YOLOV6部署保姆级教程: project/部署优化/AI 部署及其它优化算法/Windows上基于TensorRT的YOLOV6部署保姆级教程.md
+                - CVPR 2023 基于可恢复性度量的少样本剪枝方法: project/部署优化/AI 部署及其它优化算法/CVPR 2023 基于可恢复性度量的少样本剪枝方法.md
+                - 大模型部署框架 FastLLM 简要解析: project/部署优化/AI 部署及其它优化算法/大模型部署框架 FastLLM 简要解析.md
+                - 大模型部署框架 FastLLM 实现细节解析: project/部署优化/AI 部署及其它优化算法/大模型部署框架 FastLLM 实现细节解析.md
+                - AiDB一个集合了6大推理框架的AI工具箱加速你的模型部署: project/部署优化/AI 部署及其它优化算法/AiDB一个集合了6大推理框架的AI工具箱加速你的模型部署.md
+                - nndeploy：一款最新上线的支持多平台、简单易用、高性能的机器学习部署框架: project/部署优化/AI 部署及其它优化算法/nndeploy：一款最新上线的支持多平台、简单易用、高性能的机器学习部署框架.md
+                - csapp-第九章-虚拟内存-读书笔记: project/部署优化/AI 部署及其它优化算法/csapp-第九章-虚拟内存-读书笔记.md
+                - csapp 第八章 异常控制流 读书笔记: project/部署优化/AI 部署及其它优化算法/csapp 第八章 异常控制流 读书笔记.md
+    - RESOURCES（质量一般）:
         - 专栏介绍: resources/README.md
-        - Pytorch YOLOV3:
+        - Pytorch YOLOV3（已过时）:
             - 超详细的Pytorch版yolov3代码中文注释汇总: resources/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释汇总.md
             - 超详细的Pytorch版yolov3代码中文注释详解（二）: resources/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（二）.md
             - 超详细的Pytorch版yolov3代码中文注释详解（三）: resources/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（三）.md
             - 超详细的Pytorch版yolov3代码中文注释详解（四）: resources/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释详解（四）.md
-        - Faster R-CNN原理及代码讲解电子书:
+        - Faster R-CNN原理及代码讲解电子书（已过时）:
             - 整体框架: resources/【资源】Faster R-CNN原理及代码讲解电子书.assets/【Faster RCNN理解】1. 整体框架.md
             - 概述: resources/【资源】Faster R-CNN原理及代码讲解电子书.assets/【Faster RCNN】2. 概述.md
             - Faster R-CNN原理及代码讲解电子书: resources/【资源】Faster R-CNN原理及代码讲解电子书.assets/Faster R-CNN原理及代码讲解电子书.md
