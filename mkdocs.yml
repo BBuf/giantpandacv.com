@@ -571,44 +571,46 @@ nav:
             - 使用Msnhnet实现最优化问题(1)一(无约束优化问题): project/Msnhnet/使用Msnhnet实现最优化问题(1)一(无约束优化问题).md
             - 基于Msnhnet实现最优化问题(中)一(无约束优化问题): project/Msnhnet/基于Msnhnet实现最优化问题(中)一(无约束优化问题).md
             - 基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程: project/Msnhnet/基于YOLOV5的数据集标注，训练，WindowsLinuxJetson Nano多平台部署全流程.md
-        - OneFlow或者CUDA相关的文章分享:
-            - 专栏介绍: project/OneFlow/README.md
-            - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project/OneFlow/Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
-            - 以OneFlow为例梳理深度学习框架的那些插值方法: project/OneFlow/以OneFlow为例梳理深度学习框架的那些插值方法.md
-            - 在OneFlow实现数据类型自动提升: project/OneFlow/在OneFlow实现数据类型自动提升.md
-            - 于OneFlow实现Unfold Fold算子: project/OneFlow/基于OneFlow实现Unfold Fold算子.md
-            - 基于OneFlow实现量化感知训练: project/OneFlow/基于OneFlow实现量化感知训练.md
-            - 深度学习框架OneFlow是如何和ONNX交互的: project/OneFlow/深度学习框架OneFlow是如何和ONNX交互的？.md
-            - 深度学习框架量化感知训练的思考及OneFlow的一种解决方案: project/OneFlow/深度学习框架量化感知训练的思考及OneFlow的一种解决方案.md
-            - Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat: project/OneFlow/Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat.md
-            - 使用OneFlow完成基于U型网络的ISBI细胞分割任务: project/OneFlow/使用OneFlow完成基于U型网络的ISBI细胞分割任务.md
-            - 深度学习框架如何优雅的做算子对齐任务？: project/OneFlow/深度学习框架如何优雅的做算子对齐任务？.md
-            - 一个Tensor在OneFlow的执行流程: project/OneFlow/一个Tensor在OneFlow的执行流程.md
-            - CUDA WarpReduce 学习笔记: project/OneFlow/CUDA WarpReduce 学习笔记.md
-            - 浅谈NVIDIA-H100白皮书: project/OneFlow/浅谈NVIDIA-H100白皮书.md
-            - HugeCTR源码简单走读: project/OneFlow/HugeCTR源码简单走读_zzk.md
-            - 基于 Flowflops 详解深度学习网络的 FLOPs 和 MACs 计算方案: project/OneFlow/基于 Flowflops 详解深度学习网络的 FLOPs 和 MACs 计算方案.md
-            - 详解 NVIDIA H100 TransformerEngine: project/OneFlow/详解 NVIDIA H100 TransformerEngine.md
-            - 【BBuf的CUDA笔记】一，解析OneFlow Element-Wise 算子实现: project/OneFlow/【BBuf的CUDA笔记】一，解析OneFlow Element-Wise 算子实现.md
-            - 【BBuf的CUDA笔记】二，解析 OneFlow BatchNorm 相关算子实现: project/OneFlow/【BBuf的CUDA笔记】二，解析 OneFlow BatchNorm 相关算子实现.md
-            - 【BBuf的CUDA笔记】三，reduce优化入门学习笔记: project/OneFlow/【BBuf的CUDA笔记】三，reduce优化入门学习笔记.md
-            - 【BBuf的CUDA笔记】四，介绍三个高效实用的CUDA算法实现（OneFlow ElementWise模板，FastAtomicAdd模板，OneFlow UpsampleNearest2d模板）: project/OneFlow/【BBuf的CUDA笔记】四，介绍三个高效实用的CUDA算法实现（OneFlow ElementWise模板，FastAtomicAdd模板，OneFlow UpsampleNearest2d模板）.md
-            - 【BBuf的CUDA笔记】五，解读 PyTorch index_add 操作涉及的优化技术: project/OneFlow/【BBuf的CUDA笔记】五，解读 PyTorch index_add 操作涉及的优化技术.md
-            - 【BBuf的CUDA笔记】六，总结 FasterTransformer Encoder(BERT) 的cuda相关优化技巧: project/OneFlow/【BBuf的CUDA笔记】六，总结 FasterTransformer Encoder(BERT) 的cuda相关优化技巧.md
+        - CUDA相关的文章分享:
+            - 专栏介绍: project/CUDA/README.md
+            - Oneflow 实现强化学习玩 Flappy Bird 小游戏: project/CUDA/Oneflow 实现强化学习玩 Flappy Bird 小游戏.md
+            - 以OneFlow为例梳理深度学习框架的那些插值方法: project/CUDA/以OneFlow为例梳理深度学习框架的那些插值方法.md
+            - 在OneFlow实现数据类型自动提升: project/CUDA/在OneFlow实现数据类型自动提升.md
+            - 于OneFlow实现Unfold Fold算子: project/CUDA/基于OneFlow实现Unfold Fold算子.md
+            - 基于OneFlow实现量化感知训练: project/CUDA/基于OneFlow实现量化感知训练.md
+            - 深度学习框架OneFlow是如何和ONNX交互的: project/CUDA/深度学习框架OneFlow是如何和ONNX交互的？.md
+            - 深度学习框架量化感知训练的思考及OneFlow的一种解决方案: project/CUDA/深度学习框架量化感知训练的思考及OneFlow的一种解决方案.md
+            - Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat: project/CUDA/Oneflow 添加算子实践 ---- 实现 Expand 和 Repeat.md
+            - 使用OneFlow完成基于U型网络的ISBI细胞分割任务: project/CUDA/使用OneFlow完成基于U型网络的ISBI细胞分割任务.md
+            - 深度学习框架如何优雅的做算子对齐任务？: project/CUDA/深度学习框架如何优雅的做算子对齐任务？.md
+            - 一个Tensor在OneFlow的执行流程: project/CUDA/一个Tensor在OneFlow的执行流程.md
+            - CUDA WarpReduce 学习笔记: project/CUDA/CUDA WarpReduce 学习笔记.md
+            - 浅谈NVIDIA-H100白皮书: project/CUDA/浅谈NVIDIA-H100白皮书.md
+            - HugeCTR源码简单走读: project/CUDA/HugeCTR源码简单走读_zzk.md
+            - 基于 Flowflops 详解深度学习网络的 FLOPs 和 MACs 计算方案: project/CUDA/基于 Flowflops 详解深度学习网络的 FLOPs 和 MACs 计算方案.md
+            - 详解 NVIDIA H100 TransformerEngine: project/CUDA/详解 NVIDIA H100 TransformerEngine.md
+            - 【BBuf的CUDA笔记】一，解析OneFlow Element-Wise 算子实现: project/CUDA/【BBuf的CUDA笔记】一，解析OneFlow Element-Wise 算子实现.md
+            - 【BBuf的CUDA笔记】二，解析 OneFlow BatchNorm 相关算子实现: project/CUDA/【BBuf的CUDA笔记】二，解析 OneFlow BatchNorm 相关算子实现.md
+            - 【BBuf的CUDA笔记】三，reduce优化入门学习笔记: project/CUDA/【BBuf的CUDA笔记】三，reduce优化入门学习笔记.md
+            - 【BBuf的CUDA笔记】四，介绍三个高效实用的CUDA算法实现（OneFlow ElementWise模板，FastAtomicAdd模板，OneFlow UpsampleNearest2d模板）: project/CUDA/【BBuf的CUDA笔记】四，介绍三个高效实用的CUDA算法实现（OneFlow ElementWise模板，FastAtomicAdd模板，OneFlow UpsampleNearest2d模板）.md
+            - 【BBuf的CUDA笔记】五，解读 PyTorch index_add 操作涉及的优化技术: project/CUDA/【BBuf的CUDA笔记】五，解读 PyTorch index_add 操作涉及的优化技术.md
+            - 【BBuf的CUDA笔记】六，总结 FasterTransformer Encoder(BERT) 的cuda相关优化技巧: project/CUDA/【BBuf的CUDA笔记】六，总结 FasterTransformer Encoder(BERT) 的cuda相关优化技巧.md
             - 【BBuf的CUDA笔记】七，总结 FasterTransformer Decoder(GPT) 的cuda相关优化技巧: project/部署优化/【BBuf的CUDA笔记】七，总结 FasterTransformer Decoder(GPT) 的cuda相关优化技巧.md
-            - 【BBuf的CUDA笔记】八，对比学习OneFlow 和 FasterTransformer 的 Softmax Cuda实现: project/OneFlow/【BBuf的CUDA笔记】八，对比学习OneFlow 和 FasterTransformer 的 Softmax Cuda实现.md
-            - 【BBuf的CUDA笔记】九，使用newbing（chatgpt）解析oneflow softmax相关的fuse优化: project/OneFlow/【BBuf的CUDA笔记】九，使用newbing（chatgpt）解析oneflow softmax相关的fuse优化.md
-            - CodeGeeX 130亿参数大模型的调优笔记：比FasterTransformer更快的解决方案: project/OneFlow/CodeGeeX 130亿参数大模型的调优笔记：比FasterTransformer更快的解决方案.md
-            - ChatGPT和Claude 对比测试以Review MLIR Codegen代码为例: project/OneFlow/ChatGPT和Claude 对比测试以Review MLIR Codegen代码为例.md
-            - 【BBuf的CUDA笔记】十，Linear Attention的cuda kernel实现解析: project/OneFlow/【BBuf的CUDA笔记】十，Linear Attention的cuda kernel实现解析.md
-            - 【BBuf的CUDA笔记】十一，Linear Attention的cuda kernel实现补档: project/OneFlow/【BBuf的CUDA笔记】十一，Linear Attention的cuda kernel实现补档.md
-            - 乱谈CUTLASS GTC2020 SLIDES: project/OneFlow/乱谈CUTLASS GTC2020 SLIDES.md
-            - 可能是讲得最清楚的WeightOnlyGEMM: project/OneFlow/可能是讲得最清楚的WeightOnlyGEMM.md
-            - 【BBuf的CUDA笔记】十二，LayerNorm，RMSNorm的重计算实现: project/OneFlow/【BBuf的CUDA笔记】十二，LayerNorm，RMSNorm的重计算实现.md
-            - 【BBuf的CUDA笔记】十三，OpenAI Triton 入门笔记一: project/OneFlow/【BBuf的CUDA笔记】十三，OpenAI Triton 入门笔记一.md
-            - 【BBuf的CUDA笔记】十四，OpenAI Triton入门笔记二: project/OneFlow/【BBuf的CUDA笔记】十四，OpenAI Triton入门笔记二.md
-            - 【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention: project/OneFlow/【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention.md
+            - 【BBuf的CUDA笔记】八，对比学习OneFlow 和 FasterTransformer 的 Softmax Cuda实现: project/CUDA/【BBuf的CUDA笔记】八，对比学习OneFlow 和 FasterTransformer 的 Softmax Cuda实现.md
+            - 【BBuf的CUDA笔记】九，使用newbing（chatgpt）解析oneflow softmax相关的fuse优化: project/CUDA/【BBuf的CUDA笔记】九，使用newbing（chatgpt）解析oneflow softmax相关的fuse优化.md
+            - CodeGeeX 130亿参数大模型的调优笔记：比FasterTransformer更快的解决方案: project/CUDA/CodeGeeX 130亿参数大模型的调优笔记：比FasterTransformer更快的解决方案.md
+            - ChatGPT和Claude 对比测试以Review MLIR Codegen代码为例: project/CUDA/ChatGPT和Claude 对比测试以Review MLIR Codegen代码为例.md
+            - 【BBuf的cuda学习笔记十】Megatron-LM的gradient_accumulation_fusion优化: project/CUDA/【BBuf的cuda学习笔记十】Megatron-LM的gradient_accumulation_fusion优化.md
+            - 【BBuf的CUDA笔记】十，Linear Attention的cuda kernel实现解析: project/CUDA/【BBuf的CUDA笔记】十，Linear Attention的cuda kernel实现解析.md
+            - 【BBuf的CUDA笔记】十一，Linear Attention的cuda kernel实现补档: project/CUDA/【BBuf的CUDA笔记】十一，Linear Attention的cuda kernel实现补档.md
+            - 乱谈CUTLASS GTC2020 SLIDES: project/CUDA/乱谈CUTLASS GTC2020 SLIDES.md
+            - 可能是讲得最清楚的WeightOnlyGEMM: project/CUDA/可能是讲得最清楚的WeightOnlyGEMM.md
+            - 【BBuf的CUDA笔记】十二，LayerNorm，RMSNorm的重计算实现: project/CUDA/【BBuf的CUDA笔记】十二，LayerNorm，RMSNorm的重计算实现.md
+            - 【BBuf的CUDA笔记】十三，OpenAI Triton 入门笔记一: project/CUDA/【BBuf的CUDA笔记】十三，OpenAI Triton 入门笔记一.md
+            - 【BBuf的CUDA笔记】十四，OpenAI Triton入门笔记二: project/CUDA/【BBuf的CUDA笔记】十四，OpenAI Triton入门笔记二.md
+            - 【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention: project/CUDA/【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention.md
         - PyTorch:
+            - 专栏介绍: project/PyTorch/README.md
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
             - 一文理解PyTorch中的SyncBatchNorm: project/PyTorch/一文理解PyTorch中的SyncBatchNorm.md
             - 【DeepSpeed 教程翻译】开始，安装细节和CIFAR-10 Tutorial: project/PyTorch/【DeepSpeed 教程翻译】开始，安装细节和CIFAR-10 Tutorial.md
@@ -618,7 +620,6 @@ nav:
             - DeepSpeed-Chat 打造类ChatGPT全流程 笔记一: project/PyTorch/DeepSpeed-Chat 打造类ChatGPT全流程 笔记一.md
             - DeepSpeed-Chat 打造类ChatGPT全流程 笔记二之监督指令微调: project/PyTorch/DeepSpeed-Chat 打造类ChatGPT全流程 笔记二之监督指令微调.md
             - 【DeepSpeed 教程】四，DeepSpeed ZeRO++博客和代码解析: project/PyTorch/【DeepSpeed 教程】四，DeepSpeed ZeRO++博客和代码解析.md
-            - 【BBuf的cuda学习笔记十】Megatron-LM的gradient_accumulation_fusion优化: project/PyTorch/【BBuf的cuda学习笔记十】Megatron-LM的gradient_accumulation_fusion优化.md
             - XLA和PyTorch的桥接: project/PyTorch/XLA和PyTorch的桥接.md
             - 《PytorchConference2023 翻译系列》1-Pytorch2.0与社区现状介绍: project/PyTorch/《PytorchConference2023 翻译系列》1-Pytorch2.0与社区现状介绍.md
             - 《PytorchConference2023 翻译系列》2-PyTorch开发者基础设施: project/PyTorch/《PytorchConference2023 翻译系列》2-PyTorch开发者基础设施.md
@@ -831,10 +832,10 @@ nav:
         - ALITA用于自动驾驶的大规模增量数据集: resources/ALITA用于自动驾驶的大规模增量数据集.md
     - VIDEO:
         - video: video/video_1.md
-    - 公众号文章按时间顺序的索引:
-        - 公众号文章按时间顺序的索引: resources/公众号文章按时间顺序的索引.md
-    - 大模型，CUDA，深度学习框架，AI Infra，AI 编译器学习资料汇总:
-        - 大模型，CUDA，深度学习框架，AI Infra，AI 编译器学习资料汇总: resources/llm_infra.md
+    - History List:
+        - History List: resources/公众号文章按时间顺序的索引.md
+    - Github Resources:
+        - Github Resources: resources/llm_infra.md
 
 # Theme
 theme:

@@ -3,3 +3,5 @@
 - LLM和CUDA： https://github.com/BBuf/how-to-optim-algorithm-in-cuda
 - TVM和MLIR等深度学习编译器：https://github.com/BBuf/tvm_mlir_learn
 - PyTorch/OneFlow等深度学习框架：https://github.com/BBuf/how-to-learn-deep-learning-framework
+
+欢迎大家提pr补充
