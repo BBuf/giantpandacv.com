@@ -648,7 +648,7 @@ nav:
                 - 【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化: project/部署优化/AI PC端优化/【AI PC端算法优化】七，RGB和YUV图像颜色空间互转SSE优化.md
                 - 【AI PC端算法优化】八，小半径中值滤波的SSE极速优化: project/部署优化/AI PC端优化/【AI PC端算法优化】八，小半径中值滤波的SSE极速优化.md
                 - Yolo系列模型的部署、精度对齐与int8量化加速: project/部署优化/AI PC端优化/Yolo系列模型的部署、精度对齐与int8量化加速.md
-            - AI 移动端算法优化（质量较高，但已过时）: 
+            - AI 移动端算法优化（质量较高）: 
                 - 移动端arm cpu优化学习笔记:
                     - 移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记----一步步优化盒子滤波（Box Filter）.md
                     - 移动端arm cpu优化学习笔记第2弹--常量阶时间复杂度中值滤波: project/部署优化/AI 移动端算法优化/移动端arm cpu优化学习笔记/移动端arm cpu优化学习笔记第2弹--常量阶时间复杂度中值滤波.md
@@ -728,7 +728,7 @@ nav:
                 - MLC-LLM 部署RWKV World系列模型实战（3B模型Mac M2解码可达26tokens每s）: project/部署优化/深度学习编译器/MLC-LLM 部署RWKV World系列模型实战（3B模型Mac M2解码可达26tokens每s）.md
                 - mlc-llm 推理优化和大语言模型搭建解析: project/部署优化/深度学习编译器/mlc-llm 推理优化和大语言模型搭建解析.md
             - AI 部署及其它优化算法（质量一般）: 
-                - NCNN:
+                - NCNN（已过时）:
                     - Keras2NCNN？Yes: project/部署优化/AI 部署及其它优化算法/NCNN/Keras2NCNN？Yes.md
                 - OpenVINO（质量一般）:
                     - vs2015 movidius 神经计算棒一代 ncsdk windows c++调用: project/部署优化/AI 部署及其它优化算法/OpenVINO/vs2015 movidius 神经计算棒一代 ncsdk windows c++调用.md
@@ -785,7 +785,7 @@ nav:
                 - nndeploy：一款最新上线的支持多平台、简单易用、高性能的机器学习部署框架: project/部署优化/AI 部署及其它优化算法/nndeploy：一款最新上线的支持多平台、简单易用、高性能的机器学习部署框架.md
                 - csapp-第九章-虚拟内存-读书笔记: project/部署优化/AI 部署及其它优化算法/csapp-第九章-虚拟内存-读书笔记.md
                 - csapp 第八章 异常控制流 读书笔记: project/部署优化/AI 部署及其它优化算法/csapp 第八章 异常控制流 读书笔记.md
-    - RESOURCES（质量一般）:
+    - RESOURCES:
         - 专栏介绍: resources/README.md
         - Pytorch YOLOV3（已过时）:
             - 超详细的Pytorch版yolov3代码中文注释汇总: resources/逍遥王可爱 Pytorch YOLOV3/超详细的Pytorch版yolov3代码中文注释汇总.md
@@ -805,17 +805,17 @@ nav:
         - 【资源】数据增强开源库推荐: resources/【资源】数据增强开源库推荐.md
         - 【资源】超详细的Pytorch版yolov3代码中文注释汇总: resources/【资源】超详细的Pytorch版yolov3代码中文注释汇总.md
         - 快速学习使用tikz绘制CNN示意图: resources/快速学习使用tikz绘制CNN示意图.md
-        - 计算机视觉 书籍数据集标注工具学习路线整理: resources/计算机视觉 书籍数据集标注工具学习路线整理.md
+        - 计算机视觉 书籍数据集标注工具学习路线整理（已过时）: resources/计算机视觉 书籍数据集标注工具学习路线整理.md
         - Pytorch_lightning工具推荐: resources/Pytorch_lightning工具推荐.md
         - 如何标准化管理深度学习实验: resources/如何标准化管理深度学习实验.md
         - 如何阅读和学习项目代码: resources/如何阅读和学习项目代码.md
         - 让vscode在远程连接服务器时候如本地般顺滑地debug: resources/让vscode在远程连接服务器时候如本地般顺滑地debug.md
         - 如何让vscode远程连接服务器上的docker环境进行debug: resources/如何让vscode远程连接服务器上的docker环境进行debug.md
-        - 我们是如何搭建GiantPandaCV.com的: resources/我们是如何搭建GiantPandaCV.com的.md
+        - 我们是如何搭建GiantPandaCV网站的: resources/我们是如何搭建GiantPandaCV.com的.md
         - Linux中Shell编程语法: resources/Linux中Shell编程语法.md
-        - docker基础知识分享: resources/docker基础知识分享.md
+        - Docker基础知识分享: resources/docker基础知识分享.md
         - CASIA标注工具: resources/CASIA标注工具.md
-        - darklabel教程: resources/darklabel教程.md
+        - Darklabel教程: resources/darklabel教程.md
         - 简易关键点标注软件: resources/简易关键点标注软件.md
         - ffcv让数据加载不再是瓶颈: resources/ffcv让数据加载不再是瓶颈.md
         - ALITA用于自动驾驶的大规模增量数据集: resources/ALITA用于自动驾驶的大规模增量数据集.md
