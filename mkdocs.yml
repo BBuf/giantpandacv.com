@@ -600,6 +600,7 @@ nav:
             - 【BBuf的CUDA笔记】十四，OpenAI Triton入门笔记二: project/CUDA/【BBuf的CUDA笔记】十四，OpenAI Triton入门笔记二.md
             - 【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention: project/CUDA/【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention.md
             - flash-linear-attention的fused_recurrent_rwkv6 Triton实现精读: project/CUDA/flash-linear-attention的fused_recurrent_rwkv6 Triton实现精读.md
+            - 在GPU上加速RWKV6模型的Linear Attention计算: project/CUDA/在GPU上加速RWKV6模型的Linear Attention计算.md
         - PyTorch（质量较高）:
             - 专栏介绍: project/PyTorch/README.md
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
