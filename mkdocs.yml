@@ -91,6 +91,7 @@ nav:
                 - 使用GPT4做Leetcode第 102 场双周赛: academic/算法科普/ChatGPT/使用GPT4做Leetcode第 102 场双周赛.md
                 - OpenAI Superalignment的一种途径——Weak-to-Strong Generalization: academic/算法科普/ChatGPT/OpenAI Superalignment的一种途径——Weak-to-Strong Generalization.md
                 - AffineQuant 大语言模型的仿射变换量化: academic/算法科普/Transformer/AffineQuant 大语言模型的仿射变换量化.md
+                - 单节点8xA800跑起来HuggingFace DeepSeek V2踩坑: academic/算法科普/Transformer/单节点8xA800跑起来HuggingFace DeepSeek V2踩坑.md
             - 半监督&无监督（质量较低）:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
