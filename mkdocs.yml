@@ -92,6 +92,7 @@ nav:
                 - OpenAI Superalignment的一种途径——Weak-to-Strong Generalization: academic/算法科普/ChatGPT/OpenAI Superalignment的一种途径——Weak-to-Strong Generalization.md
                 - AffineQuant 大语言模型的仿射变换量化: academic/算法科普/Transformer/AffineQuant 大语言模型的仿射变换量化.md
                 - 单节点8xA800跑起来HuggingFace DeepSeek V2踩坑: academic/算法科普/Transformer/单节点8xA800跑起来HuggingFace DeepSeek V2踩坑.md
+                - GQA，MLA之外的另一种KV Cache压缩方式：动态内存压缩（DMC）: academic/算法科普/Transformer/GQA，MLA之外的另一种KV Cache压缩方式：动态内存压缩（DMC）.md
             - 半监督&无监督（质量较低）:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
@@ -601,6 +602,7 @@ nav:
             - 【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention: project/CUDA/【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention.md
             - flash-linear-attention的fused_recurrent_rwkv6 Triton实现精读: project/CUDA/flash-linear-attention的fused_recurrent_rwkv6 Triton实现精读.md
             - 在GPU上加速RWKV6模型的Linear Attention计算: project/CUDA/在GPU上加速RWKV6模型的Linear Attention计算.md
+            - 硬件高效的线性注意力机制Gated Linear Attention论文阅读: project/CUDA/硬件高效的线性注意力机制Gated Linear Attention论文阅读.md
         - PyTorch（质量较高）:
             - 专栏介绍: project/PyTorch/README.md
             - 用沐神的方法阅读PyTorch FX论文: project/PyTorch/用沐神的方法阅读PyTorch FX论文.md
