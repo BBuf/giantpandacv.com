@@ -93,6 +93,7 @@ nav:
                 - AffineQuant 大语言模型的仿射变换量化: academic/算法科普/Transformer/AffineQuant 大语言模型的仿射变换量化.md
                 - 单节点8xA800跑起来HuggingFace DeepSeek V2踩坑: academic/算法科普/Transformer/单节点8xA800跑起来HuggingFace DeepSeek V2踩坑.md
                 - GQA，MLA之外的另一种KV Cache压缩方式：动态内存压缩（DMC）: academic/算法科普/Transformer/GQA，MLA之外的另一种KV Cache压缩方式：动态内存压缩（DMC）.md
+                -             - OverlapMamba 具备超强泛化能力的定位方法: academic/算法科普/Transformer/OverlapMamba 具备超强泛化能力的定位方法.md
             - 半监督&无监督（质量较低）:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
@@ -602,6 +603,7 @@ nav:
             - 【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention: project/CUDA/【BBuf的CUDA笔记】十五，OpenAI Triton入门笔记三 FusedAttention.md
             - flash-linear-attention的fused_recurrent_rwkv6 Triton实现精读: project/CUDA/flash-linear-attention的fused_recurrent_rwkv6 Triton实现精读.md
             - 在GPU上加速RWKV6模型的Linear Attention计算: project/CUDA/在GPU上加速RWKV6模型的Linear Attention计算.md
+            - flash-linear-attention中的Chunkwise并行算法的理解: project/CUDA/flash-linear-attention中的Chunkwise并行算法的理解.md
             - 硬件高效的线性注意力机制Gated Linear Attention论文阅读: project/CUDA/硬件高效的线性注意力机制Gated Linear Attention论文阅读.md
         - PyTorch（质量较高）:
             - 专栏介绍: project/PyTorch/README.md
@@ -686,6 +688,7 @@ nav:
                 - 工程部署（三）：低算力平台模型性能的优化_陈e: project/部署优化/AI 移动端算法优化/工程部署（三）：低算力平台模型性能的优化_陈e.md
                 - Windows 上基于 TensorRT 的 YOLOV6 部署保姆级教程: project/部署优化/AI 移动端算法优化/Windows 上基于 TensorRT 的 YOLOV6 部署保姆级教程.md
                 - 用于ARM Cortex-M系列的芯片的神经网络推理库CMSIS-NN详解: project/部署优化/AI 移动端算法优化/用于ARM Cortex-M系列的芯片的神经网络推理库CMSIS-NN详解.md
+                - NEON做色域变化_ 用单核性能无限逼近八核并行OpenCV: project/部署优化/AI 移动端算法优化/NEON做色域变化_ 用单核性能无限逼近八核并行OpenCV.md
             - 深度学习编译器（质量较高）:
                 - 多面体模型在深度学习编译器的应用: project/部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
                 - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md
