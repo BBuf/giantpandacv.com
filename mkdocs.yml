@@ -93,7 +93,8 @@ nav:
                 - AffineQuant 大语言模型的仿射变换量化: academic/算法科普/Transformer/AffineQuant 大语言模型的仿射变换量化.md
                 - 单节点8xA800跑起来HuggingFace DeepSeek V2踩坑: academic/算法科普/Transformer/单节点8xA800跑起来HuggingFace DeepSeek V2踩坑.md
                 - GQA，MLA之外的另一种KV Cache压缩方式：动态内存压缩（DMC）: academic/算法科普/Transformer/GQA，MLA之外的另一种KV Cache压缩方式：动态内存压缩（DMC）.md
-                -             - OverlapMamba 具备超强泛化能力的定位方法: academic/算法科普/Transformer/OverlapMamba 具备超强泛化能力的定位方法.md
+                - OverlapMamba 具备超强泛化能力的定位方法: academic/算法科普/Transformer/OverlapMamba 具备超强泛化能力的定位方法.md
+                - vAttention：用于在没有Paged Attention的情况下Serving LLM: academic/算法科普/Transformer/vAttention：用于在没有Paged Attention的情况下Serving LLM.md
             - 半监督&无监督（质量较低）:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
