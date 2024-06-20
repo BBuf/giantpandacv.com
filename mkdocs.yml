@@ -95,6 +95,7 @@ nav:
                 - GQA，MLA之外的另一种KV Cache压缩方式：动态内存压缩（DMC）: academic/算法科普/Transformer/GQA，MLA之外的另一种KV Cache压缩方式：动态内存压缩（DMC）.md
                 - OverlapMamba 具备超强泛化能力的定位方法: academic/算法科普/Transformer/OverlapMamba 具备超强泛化能力的定位方法.md
                 - vAttention：用于在没有Paged Attention的情况下Serving LLM: academic/算法科普/Transformer/vAttention：用于在没有Paged Attention的情况下Serving LLM.md
+                - 大模型KV Cache节省神器MLA学习笔记（包含推理时的矩阵吸收分析）: academic/算法科普/Transformer/大模型KV Cache节省神器MLA学习笔记（包含推理时的矩阵吸收分析）.md
             - 半监督&无监督（质量较低）:
                 - WSCL: academic/算法科普/半监督&无监督/WSCL.md
                 - 弱监督方法在森林病虫害检测中的应用: academic/算法科普/半监督&无监督/弱监督方法在森林病虫害检测中的应用.md
@@ -690,6 +691,7 @@ nav:
                 - Windows 上基于 TensorRT 的 YOLOV6 部署保姆级教程: project/部署优化/AI 移动端算法优化/Windows 上基于 TensorRT 的 YOLOV6 部署保姆级教程.md
                 - 用于ARM Cortex-M系列的芯片的神经网络推理库CMSIS-NN详解: project/部署优化/AI 移动端算法优化/用于ARM Cortex-M系列的芯片的神经网络推理库CMSIS-NN详解.md
                 - NEON做色域变化_ 用单核性能无限逼近八核并行OpenCV: project/部署优化/AI 移动端算法优化/NEON做色域变化_ 用单核性能无限逼近八核并行OpenCV.md
+                - 60行代码加速20倍_NEON实现深度学习OD任务后处理绘框: project/部署优化/AI 移动端算法优化/60行代码加速20倍_NEON实现深度学习OD任务后处理绘框
             - 深度学习编译器（质量较高）:
                 - 多面体模型在深度学习编译器的应用: project/部署优化/深度学习编译器/多面体模型在深度学习编译器的应用.md
                 - 【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍: project/部署优化/深度学习编译器/【从零开始学深度学习编译器】一，深度学习编译器及TVM介绍.md
@@ -793,6 +795,7 @@ nav:
                 - 大模型部署框架 FastLLM 实现细节解析: project/部署优化/AI 部署及其它优化算法/大模型部署框架 FastLLM 实现细节解析.md
                 - AiDB一个集合了6大推理框架的AI工具箱加速你的模型部署: project/部署优化/AI 部署及其它优化算法/AiDB一个集合了6大推理框架的AI工具箱加速你的模型部署.md
                 - nndeploy：一款最新上线的支持多平台、简单易用、高性能的机器学习部署框架: project/部署优化/AI 部署及其它优化算法/nndeploy：一款最新上线的支持多平台、简单易用、高性能的机器学习部署框架.md
+                - 如何使用“LoRa”的方式加载Onnx模型：StableDiffusion相关模型 的C++推理:  project/部署优化/AI 部署及其它优化算法/如何使用“LoRa”的方式加载Onnx模型：StableDiffusion相关模型 的C++推理.md
                 - csapp-第九章-虚拟内存-读书笔记: project/部署优化/AI 部署及其它优化算法/csapp-第九章-虚拟内存-读书笔记.md
                 - csapp 第八章 异常控制流 读书笔记: project/部署优化/AI 部署及其它优化算法/csapp 第八章 异常控制流 读书笔记.md
     - RESOURCES:
